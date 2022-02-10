@@ -1,6 +1,7 @@
 <p-dialog header="Title" position="top" [transitionOptions]="'600ms'" [(visible)]="displayDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
   {{dialogContent}}
 </p-dialog>
+
 <p-toast></p-toast>
 <p-toast position="top-left" key="tl"></p-toast>
 <p-toast position="top-center" key="tc"></p-toast>
@@ -8,8 +9,8 @@
 
 
 
-<div class="d-flex flex-row bd-highlight mb-3">
-  <div class="p-2 bd-highlight col-7">
+<div class="d-flex flex-row bd-highlight mb-3" style="height: 100vh;">
+  <div class="p-2 bd-highlight">
     <div class="card">
       <div class="card-header p-3 mt-2">
         <p style="color: #1e293b; font-size: 36px;">Student Entry Form</p>
@@ -323,7 +324,7 @@
                 <button mat-button (click)="stepper.reset()">
                   <i class="bi bi-arrow-clockwise" style="font-size: 1rem"></i>
                 </button>
-                
+
                 <button pButton [disabled]="!isValidForm()" (click)="saveStudent()"  *ngIf="!isShown">
                   <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                 </button>
@@ -410,7 +411,7 @@
   </div>
 
   <!--  Right-->
-  <div class="p-2 bd-highlight col-5">
+  <div class="p-2 bd-highlight">
 
     <div class="card">
       <div class="card-header">
@@ -497,7 +498,7 @@
 
 <!--To enable developer div in development-->
 <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between stretch"  *ngIf="!isProduction">
-  <!-- <p-toggleButton [(ngModel)]="showDeveloperDiv" onLabel="Dont Show Developer Area" offLabel="Show Developer Area" onIcon="pi pi-times" offIcon="pi pi-check" [style]="{'width': '30em'}"></p-toggleButton> -->
+   <p-toggleButton [(ngModel)]="showDeveloperDiv" onLabel="Dont Show Developer Area" offLabel="Show Developer Area" onIcon="pi pi-times" offIcon="pi pi-check" [style]="{'width': '30em'}"></p-toggleButton>
 </div>
 
 <!--This is developer div-->
@@ -511,8 +512,17 @@
     </pre>
     <hr>
     <pre>
-      stateList={{stateList |json}}
+<!--      stateList={{stateList |json}}-->
     </pre>
+    <hr>
+    <pre>
+      this.studentNameFormGroup.valid = {{this.studentNameFormGroup.valid }}
+      this.studentGuardianFormGroup.valid ={{this.studentGuardianFormGroup.valid}}
+      this.studentBasicFormGroup.valid ={{this.studentBasicFormGroup.valid}}
+      this.studentAddressFormGroup.valid ={{this.studentAddressFormGroup.valid}}
+      this.studentContactFormGroup.valid={{this.studentContactFormGroup.valid}}
+    </pre>
+    <hr>
     <div *ngIf="studentNameFormGroup.controls['studentName'].errors && studentNameFormGroup.controls['studentName'].errors['required']">
       <pre >
         test={{studentNameFormGroup.controls['studentName'].errors | json}}
@@ -520,6 +530,9 @@
     </div>
   </div>
   <div class="p-2 bd-highlight col-3" style="background-color: #6d6c6c;">
+    <pre>
+      students={{students | json}}
+    </pre>
     <pre>
       studentGuardianFormGroup = {{studentGuardianFormGroup.value | json}};
     </pre>

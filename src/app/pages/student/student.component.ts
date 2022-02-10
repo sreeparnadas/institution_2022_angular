@@ -232,7 +232,7 @@ export class StudentComponent implements OnInit, OnChanges{
     this.optionSelected='Mother';
   }
   editStudent(studentData:any){
-    
+
     this.date=new Date();
     //const latest_date =this.datepipe.transform(this.date, 'yyyy-MM-dd');
     const latest_date1 =this.datepipe.transform(this.date, 'dd-MM-yyyy');
@@ -250,12 +250,12 @@ export class StudentComponent implements OnInit, OnChanges{
     this.studentGuardianFormGroup.patchValue({motherName: studentData.motherName});
     this.studentGuardianFormGroup.patchValue({guardianName: studentData.guardianName});
 
-    
+
     //this.studentBasicFormGroup.patchValue({dob: this.datepipe.transform(studentData.dobSQL, 'yyyy-MM-dd')});
-   
+
     this.date=new Date(studentData.dob);
     this.studentBasicFormGroup.patchValue({dob:  this.date});
-   
+
     this.studentBasicFormGroup.patchValue({sex: studentData.sex});
     this.studentBasicFormGroup.patchValue({qualification: studentData.qualification});
 
@@ -326,7 +326,6 @@ export class StudentComponent implements OnInit, OnChanges{
     this.ngOnChanges();
   }
   deleteStudent(studentData:any){
-    console.log("Deleteable data:",studentData.studentId);
     this.confirmationService.confirm({
       message: 'Do you want to Update this record?',
       header: 'Delete Confirmation',
@@ -335,12 +334,12 @@ export class StudentComponent implements OnInit, OnChanges{
         //const index: number = this.myArray.indexOf(value);
         //this.myArray.splice(index, 1);
         const index: number = this.students.indexOf(studentData.studentId);
-        console.log("index:",index);    
          this.studentService.deleteStudent(studentData.studentId).subscribe(response => {
-            this.showSuccess("Record Deleted successfully");
+           this.showSuccess("Record Deleted successfully");
+           let index = this.students.findIndex(x => x.studentId === studentData.studentId);
             if (index !== -1) {
               this.students.splice(index, 1);
-          } 
+            }
 
         },error=>{
           this.showErrorMessage = true;
@@ -490,7 +489,7 @@ export class StudentComponent implements OnInit, OnChanges{
       this.studentAddressFormGroup.reset();
       this.studentContactFormGroup.reset();
     }
-   
+
 
 
 
@@ -567,7 +566,7 @@ export class StudentComponent implements OnInit, OnChanges{
 
 
   }
-  
+
 
 }
 
