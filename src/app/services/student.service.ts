@@ -100,13 +100,12 @@ export class StudentService {
   }
 
   deleteStudent(id:any){
-    return this.http.post<any>(this.commonService.getAPI() + '/students/', id)
+    console.log("service id:",id);
+    //return 0;
+     return this.http.delete<any>(this.commonService.getAPI() + '/students/'+ id)
     .pipe(catchError(this.errorService.serverError), tap(response => {
-      console.log('at service Delete:',response);
-      if (response.status === true){
-        this.studentList.unshift(response.data);
-        this.studentSubject.next([...this.studentList]);
-      }
+     
+     
     }))
 
   }

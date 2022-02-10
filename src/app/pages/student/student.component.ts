@@ -13,6 +13,8 @@ import {ageGTE} from "../../custom-validator/age.validator";
 import {Observable} from "rxjs";
 import {filter, map, startWith} from 'rxjs/operators';
 import {StorageMap} from "@ngx-pwa/local-storage";
+import { Pipe, PipeTransform, Inject, LOCALE_ID } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 
 interface Alert {
@@ -23,7 +25,7 @@ interface Alert {
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService,DatePipe]
 
 })
 
@@ -68,6 +70,7 @@ export class StudentComponent implements OnInit, OnChanges{
   isCaptured: boolean =true;
   WIDTH=200;
   HEIGHT=200;
+  date:any;
   public webcamImage: WebcamImage | undefined ;
   dialogContent: string = "";
   optionSelected:any='';
@@ -109,7 +112,8 @@ export class StudentComponent implements OnInit, OnChanges{
               , private confirmationService: ConfirmationService
               , private primengConfig: PrimeNGConfig
               , private storage: StorageMap
-              , private commonService: CommonService,
+              , private commonService: CommonService
+              , public datepipe: DatePipe
               ) {
 
     this.storage.get('studentNameFormGroup').subscribe((studentNameFormGroup: any) => {
@@ -229,6 +233,10 @@ export class StudentComponent implements OnInit, OnChanges{
   }
   editStudent(studentData:any){
     
+    this.date=new Date();
+    //const latest_date =this.datepipe.transform(this.date, 'yyyy-MM-dd');
+    const latest_date1 =this.datepipe.transform(this.date, 'dd-MM-yyyy');
+    console.log("convert date:",latest_date1);
 
     console.log("Editable data:",studentData);
     this.isShown = true;
@@ -242,8 +250,12 @@ export class StudentComponent implements OnInit, OnChanges{
     this.studentGuardianFormGroup.patchValue({motherName: studentData.motherName});
     this.studentGuardianFormGroup.patchValue({guardianName: studentData.guardianName});
 
+    
     //this.studentBasicFormGroup.patchValue({dob: this.datepipe.transform(studentData.dobSQL, 'yyyy-MM-dd')});
-    this.studentBasicFormGroup.patchValue({dob: studentData.dobSQL});
+   
+    this.date=new Date(studentData.dob);
+    this.studentBasicFormGroup.patchValue({dob:  this.date});
+   
     this.studentBasicFormGroup.patchValue({sex: studentData.sex});
     this.studentBasicFormGroup.patchValue({qualification: studentData.qualification});
 
@@ -320,11 +332,15 @@ export class StudentComponent implements OnInit, OnChanges{
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-         this.studentService.deleteStudent(this.studentData.studentId).subscribe(response => {
-
-          if (response.status === true){
+        //const index: number = this.myArray.indexOf(value);
+        //this.myArray.splice(index, 1);
+        const index: number = this.students.indexOf(studentData.studentId);
+        console.log("index:",index);    
+         this.studentService.deleteStudent(studentData.studentId).subscribe(response => {
             this.showSuccess("Record Deleted successfully");
-          }
+            if (index !== -1) {
+              this.students.splice(index, 1);
+          } 
 
         },error=>{
           this.showErrorMessage = true;
@@ -551,6 +567,7 @@ export class StudentComponent implements OnInit, OnChanges{
 
 
   }
+  
 
 }
 

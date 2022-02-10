@@ -127,7 +127,7 @@
 
                         <mat-form-field >
                           <mat-label>Date Of Birth</mat-label>
-                          <input class="col-9" matInput #ref [matDatepicker]="dob" formControlName="dob"(dateInput)="setDobSQL(ref.value)">
+                          <input class="col-9" matInput #ref [matDatepicker]="dob" formControlName="dob" (dateInput)="setDobSQL(ref.value)">
                           <div *ngIf="studentBasicFormGroup.controls['dob'].errors && studentBasicFormGroup.controls['dob'].touched" >
                             <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['required']">DOB is required</mat-error>
                             <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['ageGTE']">
@@ -497,7 +497,7 @@
 
 <!--To enable developer div in development-->
 <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between stretch"  *ngIf="!isProduction">
-  <p-toggleButton [(ngModel)]="showDeveloperDiv" onLabel="Dont Show Developer Area" offLabel="Show Developer Area" onIcon="pi pi-times" offIcon="pi pi-check" [style]="{'width': '30em'}"></p-toggleButton>
+  <!-- <p-toggleButton [(ngModel)]="showDeveloperDiv" onLabel="Dont Show Developer Area" offLabel="Show Developer Area" onIcon="pi pi-times" offIcon="pi pi-check" [style]="{'width': '30em'}"></p-toggleButton> -->
 </div>
 
 <!--This is developer div-->
