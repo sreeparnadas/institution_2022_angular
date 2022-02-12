@@ -56,6 +56,8 @@ const routes: Routes = [
 
   { path: 'SidenavStudent', loadChildren: () => import('./sidenavs/sidenav-student/sidenav-student.module').then(m => m.SidenavStudentModule) },
 
+  { path: 'Top', loadChildren: () => import('./home/top/top.module').then(m => m.TopModule) },
+
 ];
 
 

@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import {ChartModule} from "./chart/chart.module";
+import {TopModule} from "./top/top.module";
 
 
 
@@ -12,11 +13,12 @@ import {ChartModule} from "./chart/chart.module";
   declarations: [
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MatTabsModule,
-    ChartModule,
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MatTabsModule,
+        ChartModule,
+        TopModule,
+    ]
 })
 export class HomeModule { }
