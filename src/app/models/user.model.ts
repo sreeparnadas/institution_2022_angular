@@ -50,9 +50,9 @@ export class User{
     return this.userTypeId == 6;
   }
 
-  get isRefinish(){
+  get isStudent(){
     // tslint:disable-next-line:triple-equals
-    return this.userTypeId == 9;
+    return this.userTypeId == 8;
   }
   get isPettyCash(){
     // tslint:disable-next-line:triple-equals

@@ -29,13 +29,13 @@ export class LoginComponent implements OnInit {
       // return;
     }
 
-    var result = this.loginableStudents.find(obj => {
-      return (obj.userName === this.loginForm.value.loginId && obj.password === this.loginForm.value.loginPassword);
-    })
-    if(result){
-      this.authService.loginTutorial(result);
-      this.router.navigate(['/tutorial']).then(r => {});
-    }
+    // var result = this.loginableStudents.find(obj => {
+    //   return (obj.userName === this.loginForm.value.loginId && obj.password === this.loginForm.value.loginPassword);
+    // })
+    // if(result){
+    //   this.authService.loginTutorial(result);
+    //   this.router.navigate(['/tutorial']).then(r => {});
+    // }
 
     //  ********* Local Login *****************************
 
@@ -52,6 +52,9 @@ export class LoginComponent implements OnInit {
         }
         if (this.authService.isDeveloper()){
           this.router.navigate(['/developer']).then(r => {});
+        }
+        if (this.authService.isStudent()){
+          this.router.navigate(['/StudentUser']).then(r => {});
         }
       }
     });

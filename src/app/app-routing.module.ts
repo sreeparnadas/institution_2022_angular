@@ -52,6 +52,10 @@ const routes: Routes = [
 
   { path: 'FlipFlop', loadChildren: () => import('./tutorials/flip-flop/flip-flop.module').then(m => m.FlipFlopModule) },
 
+  { path: 'StudentUser', loadChildren: () => import('./pages/student-user/student-user.module').then(m => m.StudentUserModule) },
+
+  { path: 'SidenavStudent', loadChildren: () => import('./sidenavs/sidenav-student/sidenav-student.module').then(m => m.SidenavStudentModule) },
+
 ];
 
 
