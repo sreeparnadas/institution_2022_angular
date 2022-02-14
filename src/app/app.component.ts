@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import * as AOS from 'aos';
 import {AuthService} from "./services/auth.service";
 // @ts-ignore
@@ -7,6 +7,7 @@ import {MediaChange, MediaObserver} from "@angular/flex-layout";
 import {CommonService} from "./services/common.service";
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
 import {PrimeNGConfig} from "primeng/api";
+import {ScrollDispatcher} from "@angular/cdk/overlay";
 
 
 
@@ -19,7 +20,14 @@ export class AppComponent implements OnInit {
   mediaSub: Subscription;
   private isDeviceXs: boolean | undefined;
   isNavigating: boolean=false;
-  constructor(public router: Router, public authService: AuthService, public mediaObserver: MediaObserver,private commonService: CommonService, private primengConfig: PrimeNGConfig ) {
+
+  navFixed = false;
+
+  constructor(private scrollDispatcher: ScrollDispatcher,public router: Router, public authService: AuthService, public mediaObserver: MediaObserver,private commonService: CommonService, private primengConfig: PrimeNGConfig ) {
+    //this scroll dispatcher works on scroll
+    this.scrollDispatcher.scrolled().subscribe(x => {
+      AOS.refresh();
+    });
     this.primengConfig.ripple = true;
     AOS.init();
     this.router.events.subscribe(ev=>{
@@ -34,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.mediaSub = this.mediaObserver.media$.subscribe(
       (result: MediaChange) => {
         this.isDeviceXs = (result.mqAlias === 'xs' ? true : false);
