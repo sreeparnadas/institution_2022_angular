@@ -4,8 +4,8 @@
       <app-sidenav-owner *ngIf="authService.isOwner()"></app-sidenav-owner>
       <app-sidenav-developer *ngIf="authService.isDeveloper()"></app-sidenav-developer>
       <app-sidenav-student *ngIf="authService.isStudent()"></app-sidenav-student>
-
     </mat-drawer>
+
     <mat-drawer-content>
         <app-header (toggleSidebarForMe)="sideBarToggler($event)"></app-header>
       <div *ngIf="isNavigating"  id="loading-screen" class="text-center">

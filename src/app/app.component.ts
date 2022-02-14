@@ -41,6 +41,9 @@ export class AppComponent implements OnInit {
       }
     );
     this.authService.autoLogin();
+    setTimeout(() => {
+      this.sideBarOpen=false;
+    }, 3000);
   }
   ngOnDestroy(): void {
     this.mediaSub.unsubscribe();

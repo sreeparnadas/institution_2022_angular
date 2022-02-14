@@ -1,49 +1,3 @@
-<!--<mat-toolbar>-->
-
-
-
-<!--  <mat-toolbar-row class="justify-content-between">-->
-<!--    <button (click)="toggleSlidebar()" mat-icon-button ><mat-icon>menu</mat-icon></button>-->
-<!--    <div class="row mr-2">-->
-<!--      <ul>-->
-<!--        <li>-->
-<!--          <button mat-button class="rounded-circle" [matMenuTriggerFor]="test1">-->
-<!--            <div class="rounded-circle" style="width: 56px; height: 55px; border: #e8c50e solid">-->
-<!--              <img  class="rounded-circle" style="width: 50px; height: 50px" [src]="imageSrc" (error)="imageSrc = defaultPicture">-->
-<!--            </div>-->
-<!--          </button>-->
-<!--          <mat-menu #test1="matMenu">-->
-<!--            <input type="file" (change)="onChange($event)" name="filename">-->
-<!--          </mat-menu>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--    <div class="row mr-2 ml-auto">-->
-<!--      <ul>-->
-<!--        <li>-->
-<!--          <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">-->
-<!--            &lt;!&ndash;            <img src="../../assets/profile.jpg" alt="" class="user-image mr-1 p-2">&ndash;&gt;-->
-<!--            User Name-->
-<!--            <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>-->
-<!--          </button>-->
-<!--          <mat-menu #menu="matMenu" >-->
-<!--            <button mat-menu-item (click)="logOutCurrentUser()">-->
-<!--              <mat-icon>exit_to_app</mat-icon>-->
-<!--              Logout-->
-<!--            </button>-->
-<!--            <button (click)="toggleSlidebar(false)" mat-menu-item [routerLink]="['/login']">-->
-<!--              <mat-icon aria-hidden="false">login</mat-icon>-->
-<!--              Login-->
-<!--            </button>-->
-
-<!--          </mat-menu>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--  </mat-toolbar-row>-->
-<!--</mat-toolbar>-->
-
-
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -86,19 +40,23 @@
     </div>
     <!--    for login-->
     <div *ngIf="authService.isNotAuthenticated()">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <mat-icon>power_settings_new</mat-icon>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-            <li><a class="dropdown-item" [routerLink]="['/login']">
-              <mat-icon aria-hidden="false">login</mat-icon> Login
-            </a></li>
+      <a class="dropdown-item" [routerLink]="['/login']" style="color: dodgerblue;">
+        <mat-icon>power_settings_new</mat-icon>
+      </a>
 
-          </ul>
-        </li>
-      </ul>
+<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--        <li class="nav-item dropdown">-->
+<!--          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            <mat-icon>power_settings_new</mat-icon>-->
+<!--          </a>-->
+<!--          <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">-->
+<!--            <li><a class="dropdown-item" [routerLink]="['/login']">-->
+<!--              <mat-icon aria-hidden="false">login</mat-icon> Login-->
+<!--            </a></li>-->
+
+<!--          </ul>-->
+<!--        </li>-->
+<!--      </ul>-->
     </div>
 
     <!--    for logout-->
@@ -123,12 +81,12 @@
       </ul>
     </div>
 
-    <div>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+<!--    <div>-->
+<!--      <form class="d-flex">-->
+<!--        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--      </form>-->
+<!--    </div>-->
   </div>
 </nav>
 
