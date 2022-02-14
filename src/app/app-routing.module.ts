@@ -58,12 +58,14 @@ const routes: Routes = [
 
   { path: 'Top', loadChildren: () => import('./home/top/top.module').then(m => m.TopModule) },
 
+  { path: 'Trainer', loadChildren: () => import('./home/trainer/trainer.module').then(m => m.TrainerModule) },
+
 ];
 
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy',useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

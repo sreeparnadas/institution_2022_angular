@@ -30,6 +30,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { MAT_DATE_LOCALE} from "@angular/material/core";
 import {SidenavTutorialModule} from "./sidenavs/sidenav-tutorial/sidenav-tutorial.module";
 import {SidenavStudentModule} from "./sidenavs/sidenav-student/sidenav-student.module";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {SidenavStudentModule} from "./sidenavs/sidenav-student/sidenav-student.m
     ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    { provide: MAT_DATE_LOCALE, useValue: 'en-in' }
+    {provide: MAT_DATE_LOCALE, useValue: 'en-in' },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
