@@ -1,0 +1,53 @@
+
+<div class="d-flex flex-row bd-highlight mb-3" style="height: 200vh;">
+    <div class="p-2 bd-highlight">
+        <div class="card">
+            <div class="card-header p-3 mt-2">
+                <p style="color: #1e293b; font-size: 36px;">Course Entry Form</p>
+            </div>
+            <div class="card-body">
+                <div>
+                    <mat-stepper [linear]="isLinear" #stepper style="min-height: 50vh; min-width:50vh; background-color: rgb(80, 78, 78);background-image: linear-gradient(to right, grey , white); border-radius: 25px 25px; -webkit-box-shadow: 0 10px 6px -6px #777;-moz-box-shadow: 0 10px 6px -6px #777;box-shadow: 0 10px 6px -6px #777;">
+                        <mat-step [stepControl]="courseNameFormGroup" label="Name">
+                            <form [formGroup]="courseNameFormGroup">
+                                <div class="form-group">
+                                    <mat-form-field class="col-12">
+                                      <input matInput placeholder="Course Name"  formControlName="courseName">
+                                      <div *ngIf="courseNameFormGroup.controls['courseName'].errors && courseNameFormGroup.controls['courseName'].touched" >
+                                        <mat-error class="text-right" *ngIf="courseNameFormGroup.controls['courseName'].errors['required']">Course Name is required</mat-error>
+                                      </div>
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="form-group">
+                                    <mat-form-field class="col-12">
+                                      <input matInput placeholder="Course Full Name" formControlName="courseFullName">
+                                    </mat-form-field>
+                  
+                                  </div>
+                            </form>
+                        </mat-step>
+                    </mat-stepper>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Right-->
+  <div class="p-2 bd-highlight">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex bd-highlight mb-3">
+                <div class="p-2 bd-highlight">
+                    <p-button type="button" icon="pi pi-arrow-left"></p-button>
+                  </div>
+                  <div class="p-2 bd-highlight">
+                    <h3 style="color: #1e293b;">Course Details</h3>
+                  </div>
+            </div>
+        </div>
+        <div class="card">
+            <h5>Student List</h5>
+        </div>
+    </div>
+  </div>
+</div>

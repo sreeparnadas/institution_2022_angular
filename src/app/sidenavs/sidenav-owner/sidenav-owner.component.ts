@@ -14,5 +14,6 @@ export class SidenavOwnerComponent implements OnInit {
   }
   toggleMaster(){
     this.displayMaster=!this.displayMaster;
+    //this.displayMaster=false;
   }
 }

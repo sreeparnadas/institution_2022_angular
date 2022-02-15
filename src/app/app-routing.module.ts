@@ -42,6 +42,8 @@ const routes: Routes = [
 
   { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) },
 
+  { path: 'course', loadChildren: () => import('./pages/course/course.module').then(m => m.CourseModule) },
+
   { path: 'LineChart', loadChildren: () => import('./pages/developer/charts/line-chart/line-chart.module').then(m => m.LineChartModule) },
 
   { path: 'BarChart', loadChildren: () => import('./pages/developer/charts/bar-chart/bar-chart.module').then(m => m.BarChartModule) },
