@@ -3,29 +3,77 @@
     <div class="p-2 bd-highlight">
         <div class="card">
             <div class="card-header p-3 mt-2">
-                <p style="color: #1e293b; font-size: 36px;">Course Entry Form</p>
+                <p style="color: #1e293b; font-size: 36px;">Course Entry Form </p>
+                
             </div>
             <div class="card-body">
                 <div>
-                    <mat-stepper [linear]="isLinear" #stepper style="min-height: 50vh; min-width:50vh; background-color: rgb(80, 78, 78);background-image: linear-gradient(to right, grey , white); border-radius: 25px 25px; -webkit-box-shadow: 0 10px 6px -6px #777;-moz-box-shadow: 0 10px 6px -6px #777;box-shadow: 0 10px 6px -6px #777;">
+                    <mat-stepper [linear]="isLinear" #stepper style="min-height: 50vh; min-width:50vh; background-color: rgb(80, 78, 78);background-image: linear-gradient(to right, rgb(61, 58, 58) , rgb(236, 222, 21)); border-radius: 25px 25px; -webkit-box-shadow: 0 10px 6px -6px #777;-moz-box-shadow: 0 10px 6px -6px #777;box-shadow: 0 10px 6px -6px #777;">
                         <mat-step [stepControl]="courseNameFormGroup" label="Name">
                             <form [formGroup]="courseNameFormGroup">
                                 <div class="form-group">
+                                  <div class="d-flex flex-row bd-highlight mb-3">
+                                   
+                                    <div class="p-2 col-4 bd-highlight">
+                                      <mat-form-field style = "width:100%">
+                                        <mat-label>Course Code</mat-label>
+                                        <input matInput formControlName="courseCode" placeholder="C0001" required>
+                                      </mat-form-field>
+                                  </div>
+                                    <div class="p-2 col-8 bd-highlight">
+                                      <mat-form-field style = "width:100%">
+                                        <mat-label>Short Name</mat-label>
+                                        <input matInput formControlName="shortName" placeholder="Short Name" required>
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+
                                     <mat-form-field class="col-12">
-                                      <input matInput placeholder="Course Name"  formControlName="courseName">
-                                      <div *ngIf="courseNameFormGroup.controls['courseName'].errors && courseNameFormGroup.controls['courseName'].touched" >
-                                        <mat-error class="text-right" *ngIf="courseNameFormGroup.controls['courseName'].errors['required']">Course Name is required</mat-error>
+                                      <input matInput placeholder="Course Full Name"  formControlName="fullName">
+                                      <div *ngIf="courseNameFormGroup.controls['fullName'].errors && courseNameFormGroup.controls['fullName'].touched" >
+                                        <mat-error class="text-right" *ngIf="courseNameFormGroup.controls['fullName'].errors['required']">Course Name is required</mat-error>
                                       </div>
                                     </mat-form-field>
                                   </div>
+                                  
+<!-- Address -->
                                   <div class="form-group">
-                                    <mat-form-field class="col-12">
-                                      <input matInput placeholder="Course Full Name" formControlName="courseFullName">
-                                    </mat-form-field>
+                                    <div class="d-flex flex-row bd-highlight mb-3">
+                                      <div class="p-2 col-8 bd-highlight">
+                                          <mat-form-field style = "width:100%">
+                                            <mat-label>Duration:</mat-label>
+                                            <input matInput formControlName="courseDuration" placeholder="100" required>
+                                          </mat-form-field>
+                                      </div>
+                                      <div class="p-2 col-4 bd-highlight">
+                                        <mat-form-field style = "width:100%">
+                                          <mat-label>Duration Type</mat-label>
+                                          <input matInput formControlName="feesModeType" placeholder="Hours" required>
+                                        </mat-form-field>
+                                      </div>
+                                    </div>
                   
+                                   
+                                  </div>
+                                  <div class="form-group">
+                                    <h5>Description</h5>
+                                    <p-editor formControlName="description" [style]="{'height':'120px'}">
+                                      <ng-template pTemplate="header">
+                                      <span class="ql-formats">
+                                          <button type="button" class="ql-bold" aria-label="Bold"></button>
+                                          <button type="button" class="ql-italic" aria-label="Italic"></button>
+                                          <button type="button" class="ql-underline" aria-label="Underline"></button>
+                                      </span>
+                                      </ng-template>
+                                    </p-editor>
+                  
+                                  </div>
+                                  <div align="right">
+                                    <button type="button" class="btn btn-info">Submit</button>
                                   </div>
                             </form>
                         </mat-step>
+                       
                     </mat-stepper>
                 </div>
             </div>

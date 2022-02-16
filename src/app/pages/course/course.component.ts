@@ -16,6 +16,9 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
   }
   courseNameFormGroup = new FormGroup({
-    courseName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
+    fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
+    courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
+    shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
+    courseDuration : new FormControl(),
   })
 }

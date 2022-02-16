@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatStepperModule} from "@angular/material/stepper";
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import {EditorModule} from "primeng/editor";
 @NgModule({
   declarations: [
     CourseComponent
@@ -22,7 +23,8 @@ import { RippleModule } from 'primeng/ripple';
     ReactiveFormsModule,
     MatStepperModule,
     ButtonModule,
-    RippleModule
+    RippleModule,
+    EditorModule
   ]
 })
 export class CourseModule { }
