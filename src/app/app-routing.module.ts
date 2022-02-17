@@ -62,6 +62,8 @@ const routes: Routes = [
 
   { path: 'Trainer', loadChildren: () => import('./home/trainer/trainer.module').then(m => m.TrainerModule) },
 
+  { path: 'NorBasedFlipFlop', loadChildren: () => import('./tutorials/flip-flop/nor-based-flip-flop/nor-based-flip-flop.module').then(m => m.NorBasedFlipFlopModule) },
+
 ];
 
 
