@@ -48,7 +48,7 @@
                                       <div class="p-2 col-4 bd-highlight">
                                         <mat-form-field style = "width:100%">
                                           <mat-label>Duration Type</mat-label>
-                                          <input matInput formControlName="feesModeType" placeholder="Hours" required>
+                                          <input matInput formControlName="durationTypeId" placeholder="Hours" required>
                                         </mat-form-field>
                                       </div>
                                     </div>
@@ -90,6 +90,58 @@
                   </div>
                   <div class="p-2 bd-highlight">
                     <h3 style="color: #1e293b;">Course Details</h3>
+                    <p-table #dt1 [value]="courses" dataKey="courseId" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,25,50]"
+                    styleClass="p-datatable-gridlines"
+                    [globalFilterFields]="['courseId','courseCode','shortName','fullName']">
+             <ng-template pTemplate="caption">
+   <!--            <div class="p-d-flex">-->
+   <!--                <span class="p-input-icon-left">-->
+   <!--                  <i class="pi pi-search"></i>-->
+   <!--                  <input type="text" pInputText placeholder="Search" (input)="dt1.filterGlobal(getEventValue($event), 'contains')" />-->
+   <!--                </span>-->
+   <!--            </div>-->
+   
+               <div class="col-12 md:col-6">
+                 <div class="p-inputgroup">
+                   <button type="button" pButton pRipple>
+                     <i class="pi pi-search"></i>
+                   </button>
+                  
+                 </div>
+               </div>
+   
+   
+             </ng-template>
+             <ng-template pTemplate="header">
+               <tr>
+                 <th>ID</th>
+                 <th pSortableColumn="courseCode">Code <p-sortIcon field="courseCode"></p-sortIcon></th>
+                 <th pSortableColumn="shortName">Short Name <p-sortIcon field="shortName"></p-sortIcon></th>
+                 <th pSortableColumn="fullName">Full Name <p-sortIcon field="fullName"></p-sortIcon></th>
+                 <th pSortableColumn="edit">Edit <p-sortIcon field="edit"></p-sortIcon></th>
+                 <th pSortableColumn="delete">Delete <p-sortIcon field="delete"></p-sortIcon></th>
+               </tr>
+             </ng-template>
+             <ng-template pTemplate="body" let-course>
+               <tr>
+                <td>{{course.courseId}}</td>
+                 <td>{{course.courseCode}}</td>
+                 <td>{{course.shortName}}</td>
+                 <td>{{course.fullName}}</td>
+                
+                 <td>
+                   <p-button type="button"  icon="pi pi-pencil" styleClass="p-button-text"></p-button>
+                 </td>
+                 <td>
+                   <p-button type="button"  icon="pi pi-trash" styleClass="p-button-text"></p-button>
+                 </td>
+               </tr>
+             </ng-template>
+             <ng-template pTemplate="paginatorleft">
+               <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" ></p-button>
+             </ng-template>
+           </p-table>
                   </div>
             </div>
         </div>
