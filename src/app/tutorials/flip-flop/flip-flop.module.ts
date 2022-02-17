@@ -11,23 +11,25 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {AsynchronousSequentialCircuitsModule} from "./asynchronous-sequential-circuits/asynchronous-sequential-circuits.module";
 import {SynchronousSequentialCircuitsModule} from "./synchronous-sequential-circuits/synchronous-sequential-circuits.module";
+import {NorBasedFlipFlopModule} from "./nor-based-flip-flop/nor-based-flip-flop.module";
 
 
 @NgModule({
   declarations: [
     FlipFlopComponent
   ],
-  imports: [
-    CommonModule,
-    FlipFlopRoutingModule,
-    MatTabsModule,
-    ToggleButtonModule,
-    FormsModule,
-    SliderModule,
-    MatBadgeModule,
-    RadioButtonModule,
-    AsynchronousSequentialCircuitsModule,
-    SynchronousSequentialCircuitsModule
-  ]
+    imports: [
+        CommonModule,
+        FlipFlopRoutingModule,
+        MatTabsModule,
+        ToggleButtonModule,
+        FormsModule,
+        SliderModule,
+        MatBadgeModule,
+        RadioButtonModule,
+        AsynchronousSequentialCircuitsModule,
+        SynchronousSequentialCircuitsModule,
+        NorBasedFlipFlopModule
+    ]
 })
 export class FlipFlopModule { }
