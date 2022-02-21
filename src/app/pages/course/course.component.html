@@ -12,8 +12,22 @@
                         <mat-step [stepControl]="courseNameFormGroup" label="Name">
                             <form [formGroup]="courseNameFormGroup">
                                 <div class="form-group">
+                                  <div class="p-2 col-8 bd-highlight">
+                                    <ng-select [items]="feeModeType"
+                                               fxFlex="100"
+                                               bindLabel="name"
+                                               class="custom"
+                                               bindValue="value"
+                                               appendTo="body"
+                                               formControlName="feesModeTypeId"
+                                               placeholder="Fees Mode"
+                                               style="height: 200 !important;"
+                                               >
+                                    </ng-select>
+                                  </div>
                                   <div class="d-flex flex-row bd-highlight mb-3">
                                    
+
                                     <div class="p-2 col-4 bd-highlight">
                                       <mat-form-field style = "width:100%">
                                         <mat-label>Course Code</mat-label>
@@ -45,16 +59,24 @@
                                             <input matInput formControlName="courseDuration" placeholder="100" required>
                                           </mat-form-field>
                                       </div>
-                                      <div class="p-2 col-4 bd-highlight">
-                                        <mat-form-field style = "width:100%">
-                                          <mat-label>Duration Type</mat-label>
-                                          <input matInput formControlName="durationTypeId" placeholder="Hours" required>
-                                        </mat-form-field>
+                                   
+                                     
+                                        <div class="p-2 col-4 bd-highlight" style="height:40%">
+                                          <ng-select  [items]="durationTypes"
+                                                      bindLabel="durationName"
+                                                      class="custom"
+                                                      bindValue="durationTypeId"
+                                                      formControlName="durationTypeId"
+                                                      autofocus
+                                                      appendTo="body"
+                                                      placeholder="Duration Type">
+                                          </ng-select>
+                                        </div>
                                       </div>
                                     </div>
                   
                                    
-                                  </div>
+                                  
                                   <div class="form-group">
                                     <h5>Description</h5>
                                     <p-editor formControlName="description" [style]="{'height':'120px'}">

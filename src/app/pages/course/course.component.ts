@@ -22,6 +22,9 @@ export class CourseComponent implements OnInit {
   isLinear: boolean = false;
   visibleSidebar2: boolean = false;
   courses: Course[] = [];
+  durationTypes: any[]=[];
+  feeModeType: any[] = [];
+ 
   constructor(private route: ActivatedRoute
     ,public authService: AuthService
     , private messageService: MessageService
@@ -31,6 +34,8 @@ export class CourseComponent implements OnInit {
     , private storage: StorageMap
     , private commonService: CommonService
     ) { }
+
+   
   //courseNameFormGroup: FormGroup = new FormGroup;
   ngOnInit(): void {
 
@@ -42,10 +47,21 @@ export class CourseComponent implements OnInit {
          this.courses=response.data;
          console.log("Course List:",this.courses);
       })
+
+      this.courseService.fetchAllDurationType().subscribe((response:any)=>{
+        this.durationTypes=response.data;
+        console.log("Duration List:",this.durationTypes);
+     })
+     this.feeModeType = [
+      {value:'1', name: 'Monthly'},
+      {value:'2', name: 'Single'}
+    ];
+   
    
   }
   courseNameFormGroup = new FormGroup({
-    durationTypeId : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
+    feesModeTypeId : new FormControl(1, [Validators.required]),
+    durationTypeId : new FormControl(1, [Validators.required]),
     fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
     courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
     shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),

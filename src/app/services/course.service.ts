@@ -11,7 +11,9 @@ import { ErrorService } from './error.service';
 })
 export class CourseService {
   courseList: Course[] =[];
+  durationTypeList: any[] =[];
   courseSubject = new Subject<Course[]>();
+  durationTypeSubject = new Subject<Course[]>();
   constructor(private commonService: CommonService, private errorService: ErrorService, private http: HttpClient) { }
 
   fetchAllCourses(){
@@ -28,5 +30,13 @@ export class CourseService {
   }
   getCourseUpdateListener(){
     return this.courseSubject.asObservable();
+  }
+
+  fetchAllDurationType(){
+    return this.http.get<any>(this.commonService.getAPI() + '/durationTypes')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.durationTypeList=response.data;
+      this.durationTypeSubject.next([...this.durationTypeList]);
+    })));
   }
 }
