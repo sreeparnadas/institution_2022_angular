@@ -8,6 +8,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 import { CourseService } from 'src/app/services/course.service';
 
+interface Alert {
+  type: string;
+  message: string;
+}
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -18,18 +22,31 @@ import { CourseService } from 'src/app/services/course.service';
 
 export class CourseComponent implements OnInit {
   dialogContent: string = "";
+  errorMessage: any;
+  showErrorMessage: boolean = false;
   displayDialog: boolean = false;
   isLinear: boolean = false;
   visibleSidebar2: boolean = false;
   courses: Course[] = [];
   durationTypes: any[]=[];
   feeModeType: any[] = [];
- 
+  msgs: { severity: string; summary: string; detail: string }[] = [];
+  courseData: {
+    feesModeTypeId?:number;
+    durationTypeId?: number;
+    fullName?: string;
+    courseCode?: string;
+    shortName?: string;
+    courseDuration?: string;
+    description?: string;
+  }={};
+
   constructor(private route: ActivatedRoute
     ,public authService: AuthService
     , private messageService: MessageService
     , private activatedRoute: ActivatedRoute
     , private courseService: CourseService
+    ,private confirmationService: ConfirmationService
     , private primengConfig: PrimeNGConfig
     , private storage: StorageMap
     , private commonService: CommonService
@@ -68,4 +85,52 @@ export class CourseComponent implements OnInit {
     courseDuration : new FormControl(),
     description : new FormControl()
   })
+
+  saveCourse(){+
+    alert("Testing");
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
+        this.courseData.durationTypeId=this.courseNameFormGroup.value.durationTypeId;
+        this.courseData.fullName=this.courseNameFormGroup.value.fullName;
+        this.courseData.courseCode=this.courseNameFormGroup.value.courseCode;
+        this.courseData.shortName=this.courseNameFormGroup.value.shortName;
+        this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
+        this.courseData.description=this.courseNameFormGroup.value.description;
+        
+
+        this.courseService.saveCourse(this.courseData).subscribe(response => {
+
+          if (response.status === true){
+            this.showSuccess("Record added successfully");
+          }
+
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+          this.showError(error.statusText);
+        })
+
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
+  }
+  showSuccess(successMessage: string) {
+    this.messageService.add({severity:'success', summary: 'Success', detail: successMessage});
+  }
+  showError(message: string) {
+    this.messageService.add({severity:'error', summary: 'Success', detail: message});
+  }
 }
