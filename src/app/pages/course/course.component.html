@@ -91,17 +91,30 @@
                   
                                   </div>
                                   <div align="right">
-                                    <button type="button" class="btn btn-info" (click)="saveCourse()">Submit</button>
+                                    
+                                    <button pButton (click)="saveCourse()" >
+                                      <i class="bi bi-save" style="font-size: 1rem"> Save </i>
+                                    </button>
                                   </div>
                             </form>
                         </mat-step>
                        
                     </mat-stepper>
+
+                    <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle" [transitionOptions]="'0.8ms'">
+                      <ng-template pTemplate="header">
+                        <h3>Header Content</h3>
+                      </ng-template>
+                      <ng-template pTemplate="footer">
+                        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+                        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+                      </ng-template>
+                    </p-confirmDialog>
                 </div>
             </div>
         </div>
     </div>
-
+   
     <!--  Right-->
   <div class="p-2 bd-highlight">
     <div class="card">
@@ -153,7 +166,7 @@
                  <td>{{course.fullName}}</td>
                 
                  <td>
-                   <p-button type="button"  icon="pi pi-pencil" styleClass="p-button-text"></p-button>
+                   <p-button type="button"  icon="pi pi-pencil" (click)="editCourse(course)" styleClass="p-button-text"></p-button>
                  </td>
                  <td>
                    <p-button type="button"  icon="pi pi-trash" styleClass="p-button-text"></p-button>
@@ -168,7 +181,12 @@
             </div>
         </div>
         <div class="card">
-            <h5>Student List</h5>
+            <h1>Student List</h1>
+            <div class="p-2 bd-highlight col-3" style="background-color: #e7e709;">
+              <pre>
+                courseData = {{courseData | json}}
+              </pre>
+            </div>
         </div>
     </div>
   </div>

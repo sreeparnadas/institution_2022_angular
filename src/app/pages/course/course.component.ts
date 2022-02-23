@@ -86,10 +86,11 @@ export class CourseComponent implements OnInit {
     description : new FormControl()
   })
 
-  saveCourse(){+
-    alert("Testing");
+  saveCourse(){
+    //alert("Testing");
+    
     this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
+      message: 'Do you want to Save this record?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
@@ -101,7 +102,6 @@ export class CourseComponent implements OnInit {
         this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
         this.courseData.description=this.courseNameFormGroup.value.description;
         
-
         this.courseService.saveCourse(this.courseData).subscribe(response => {
 
           if (response.status === true){
@@ -126,6 +126,31 @@ export class CourseComponent implements OnInit {
         this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
       }
     });
+  }
+  editCourse(courseData:any){
+
+    
+    console.log("Editable data:",courseData.durationTypeId);
+    //this.isShown = true;
+    this.courseNameFormGroup.patchValue({feesModeTypeId: courseData.feesModeType.feesModeTypeId});
+    this.courseNameFormGroup.patchValue({durationTypeId: courseData.durationTypeId});
+
+    this.courseNameFormGroup.patchValue({fullName: courseData.fullName});
+    this.courseNameFormGroup.patchValue({courseCode: courseData.courseCode});
+
+    this.courseNameFormGroup.patchValue({shortName: courseData.shortName});
+    this.courseNameFormGroup.patchValue({courseDuration: courseData.courseDuration});
+    this.courseNameFormGroup.patchValue({description: courseData.description});
+
+
+    //this.studentBasicFormGroup.patchValue({dob: this.datepipe.transform(studentData.dobSQL, 'yyyy-MM-dd')});
+
+    
+
+   /*  this.studentContactFormGroup.patchValue({guardianContactNumber: studentData.guardianContactNumber});
+    this.studentContactFormGroup.patchValue({whatsappNumber: studentData.whatsappNumber});
+    this.studentContactFormGroup.patchValue({email: studentData.email});
+    this.studentContactFormGroup.patchValue({description: studentData.description}); */
   }
   showSuccess(successMessage: string) {
     this.messageService.add({severity:'success', summary: 'Success', detail: successMessage});
