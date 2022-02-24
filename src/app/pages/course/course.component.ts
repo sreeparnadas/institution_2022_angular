@@ -41,8 +41,7 @@ export class CourseComponent implements OnInit {
     description?: string;
   }={};
 
-  constructor(private route: ActivatedRoute
-    ,public authService: AuthService
+  constructor(public authService: AuthService
     , private messageService: MessageService
     , private activatedRoute: ActivatedRoute
     , private courseService: CourseService
@@ -50,35 +49,32 @@ export class CourseComponent implements OnInit {
     , private primengConfig: PrimeNGConfig
     , private storage: StorageMap
     , private commonService: CommonService
-    ) { }
+    ) {
 
-   
+    this.activatedRoute.data.subscribe((response: any) => {
+      this.courses = response.courseResolverData.courses.data;
+      this.durationTypes = response.courseResolverData.durationTypes.data;
+    });
+  }
+
+
   //courseNameFormGroup: FormGroup = new FormGroup;
   ngOnInit(): void {
 
-    this.courses = this.courseService.getCourses();
+    // this.courses = this.courseService.getCourses();
     this.courseService.getCourseUpdateListener().subscribe((response: Course[]) =>{
       this.courses = response;
     });
-    this.courseService.fetchAllCourses().subscribe((response:any)=>{
-         this.courses=response.data;
-         console.log("Course List:",this.courses);
-      })
-
-      this.courseService.fetchAllDurationType().subscribe((response:any)=>{
-        this.durationTypes=response.data;
-        console.log("Duration List:",this.durationTypes);
-     })
      this.feeModeType = [
-      {value:'1', name: 'Monthly'},
-      {value:'2', name: 'Single'}
+      {value:1, name: 'Monthly'},
+      {value:2, name: 'Single'}
     ];
-   
-   
+
+
   }
   courseNameFormGroup = new FormGroup({
     feesModeTypeId : new FormControl(1, [Validators.required]),
-    durationTypeId : new FormControl(1, [Validators.required]),
+    durationTypeId : new FormControl(2, [Validators.required]),
     fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
     courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
     shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
@@ -88,7 +84,7 @@ export class CourseComponent implements OnInit {
 
   saveCourse(){
     //alert("Testing");
-    
+
     this.confirmationService.confirm({
       message: 'Do you want to Save this record?',
       header: 'Delete Confirmation',
@@ -101,7 +97,7 @@ export class CourseComponent implements OnInit {
         this.courseData.shortName=this.courseNameFormGroup.value.shortName;
         this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
         this.courseData.description=this.courseNameFormGroup.value.description;
-        
+
         this.courseService.saveCourse(this.courseData).subscribe(response => {
 
           if (response.status === true){
@@ -128,9 +124,6 @@ export class CourseComponent implements OnInit {
     });
   }
   editCourse(courseData:any){
-
-    
-    console.log("Editable data:",courseData.durationTypeId);
     //this.isShown = true;
     this.courseNameFormGroup.patchValue({feesModeTypeId: courseData.feesModeType.feesModeTypeId});
     this.courseNameFormGroup.patchValue({durationTypeId: courseData.durationTypeId});
@@ -141,16 +134,6 @@ export class CourseComponent implements OnInit {
     this.courseNameFormGroup.patchValue({shortName: courseData.shortName});
     this.courseNameFormGroup.patchValue({courseDuration: courseData.courseDuration});
     this.courseNameFormGroup.patchValue({description: courseData.description});
-
-
-    //this.studentBasicFormGroup.patchValue({dob: this.datepipe.transform(studentData.dobSQL, 'yyyy-MM-dd')});
-
-    
-
-   /*  this.studentContactFormGroup.patchValue({guardianContactNumber: studentData.guardianContactNumber});
-    this.studentContactFormGroup.patchValue({whatsappNumber: studentData.whatsappNumber});
-    this.studentContactFormGroup.patchValue({email: studentData.email});
-    this.studentContactFormGroup.patchValue({description: studentData.description}); */
   }
   showSuccess(successMessage: string) {
     this.messageService.add({severity:'success', summary: 'Success', detail: successMessage});

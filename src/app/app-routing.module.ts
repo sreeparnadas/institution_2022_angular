@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {StudentResolver} from "./resolvers/student.resolver";
 import {AuthGuard} from "./services/auth.guard";
 import {AuthOwnerGuard} from "./services/auth-owner.guard";
+import {CourseResolver} from "./resolvers/course.resolver";
 
 
 
@@ -40,9 +41,15 @@ const routes: Routes = [
 
   { path: 'SidenavDeveloper', loadChildren: () => import('./sidenavs/sidenav-developer/sidenav-developer.module').then(m => m.SidenavDeveloperModule) },
 
-  { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) },
+  // { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) },
 
-  { path: 'course', loadChildren: () => import('./pages/course/course.module').then(m => m.CourseModule) },
+  { path: 'course',
+    loadChildren: () => import('./pages/course/course.module').then(m => m.CourseModule),
+    resolve: {courseResolverData: CourseResolver},
+    data: {loginType: 'owner'},
+  },
+
+
 
   { path: 'LineChart', loadChildren: () => import('./pages/developer/charts/line-chart/line-chart.module').then(m => m.LineChartModule) },
 
@@ -63,6 +70,8 @@ const routes: Routes = [
   { path: 'Trainer', loadChildren: () => import('./home/trainer/trainer.module').then(m => m.TrainerModule) },
 
   { path: 'NorBasedFlipFlop', loadChildren: () => import('./tutorials/flip-flop/nor-based-flip-flop/nor-based-flip-flop.module').then(m => m.NorBasedFlipFlopModule) },
+
+  { path: 'NorBasedJKFlipFlop', loadChildren: () => import('./tutorials/flip-flop/nor-based-jkflip-flop/nor-based-jkflip-flop.module').then(m => m.NorBasedJKFlipFlopModule) },
 
 ];
 
