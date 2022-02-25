@@ -7,6 +7,9 @@ import { Course } from 'src/app/models/course.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 import { CourseService } from 'src/app/services/course.service';
+import {Table} from "primeng/table";
+import * as FileSaver from "file-saver";
+
 
 interface Alert {
   type: string;
@@ -81,6 +84,7 @@ export class CourseComponent implements OnInit {
     courseDuration : new FormControl(),
     description : new FormControl()
   })
+  loading: boolean = false;
 
   saveCourse(){
     //alert("Testing");
@@ -140,5 +144,41 @@ export class CourseComponent implements OnInit {
   }
   showError(message: string) {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
+  }
+  clear(table: Table) {
+    table.clear();
+  }
+  cols: any[] = [
+    {field: 'courseId',header: 'Course ID', customExportHeader: 'Course Code'},
+    {field: 'courseCode'},
+    {field: 'shortName'},
+    {field: 'fullName'},
+    {field: 'courseDuration'},
+    {field: 'description'}
+  ];
+
+  getEventValue($event:any) :string {
+    return $event.target.value;
+  }
+  applyFilterGlobal($event: any, stringVal: any, dt: any) {
+    dt!.filterGlobal(($event.target as HTMLInputElement).value, 'contains');
+  }
+  
+  selectedCourses: any;
+  exportExcel() {
+    import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.courses);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "products");
+    });
+  }
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    let EXCEL_EXTENSION = '.xlsx';
+    const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 }
