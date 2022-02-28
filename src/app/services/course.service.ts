@@ -50,4 +50,14 @@ export class CourseService {
       }
     }))
   }
+  updateCourse(coursetData:any){
+    return this.http.patch<any>(this.commonService.getAPI() + '/courses', coursetData)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      console.log('at service',response);
+      if (response.status === true){
+        this.courseList.unshift(response.data);
+        this.durationTypeSubject.next([...this.courseList]);
+      }
+    }))
+  }
 }

@@ -26,6 +26,8 @@ interface Alert {
 export class CourseComponent implements OnInit {
   dialogContent: string = "";
   errorMessage: any;
+  isShown: boolean = false ; // hidden by default
+  hiddenInput: boolean = false ;
   showErrorMessage: boolean = false;
   displayDialog: boolean = false;
   isLinear: boolean = false;
@@ -82,10 +84,50 @@ export class CourseComponent implements OnInit {
     courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
     shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
     courseDuration : new FormControl(),
-    description : new FormControl()
+    description : new FormControl(),
+    courseId : new FormControl()
   })
   loading: boolean = false;
+  updateCourse(){
 
+    this.confirmationService.confirm({
+      message: 'Do you want to Update this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
+        this.courseData.durationTypeId=this.courseNameFormGroup.value.durationTypeId;
+        this.courseData.fullName=this.courseNameFormGroup.value.fullName;
+        this.courseData.courseCode=this.courseNameFormGroup.value.courseCode;
+        this.courseData.shortName=this.courseNameFormGroup.value.shortName;
+        this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
+        this.courseData.description=this.courseNameFormGroup.value.description;
+
+        this.courseService.updateCourse(this.courseData).subscribe(response => {
+
+          if (response.status === true){
+            this.showSuccess("Record Updated successfully");
+          }
+
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+          this.showError(error.statusText);
+        })
+
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
+  }
   saveCourse(){
     //alert("Testing");
 
@@ -127,8 +169,25 @@ export class CourseComponent implements OnInit {
       }
     });
   }
+  clearCourse(){
+    this.isShown = false;
+    //this.courseNameFormGroup.reset();
+    this.courseNameFormGroup = new FormGroup({
+      feesModeTypeId : new FormControl(1, [Validators.required]),
+      durationTypeId : new FormControl(2, [Validators.required]),
+      fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
+      courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
+      shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
+      courseDuration : new FormControl(),
+      description : new FormControl(),
+      courseId : new FormControl()
+    });
+  }
   editCourse(courseData:any){
     //this.isShown = true;
+    
+    this.isShown = true;
+    this.courseNameFormGroup.patchValue({courseId: courseData.courseId});
     this.courseNameFormGroup.patchValue({feesModeTypeId: courseData.feesModeType.feesModeTypeId});
     this.courseNameFormGroup.patchValue({durationTypeId: courseData.durationTypeId});
 
@@ -138,6 +197,7 @@ export class CourseComponent implements OnInit {
     this.courseNameFormGroup.patchValue({shortName: courseData.shortName});
     this.courseNameFormGroup.patchValue({courseDuration: courseData.courseDuration});
     this.courseNameFormGroup.patchValue({description: courseData.description});
+    console.log(courseData);
   }
   showSuccess(successMessage: string) {
     this.messageService.add({severity:'success', summary: 'Success', detail: successMessage});
