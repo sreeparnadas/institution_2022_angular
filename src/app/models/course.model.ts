@@ -8,5 +8,6 @@ export class Course{
   courseDuration?: string;
   durationTypeId?: number;
   description?: string;
+  courseId: any;
   
 }

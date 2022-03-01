@@ -37,6 +37,7 @@ export class CourseComponent implements OnInit {
   feeModeType: any[] = [];
   msgs: { severity: string; summary: string; detail: string }[] = [];
   courseData: {
+    courseId?:number;
     feesModeTypeId?:number;
     durationTypeId?: number;
     fullName?: string;
@@ -88,6 +89,41 @@ export class CourseComponent implements OnInit {
     courseId : new FormControl()
   })
   loading: boolean = false;
+  deleteCourse(courseData:any){
+    this.confirmationService.confirm({
+      message: 'Do you want to Update this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        //const index: number = this.myArray.indexOf(value);
+        //this.myArray.splice(index, 1);
+        const index: number = this.courses.indexOf(courseData.courseId);
+         this.courseService.deleteCourse(courseData.courseId).subscribe(response => {
+           this.showSuccess("Record Deleted successfully");
+           let index = this.courses.findIndex(x => x.courseId === courseData.courseId);
+            if (index !== -1) {
+              this.courses.splice(index, 1);
+            }
+
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+          this.showError(error.statusText);
+        })
+
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
+  }
   updateCourse(){
 
     this.confirmationService.confirm({
@@ -95,6 +131,7 @@ export class CourseComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
+        this.courseData.courseId=this.courseNameFormGroup.value.courseId;
         this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
         this.courseData.durationTypeId=this.courseNameFormGroup.value.durationTypeId;
         this.courseData.fullName=this.courseNameFormGroup.value.fullName;

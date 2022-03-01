@@ -50,6 +50,16 @@ export class CourseService {
       }
     }))
   }
+  deleteCourse(id:any){
+    console.log("service id:",id);
+    //return 0;
+     return this.http.delete<any>(this.commonService.getAPI() + '/courses/'+ id)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+     
+     
+    }))
+
+  }
   updateCourse(coursetData:any){
     return this.http.patch<any>(this.commonService.getAPI() + '/courses', coursetData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
