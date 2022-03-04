@@ -222,7 +222,7 @@ export class CourseComponent implements OnInit {
   }
   editCourse(courseData:any){
     //this.isShown = true;
-    
+    console.log(courseData);
     this.isShown = true;
     this.courseNameFormGroup.patchValue({courseId: courseData.courseId});
     this.courseNameFormGroup.patchValue({feesModeTypeId: courseData.feesModeType.feesModeTypeId});
