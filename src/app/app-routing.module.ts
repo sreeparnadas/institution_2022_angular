@@ -73,6 +73,8 @@ const routes: Routes = [
 
   { path: 'NorBasedJKFlipFlop', loadChildren: () => import('./tutorials/flip-flop/nor-based-jkflip-flop/nor-based-jkflip-flop.module').then(m => m.NorBasedJKFlipFlopModule) },
 
+  { path: 'StudentCourseRegistration', loadChildren: () => import('./pages/student-course-registration/student-course-registration.module').then(m => m.StudentCourseRegistrationModule) },
+
 ];
 
 

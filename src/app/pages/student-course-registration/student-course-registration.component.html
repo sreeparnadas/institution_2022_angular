@@ -1,0 +1,77 @@
+<div class="d-flex flex-row bd-highlight mb-3" style="height: 200vh;">
+    <div class="p-2 bd-highlight">
+        <div class="card">
+            <div class="card-header p-3 mt-2">
+                <p style="color: #1e293b; font-size: 36px;">Student To Course Entry Form </p>
+
+            </div>
+            <div class="card-body">
+                <div>
+
+                          
+                            <form [formGroup]="studentToCourseFormGroup">
+                                <div class="form-group">
+                                    <div class="p-2 col-8 bd-highlight">
+                                      <ng-select [items]="ledger_id"
+                                                 fxFlex="100"
+                                                 bindLabel="name"
+                                                 class="custom"
+                                                 bindValue="value"
+                                                 appendTo="body"
+                                                 formControlName="ledger_id"
+                                                 placeholder="Student Name">
+                                      </ng-select>
+                                    </div>
+                                    <div class="p-2 col-8 bd-highlight">
+                                      <ng-select [items]="course_id"
+                                                 fxFlex="100"
+                                                 bindLabel="name"
+                                                 class="custom"
+                                                 bindValue="value"
+                                                 appendTo="body"
+                                                 formControlName="course_id"
+                                                 placeholder="Course Name">
+                                      </ng-select>
+                                    </div>
+                                    
+                                   </div>
+                            </form>
+                               
+<!-- Address -->
+                                   
+                                  
+                          
+                     
+
+                    
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Right-->
+  <div class="p-2 bd-highlight">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex bd-highlight mb-3">
+                <div class="p-2 bd-highlight">
+                  </div>
+                  <div class="p-2 bd-highlight">
+                    <h3 style="color: #1e293b;">Course Details</h3>
+                   
+                  </div>
+            </div>
+        </div>
+        <div class="card">
+            <h1>Student List</h1>
+            <div class="p-2 bd-highlight col-3" style="background-color: #e7e709;">
+              <pre>
+               <!--  courseData = {{courseData | json}} -->
+              </pre>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
