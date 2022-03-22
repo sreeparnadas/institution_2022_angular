@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StudentCourseRegistrationComponent implements OnInit {
   ledger_id: any[] = [];
   course_id: any[]= [];
-  
+  durationTypes: any[]=[];
   constructor() { }
   //studentToCourseFormGroup: FormGroup | undefined ;
   ngOnInit(): void {
@@ -29,7 +29,13 @@ export class StudentCourseRegistrationComponent implements OnInit {
 
    studentToCourseFormGroup = new FormGroup({
     ledger_id : new FormControl(1, [Validators.required]),
-    course_id : new FormControl(1, [Validators.required])
+    course_id : new FormControl(1, [Validators.required]),
+    base_fee : new FormControl(null, [Validators.required]),
+    discount_allowed : new FormControl(null, [Validators.required]),
+    joining_date : new FormControl(null, [Validators.required]),
+    effective_date : new FormControl(null, [Validators.required]),
+    actual_course_duration : new FormControl(null, [Validators.required]),
+    duration_type_id : new FormControl(null, [Validators.required])
   }) 
 
 }

@@ -5,8 +5,8 @@
                 <p style="color: #1e293b; font-size: 36px;">Student To Course Entry Form </p>
 
             </div>
-            <div class="card-body">
-                <div>
+            <div class="card-body student-to-course-form">
+                <div >
 
                           
                             <form [formGroup]="studentToCourseFormGroup">
@@ -35,16 +35,73 @@
                                     </div>
                                     
                                    </div>
+                                   <div class="d-flex flex-row bd-highlight mb-3">
+                                    <div class="p-2 col-8 bd-highlight">
+                                      <mat-form-field style = "width:100%">
+                                        <mat-label>Fees</mat-label>
+                                        <input matInput formControlName="base_fee" placeholder="Fees" required>
+                                      </mat-form-field>
+                                   </div>
+                                    <div class="p-2 col-4 bd-highlight">
+                                      <mat-form-field style = "width:100%">
+                                        <mat-label>Discount Allowed</mat-label>
+                                        <input matInput formControlName="discount_allowed" placeholder="Discount" required>
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                  <div class="d-flex flex-row bd-highlight mb-3">
+                                    <div class="p-2 col-8 bd-highlight">
+                                      <mat-form-field style = "width:100%">
+                                        <mat-label>Joinig Date</mat-label>
+                                        <input class="col-9" matInput #ref [matDatepicker]="joining_date" formControlName="joining_date">
+                                        <div *ngIf="studentToCourseFormGroup.controls['joining_date'].errors && studentToCourseFormGroup.controls['joining_date'].touched" >
+                                          <mat-error class="text-right" *ngIf="studentToCourseFormGroup.controls['joining_date'].errors['required']">Joinig is required</mat-error>
+                                        </div>
+                                        <mat-datepicker-toggle matSuffix [for]="joining_date"></mat-datepicker-toggle>
+                                        <mat-datepicker #joining_date></mat-datepicker>
+              
+                                      </mat-form-field>
+                                   </div>
+                                    <div class="p-2 col-4 bd-highlight">
+                                      <mat-form-field style = "width:100%">
+                                        <mat-label>Effective Date</mat-label>
+                                        <input class="col-9" matInput #ref [matDatepicker]="effective_date" formControlName="effective_date">
+                                        <div *ngIf="studentToCourseFormGroup.controls['effective_date'].errors && studentToCourseFormGroup.controls['effective_date'].touched" >
+                                          <mat-error class="text-right" *ngIf="studentToCourseFormGroup.controls['effective_date'].errors['required']">Effective is required</mat-error>
+                                        </div>
+                                        <mat-datepicker-toggle matSuffix [for]="effective_date"></mat-datepicker-toggle>
+                                        <mat-datepicker #effective_date></mat-datepicker>
+              
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="d-flex flex-row bd-highlight mb-3" >
+                                      <div class="p-2 col-8 bd-highlight">
+                                          <mat-form-field style = "width:100%">
+                                            <mat-label>Duration:</mat-label>
+                                            <input matInput formControlName="actual_course_duration" placeholder="100" required>
+                                          </mat-form-field>
+                                      </div>
+
+
+                                        <div class="p-2 col-4 bd-highlight" style="height:40%">
+                                          <ng-select  [items]="durationTypes"
+                                                      bindLabel="durationName"
+                                                      class="custom"
+                                                      bindValue="durationTypeId"
+                                                      formControlName="duration_type_id"
+                                                      autofocus
+                                                      appendTo="body"
+                                                      placeholder="Duration Type">
+                                          </ng-select>
+                                        </div>
+                                      </div>
+                                    </div>
                             </form>
                                
 <!-- Address -->
-                                   
-                                  
-                          
-                     
-
-                    
-
                     
                 </div>
             </div>
