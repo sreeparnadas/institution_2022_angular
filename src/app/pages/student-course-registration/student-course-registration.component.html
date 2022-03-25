@@ -8,7 +8,7 @@
             <div class="card-body student-to-course-form">
                 <div >
 
-                          
+     
                             <form [formGroup]="studentToCourseFormGroup">
                                 <div class="form-group">
                                     <div class="p-2 col-8 bd-highlight">
@@ -23,7 +23,7 @@
                                       </ng-select>
                                     </div>
                                     <div class="p-2 col-8 bd-highlight">
-                                      <ng-select [items]="course_id"
+                                      <ng-select [items]="course_id"j
                                                  fxFlex="100"
                                                  bindLabel="name"
                                                  class="custom"
@@ -131,4 +131,9 @@
         </div>
     </div>
   </div>
+</div>
+<div id="developer-div" *ngIf="true">
+  <pre>
+    students = {{students | json}}
+  </pre>
 </div>

@@ -63,8 +63,6 @@ export class CourseComponent implements OnInit {
     });
   }
 
-
-  //courseNameFormGroup: FormGroup = new FormGroup;
   ngOnInit(): void {
 
     // this.courses = this.courseService.getCourses();

@@ -17,7 +17,8 @@ export class StudentToCourseService {
   durationTypeList: any[] =[];
   studentToCourseSubject = new Subject<StudentToCourse[]>();
   durationTypeSubject = new Subject<Course[]>();
-  studentSubject: any;
+  studentSubject = new Subject<Student[]>();
+  //studentSubject: any;
   courseSubject: any;
   constructor(private commonService: CommonService, private errorService: ErrorService, private http: HttpClient) { }
   
@@ -29,13 +30,18 @@ export class StudentToCourseService {
       this.durationTypeSubject.next([...this.durationTypeList]);
     })));
   }
-  fetchAllStudents(){
+ /*  fetchAllStudents(){
     return this.http.get<any>(this.commonService.getAPI() + '/students')
       .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: Student[]}) => {
         this.studentList=response.data;
+        console.log(this.studentList);
         this.studentSubject.next([...this.studentList]);
       })));
-  }
+  } */
+  /* getStudentToCourseUpdateListener(){
+    return this.studentSubject.asObservable();
+  } */
+
   fetchAllCourses(){
     return this.http.get<any>(this.commonService.getAPI() + '/courses')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: Course[]}) => {

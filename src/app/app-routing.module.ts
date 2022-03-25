@@ -4,6 +4,7 @@ import {StudentResolver} from "./resolvers/student.resolver";
 import {AuthGuard} from "./services/auth.guard";
 import {AuthOwnerGuard} from "./services/auth-owner.guard";
 import {CourseResolver} from "./resolvers/course.resolver";
+import { StudentCourseRegistrationResolver } from './resolvers/student-course-registration.resolver';
 
 
 
@@ -73,7 +74,10 @@ const routes: Routes = [
 
   { path: 'NorBasedJKFlipFlop', loadChildren: () => import('./tutorials/flip-flop/nor-based-jkflip-flop/nor-based-jkflip-flop.module').then(m => m.NorBasedJKFlipFlopModule) },
 
-  { path: 'StudentCourseRegistration', loadChildren: () => import('./pages/student-course-registration/student-course-registration.module').then(m => m.StudentCourseRegistrationModule) },
+  { path: 'StudentCourseRegistration', 
+    loadChildren: () => import('./pages/student-course-registration/student-course-registration.module').then(m => m.StudentCourseRegistrationModule),
+    resolve: {studentCourseRegistrationResolverData: StudentCourseRegistrationResolver}, 
+  },
 
 ];
 
