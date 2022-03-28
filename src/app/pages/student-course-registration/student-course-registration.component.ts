@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
 import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/models/course.model';
 import { Student } from 'src/app/models/student.model';
@@ -11,11 +12,13 @@ import { StudentService } from 'src/app/services/student.service';
 @Component({
   selector: 'app-student-course-registration',
   templateUrl: './student-course-registration.component.html',
-  styleUrls: ['./student-course-registration.component.scss']
+  styleUrls: ['./student-course-registration.component.scss'],
+  providers: [ConfirmationService, MessageService]
 })
 
 export class StudentCourseRegistrationComponent implements OnInit {
   //studentList: Student[] =[];
+  isShown: boolean = false ; // hidden by default
   students: any[] = [];
   courses: Course[] = [];
   durationTypes: any[]=[];
@@ -30,14 +33,14 @@ export class StudentCourseRegistrationComponent implements OnInit {
       this.activatedRoute.data.subscribe((response: any) => {
         console.log(response);
         this.students = response.studentCourseRegistrationResolverData.students.data;
-        // this.durationTypes = response.courseResolverData.durationTypes.data;
+        this.durationTypes = response.studentCourseRegistrationResolverData.durationTypes.data;
+        this.courses = response.studentCourseRegistrationResolverData.courses.data;
       });
      }
   //studentToCourseFormGroup: FormGroup | undefined ;
   ngOnInit(): void {
 
-    this.studentService.fetchAllStudents();
-    this.students = this.studentService.getStudents();
+    
     
     this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
       this.students = response;
@@ -62,7 +65,16 @@ export class StudentCourseRegistrationComponent implements OnInit {
     joining_date : new FormControl(null, [Validators.required]),
     effective_date : new FormControl(null, [Validators.required]),
     actual_course_duration : new FormControl(null, [Validators.required]),
-    duration_type_id : new FormControl(null, [Validators.required])
+    duration_type_id : new FormControl(1, [Validators.required])
   }) 
 
+  saveStudentToCourse(){
+
+  }
+  updateStudentToCourse(){
+    
+  }
+  clearStudentToCourse(){
+
+  }
 }

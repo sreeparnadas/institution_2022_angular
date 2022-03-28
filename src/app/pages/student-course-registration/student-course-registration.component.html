@@ -12,22 +12,22 @@
                             <form [formGroup]="studentToCourseFormGroup">
                                 <div class="form-group">
                                     <div class="p-2 col-8 bd-highlight">
-                                      <ng-select [items]="ledger_id"
+                                      <ng-select [items]="students"
                                                  fxFlex="100"
-                                                 bindLabel="name"
+                                                 bindLabel="studentName"
                                                  class="custom"
-                                                 bindValue="value"
+                                                 bindValue="studentId"
                                                  appendTo="body"
                                                  formControlName="ledger_id"
                                                  placeholder="Student Name">
                                       </ng-select>
                                     </div>
                                     <div class="p-2 col-8 bd-highlight">
-                                      <ng-select [items]="course_id"j
+                                      <ng-select [items]="courses"
                                                  fxFlex="100"
-                                                 bindLabel="name"
+                                                 bindLabel="fullName"
                                                  class="custom"
-                                                 bindValue="value"
+                                                 bindValue="courseId"
                                                  appendTo="body"
                                                  formControlName="course_id"
                                                  placeholder="Course Name">
@@ -99,6 +99,19 @@
                                         </div>
                                       </div>
                                     </div>
+                                    <div align="right">
+                                      <button pButton (click)="clearStudentToCourse()">
+                                        <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
+                                      </button>&nbsp;&nbsp;&nbsp;
+  
+                                      <button pButton (click)="saveStudentToCourse()" *ngIf="!isShown">
+                                        <i class="bi bi-save" style="font-size: 1rem"> Save </i>
+                                      </button>
+  
+                                      <button pButton (click)="updateStudentToCourse()" *ngIf="isShown">
+                                        <i class="bi bi-save" style="font-size: 1rem"> Update </i>
+                                      </button>
+                                    </div>
                             </form>
                                
 <!-- Address -->
@@ -106,6 +119,15 @@
                 </div>
             </div>
         </div>
+        <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle" [transitionOptions]="'0.8ms'">
+          <ng-template pTemplate="header">
+            <h3>Header Content</h3>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+            <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+          </ng-template>
+        </p-confirmDialog>
     </div>
 
     <!--  Right-->
@@ -135,5 +157,11 @@
 <div id="developer-div" *ngIf="true">
   <pre>
     students = {{students | json}}
+  </pre>
+  <pre>
+    durationTypes = {{durationTypes | json}}
+  </pre>
+  <pre>
+    courses = {{courses | json}}
   </pre>
 </div>
