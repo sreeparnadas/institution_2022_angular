@@ -13,14 +13,23 @@
 <!--    <div class="d-flex">-->
 <!--      <div class="content-list">Python</div>-->
 <!--    </div>-->
-      <ul style="list-style: none;">
-        <li class="m-2"><button pButton type="button" label="Microsoft Word" class="content-list text-left"></button></li>
-        <li class="m-2"><button pButton type="button" routerLink="./CourseContentExcel" label="Microsoft Excel" class="content-list text-left"></button></li>
-        <li class="m-2"><button pButton type="button" label="Microsoft Powerpoint" class="content-list text-left"></button></li>
-        <li class="m-2"><button pButton type="button" label="JAVA" class="content-list text-left"></button></li>
-        <li class="m-2"><button pButton type="button" label="Angular js" class="content-list text-left"></button></li>
-        <li class="m-2"><button pButton type="button" label="Python" class="content-list text-left"></button></li>
-      </ul>
+
+    <p-panelMenu [transitionOptions]="'300ms'" [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+
+<!--      <ul style="list-style: none;" data-aos="fade-left" data-aos-duration="4000">-->
+<!--        <li class="m-2"><button pButton type="button"  class="content-list text-left"> Microsoft Word <span class='bi bi-file-word-fill'></span></button></li>-->
+<!--        <li class="m-2">-->
+<!--          <button pButton type="button" routerLink="./CourseContentExcel" class="content-list text-left">-->
+<!--          Microsoft Excel <span class='bi bi-file-excel-fill'></span>-->
+<!--        </button>-->
+<!--        </li>-->
+<!--        <li class="m-2"><button pButton type="button" label="Microsoft Powerpoint" class="content-list text-left"></button></li>-->
+<!--        <li class="m-2">-->
+<!--          <button pButton type="button" class="content-list text-left">JAVA <i class="bi bi-filetype-java"></i></button>-->
+<!--        </li>-->
+<!--        <li class="m-2"><button pButton type="button" label="Angular js" class="content-list text-left"></button></li>-->
+<!--        <li class="m-2"><button pButton type="button" label="Python" class="content-list text-left"></button></li>-->
+<!--      </ul>-->
   </div>
   <div class="col-9" style="background-color: #1e293b;">
     <router-outlet></router-outlet>

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CourseContentRoutingModule } from './course-content-routing.module';
 import { CourseContentComponent } from './course-content.component';
 import {ButtonModule} from "primeng/button";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PanelMenuModule} from "primeng/panelmenu";
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import {ButtonModule} from "primeng/button";
   imports: [
     CommonModule,
     CourseContentRoutingModule,
-    ButtonModule
+    ButtonModule,
+    PanelMenuModule,
   ]
 })
 export class CourseContentModule { }
