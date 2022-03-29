@@ -40,6 +40,8 @@ const routes: Routes = [
 
   { path: 'developer', loadChildren: () => import('./pages/developer/developer.module').then(m => m.DeveloperModule) },
 
+  { path: 'courseContent', loadChildren: () => import('./pages/course-content/course-content.module').then(m => m.CourseContentModule) },
+
   { path: 'SidenavDeveloper', loadChildren: () => import('./sidenavs/sidenav-developer/sidenav-developer.module').then(m => m.SidenavDeveloperModule) },
 
   // { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) },
@@ -74,10 +76,12 @@ const routes: Routes = [
 
   { path: 'NorBasedJKFlipFlop', loadChildren: () => import('./tutorials/flip-flop/nor-based-jkflip-flop/nor-based-jkflip-flop.module').then(m => m.NorBasedJKFlipFlopModule) },
 
-  { path: 'StudentCourseRegistration', 
+  { path: 'StudentCourseRegistration',
     loadChildren: () => import('./pages/student-course-registration/student-course-registration.module').then(m => m.StudentCourseRegistrationModule),
-    resolve: {studentCourseRegistrationResolverData: StudentCourseRegistrationResolver}, 
+    resolve: {studentCourseRegistrationResolverData: StudentCourseRegistrationResolver},
   },
+
+  { path: 'CourseContent', loadChildren: () => import('./pages/course-content/course-content.module').then(m => m.CourseContentModule) },
 
 ];
 
