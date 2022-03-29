@@ -81,7 +81,14 @@ const routes: Routes = [
     resolve: {studentCourseRegistrationResolverData: StudentCourseRegistrationResolver},
   },
 
-  { path: 'CourseContent', loadChildren: () => import('./pages/course-content/course-content.module').then(m => m.CourseContentModule) },
+  { path: 'CourseContent'
+    , loadChildren: () => import('./pages/course-content/course-content.module')
+      .then(m => m.CourseContentModule)
+  },
+
+  { path: 'CourseContentExcel', loadChildren: () => import('./pages/course-content/course-content-excel/course-content-excel.module').then(m => m.CourseContentExcelModule) },
+
+  // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
 
 ];
 

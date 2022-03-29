@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div class="col-3 ">
+  <div class="col-3 " style="background-color: #1e293b;">
 <!--    <div class="d-flex">-->
 <!--      <div class="content-list">Microsoft Word</div>-->
 <!--      <div class="content-list">Microsoft Excel</div>-->
@@ -15,7 +15,7 @@
 <!--    </div>-->
       <ul style="list-style: none;">
         <li class="m-2"><button pButton type="button" label="Microsoft Word" class="content-list text-left"></button></li>
-        <li class="m-2"><button pButton type="button" label="Microsoft Excel" class="content-list text-left"></button></li>
+        <li class="m-2"><button pButton type="button" routerLink="./CourseContentExcel" label="Microsoft Excel" class="content-list text-left"></button></li>
         <li class="m-2"><button pButton type="button" label="Microsoft Powerpoint" class="content-list text-left"></button></li>
         <li class="m-2"><button pButton type="button" label="JAVA" class="content-list text-left"></button></li>
         <li class="m-2"><button pButton type="button" label="Angular js" class="content-list text-left"></button></li>
@@ -23,5 +23,7 @@
       </ul>
 
   </div>
-  <div class="col-9 bg-success">right </div>
+  <div class="col-9" style="background-color: #1e293b;">
+    <router-outlet></router-outlet>
+  </div>
 </div>
