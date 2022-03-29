@@ -8,7 +8,12 @@ import { Course } from 'src/app/models/course.model';
 import { Student } from 'src/app/models/student.model';
 import { StudentToCourseService } from 'src/app/services/student-to-course.service';
 import { StudentService } from 'src/app/services/student.service';
+import { CommonService } from 'src/app/services/common.service';
 
+interface Alert {
+  type: string;
+  message: string;
+}
 @Component({
   selector: 'app-student-course-registration',
   templateUrl: './student-course-registration.component.html',
@@ -25,10 +30,29 @@ export class StudentCourseRegistrationComponent implements OnInit {
   //courses: Course[] = [];
   ledger_id: any[] = [];
   course_id: any[]= [];
+
+  studentTocourseData: {
+    reference_number?:number;
+    studentId?:number;
+			courseId?:number;
+			baseFee?:number;
+			discountAllowed?:number;
+			joiningDate?: string;
+			effectiveDate?: string;
+			actual_course_duration?:number;
+			duration_type_id?:number;
+      isStarted?:number;
+  }={};
+  showErrorMessage: boolean | undefined;
+  errorMessage: any;
+  msgs: { severity: string; summary: string; detail: string; }[] | undefined;
  
   constructor(private studentToCourseService: StudentToCourseService,
     private studentService: StudentService, 
-    private activatedRoute: ActivatedRoute) 
+    private activatedRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private commonService: CommonService) 
     {
       this.activatedRoute.data.subscribe((response: any) => {
         console.log(response);
@@ -67,10 +91,61 @@ export class StudentCourseRegistrationComponent implements OnInit {
     actual_course_duration : new FormControl(null, [Validators.required]),
     duration_type_id : new FormControl(1, [Validators.required])
   }) 
-
-  saveStudentToCourse(){
-
+  setEffectiveSQL(value: string) {
+    this.studentToCourseFormGroup.patchValue({effective_date: this.commonService.getSQLDate(value)});
   }
+  setJoiningSQL(value: string) {
+    this.studentToCourseFormGroup.patchValue({joining_date: this.commonService.getSQLDate(value)});
+  }
+  saveStudentToCourse(){
+ //alert("Testing");
+
+ this.confirmationService.confirm({
+  message: 'Do you want to Save this record?',
+  header: 'Delete Confirmation',
+  icon: 'pi pi-info-circle',
+  accept: () => {
+    this.studentTocourseData.studentId=this.studentToCourseFormGroup.value.ledger_id;
+    this.studentTocourseData.courseId=this.studentToCourseFormGroup.value.course_id;
+    this.studentTocourseData.baseFee=this.studentToCourseFormGroup.value.base_fee;
+    this.studentTocourseData.discountAllowed=this.studentToCourseFormGroup.value.discount_allowed;
+    this.studentTocourseData.joiningDate=this.studentToCourseFormGroup.value.joining_date;
+    this.studentTocourseData.effectiveDate=this.studentToCourseFormGroup.value.effective_date;
+    this.studentTocourseData.actual_course_duration=this.studentToCourseFormGroup.value.actual_course_duration;
+    this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
+    this.studentTocourseData.isStarted=1;
+    this.studentToCourseService.saveStudentToCourse(this.studentTocourseData).subscribe(response => {
+
+      if (response.status === true){
+        this.showSuccess("Record added successfully");
+      }
+
+    },error=>{
+      this.showErrorMessage = true;
+      this.errorMessage = error.message;
+      const alerts: Alert[] = [{
+        type: 'success',
+        message: this.errorMessage,
+      }]
+      setTimeout(()=>{
+        this.showErrorMessage = false;
+      }, 20000);
+      this.showError(error.statusText);
+    })
+
+  },
+  reject: () => {
+    this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+  }
+});
+  }
+  showError(statusText: any) {
+    throw new Error('Method not implemented.');
+  }
+  showSuccess(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
+  
   updateStudentToCourse(){
     
   }
