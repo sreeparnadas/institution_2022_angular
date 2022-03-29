@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CourseContentExcelRoutingModule } from './course-content-excel-routing.module';
 import { CourseContentExcelComponent } from './course-content-excel.component';
+import {AccordionModule} from "primeng/accordion";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CourseContentExcelComponent } from './course-content-excel.component';
   ],
   imports: [
     CommonModule,
-    CourseContentExcelRoutingModule
+    CourseContentExcelRoutingModule,
+    AccordionModule
   ]
 })
 export class CourseContentExcelModule { }
