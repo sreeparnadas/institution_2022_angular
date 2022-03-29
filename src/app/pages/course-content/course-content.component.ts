@@ -10,11 +10,11 @@ export class CourseContentComponent implements OnInit {
   items: MenuItem[] = [
     {
       label: 'Microsoft Excel',
-      icon:'pi pi-fw pi-file',
+      icon:'pi pi-fw pi-file-excel',
       items: [
         {
-          label: 'New',
-          icon:'pi pi-fw pi-plus',
+          label: 'Accounting',
+          icon:'pi pi-fw pi-circle-on',
           items: [
             {
               label: 'Bookmark',
@@ -28,12 +28,23 @@ export class CourseContentComponent implements OnInit {
           ]
         },
         {
-          label: 'Delete',
-          icon:'pi pi-fw pi-trash'
+          label: 'Accounting & MIS',
+          icon:'pi pi-fw pi-circle-on',
+          items: [
+            {
+              label: 'Bookmark',
+              icon:'pi pi-fw pi-bookmark',
+              routerLink: "./CourseContentExcel"
+            }
+          ]
         },
         {
-          label: 'Export',
-          icon:'pi pi-fw pi-external-link'
+          label: 'Basic Excel',
+          icon:'pi pi-fw pi-slack'
+        },
+        {
+          label: 'For Insurance Agents',
+          icon:'pi pi-fw  pi-slack'
         }
       ]
     },
