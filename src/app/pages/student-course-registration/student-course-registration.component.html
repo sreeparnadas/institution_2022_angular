@@ -53,7 +53,7 @@
                                     <div class="p-2 col-8 bd-highlight">
                                       <mat-form-field style = "width:100%">
                                         <mat-label>Joinig Date</mat-label>
-                                        <input class="col-9" matInput #ref [matDatepicker]="joining_date" formControlName="joining_date">
+                                        <input class="col-9" matInput #ref [matDatepicker]="joining_date" formControlName="joining_date"  (dateInput)="setJoiningSQL(ref.value)">
                                         <div *ngIf="studentToCourseFormGroup.controls['joining_date'].errors && studentToCourseFormGroup.controls['joining_date'].touched" >
                                           <mat-error class="text-right" *ngIf="studentToCourseFormGroup.controls['joining_date'].errors['required']">Joinig is required</mat-error>
                                         </div>
@@ -65,7 +65,7 @@
                                     <div class="p-2 col-4 bd-highlight">
                                       <mat-form-field style = "width:100%">
                                         <mat-label>Effective Date</mat-label>
-                                        <input class="col-9" matInput #ref [matDatepicker]="effective_date" formControlName="effective_date">
+                                        <input class="col-9" matInput #ref [matDatepicker]="effective_date" formControlName="effective_date" (dateInput)="setEffectiveSQL(ref.value)">
                                         <div *ngIf="studentToCourseFormGroup.controls['effective_date'].errors && studentToCourseFormGroup.controls['effective_date'].touched" >
                                           <mat-error class="text-right" *ngIf="studentToCourseFormGroup.controls['effective_date'].errors['required']">Effective is required</mat-error>
                                         </div>
@@ -163,5 +163,8 @@
   </pre>
   <pre>
     courses = {{courses | json}}
+  </pre>
+  <pre>
+    save code = {{studentTocourseData | json}}
   </pre>
 </div>

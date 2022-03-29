@@ -30,17 +30,17 @@ export class StudentToCourseService {
       this.durationTypeSubject.next([...this.durationTypeList]);
     })));
   }
- /*  fetchAllStudents(){
-    return this.http.get<any>(this.commonService.getAPI() + '/students')
-      .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: Student[]}) => {
-        this.studentList=response.data;
-        console.log(this.studentList);
-        this.studentSubject.next([...this.studentList]);
-      })));
-  } */
-  /* getStudentToCourseUpdateListener(){
-    return this.studentSubject.asObservable();
-  } */
+ 
+  saveStudentToCourse(studentTocoursetData:any){
+    return this.http.post<any>(this.commonService.getAPI() + '/studentCourseRegistrations', studentTocoursetData)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      console.log('at service',response);
+      if (response.status === true){
+        this.studentToCourseList.unshift(response.data);
+        this.durationTypeSubject.next([...this.durationTypeList]);
+      }
+    }))
+  }
 
   fetchAllCourses(){
     return this.http.get<any>(this.commonService.getAPI() + '/courses')
