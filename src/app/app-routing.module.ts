@@ -42,6 +42,8 @@ const routes: Routes = [
 
   { path: 'courseContent', loadChildren: () => import('./pages/course-content/course-content.module').then(m => m.CourseContentModule) },
 
+  { path: 'CourseContentExcel', loadChildren: () => import('./pages/course-content/course-content-excel/course-content-excel-routing.module').then(m => m.CourseContentExcelRoutingModule) },
+
   { path: 'SidenavDeveloper', loadChildren: () => import('./sidenavs/sidenav-developer/sidenav-developer.module').then(m => m.SidenavDeveloperModule) },
 
   // { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) },

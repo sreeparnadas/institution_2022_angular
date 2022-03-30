@@ -14,44 +14,52 @@ export class CourseContentComponent implements OnInit {
       icon:'pi pi-fw pi-file-excel',
       items: [
         {
-          label: 'Finance & Accounting',
-          icon:'pi pi-fw pi-circle-on',
-          items: [
-            {
-              label: 'Bookmark',
-              icon:'pi pi-fw pi-bookmark',
-              routerLink: "./CourseContentExcel"
-            },
-            {
-              label: 'Video',
-              icon:'pi pi-fw pi-video'
-            }
-          ]
+          label: 'Introduction',
+          icon:'pi pi-fw pi-slack',
+          routerLink: "./CourseContentExcel"
         },
         {
-          label: 'Accounting & MIS',
-          icon:'pi pi-fw pi-circle-on',
-          items: [
-            {
-              label: 'Bookmark',
-              icon:'pi pi-fw pi-bookmark',
-              routerLink: "./CourseContentExcel"
-            }
-          ]
+          label: 'Column and Row',
+          icon:'pi pi-fw  pi-slack'
         },
         {
-          label: 'Basic Excel',
+          label: 'Basic Formula',
+          icon:'pi pi-fw pi-slack',
+        },
+        {
+          label: 'Basic Function',
           icon:'pi pi-fw pi-slack'
         },
         {
-          label: 'For Insurance Agents',
+          label: 'Cell Range',
+          icon:'pi pi-fw  pi-slack'
+        },
+        {
+          label: 'Cell Insertion and Deletion',
+          icon:'pi pi-fw  pi-slack'
+        },
+        {
+          label: 'Formula Copy',
+          icon:'pi pi-fw  pi-slack'
+        },
+        {
+          label: 'Formating Worksheet',
+          icon:'pi pi-fw  pi-slack'
+        },
+        {
+          label: 'Worksheet Layout',
+          icon:'pi pi-fw  pi-slack'
+        },
+        {
+          label: 'Conditional Formatting',
           icon:'pi pi-fw  pi-slack'
         }
       ]
     },
     {
-      label: 'Programming Language',
-      icon:'pi pi-fw pi-pencil',
+      label: 'Microsoft Word',
+      icon:'pi pi-fw pi-user',
+      // disabled: true,
       items: [
         {
           label: 'Left',
@@ -72,9 +80,43 @@ export class CourseContentComponent implements OnInit {
       ]
     },
     {
+      label: 'Microsoft Powerpoint',
+      icon:'pi pi-fw pi-user',
+      // disabled: true,
+      items: [
+
+      ]
+    },
+    {
+      label: 'Programming Language',
+      icon:'pi pi-fw pi-pencil',
+      items: [
+        {
+          label: 'C Language',
+          icon:'pi pi-fw pi-star-fill'
+        },
+        {
+          label: 'C++ Language',
+          icon:'pi pi-fw pi-star-fill'
+        },
+        {
+          label: 'JAVA',
+          icon:'pi pi-fw pi-star-fill'
+        },
+        {
+          label: 'Python',
+          icon:'pi pi-fw pi-star-fill'
+        },
+        {
+          label: 'Angular js',
+          icon:'pi pi-fw pi-star-fill'
+        }
+      ]
+    },
+    {
       label: 'Web Designing',
       icon:'pi pi-fw pi-user',
-      disabled: true,
+      // disabled: true,
       items: [
         {
           label: 'New',
@@ -110,7 +152,7 @@ export class CourseContentComponent implements OnInit {
     {
       label: 'Photoshop & Photography',
       icon:'pi pi-fw pi-calendar',
-      disabled: true,
+      // disabled: true,
       items: [
         {
           label: 'Edit',
