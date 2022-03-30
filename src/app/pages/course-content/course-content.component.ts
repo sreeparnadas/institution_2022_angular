@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {CommonService} from "../../services/common.service";
 
 @Component({
   selector: 'app-course-content',
@@ -13,7 +14,7 @@ export class CourseContentComponent implements OnInit {
       icon:'pi pi-fw pi-file-excel',
       items: [
         {
-          label: 'Accounting',
+          label: 'Finance & Accounting',
           icon:'pi pi-fw pi-circle-on',
           items: [
             {
@@ -49,7 +50,7 @@ export class CourseContentComponent implements OnInit {
       ]
     },
     {
-      label: 'Edit',
+      label: 'Programming Language',
       icon:'pi pi-fw pi-pencil',
       items: [
         {
@@ -71,8 +72,9 @@ export class CourseContentComponent implements OnInit {
       ]
     },
     {
-      label: 'Users',
+      label: 'Web Designing',
       icon:'pi pi-fw pi-user',
+      disabled: true,
       items: [
         {
           label: 'New',
@@ -106,8 +108,9 @@ export class CourseContentComponent implements OnInit {
       ]
     },
     {
-      label: 'Events',
+      label: 'Photoshop & Photography',
       icon:'pi pi-fw pi-calendar',
+      disabled: true,
       items: [
         {
           label: 'Edit',
@@ -136,7 +139,7 @@ export class CourseContentComponent implements OnInit {
       ]
     }
   ];
-  constructor() { }
+  constructor(public commonService: CommonService) { }
 
   ngOnInit(): void {
 
