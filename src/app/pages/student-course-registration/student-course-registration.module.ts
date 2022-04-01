@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {TableModule} from "primeng/table";
+import { ButtonModule } from 'primeng/button';
+import {ToastModule} from "primeng/toast";
 import {NgSelectModule} from "@ng-select/ng-select";
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
@@ -32,7 +35,10 @@ import { StudentCourseRegistrationComponent } from './student-course-registratio
     MatNativeDateModule,
     ConfirmDialogModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    TableModule,
+    ButtonModule,
+    ToastModule
   ]
 })
 export class StudentCourseRegistrationModule { }

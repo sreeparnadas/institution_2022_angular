@@ -54,7 +54,7 @@ export class StudentToCourseService {
     return this.http.get<any>(this.commonService.getAPI() + '/studentCourseRegistrations')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
-      /* console.log("courseList:",this.courseList); */
+      console.log("Student to courseList:",this.studentToCourseList); 
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
   }

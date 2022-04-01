@@ -1,0 +1,77 @@
+
+<div class="p-2 bd-highlight">
+      <div class="card">
+          <div class="card-header">
+              <div class="d-flex bd-highlight mb-3">
+                  <div class="p-2 bd-highlight">
+                    </div>
+                    <div class="p-2 bd-highlight">
+                      <h3 style="color: #1e293b;">Student To Course Details</h3>
+                      <p-table  #dt [value]="studentTocourses"
+                                [columns]="cols"
+                                dataKey="id"
+                                [paginator]="true"
+                                [rows]="5"
+                                [showCurrentPageReport]="true"
+                                responsiveLayout="scroll"
+                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                [rowsPerPageOptions]="[5,10,25,50]"
+                                styleClass="p-datatable-striped"
+                                [globalFilterFields]="['id','ledger_id','course_id','base_fee']">
+                        <ng-template pTemplate="caption">
+                          <div class="flex">
+  <!--                          <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>-->
+  
+  <!--                          <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>-->
+  <!--                          <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button>-->
+                          </div>
+                        </ng-template>
+                        <ng-template pTemplate="caption">
+                          <button type="button" pButton pRipple icon="pi pi-file"  class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                          <button type="button" pButton pRipple icon="pi pi-file-excel"  class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom">Excel</button>
+  <!--                        <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:false})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button>-->
+                         
+                        </ng-template>
+                         <ng-template pTemplate="header">
+                          <tr>
+                            <th>ID</th>
+                            <th pSortableColumn="episodeId">ID <p-sortIcon field="id"></p-sortIcon></th>
+                            <th pSortableColumn="ledger_id">Ladger ID <p-sortIcon field="ledger_id"></p-sortIcon></th>
+                            <th pSortableColumn="course_id">Course ID <p-sortIcon field="course_id"></p-sortIcon></th>
+                            <th pSortableColumn="base_fee">Base Fee <p-sortIcon field="base_fee"></p-sortIcon></th>
+                            <th pSortableColumn="edit">Edit <p-sortIcon field="edit"></p-sortIcon></th>
+                            <th pSortableColumn="delete">Delete <p-sortIcon field="delete"></p-sortIcon></th>
+                          </tr>
+                         </ng-template>
+                         <ng-template pTemplate="body" let-course>
+                          
+                          <tr>
+                            <td>{{studentTocourses.id}}</td>
+                            <td>{{studentTocourses.ledger_id}}</td>
+                            <td>{{studentTocourses.course_id}}</td>
+                            <td>{{studentTocourses.base_fee}}</td>
+                            <td>
+                              <p-button type="button" (click)="editStudentToCourse()" icon="pi pi-pencil" styleClass="p-button-text"></p-button>
+                            </td>
+                            <td>
+                              <p-button type="button" (click)="deleteStudentToCourse()" icon="pi pi-trash" styleClass="p-button-text"></p-button>
+                            </td>
+                          </tr>
+                         </ng-template>
+                         <ng-template pTemplate="paginatorleft">
+                           <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" ></p-button>
+                         </ng-template>
+                      </p-table>
+                    </div>
+              </div>
+          </div>
+          <div class="card">
+              <h1>Student List</h1>
+              <div class="p-2 bd-highlight col-3" style="background-color: #e7e709;">
+                <pre>
+                  courseData = {{courseData | json}}
+                </pre>
+              </div>
+          </div>
+      </div>
+    </div>

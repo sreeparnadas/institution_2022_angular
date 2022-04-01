@@ -9,6 +9,7 @@ import { Student } from 'src/app/models/student.model';
 import { StudentToCourseService } from 'src/app/services/student-to-course.service';
 import { StudentService } from 'src/app/services/student.service';
 import { CommonService } from 'src/app/services/common.service';
+import { StudentToCourse } from 'src/app/models/studenttocourse.model';
 
 interface Alert {
   type: string;
@@ -27,7 +28,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
   students: any[] = [];
   courses: Course[] = [];
   durationTypes: any[]=[];
-  //courses: Course[] = [];
+  studentTocourses: any[] = [];
   ledger_id: any[] = [];
   course_id: any[]= [];
 
@@ -59,6 +60,8 @@ export class StudentCourseRegistrationComponent implements OnInit {
         this.students = response.studentCourseRegistrationResolverData.students.data;
         this.durationTypes = response.studentCourseRegistrationResolverData.durationTypes.data;
         this.courses = response.studentCourseRegistrationResolverData.courses.data;
+        this.studentTocourses = response.studentCourseRegistrationResolverData.studentTocourses.data;
+        console.log("studentToCourse:",this.studentTocourses);
       });
      }
   //studentToCourseFormGroup: FormGroup | undefined ;
@@ -97,6 +100,13 @@ export class StudentCourseRegistrationComponent implements OnInit {
   setJoiningSQL(value: string) {
     this.studentToCourseFormGroup.patchValue({joining_date: this.commonService.getSQLDate(value)});
   }
+  cols: any[] = [
+    {field: 'id',header: 'Student To Course ID', customExportHeader: 'Student To Course ID'},
+    {field: 'ledger_id'},
+    {field: 'course_id'},
+    {field: 'base_fee'}
+   
+  ];
   saveStudentToCourse(){
  //alert("Testing");
 
@@ -138,6 +148,12 @@ export class StudentCourseRegistrationComponent implements OnInit {
     this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
   }
 });
+  }
+  editStudentToCourse(){
+
+  }
+  deleteStudentToCourse(){
+
   }
   showError(statusText: any) {
     throw new Error('Method not implemented.');
