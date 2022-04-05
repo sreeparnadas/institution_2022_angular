@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StudentQueryRoutingModule } from './student-query-routing.module';
 import { StudentQueryComponent } from './student-query.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { StudentQueryComponent } from './student-query.component';
   ],
   imports: [
     CommonModule,
-    StudentQueryRoutingModule
+    StudentQueryRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class StudentQueryModule { }
