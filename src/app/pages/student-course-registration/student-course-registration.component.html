@@ -131,6 +131,70 @@
     </div>
 
     <!--  Right-->
+
+    <div class="p-2 bd-highlight">
+      <div class="card">
+          <div class="card-header">
+              <div class="d-flex bd-highlight mb-3">
+                  <div class="p-2 bd-highlight">
+                    </div>
+                    <div class="p-2 bd-highlight">
+                      <h3 style="color: #1e293b;">Student To Course Details</h3>
+                      <p-table  #dt [value]="studentTocourses"
+                                [columns]="cols"
+                                dataKey="id"
+                                [paginator]="true"
+                                [rows]="5"
+                                [showCurrentPageReport]="true"
+                                responsiveLayout="scroll"
+                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                [rowsPerPageOptions]="[5,10,25,50]"
+                                styleClass="p-datatable-striped"
+                                [globalFilterFields]="['id','ledger_id','course_id','base_fee']">
+                        
+                       
+                         <ng-template pTemplate="header">
+                          <tr>
+                            <th>ID</th>
+                             <th pSortableColumn="ledger_id">Student Name <p-sortIcon field="ledger_name"></p-sortIcon></th>
+                            <th pSortableColumn="course_id">Course Name <p-sortIcon field="full_name"></p-sortIcon></th>
+                            <th pSortableColumn="base_fee">Base Fee <p-sortIcon field="base_fee"></p-sortIcon></th>
+                            <th pSortableColumn="edit">Edit <p-sortIcon field="edit"></p-sortIcon></th>
+                            <th pSortableColumn="delete">Delete <p-sortIcon field="delete"></p-sortIcon></th>
+                          </tr>
+                         </ng-template>
+                         <ng-template pTemplate="body" let-course>
+                          
+                          <tr>
+                            <td>{{course.id}}</td>
+                            <td>{{course.ledger_name}}</td>
+                            <td>{{course.full_name}}</td>
+                            <td>{{course.base_fee}}</td>
+                            <td>
+                              <p-button type="button" (click)="editStudentToCourse()" icon="pi pi-pencil" styleClass="p-button-text"></p-button>
+                            </td>
+                            <td>
+                              <p-button type="button" (click)="deleteStudentToCourse()" icon="pi pi-trash" styleClass="p-button-text"></p-button>
+                            </td>
+                          </tr>
+                         </ng-template>
+                         <ng-template pTemplate="paginatorleft">
+                           <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" ></p-button>
+                         </ng-template>
+                      </p-table>
+                    </div>
+              </div>
+          </div>
+          <div class="card">
+              <h1>Student List</h1>
+              <div class="p-2 bd-highlight col-3" style="background-color: #e7e709;">
+                <pre>
+                  <!-- courseData = {{courseData | json}} -->
+                </pre>
+              </div>
+          </div>
+      </div>
+    </div>
     
 </div>
 <div id="developer-div" *ngIf="true">

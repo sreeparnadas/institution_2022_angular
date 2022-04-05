@@ -28,7 +28,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
   students: any[] = [];
   courses: Course[] = [];
   durationTypes: any[]=[];
-  studentTocourses: any[] = [];
+  studentTocourses: StudentToCourse[] = [];
   ledger_id: any[] = [];
   course_id: any[]= [];
 
