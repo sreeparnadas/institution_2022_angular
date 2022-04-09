@@ -6,19 +6,19 @@
         <div class="col-12 md:col-4">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-            <input type="text" pInputText placeholder="Username">
+            <input type="text" pInputText placeholder="Username" formControlName="studentName">
           </div>
         </div>
         <div class="col-12 md:col-4 ">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-house-heart-fill"></i></span>
-            <input type="text" pInputText placeholder="Address">
+            <input type="text" pInputText placeholder="Address" formControlName="address">
           </div>
         </div>
         <div class="col-12 md:col-4 ">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-bank"></i></span>
-            <input type="text" pInputText placeholder="Educational Institution">
+            <input type="text" pInputText placeholder="Educational Institution" formControlName="educationalInstitution">
           </div>
         </div>
       </div>
@@ -27,19 +27,19 @@
         <div class="col-12 md:col-4">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-person-heart"></i></span>
-            <input type="text" pInputText placeholder="Father's Name">
+            <input type="text" pInputText placeholder="Father's Name" formControlName="fatherName">
           </div>
         </div>
         <div class="col-12 md:col-4 ">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-person-heart"></i></span>
-            <input type="text" pInputText placeholder="Mother's Name">
+            <input type="text" pInputText placeholder="Mother's Name" formControlName="motherName">
           </div>
         </div>
         <div class="col-12 md:col-4 ">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-person-check"></i></span>
-            <input type="text" pInputText placeholder="Guardian's Name">
+            <input type="text" pInputText placeholder="Guardian's Name" formControlName="guardianName">
           </div>
         </div>
       </div>
@@ -48,14 +48,14 @@
         <div class="col-12 md:col-4">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-people-fill"></i></span>
-            <input type="text" pInputText placeholder="Relation with Guardian">
+            <input type="text" pInputText placeholder="Relation with Guardian" formControlName="relationToGuardian">
           </div>
         </div>
 
         <div class="col-12 md:col-4 ">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-telephone-plus"></i></span>
-            <input type="text" pInputText placeholder="Mobile">
+            <input type="text" pInputText placeholder="Mobile" formControlName="phoneNumber">
           </div>
         </div>
       </div>
@@ -72,13 +72,14 @@
         <div class="col-12 md:col-4">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon"><i class="bi bi-question-circle"></i></span>
-            <textarea pInputTextarea placeholder="Query"></textarea>
+            <textarea pInputTextarea placeholder="Query" formControlName="query"></textarea>
           </div>
         </div>
       </div>
 
 
     </form>
+    <button (click)="saveQuery()">Save</button>
 
 
 
