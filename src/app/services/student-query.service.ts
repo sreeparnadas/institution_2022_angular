@@ -16,9 +16,10 @@ export class StudentQueryService {
 
 
   saveStudentQuery(queryData: any){
-    return this.http.post<any>(this.commonService.getAPI() + '/studentQuery' , queryData)
+    return this.http.post<any>(this.commonService.getAPI() + '/dev/studentQuery' , queryData)
       .pipe(catchError(this.errorService.serverError), tap(response => {
         this.query = response.data;
+        console.log(this.query);
         this.querySubject.next([...this.query]);
       }));
   }

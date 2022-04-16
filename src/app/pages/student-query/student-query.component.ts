@@ -19,18 +19,20 @@ export class StudentQueryComponent implements OnInit {
   myControl = new FormControl();
   //
   studentQueryForm : any;
+
+  savedQuery: any[] = [];
   showErrorMessage: boolean = false;
   errorMessage: any;
   queryData : {
     id?: any;
-    student_name?:string;
+    studentName?:string;
     address?:string;
-    father_name?:string;
-    mother_name?:string;
-    guardian_name?:string;
-    relation_to_guardian?:string;
-    educational_institution?:string;
-    phone_number?:string;
+    fatherName?:string;
+    motherName?:string;
+    guardianName?:string;
+    relationToGuardian?:string;
+    educationalInstitution?:string;
+    phoneNumber?:string;
     query?:string;
   }={};
 
@@ -62,41 +64,46 @@ export class StudentQueryComponent implements OnInit {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
   }
   saveQuery(){
-    this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        this.queryData.student_name = this.studentQueryForm.value.student_name;
-        this.queryData.address = this.studentQueryForm.value.student_name;
-        this.queryData.father_name = this.studentQueryForm.value.student_name;
-        this.queryData.mother_name = this.studentQueryForm.value.student_name;
-        this.queryData.guardian_name = this.studentQueryForm.value.student_name;
-        this.queryData.relation_to_guardian = this.studentQueryForm.value.student_name;
-        this.queryData.educational_institution = this.studentQueryForm.value.student_name;
-        this.queryData.phone_number = this.studentQueryForm.value.student_name;
-        this.queryData.query = this.studentQueryForm.value.student_name;
+
+    // this.confirmationService.confirm({
+    //   message: 'Do you want to delete this record?',
+    //   header: 'Delete Confirmation',
+    //   icon: 'pi pi-info-circle',
+    //   accept: () => {
+        this.queryData.studentName = this.studentQueryForm.value.studentName;
+        console.log("studentName", this.queryData.studentName);
+        this.queryData.address = this.studentQueryForm.value.address;
+        this.queryData.fatherName = this.studentQueryForm.value.fatherName;
+        this.queryData.motherName = this.studentQueryForm.value.motherName;
+        this.queryData.guardianName = this.studentQueryForm.value.guardianName;
+        this.queryData.relationToGuardian = this.studentQueryForm.value.relationToGuardian;
+        this.queryData.educationalInstitution = this.studentQueryForm.value.educationalInstitution;
+        this.queryData.phoneNumber = this.studentQueryForm.value.phoneNumber;
+        this.queryData.query = this.studentQueryForm.value.query;
+
 
         this.studentQueryService.saveStudentQuery(this.queryData).subscribe(response => {
+          this.savedQuery = response;
+          console.log(this.savedQuery);
           if (response.status === true){
             this.showSuccess("Record added successfully");
           }
-        }, error=>{
-          this.showErrorMessage = true;
-          this.errorMessage = error.message;
-          const alerts: Alert[] = [{
-            type: 'success',
-            message: this.errorMessage,
-          }]
-          setTimeout(()=>{
-            this.showErrorMessage = false;
-          }, 20000);
-          this.showError(error.statusText);
-        })
-      },
-      reject: () => {
-        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
-      }
+        // }, error=>{
+        //   this.showErrorMessage = true;
+        //   this.errorMessage = error.message;
+        //   const alerts: Alert[] = [{
+        //     type: 'success',
+        //     message: this.errorMessage,
+        //   }]
+        //   setTimeout(()=>{
+        //     this.showErrorMessage = false;
+        //   }, 20000);
+        //   this.showError(error.statusText);
+        // })
+  //     },
+  //     reject: () => {
+  //       this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+  //     }
     });
   }
 
