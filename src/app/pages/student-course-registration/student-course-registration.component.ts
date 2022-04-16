@@ -47,13 +47,13 @@ export class StudentCourseRegistrationComponent implements OnInit {
   showErrorMessage: boolean | undefined;
   errorMessage: any;
   msgs: { severity: string; summary: string; detail: string; }[] | undefined;
- 
+
   constructor(private studentToCourseService: StudentToCourseService,
-    private studentService: StudentService, 
+    private studentService: StudentService,
     private activatedRoute: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private commonService: CommonService) 
+    public commonService: CommonService)
     {
       this.activatedRoute.data.subscribe((response: any) => {
         console.log(response);
@@ -67,13 +67,13 @@ export class StudentCourseRegistrationComponent implements OnInit {
   //studentToCourseFormGroup: FormGroup | undefined ;
   ngOnInit(): void {
 
-    
-    
+
+
     this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
       this.students = response;
       console.log("Student list:",this.students);
     });
-   
+
     this.ledger_id = [
       {value:1, name: 'Nanda Gopal Sutradhar'},
       {value:2, name: 'Sukanta HUi'}
@@ -93,7 +93,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
     effective_date : new FormControl(null, [Validators.required]),
     actual_course_duration : new FormControl(null, [Validators.required]),
     duration_type_id : new FormControl(1, [Validators.required])
-  }) 
+  })
   setEffectiveSQL(value: string) {
     this.studentToCourseFormGroup.patchValue({effective_date: this.commonService.getSQLDate(value)});
   }
@@ -105,7 +105,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
     {field: 'ledger_id'},
     {field: 'course_id'},
     {field: 'base_fee'}
-   
+
   ];
   saveStudentToCourse(){
  //alert("Testing");
@@ -161,9 +161,9 @@ export class StudentCourseRegistrationComponent implements OnInit {
   showSuccess(arg0: string) {
     throw new Error('Method not implemented.');
   }
-  
+
   updateStudentToCourse(){
-    
+
   }
   clearStudentToCourse(){
 

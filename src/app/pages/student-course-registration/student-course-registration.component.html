@@ -1,14 +1,14 @@
-<div class="d-flex flex-row bd-highlight mb-3" style="height: 200vh;">
+<div class="d-flex bd-highlight mb-3" [class.flex-column]="commonService.getDeviceXs()" style="height: 200vh;">
     <div class="p-2 bd-highlight">
         <div class="card">
             <div class="card-header p-3 mt-2">
-                <p style="color: #1e293b; font-size: 36px;">Student To Course Entry Form </p>
+                <p style="color: #1e293b; font-size: 16px;">Student To Course Entry Form </p>
 
             </div>
             <div class="card-body student-to-course-form">
                 <div >
 
-     
+
                             <form [formGroup]="studentToCourseFormGroup">
                                 <div class="form-group">
                                     <div class="p-2 col-8 bd-highlight">
@@ -33,7 +33,7 @@
                                                  placeholder="Course Name">
                                       </ng-select>
                                     </div>
-                                    
+
                                    </div>
                                    <div class="d-flex flex-row bd-highlight mb-3">
                                     <div class="p-2 col-8 bd-highlight">
@@ -59,7 +59,7 @@
                                         </div>
                                         <mat-datepicker-toggle matSuffix [for]="joining_date"></mat-datepicker-toggle>
                                         <mat-datepicker #joining_date></mat-datepicker>
-              
+
                                       </mat-form-field>
                                    </div>
                                     <div class="p-2 col-4 bd-highlight">
@@ -71,7 +71,7 @@
                                         </div>
                                         <mat-datepicker-toggle matSuffix [for]="effective_date"></mat-datepicker-toggle>
                                         <mat-datepicker #effective_date></mat-datepicker>
-              
+
                                       </mat-form-field>
                                     </div>
                                   </div>
@@ -103,19 +103,19 @@
                                       <button pButton (click)="clearStudentToCourse()">
                                         <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                                       </button>&nbsp;&nbsp;&nbsp;
-  
+
                                       <button pButton (click)="saveStudentToCourse()" *ngIf="!isShown">
                                         <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                                       </button>
-  
+
                                       <button pButton (click)="updateStudentToCourse()" *ngIf="isShown">
                                         <i class="bi bi-save" style="font-size: 1rem"> Update </i>
                                       </button>
                                     </div>
                             </form>
-                               
+
 <!-- Address -->
-                    
+
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
 
     <!--  Right-->
 
-    <div class="p-2 bd-highlight">
+    <div class="p-2 bd-highlight" >
       <div class="card">
           <div class="card-header">
               <div class="d-flex bd-highlight mb-3">
@@ -151,8 +151,8 @@
                                 [rowsPerPageOptions]="[5,10,25,50]"
                                 styleClass="p-datatable-striped"
                                 [globalFilterFields]="['id','ledger_id','course_id','base_fee']">
-                        
-                       
+
+
                          <ng-template pTemplate="header">
                           <tr>
                             <th>ID</th>
@@ -164,7 +164,7 @@
                           </tr>
                          </ng-template>
                          <ng-template pTemplate="body" let-course>
-                          
+
                           <tr>
                             <td>{{course.id}}</td>
                             <td>{{course.ledger_name}}</td>
@@ -195,7 +195,7 @@
           </div>
       </div>
     </div>
-    
+
 </div>
 <div id="developer-div" *ngIf="true">
   <pre>
