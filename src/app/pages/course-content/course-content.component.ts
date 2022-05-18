@@ -16,7 +16,13 @@ export class CourseContentComponent implements OnInit {
         {
           label: 'Introduction',
           icon:'pi pi-fw pi-slack',
-          routerLink: "./CourseContentExcel"
+          routerLink: "./MSExcelBasicIntroduction"
+        },
+        {
+          label: 'Financial Functions',
+          icon:'pi pi-fw  pi-slack',
+          routerLink: "./MSExcelBasicFinancialFunction"
+
         },
         {
           label: 'Column and Row',

@@ -93,8 +93,7 @@ const routes: Routes = [
   { path: 'StudentQuery',
     loadChildren: () => import('./pages/student-query/student-query.module').then(m => m.StudentQueryModule),
     data: {loginType: 'studentQuery'},
-  },
-
+  }
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
 
 ];

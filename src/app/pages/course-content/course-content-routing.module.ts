@@ -8,7 +8,9 @@ const routes: Routes = [
                           component: CourseContentComponent,
                           children: [
                             { path: '', component: CourseContentHomeComponent },
-                            { path: 'CourseContentExcel', loadChildren: () => import('./course-content-excel/course-content-excel.module').then(m =>m.CourseContentExcelModule) }
+                            { path: 'CourseContentExcel', loadChildren: () => import('./course-content-excel/course-content-excel.module').then(m =>m.CourseContentExcelModule) },
+                            { path: 'MSExcelBasicIntroduction', loadChildren: () => import('./ExcelBasic/msexcel-basic-introduction/msexcel-basic-introduction.module').then(m =>m.MSExcelBasicIntroductionModule) },
+                            { path: 'MSExcelBasicFinancialFunction', loadChildren: () => import('./ExcelBasic/msexcel-basic-financial-function/msexcel-basic-financial-function.module').then(m =>m.MSExcelBasicFinancialFunctionModule) }
                           ]
                         }
                        ];
