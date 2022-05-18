@@ -9,13 +9,25 @@
           <li>Nper = Number of periods</li>
           <li>[Pmt] = Payment/period</li>
           <li>PV = Present Value</li>
-          <li>[Type] = When the payment is made (if nothing is mentioned, it’s assumed that the payment has been made at the end of the period)/li>
+          <li>[Type] = When the payment is made (if nothing is mentioned, it’s assumed that the payment has been made at the end of the period)</li>
         </ul>
       </p-accordionTab>
-      <p-accordionTab header="Header II">
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-          architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-          voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.</p>
+      <p-accordionTab header="PMT">
+        <p>The Excel PMT function is a financial function that calculates the payment for a loan based on a constant interest rate, the number of periods and the loan amount.
+
+          "PMT" stands for "payment", hence the function's name.</p>
+          <h3>PMT(rate, nper, pv, [fv], [type])</h3>
+          <ul>
+            <li>Rate (required) - the constant interest rate per period. Can be supplied as percentage or decimal number</li>
+            <li>Nper (required) - the number of payments for the loan, i.e. the total number of periods over which the loan should be paid.</li>
+            <li>Pv (required) - the present value, i.e. the total amount that all future payments are worth now. In case of a loan, it's simply the original amount borrowed.</li>
+            <li>Fv (optional) - the future value, or the cash balance you wish to have after the last payment is made. If omitted, the future value of the loan is assumed to be zero (0).</li>
+            <ul>
+              Type (optional) - specifies when the payments are due:
+              <li>0 or omitted - payments are due at the end of each period.</li>
+              <li>1 - payments are due at the beginning of each period.</li>
+            </ul>
+          </ul>
       </p-accordionTab>
       <p-accordionTab header="Header III">
         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
