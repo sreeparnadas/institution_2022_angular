@@ -5,6 +5,7 @@ import { MSExcelBasicFinancialFunctionRoutingModule } from './msexcel-basic-fina
 import { MSExcelBasicFinancialFunctionComponent } from './msexcel-basic-financial-function.component';
 import {AccordionModule} from "primeng/accordion";
 import {ToastModule} from "primeng/toast";
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ToastModule} from "primeng/toast";
     CommonModule,
     MSExcelBasicFinancialFunctionRoutingModule,
     AccordionModule,
-    ToastModule
+    ToastModule,
+    ButtonModule
     // NgTemplateOutlet
   ]
 })
