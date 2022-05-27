@@ -1,162 +1,181 @@
 
   <div data-aos="fade-right">
     <p-accordion>
-      <p-accordionTab class="accordion-tab-header" header="Future Value (FV)" [selected]="true">
-        <div class="accordion-body">
-          <p>If you want to find out the future value of a particular investment which has a constant interest rate and periodic payment, use the following formula –</p>
-          <h2 class="function-prototype">
-            <span class="function-name">FV</span>
-            <span class="bracket">(</span>
-            <span class="required-parameter">Rate</span>,
-            <span class="required-parameter">Nper</span>
-            , [Pmt]
-            , <span class="required-parameter">PV</span>
-            , [Type]
-            <span class="bracket">)</span>
-          </h2>
-          <dl>
-            <dt>Rate</dt>
-            <dd>- It is the interest rate/period</dd>
-            <dt>Nper</dt>
-            <dd>- Number of periods</dd>
-            <dt>Pmt</dt>
-            <dd>- Payment/period</dd>
-            <dt>PV</dt>
-            <dd>- Present Value</dd>
-            <dt>Type</dt>
-            <dd>- When the payment is made (if nothing is mentioned, it’s assumed that the payment has been made at the end of the period)</dd>
+      <!--      Future value-->
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span style="color: #3804a0;">Future Value (FV)</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="accordion-body">
+                      <p>If you want to find out the future value of a particular investment which has a constant interest rate and periodic payment, use the following formula –</p>
+                      <h2 class="function-prototype">
+                        =
+                        <span class="function-name">FV</span>
+                        <span class="bracket">(</span>
+                        <span class="required-parameter">Rate</span>,
+                        <span class="required-parameter">Nper</span>
+                        , [Pmt]
+                        , <span class="required-parameter">PV</span>
+                        , [Type]
+                        <span class="bracket">)</span>
+                      </h2>
+                      <dl>
+                        <dt>Rate</dt>
+                        <dd>- It is the interest rate/period</dd>
+                        <dt>Nper</dt>
+                        <dd>- Number of periods</dd>
+                        <dt>Pmt</dt>
+                        <dd>- Payment/period</dd>
+                        <dt>PV</dt>
+                        <dd>- Present Value</dd>
+                        <dt>Type</dt>
+                        <dd>- When the payment is made (if nothing is mentioned, it’s assumed that the payment has been made at the end of the period)</dd>
 
-          </dl>
-        </div>
+                      </dl>
+          </div>
+        </ng-template>
       </p-accordionTab>
 
-      <p-accordionTab header="PMT">
-        <div class="accordion-body">        
-          <p>The Excel PMT function is a financial function that calculates the payment for a loan based on a constant interest rate, the number of periods and the loan amount.
+      <!--      PMT -->
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span style="color: #3804a0;">PMT</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="accordion-body">
+            <p>The Excel PMT function is a financial function that calculates the payment for a loan based on a constant interest rate, the number of periods and the loan amount.
 
-            "PMT" stands for "payment", hence the function's name.
-          </p>
-          <h2 class="function-prototype">
-            <span class="function-name">PMT</span>
-            <span class="bracket">(</span>
-            <span class="required-parameter">Rate</span>,
-            <span class="required-parameter">Nper</span>,
-            <span class="required-parameter">PV</span>,
-            [fv], [type]<span class="bracket">)</span>
-            
-          </h2>
-          <dl>
-            <dt>Rate (required)- </dt>
-            <dd> the constant interest rate per period. Can be supplied as percentage or decimal number</dd>
-            <dt>Nper (required) -</dt>
-            <dd>the number of payments for the loan, i.e. the total number of periods over which the loan should be paid.</dd>
-            <dt>Pv (required) -</dt>
-            <dd>the present value, i.e. the total amount that all future payments are worth now. In case of a loan, it's simply the original amount borrowed.</dd>
-            <dt>Fv (optional) - </dt>
-            <dd>the future value, or the cash balance you wish to have after the last payment is made. If omitted, the future value of the loan is assumed to be zero (0).</dd>
+                        "PMT" stands for "payment", hence the function's name.
+                      </p>
+            <h2 class="function-prototype">
+                        <span class="function-name">PMT</span>
+                        <span class="bracket">(</span>
+                        <span class="required-parameter">Rate</span>,
+                        <span class="required-parameter">Nper</span>,
+                        <span class="required-parameter">PV</span>,
+                        [fv], [type]<span class="bracket">)</span>
+
+                      </h2>
             <dl>
-              Type (optional) - specifies when the payments are due:
-              <dt>0 or omitted - </dt>
-              <dd>payments are due at the end of each period.</dd>
-              <dt>1 - </dt>
-              <dd>payments are due at the beginning of each period.</dd>
-            </dl>
-          </dl>
-        </div>
+                        <dt>Rate (required)- </dt>
+                        <dd>-the constant interest rate per period. Can be supplied as percentage or decimal number</dd>
+                        <dt>Nper (required) -</dt>
+                        <dd>-the number of payments for the loan, i.e. the total number of periods over which the loan should be paid.</dd>
+                        <dt>Pv (required) -</dt>
+                        <dd>-the present value, i.e. the total amount that all future payments are worth now. In case of a loan, it's simply the original amount borrowed.</dd>
+                        <dt>-Fv (optional) - </dt>
+                        <dd>-the future value, or the cash balance you wish to have after the last payment is made. If omitted, the future value of the loan is assumed to be zero (0).</dd>
+                        <dl>
+                          Type (optional) - specifies when the payments are due:
+                          <dt>0 or omitted - </dt>
+                          <dd>-payments are due at the end of each period.</dd>
+                          <dt>1 - </dt>
+                          <dd>-payments are due at the beginning of each period.</dd>
+                        </dl>
+                      </dl>
+          </div>
+        </ng-template>
       </p-accordionTab>
 
-      <p-accordionTab header="IPMT function">
-        <div class="accordion-body">
-          <p>This article describes the formula syntax and usage of the IPMT function in Microsoft Excel.Returns the interest payment for a given period for an investment based on periodic, constant payments and a constant interest rate.</p>
-          <h2>
-            <span class="function-name">IPMT</span>
-            <span class="bracket">(</span>
-            <span class="required-parameter">rate</span>,
-            <span class="required-parameter">per</span>,
-            <span class="required-parameter">nper</span>,
-            <span class="required-parameter">pv</span>,
-             [fv], [type]<span class="bracket">)</span>
-          </h2>
-          <dl>
-            <dt>Rate  </dt>
-            <dd>Required. The interest rate per period.</dd>
-            <dt>Per  </dt>
-            <dd>Required. The period for which you want to find the interest and must be in the range 1 to nper.</dd>
-            <dt>Nper  </dt>
-            <dd>Required. The total number of payment periods in an annuity.</dd>
-            <dt>Pv </dt>
-            <dd>Required. The present value, or the lump-sum amount that a series of future payments is worth right now.</dd>
-            <dt>Fv </dt>
-            <dd>Optional. The future value, or a cash balance you want to attain after the last payment is made. If fv is omitted, it is assumed to be 0 (the future value of a loan, for example, is 0). </dd>
-            
-            <dt>Type  </dt>
-            <dd>Optional. The number 0 or 1 and indicates when payments are due. If type is omitted, it is assumed to be 0.</dd>
-          </dl>
-          <table class="table col-8">
-            <thead>
-              <tr>
-                <th scope="col">Set type equal to</th>
-                <th scope="col">If payments are due</th>
+      <!--      IPMT function -->
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span style="color: #3804a0;">IPMT function</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="accordion-body">
+            <p>This article describes the formula syntax and usage of the IPMT function in Microsoft Excel.Returns the interest payment for a given period for an investment based on periodic, constant payments and a constant interest rate.</p>
+            <h2>
+                        <span class="function-name">IPMT</span>
+                        <span class="bracket">(</span>
+                        <span class="required-parameter">rate</span>,
+                        <span class="required-parameter">per</span>,
+                        <span class="required-parameter">nper</span>,
+                        <span class="required-parameter">pv</span>,
+                         [fv], [type]<span class="bracket">)</span>
+                      </h2>
+            <dl>
+                        <dt>Rate  </dt>
+                        <dd>Required. The interest rate per period.</dd>
+                        <dt>Per  </dt>
+                        <dd>Required. The period for which you want to find the interest and must be in the range 1 to nper.</dd>
+                        <dt>Nper  </dt>
+                        <dd>Required. The total number of payment periods in an annuity.</dd>
+                        <dt>Pv </dt>
+                        <dd>Required. The present value, or the lump-sum amount that a series of future payments is worth right now.</dd>
+                        <dt>Fv </dt>
+                        <dd>Optional. The future value, or a cash balance you want to attain after the last payment is made. If fv is omitted, it is assumed to be 0 (the future value of a loan, for example, is 0). </dd>
 
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>0</td>
-                <td>At the end of the period</td>
-              </tr>
+                        <dt>Type  </dt>
+                        <dd>Optional. The number 0 or 1 and indicates when payments are due. If type is omitted, it is assumed to be 0.</dd>
+                      </dl>
+            <table class="table col-8">
+                        <thead>
+                          <tr>
+                            <th scope="col">Set type equal to</th>
+                            <th scope="col">If payments are due</th>
 
-              <tr>
-                <td>1</td>
-                <td>At the beginning of the period</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>0</td>
+                            <td>At the end of the period</td>
+                          </tr>
+
+                          <tr>
+                            <td>1</td>
+                            <td>At the beginning of the period</td>
+                          </tr>
+                        </tbody>
+                      </table>
+          </div>
+        </ng-template>
       </p-accordionTab>
 
-      <p-accordionTab header="PPMT function">
-        <div class="accordion-body">
-          <p>The Excel PPMT function can be used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between.</p>
-          <h3>
-            <span class="function-name">PPMT</span>
-            <span class="bracket">(</span>
-            <span class="required-parameter">rate</span>, 
-            <span class="required-parameter">per</span>,
-            <span class="required-parameter">nper</span>,
-            <span class="required-parameter">pv</span>,
-             [fv], [type]
-             <span class="bracket">)</span>
-          </h3>
-          <dl>
-            <dt>rate -</dt>
-            <dd>The interest rate per period.</dd>
-            <dt>per -</dt>
-            <dd>The payment period of interest.</dd>
-            <dt>nper -</dt>
-            <dd>The total number of payments for the loan.</dd>
-            <dt>pv -</dt>
-            <dd>The present value, or total value of all payments now.</dd>
-            <dt>fv -</dt>
-            <dd>[optional] The cash balance desired after last payment is made. Defaults to 0.</dd>
-            <dt>type -</dt>
-            <dd>[optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.</dd>
-          </dl>
-          <p>The Excel PPMT function is used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between. The period of interest is provided with the per argument, which must be a number between 1 and the total number of payments (nper).</p>
-          <h2>Notes</h2>
-          <ul>
-            <li>Be consistent with inputs for rate. For example, for 5-year loan with 4.5% annual interest, enter the rate as 4.5%/12.</li>
-            <li>By convention, the loan value (pv) is entered as a negative value.</li>
-          </ul>
-        </div>
+      <!--      PPMT function -->
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span style="color: #3804a0;">PPMT function</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="accordion-body">
+            <p>The Excel PPMT function can be used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between.</p>
+            <h3>
+                        <span class="function-name">PPMT</span>
+                        <span class="bracket">(</span>
+                        <span class="required-parameter">rate</span>,
+                        <span class="required-parameter">per</span>,
+                        <span class="required-parameter">nper</span>,
+                        <span class="required-parameter">pv</span>,
+                         [fv], [type]
+                         <span class="bracket">)</span>
+                      </h3>
+            <dl>
+                        <dt>rate -</dt>
+                        <dd>The interest rate per period.</dd>
+                        <dt>per -</dt>
+                        <dd>The payment period of interest.</dd>
+                        <dt>nper -</dt>
+                        <dd>The total number of payments for the loan.</dd>
+                        <dt>pv -</dt>
+                        <dd>The present value, or total value of all payments now.</dd>
+                        <dt>fv -</dt>
+                        <dd>[optional] The cash balance desired after last payment is made. Defaults to 0.</dd>
+                        <dt>type -</dt>
+                        <dd>[optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.</dd>
+                      </dl>
+            <p>The Excel PPMT function is used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between. The period of interest is provided with the per argument, which must be a number between 1 and the total number of payments (nper).</p>
+            <h2>Notes</h2>
+            <ul>
+                        <li>Be consistent with inputs for rate. For example, for 5-year loan with 4.5% annual interest, enter the rate as 4.5%/12.</li>
+                        <li>By convention, the loan value (pv) is entered as a negative value.</li>
+                      </ul>
+          </div>
+        </ng-template>
       </p-accordionTab>
 
-
-      <p-accordionTab header="Header III">
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-          cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-          Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-      </p-accordionTab>
     </p-accordion>
   </div>
 
