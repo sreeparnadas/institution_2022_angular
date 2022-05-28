@@ -15,7 +15,7 @@ export class MSExcelBasicFinancialFunctionComponent implements OnInit {
   }
 
   onTabOpen(event: any) {
-    const tabNames: string[] = ['FV Function', 'PMT Function', 'IPMT Function', 'PPMT Function'];
+    const tabNames: string[] = ['FV Function', 'PMT Function', 'IPMT Function', 'PPMT Function', 'NPER Function'];
     this.messageService.add({key: 'myKey1', severity:'info', summary:'VENV Explaining', detail: 'Function: ' + tabNames[event.index]});
   }
 

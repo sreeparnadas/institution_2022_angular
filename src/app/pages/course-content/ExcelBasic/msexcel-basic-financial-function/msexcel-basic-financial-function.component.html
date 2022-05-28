@@ -4,15 +4,15 @@
 <p-toast position="top-center" key="myKey1" (onClose)="onReject()"  [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">
     <div style="text-align: center">
-<!--      <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>-->
+     <!-- <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i> -->
       <h3>{{message.summary}}</h3>
       <p>{{message.detail}}</p>
     </div>
-    <div class="ui-g ui-fluid">
-      <div class="ui-g-6">
-        <button type="button" pButton (click)="onReject()" label="Close" class="ui-button-secondary"></button>
-      </div>
-    </div>
+    <!-- <div class="ui-g ui-fluid"> -->
+      <!-- <div class="ui-g-6"> -->
+        <!-- <button type="button" pButton (click)="onReject()" label="Close" class="ui-button-secondary"></button> -->
+      <!-- </div> -->
+    <!-- </div> -->
   </ng-template>
 </p-toast>
 
@@ -159,6 +159,58 @@
         </ng-template>
         <ng-template pTemplate="content">
           <div class="accordion-body">
+            <p>The Excel PPMT function can be used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between.</p>
+            <h3>
+                        <span class="function-name">PPMT</span>
+                        <span class="bracket">(</span>
+                        <span class="required-parameter">rate</span>,
+                        <span class="required-parameter">per</span>,
+                        <span class="required-parameter">nper</span>,
+                        <span class="required-parameter">pv</span>,
+                         [fv], [type]
+                         <span class="bracket">)</span>
+                      </h3>
+            <dl>
+                        <dt>rate -</dt>
+                        <dd>The interest rate per period.</dd>
+                        <dt>per -</dt>
+                        <dd>The payment period of interest.</dd>
+                        <dt>nper -</dt>
+                        <dd>The total number of payments for the loan.</dd>
+                        <dt>pv -</dt>
+                        <dd>The present value, or total value of all payments now.</dd>
+                        <dt>fv -</dt>
+                        <dd>[optional] The cash balance desired after last payment is made. Defaults to 0.</dd>
+                        <dt>type -</dt>
+                        <dd>[optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.</dd>
+                      </dl>
+            <p>The Excel PPMT function is used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between. The period of interest is provided with the per argument, which must be a number between 1 and the total number of payments (nper).</p>
+            <h2>Notes</h2>
+            <ul>
+                        <li>Be consistent with inputs for rate. For example, for 5-year loan with 4.5% annual interest, enter the rate as 4.5%/12.</li>
+                        <li>By convention, the loan value (pv) is entered as a negative value.</li>
+                      </ul>
+          </div>
+        </ng-template>
+      </p-accordionTab>
+
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span style="color: #3804a0;">NPER</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <!-- //// -->
+          <div >
+
+           
+
+           
+              <p-divider align="left" >
+                  <div class="inline-flex align-items-center">
+                      <!-- <i class="pi pi-user mr-2"></i> -->
+                      <h2>Purpose </h2>                      
+                  </div>
+              </p-divider>
             <p>The Excel PPMT function can be used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between.</p>
             <h3>
                         <span class="function-name">PPMT</span>
