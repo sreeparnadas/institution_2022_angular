@@ -200,48 +200,120 @@
         </ng-template>
         <ng-template pTemplate="content">
           <!-- //// -->
-          <div >
+          <div >   
+            
+            <p-divider align="left" >
+              <div class="inline-flex align-items-center">
+                  <!-- <i class="pi pi-user mr-2"></i> -->
+                  <h2>Summary</h2>                      
+              </div>
+            </p-divider>
 
+            <div class="accordion-body text-center">
+              <p-card >
+                <p>The Excel <u>NPER</u> function is a financial function that returns the number of periods for a loan or investment. You can use the NPER function to get the number of payment periods for a loan, given the amount, the interest rate, and periodic payment amount.</p>
+              </p-card>
+            </div>
            
+            <p-divider align="left" >
+                <div class="inline-flex align-items-center">
+                    <!-- <i class="pi pi-user mr-2"></i> -->
+                    <h2>Purpose </h2>                      
+                </div>
+            </p-divider>
+            <div class="accordion-body text-center">
+              <p-card >
+                <p>Get number of periods for loan or investment</p>
+              </p-card>
+            </div>
 
-           
-              <p-divider align="left" >
-                  <div class="inline-flex align-items-center">
-                      <!-- <i class="pi pi-user mr-2"></i> -->
-                      <h2>Purpose </h2>                      
-                  </div>
-              </p-divider>
-            <p>The Excel PPMT function can be used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between.</p>
-            <h3>
-                        <span class="function-name">PPMT</span>
-                        <span class="bracket">(</span>
-                        <span class="required-parameter">rate</span>,
-                        <span class="required-parameter">per</span>,
-                        <span class="required-parameter">nper</span>,
-                        <span class="required-parameter">pv</span>,
-                         [fv], [type]
-                         <span class="bracket">)</span>
-                      </h3>
-            <dl>
-                        <dt>rate -</dt>
-                        <dd>The interest rate per period.</dd>
-                        <dt>per -</dt>
-                        <dd>The payment period of interest.</dd>
-                        <dt>nper -</dt>
-                        <dd>The total number of payments for the loan.</dd>
-                        <dt>pv -</dt>
-                        <dd>The present value, or total value of all payments now.</dd>
-                        <dt>fv -</dt>
-                        <dd>[optional] The cash balance desired after last payment is made. Defaults to 0.</dd>
-                        <dt>type -</dt>
-                        <dd>[optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.</dd>
-                      </dl>
-            <p>The Excel PPMT function is used to calculate the principal portion of a given loan payment. For example, you can use PPMT to get the principal amount of a payment for the first period, the last period, or any period in between. The period of interest is provided with the per argument, which must be a number between 1 and the total number of payments (nper).</p>
-            <h2>Notes</h2>
-            <ul>
-                        <li>Be consistent with inputs for rate. For example, for 5-year loan with 4.5% annual interest, enter the rate as 4.5%/12.</li>
-                        <li>By convention, the loan value (pv) is entered as a negative value.</li>
-                      </ul>
+            <p-divider align="left" >
+              <div class="inline-flex align-items-center">
+                  <!-- <i class="pi pi-user mr-2"></i> -->
+                  <h2>Return value  </h2>                      
+              </div>
+            </p-divider>
+
+            <div class="accordion-body text-center">
+              <p-card >
+                <p>The number of periods</p>
+              </p-card>
+            </div>
+
+            <p-divider align="left" >
+              <div class="inline-flex align-items-center">
+                  <!-- <i class="pi pi-user mr-2"></i> -->
+                  <h2>Syntax</h2>                      
+              </div>
+            </p-divider>
+            <div class="accordion-body text-center">
+              <p-card >
+                <h3>
+                  <span class="function-name">=NPER</span>
+                  <span class="bracket">(</span>
+                  <span class="required-parameter">rate</span>,
+                  <span class="required-parameter">pmt</span>,
+                  <span class="required-parameter">pv</span>,
+                    [fv], [type]
+                    <span class="bracket">)</span>
+                </h3>
+              </p-card>
+            </div>
+
+            <p-divider align="left" >
+              <div class="inline-flex align-items-center">
+                  <!-- <i class="pi pi-user mr-2"></i> -->
+                  <h2>Arguments</h2>                      
+              </div>
+            </p-divider>
+            <div class="accordion-body">
+              <p-card >
+                <dl>
+                  <dt>rate -</dt>
+                  <dd>The interest rate per period.</dd>
+                  <dt>pmt -</dt>
+                  <dd>The payment made each period.</dd>
+                  <dt>pv -</dt>
+                  <dd>The present value, or total value of all payments now.</dd>
+                  <dt>fv -</dt>
+                  <dd>[optional] The future value, or a cash balance you want after the last payment is made. Defaults to 0.</dd>
+                  <dt>type -</dt>
+                  <dd>[optional] When payments are due. 0 = end of period. 1 = beginning of period. Default is 0.</dd>
+                </dl>
+              </p-card>
+            </div>
+
+            <p-divider align="left" >
+              <div class="inline-flex align-items-center">
+                  <!-- <i class="pi pi-user mr-2"></i> -->
+                  <h2>Usage notes </h2>                      
+              </div>
+            </p-divider>
+
+            <div class="accordion-body text-center">
+              <p-card >
+                <p>You can use the NPER function to get the number of payment periods for a loan (or an investment), given the amount, the interest rate, and a periodic payment amount.</p>
+              </p-card>
+            </div>
+          
+
+            
+            <p-divider align="left" >
+              <div class="inline-flex align-items-center">
+                  <!-- <i class="pi pi-user mr-2"></i> -->
+                  <h2>Notes</h2>                      
+              </div>
+            </p-divider>
+            
+            <div class="accordion-body ">
+              <p-card >
+                <ul>
+                  <li>pmt normally includes principal and interest but not taxes, reserve payments, or fees.</li>
+                  <li>Be sure you supply rate consistent with periods. For example, if an annual interest rate is 12 percent, use 12%/12 for rate to get NPER to return periods in months.</li>
+                </ul>
+              </p-card>
+            </div>
+            
           </div>
         </ng-template>
       </p-accordionTab>

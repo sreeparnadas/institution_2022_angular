@@ -8,6 +8,7 @@ import {ToastModule} from "primeng/toast";
 import {ButtonModule} from "primeng/button";
 import {FieldsetModule} from 'primeng/fieldset';
 import {DividerModule} from 'primeng/divider';
+import {CardModule} from 'primeng/card';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {DividerModule} from 'primeng/divider';
     ToastModule,
     ButtonModule,
     FieldsetModule,
-    DividerModule
+    DividerModule,
+    CardModule
     // NgTemplateOutlet
   ]
 })
