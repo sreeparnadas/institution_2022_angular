@@ -25,8 +25,9 @@ export class CourseContentComponent implements OnInit {
 
         },
         {
-          label: 'Column and Row',
-          icon:'pi pi-fw  pi-slack'
+          label: 'Find and Lookup Value',
+          icon:'pi pi-fw  pi-slack',
+          routerLink: "./MSExcelBasicLookupFunction"
         },
         {
           label: 'Basic Formula',
