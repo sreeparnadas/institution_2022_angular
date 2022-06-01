@@ -95,7 +95,9 @@ const routes: Routes = [
     data: {loginType: 'studentQuery'},
   },
 
-  { path: 'msexcelBasicLookupFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/msexcel-basic-lookup-function/msexcel-basic-lookup-function.module').then(m => m.MsexcelBasicLookupFunctionModule) }
+  { path: 'msexcelBasicLookupFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/msexcel-basic-lookup-function/msexcel-basic-lookup-function.module').then(m => m.MsexcelBasicLookupFunctionModule) },
+
+  { path: 'msexcelGeneralFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/msexcel-general-function/msexcel-general-function.module').then(m => m.MsexcelGeneralFunctionModule) }
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
 
 ];
