@@ -15,7 +15,9 @@ const routes: Routes = [
 
                             { path: 'MSExcelBasicFinancialFunction', loadChildren: () => import('./ExcelBasic/msexcel-basic-financial-function/msexcel-basic-financial-function.module').then(m =>m.MSExcelBasicFinancialFunctionModule) },
 
-                            { path: 'MSExcelBasicLookupFunction', loadChildren: () => import('./ExcelBasic/msexcel-basic-lookup-function/msexcel-basic-lookup-function.module').then(m =>m.MsexcelBasicLookupFunctionModule) }
+                            { path: 'MSExcelBasicLookupFunction', loadChildren: () => import('./ExcelBasic/msexcel-basic-lookup-function/msexcel-basic-lookup-function.module').then(m =>m.MsexcelBasicLookupFunctionModule) },
+
+                            { path: 'MSExcelGeneralFunction', loadChildren: () => import('./ExcelBasic/msexcel-general-function/msexcel-general-function.module').then(m =>m.MsexcelGeneralFunctionModule) }
                           ]
                         }
                        ];

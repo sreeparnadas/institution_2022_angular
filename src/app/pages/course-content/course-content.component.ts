@@ -30,8 +30,9 @@ export class CourseContentComponent implements OnInit {
           routerLink: "./MSExcelBasicLookupFunction"
         },
         {
-          label: 'Basic Formula',
+          label: 'General Function',
           icon:'pi pi-fw pi-slack',
+          routerLink: "./MSExcelGeneralFunction"
         },
         {
           label: 'Basic Function',
