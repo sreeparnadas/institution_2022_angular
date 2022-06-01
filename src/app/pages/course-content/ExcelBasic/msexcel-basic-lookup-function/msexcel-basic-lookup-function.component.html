@@ -15,8 +15,8 @@
       <!-- </div> -->
     </ng-template>
   </p-toast>
-  
-  
+
+
     <div data-aos="fade-right">
       <p-accordion (onOpen)="onTabOpen($event)">
         <!--      Future value-->
@@ -59,10 +59,50 @@
             </div>
           </ng-template>
         </p-accordionTab>
-  
-        
-  
+
+        <p-accordionTab>
+          <ng-template pTemplate="header">
+            <div style="color: #3804a0;">MATCH</div>
+          </ng-template>
+          <ng-template pTemplate="content">
+            <div class="accordion-body">
+                <h2>Summary</h2>
+                <p>MATCH is an Excel function used to locate the position of a lookup value in a row, column, or table. MATCH supports approximate and exact matching, and wildcards (* ?) for partial matches. Often, MATCH is combined with the INDEX function to retrieve a value at a matched position.</p>
+                <h2>Purpose</h2>
+                <p>Get the position of an item in an array</p>
+                <h2>Return value </h2>
+                <p>A number representing a position in lookup_array.</p>
+                <h2>Syntax</h2>
+
+                <h3 class="function-prototype">
+                    =
+                    <span class="function-name">MATCH</span>
+                    <span class="bracket">(</span>
+                    <span class="required-parameter">lookup_value</span>,
+                    <span class="required-parameter">lookup_array</span>,
+
+                    [match_lookup]
+                    <span class="bracket">)</span>
+                </h3>
+                <h2>Arguments </h2>
+                <dl>
+                    <dt>lookup_value </dt>
+                    <dd>- The value to match in lookup_array.</dd>
+                    <dt>lookup_array </dt>
+                    <dd>- A range of cells or an array reference.</dd>
+                    <dt>match_type -  </dt>
+                    <dd>- The column in the table from which to retrieve a value.</dd>
+                    <dt>range_lookup</dt>
+                    <dd>-[optional] TRUE =  exact or next smallest (default), 0 = exact match, -1 = exact or next largest</dd>
+
+                </dl>
+            </div>
+          </ng-template>
+        </p-accordionTab>
+
+
+
       </p-accordion>
     </div>
-  
-  
+
+

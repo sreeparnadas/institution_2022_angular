@@ -15,9 +15,9 @@ export class MsexcelBasicLookupFunctionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
   onTabOpen(event: any) {
-    const tabNames: string[] = ['VLOOKUP',];
+    const tabNames: string[] = ['VLOOKUP', 'MATCH'];
     this.messageService.add({key: 'myKey1', severity:'info', summary:'VENV Explaining', detail: 'Function: ' + tabNames[event.index]});
   }
 
