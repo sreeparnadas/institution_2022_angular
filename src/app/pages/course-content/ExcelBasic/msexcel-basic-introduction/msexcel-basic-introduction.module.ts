@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MSExcelBasicIntroductionRoutingModule } from './msexcel-basic-introduction-routing.module';
 import { MSExcelBasicIntroductionComponent } from './msexcel-basic-introduction.component';
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MSExcelBasicIntroductionComponent } from './msexcel-basic-introduction.
   ],
   imports: [
     CommonModule,
-    MSExcelBasicIntroductionRoutingModule
+    MSExcelBasicIntroductionRoutingModule,
+    ButtonModule
   ]
 })
 export class MSExcelBasicIntroductionModule { }
