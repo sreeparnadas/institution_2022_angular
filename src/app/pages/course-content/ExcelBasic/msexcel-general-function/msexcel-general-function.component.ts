@@ -16,7 +16,7 @@ export class MsexcelGeneralFunctionComponent implements OnInit {
   }
 
   onTabOpen(event: any) {
-    const tabNames: string[] = ['IF Function'];
+    const tabNames: string[] = ['IF Function', 'COUNTIF Function'];
     this.messageService.add({key: 'myKey1', severity:'info', summary:'VENV Explaining', detail: 'Function: ' + tabNames[event.index]});
   }
 

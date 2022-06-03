@@ -23,34 +23,65 @@
             <ng-template pTemplate="content">
               <div class="accordion-body">
                   <h2>Summary</h2>
-                  <p>VLOOKUP is an Excel function to ook up data in a table organized vertically. VLOOKUP supports approximate and exact matching, and wildcards (* ?) for partial matches. Lookup values must appear in the first column of the table passed into VLOOKUP.</p>
+                  <p>The IF function runs a logical test and returns one value for a TRUE result, and another for a FALSE result. For example, to "pass" scores above 70: =IF(A1>70,"Pass","Fail"). More than one condition can be tested by nesting IF functions. The IF function can be combined with logical functions like AND and OR to extend the logical test.</p>
                   <h2>Purpose</h2>
-                  <p>Lookup a value in a table by matching on the first column</p>
+                  <p>Test for a specific condition</p>
                   <h2>Return value </h2>
-                  <p>The matched value from a table.</p>
+                  <p>The values you supply for TRUE or FALSE</p>
                   <h2>Syntax</h2>
   
                   <h3 class="function-prototype">
                       =
-                      <span class="function-name">VLOOKUP</span>
+                      <span class="function-name">IF</span>
                       <span class="bracket">(</span>
-                      <span class="required-parameter">lookup_value</span>,
-                      <span class="required-parameter">table_array</span>,
-                      <span class="required-parameter">column_index_num</span>,
-                      [range_lookup]
+                      <span class="required-parameter">logical_test</span>,                      
+                      [value_if_true],
+                      [value_if_false]
                       <span class="bracket">)</span>
                   </h3>
                   <h2>Arguments </h2>
                   <dl>
-                      <dt>lookup_value </dt>
-                      <dd>- The value to look for in the first column of a table.</dd>
-                      <dt>table_array </dt>
-                      <dd>- The table from which to retrieve a value.</dd>
-                      <dt>column_index_num </dt>
-                      <dd>- The column in the table from which to retrieve a value.</dd>
-                      <dt>range_lookup</dt>
-                      <dd>-[optional] TRUE = approximate match (default). FALSE = exact match.</dd>
+                      <dt>logical_test</dt>
+                      <dd>-A value or logical expression that can be evaluated as TRUE or FALSE.</dd>
+                      <dt>value_if_true</dt>
+                      <dd>- [optional] The value to return when logical_test evaluates to TRUE.</dd>
+                      <dt>value_if_false </dt>
+                      <dd>- [optional] The value to return when logical_test evaluates to FALSE.</dd>
+                      
   
+                  </dl>
+              </div>
+            </ng-template>
+          </p-accordionTab>
+
+          <p-accordionTab>
+            <ng-template pTemplate="header">
+              <div style="color: #3804a0;">COUNTIF Function</div>
+            </ng-template>
+            <ng-template pTemplate="content">
+              <div class="accordion-body">
+                  <h2>Summary</h2>
+                  <p>COUNTIF is an Excel function to count cells in a range that meet a single condition. COUNTIF can be used to count cells that contain dates, numbers, and text. The criteria used in COUNTIF supports logical operators (>,<,<>,=) and wildcards (*,?) for partial matching.</p>
+                  <h2>Purpose</h2>
+                  <p>Count cells that match criteria</p>
+                  <h2>Return value </h2>
+                  <p>A number representing cells counted.</p>
+                  <h2>Syntax</h2>
+  
+                  <h3 class="function-prototype">
+                      =
+                      <span class="function-name">COUNTIF</span>
+                      <span class="bracket">(</span>
+                      <span class="required-parameter">range</span>,                      
+                      <span class="required-parameter">criteria</span>             
+                      <span class="bracket">)</span>
+                  </h3>
+                  <h2>Arguments </h2>
+                  <dl>
+                      <dt>range</dt>
+                      <dd>-The range of cells to count.</dd>
+                      <dt>criteria </dt>
+                      <dd>- The criteria that controls which cells should be counted.</dd>                                    
                   </dl>
               </div>
             </ng-template>
