@@ -15,7 +15,7 @@ export class ExcelDateFunctionComponent implements OnInit {
   }
 
   onTabOpen(event: any) {
-    const tabNames: string[] = ['NOW Function', 'Today Function', 'Year Function', 'MONTH Function'];
+    const tabNames: string[] = ['NOW Function', 'Today Function', 'Year Function', 'MONTH Function', 'DATE Function', 'EDATE Function'];
     this.messageService.add({key: 'myKey1', severity:'info', summary:'VENV Explaining', detail: 'Function: ' + tabNames[event.index]});
   }
 
