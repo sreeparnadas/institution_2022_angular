@@ -35,6 +35,11 @@ export class CourseContentComponent implements OnInit {
           routerLink: "./MSExcelGeneralFunction"
         },
         {
+          label: 'Excel Date Function',
+          icon:'pi pi-fw pi-slack',
+          routerLink: "./MSExcelDateFunction"
+        },
+        {
           label: 'Basic Function',
           icon:'pi pi-fw pi-slack'
         },
@@ -164,6 +169,37 @@ export class CourseContentComponent implements OnInit {
       items: [
         {
           label: 'Edit',
+          icon:'pi pi-fw pi-pencil',
+          items: [
+            {
+              label: 'Save',
+              icon:'pi pi-fw pi-calendar-plus'
+            },
+            {
+              label: 'Delete',
+              icon:'pi pi-fw pi-calendar-minus'
+            }
+          ]
+        },
+        {
+          label: 'Archieve',
+          icon:'pi pi-fw pi-calendar-times',
+          items: [
+            {
+              label: 'Remove',
+              icon:'pi pi-fw pi-calendar-minus'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      label: 'Data Structure',
+      icon:'pi pi-fw pi-calendar',
+      // disabled: true,
+      items: [
+        {
+          label: 'Link List',
           icon:'pi pi-fw pi-pencil',
           items: [
             {

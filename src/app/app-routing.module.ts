@@ -97,7 +97,11 @@ const routes: Routes = [
 
   { path: 'msexcelBasicLookupFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/msexcel-basic-lookup-function/msexcel-basic-lookup-function.module').then(m => m.MsexcelBasicLookupFunctionModule) },
 
-  { path: 'msexcelGeneralFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/msexcel-general-function/msexcel-general-function.module').then(m => m.MsexcelGeneralFunctionModule) }
+  { path: 'msexcelGeneralFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/msexcel-general-function/msexcel-general-function.module').then(m => m.MsexcelGeneralFunctionModule) },
+
+  { path: 'excelDateFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-date-function/excel-date-function.module').then(m => m.ExcelDateFunctionModule) },
+
+
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
 
 ];

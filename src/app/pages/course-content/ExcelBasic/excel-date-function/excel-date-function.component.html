@@ -1,0 +1,227 @@
+<p-toast position="top-center" key="myKey1" (onClose)="onReject()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <!-- <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i> -->
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <!-- <div class="ui-g ui-fluid"> -->
+        <!-- <div class="ui-g-6"> -->
+        <!-- <button type="button" pButton (click)="onReject()" label="Close" class="ui-button-secondary"></button> -->
+        <!-- </div> -->
+        <!-- </div> -->
+    </ng-template>
+</p-toast>
+
+<div data-aos="fade-right">
+    <p-accordion (onOpen)="onTabOpen($event)">
+        <p-accordionTab>
+            <ng-template pTemplate="header">
+                <div style="color: #3804a0;">NOW Function</div>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="accordion-body">
+                    <h2>Summary</h2>
+                    <p>The Excel NOW function returns the current date and time, updated continuously when a worksheet
+                        is changed or opened. The NOW function takes no arguments. You can format the value returned by
+                        NOW as a date, or as a date with time by applying a number format.</p>
+                    <h2>Purpose</h2>
+                    <p>Get the current date and time</p>
+                    <h2>Return value </h2>
+                    <p>A number representing the current date and time in Excel.</p>
+                    <h2>Syntax</h2>
+
+                    <h3 class="function-prototype">
+                        =
+                        <span class="function-name">NOW</span>
+                        <span class="bracket">(</span>
+                        <span class="bracket">)</span>
+                    </h3>
+                    <h2>Usage Notes </h2>
+                    <p>
+                        NOW takes no parameters but requires empty parentheses. The value returned by NOW will
+                        continually update each time the worksheet is updated, for example, each time a value is entered
+                        or changed. Use F9 to force the worksheet to recalculate and update the value.
+
+                        The value returned by the NOW function is a standard Excel date, including a fractional value
+                        for time. To display the result as a date, apply a date number format. Optionally customize the
+                        number format to include the time. If you want the current date without a time value, use the
+                        TODAY function.
+                    </p>
+
+                    <h2>Examples </h2>
+                    <p>The examples below show how the NOW function can be used in various ways:</p>
+                    <p>
+                        =NOW() // current date and time<br>
+                        =NOW()-7 // last week same time<br>
+                        =NOW()+7 // next week same time<br>
+                        =NOW()+90 // 90 days from now<br>
+                    </p>
+
+                </div>
+            </ng-template>
+        </p-accordionTab>
+
+        <p-accordionTab>
+            <ng-template pTemplate="header">
+                <div style="color: #3804a0;">TODAY Function</div>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="accordion-body">
+                    <h2>Summary</h2>
+                    <p>The Excel TODAY function returns the current date, updated continuously when a worksheet is
+                        changed or opened. The TODAY function takes no arguments. You can format the value returned by
+                        TODAY with a date number format.</p>
+                    <h2>Purpose</h2>
+                    <p>Get the current date</p>
+                    <h2>Return value </h2>
+                    <p>Excel date as a serial number</p>
+                    <h2>Syntax</h2>
+
+                    <h3 class="function-prototype">
+                        =
+                        <span class="function-name">TODAY </span>
+                        <span class="bracket">(</span>
+                        <span class="bracket">)</span>
+                    </h3>
+                    <h2>Usage Notes </h2>
+                    <p>
+                        The TODAY function returns the current date, and will continually update each time the worksheet
+                        is updated. Use F9 to force the worksheet to recalculate and update the value.
+
+                        The value returned by the TODAY function is a standard Excel date. To display the result as a
+                        date, apply a date number format. Optionally customize the number format as you like. If you
+                        want the current date with a time value, use the NOW function.
+                    </p>
+
+                    <h2>Examples </h2>
+                    <p>The TODAY function can be used on its own, or combined with other functions. The formulas below
+                        show how the TODAY function can be used in various ways:</p>
+                    <p>
+                        =TODAY() // current date<br>
+                        =TODAY()-7 // one week in past<br>
+                        =TODAY()+7 // one week in future<br>
+                        =TODAY()+90 // 90 days from today<br>
+                    </p>
+
+                </div>
+            </ng-template>
+        </p-accordionTab>
+
+        <p-accordionTab>
+            <ng-template pTemplate="header">
+                <div style="color: #3804a0;">YEAR Function</div>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="accordion-body">
+                    <h2>Summary</h2>
+                    <p>The Excel YEAR function returns the year component of a date as a 4-digit number. You can use the
+                        YEAR function to extract a year number from a date into a cell or to extract and feed a year
+                        value into another formula, like the DATE function.</p>
+                    <h2>Purpose</h2>
+                    <p>Get the year from a date</p>
+                    <h2>Return value </h2>
+                    <p>Year as 4-digit number</p>
+                    <h2>Syntax</h2>
+
+                    <h3 class="function-prototype">
+                        =
+                        <span class="function-name">YEAR </span>
+                        <span class="bracket">(</span>
+                        <span class="required-parameter">date</span>
+                        <span class="bracket">)</span>
+                    </h3>
+                    <h2>Arguments </h2>
+                    <dl>
+                        <dt>date </dt>
+                        <dd>- A valid Excel date.</dd>
+
+                    </dl>
+                    <h2>Usage Notes </h2>
+                    <p>
+                        The YEAR function extracts the year from a given date as a 4-digit number. For example:
+                    </p>
+
+                    <h2>Examples </h2>
+                    <p>The YEAR function extracts the year from a given date as a 4-digit number. For example:</p>
+                    <p>
+                        =YEAR("23-Aug-2012") // returns 2012<br>
+                        =YEAR("11-May-2019") // returns 2019<br>
+                    </p>
+                    <p>
+                        You can use the YEAR function to extract a month number from a date into a cell, or to feed a
+                        month number into another function like the DATE function:
+                    </p>
+                    <h2>NOTES</h2>
+
+                    <ul>
+                        <li>YEAR will return a #VALUE error on text values.</li>
+                    </ul>
+
+
+                </div>
+            </ng-template>
+        </p-accordionTab>
+
+        <p-accordionTab>
+            <ng-template pTemplate="header">
+                <div style="color: #3804a0;">MONTH Function</div>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="accordion-body">
+                    <h2>Summary</h2>
+                    <p>The Excel MONTH function extracts the month from a given date as number between 1 to 12. You can use the MONTH function to extract a month number from a date into a cell, or to feed a month number into another function like the DATE function.</p>
+                    <h2>Purpose</h2>
+                    <p>Get month as a number (1-12) from a date</p>
+                    <h2>Return value </h2>
+                    <p>A number between 1 and 12.</p>
+                    <h2>Syntax</h2>
+
+                    <h3 class="function-prototype">
+                        =
+                        <span class="function-name">MONTH  </span>
+                        <span class="bracket">(</span>
+                        <span class="required-parameter">serial_number</span>
+                        <span class="bracket">)</span>
+                    </h3>
+                    <h2>Arguments </h2>
+                    <dl>
+                        <dt>serial_number  </dt>
+                        <dd>- A valid Excel date.</dd>
+
+                    </dl>
+                    <h2>Usage Notes </h2>
+                    <p>
+                        The MONTH function extracts the month from a given date as a number between 1 to 12. For example, given the date "June 12, 2021", the MONTH function will return 6 for June. MONTH takes just one argument, serial_number, which must be a valid Excel date.
+
+                        Dates can be supplied to the MONTH function as text (e.g. "13-Aug-2021") or as native Excel dates, which are large serial numbers. To create a date value from scratch with separate year, month, and day inputs, use the DATE function.
+
+                        The MONTH function will "reset" every 12 months (like a calendar). To work with month durations larger than 12, use a formula to calculate months between dates.
+
+                        The MONTH function returns a number. 
+                    </p>
+
+                    <h2>Examples </h2>
+                    <p>To use the MONTH function, supply a date:</p>
+                    <p>
+                        =MONTH("23-Aug-2012") // returns 8<br>
+                        =MONTH("11-May-2019") // returns 5<br>
+                    </p>
+                    <p>
+                        With the date "September 15, 2017" in cell A1, MONTH returns 9:
+                    </p>
+                    <p>=MONTH(A1) // returns 9</p>
+                    <h2>NOTES</h2>
+
+                    <ul>
+                        <li>MONTH will return #VALUE! if a date is not recognized.</li>
+                        <li>MONTH will return #NUM! if a date is supplied as a number that is out of range (i.e. -1).</li>
+                    </ul>
+
+
+                </div>
+            </ng-template>
+        </p-accordionTab>
+
+    </p-accordion>
+</div>

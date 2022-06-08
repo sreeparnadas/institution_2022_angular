@@ -17,7 +17,9 @@ const routes: Routes = [
 
                             { path: 'MSExcelBasicLookupFunction', loadChildren: () => import('./ExcelBasic/msexcel-basic-lookup-function/msexcel-basic-lookup-function.module').then(m =>m.MsexcelBasicLookupFunctionModule) },
 
-                            { path: 'MSExcelGeneralFunction', loadChildren: () => import('./ExcelBasic/msexcel-general-function/msexcel-general-function.module').then(m =>m.MsexcelGeneralFunctionModule) }
+                            { path: 'MSExcelGeneralFunction', loadChildren: () => import('./ExcelBasic/msexcel-general-function/msexcel-general-function.module').then(m =>m.MsexcelGeneralFunctionModule) },
+
+                            { path: 'MSExcelDateFunction', loadChildren: () => import('./ExcelBasic/excel-date-function/excel-date-function.module').then(m =>m.ExcelDateFunctionModule) }
                           ]
                         }
                        ];
