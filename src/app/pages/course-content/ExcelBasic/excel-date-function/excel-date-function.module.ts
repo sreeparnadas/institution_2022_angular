@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { FieldsetModule } from 'primeng/fieldset';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
+import {TooltipModule} from "primeng/tooltip";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CardModule } from 'primeng/card';
     ButtonModule,
     FieldsetModule,
     DividerModule,
-    CardModule
+    CardModule,
+    TooltipModule
   ]
 })
 export class ExcelDateFunctionModule { }

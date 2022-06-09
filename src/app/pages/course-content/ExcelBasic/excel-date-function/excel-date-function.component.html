@@ -14,7 +14,7 @@
 </p-toast>
 
 <div data-aos="fade-right">
-  <p-accordion (onOpen)="onTabOpen($event)">
+  <p-accordion  (onOpen)="onTabOpen($event)">
     <p-accordionTab>
       <ng-template pTemplate="header">
         <div style="color: #3804a0;">NOW Function</div>
@@ -439,8 +439,14 @@
         <div style="color: #3804a0;">EOMONTH Function</div>
       </ng-template>
       <ng-template pTemplate="content">
-        <div class="accordion-body">
-          <h2>Summary</h2>
+        <div class="flex-column p-2 bd-highlight accordion-body">
+          <p-button
+            label="Summary"
+            pTooltip="Summary of eomonth() function"
+            tooltipPosition="bottom">
+          </p-button>
+
+          <h2 pTooltip="It is a tooltip">Summary</h2>
           <p>
             The Excel EOMONTH function returns the last day of the month, n months in the past or future.,<br> You can use EDATE to calculate expiration dates, due dates, and other dates that need to land on the last day of a month. Use a positive value for months to move forward in time, and a negative number to move back in time.
           </p>
@@ -454,8 +460,8 @@
             =
             <span class="function-name">EOMONTH </span>
             <span class="bracket">(</span>
-            <span class="required-parameter">start_date</span>,
-            <span class="required-parameter">months</span>
+            <span class="required-parameter" pTooltip="Put a date you want">start_date</span>,
+            <span class="required-parameter" pTooltip="Number of months before or after start_date">months</span>
             <span class="bracket">)</span>
           </h3>
           <h2>Arguments </h2>
