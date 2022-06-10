@@ -1,7 +1,7 @@
 .function-prototype{
     color: gray;
   }
-  
+
   .required-parameter{
     color: #015987;
   }
@@ -11,14 +11,15 @@
   .bracket{
     color: midnightblue;
   }
-  
+
   .accordion-body{
     background-color: #e9ecef;
+    background-image: url("/assets/img/eduvenv.png");
     padding: 5px;
     max-width: 30vw;
     border-radius: 20px;
   }
-  
+
   .p-accordion .p-accordion-header .p-accordion-header-link {
     padding: 1rem;
     border: 1px solid #dee2e6;
