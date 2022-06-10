@@ -1,108 +1,150 @@
 <!--<p-toast key="myKey1" [style]="{marginTop: '80px'}"></p-toast>-->
 
 
-<p-toast position="top-center" key="myKey1" (onClose)="onReject()"  [baseZIndex]="5000">
-    <ng-template let-message pTemplate="message">
-      <div style="text-align: center">
-       <!-- <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i> -->
-        <h3>{{message.summary}}</h3>
-        <p>{{message.detail}}</p>
-      </div>
-      <!-- <div class="ui-g ui-fluid"> -->
-        <!-- <div class="ui-g-6"> -->
-          <!-- <button type="button" pButton (click)="onReject()" label="Close" class="ui-button-secondary"></button> -->
-        <!-- </div> -->
-      <!-- </div> -->
-    </ng-template>
-  </p-toast>
-
-
-    <div data-aos="fade-right">
-      <p-accordion (onOpen)="onTabOpen($event)">
-        <!--      Future value-->
-        <p-accordionTab>
-          <ng-template pTemplate="header">
-            <div style="color: #3804a0;">VLOOKUP</div>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <div class="accordion-body">
-                <h2>Summary</h2>
-                <p>VLOOKUP is an Excel function to ook up data in a table organized vertically. VLOOKUP supports approximate and exact matching, and wildcards (* ?) for partial matches. Lookup values must appear in the first column of the table passed into VLOOKUP.</p>
-                <h2>Purpose</h2>
-                <p>Lookup a value in a table by matching on the first column</p>
-                <h2>Return value </h2>
-                <p>The matched value from a table.</p>
-                <h2>Syntax</h2>
-
-                <h3 class="function-prototype">
-                    =
-                    <span class="function-name">VLOOKUP</span>
-                    <span class="bracket">(</span>
-                    <span class="required-parameter">lookup_value</span>,
-                    <span class="required-parameter">table_array</span>,
-                    <span class="required-parameter">column_index_num</span>,
-                    [range_lookup]
-                    <span class="bracket">)</span>
-                </h3>
-                <h2>Arguments </h2>
-                <dl>
-                    <dt>lookup_value </dt>
-                    <dd>- The value to look for in the first column of a table.</dd>
-                    <dt>table_array </dt>
-                    <dd>- The table from which to retrieve a value.</dd>
-                    <dt>column_index_num </dt>
-                    <dd>- The column in the table from which to retrieve a value.</dd>
-                    <dt>range_lookup</dt>
-                    <dd>-[optional] TRUE = approximate match (default). FALSE = exact match.</dd>
-
-                </dl>
-            </div>
-          </ng-template>
-        </p-accordionTab>
-
-        <p-accordionTab>
-          <ng-template pTemplate="header">
-            <div style="color: #3804a0;">MATCH</div>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <div class="accordion-body">
-                <h2>Summary</h2>
-                <p>MATCH is an Excel function used to locate the position of a lookup value in a row, column, or table. MATCH supports approximate and exact matching, and wildcards (* ?) for partial matches. Often, MATCH is combined with the INDEX function to retrieve a value at a matched position.</p>
-                <h2>Purpose</h2>
-                <p>Get the position of an item in an array</p>
-                <h2>Return value </h2>
-                <p>A number representing a position in lookup_array.</p>
-                <h2>Syntax</h2>
-
-                <h3 class="function-prototype">
-                    =
-                    <span class="function-name">MATCH</span>
-                    <span class="bracket">(</span>
-                    <span class="required-parameter">lookup_value</span>,
-                    <span class="required-parameter">lookup_array</span>,
-
-                    [match_lookup]
-                    <span class="bracket">)</span>
-                </h3>
-                <h2>Arguments </h2>
-                <dl>
-                    <dt>lookup_value </dt>
-                    <dd>- The value to match in lookup_array.</dd>
-                    <dt>lookup_array </dt>
-                    <dd>- A range of cells or an array reference.</dd>
-                    <dt>match_type -  </dt>
-                    <dd>- The column in the table from which to retrieve a value.</dd>
-                    <dt>range_lookup</dt>
-                    <dd>-[optional] TRUE =  exact or next smallest (default), 0 = exact match, -1 = exact or next largest</dd>
-
-                </dl>
-            </div>
-          </ng-template>
-        </p-accordionTab>
-
-
-
-      </p-accordion>
+<p-toast position="top-center" key="myKey1" (onClose)="onReject()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div style="text-align: center">
+      <!-- <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i> -->
+      <h3>{{message.summary}}</h3>
+      <p>{{message.detail}}</p>
     </div>
+    <!-- <div class="ui-g ui-fluid"> -->
+    <!-- <div class="ui-g-6"> -->
+    <!-- <button type="button" pButton (click)="onReject()" label="Close" class="ui-button-secondary"></button> -->
+    <!-- </div> -->
+    <!-- </div> -->
+  </ng-template>
+</p-toast>
 
 
+<div data-aos="fade-right">
+  <p-accordion (onOpen)="onTabOpen($event)">
+    <!--      Future value-->
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <div style="color: #3804a0;">VLOOKUP</div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Summary</h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">
+            VLOOKUP is an Excel function to ook up data in a table organized vertically. VLOOKUP supports approximate
+            and exact matching, and wildcards (* ?) for partial matches. Lookup values must appear in the first column
+            of the table passed into VLOOKUP.
+          </p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Purpose</h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">Lookup a value in a table by matching on the first column</p>
+          <h2>Return value </h2>
+          <p class="pl-4">The matched value from a table.</p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Syntax</h2>
+            </div>
+          </p-divider>
+
+          <h3 class="function-prototype pl-4">
+            =
+            <span class="function-name">VLOOKUP</span>
+            <span class="bracket">(</span>
+            <span class="required-parameter">lookup_value</span>,
+            <span class="required-parameter">table_array</span>,
+            <span class="required-parameter">column_index_num</span>,
+            [range_lookup]
+            <span class="bracket">)</span>
+          </h3>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Arguments </h2>
+            </div>
+          </p-divider>
+          <dl class="pl-4">
+            <dt>lookup_value </dt>
+            <dd>- The value to look for in the first column of a table.</dd>
+            <dt>table_array </dt>
+            <dd>- The table from which to retrieve a value.</dd>
+            <dt>column_index_num </dt>
+            <dd>- The column in the table from which to retrieve a value.</dd>
+            <dt>range_lookup</dt>
+            <dd>-[optional] TRUE = approximate match (default). FALSE = exact match.</dd>
+
+          </dl>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <div style="color: #3804a0;">MATCH</div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Summary</h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">
+            MATCH is an Excel function used to locate the position of a lookup value in a row, column, or table. MATCH
+            supports approximate and exact matching, and wildcards (* ?) for partial matches. Often, MATCH is combined
+            with the INDEX function to retrieve a value at a matched position.
+          </p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Purpose</h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">Get the position of an item in an array</p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Return value </h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">A number representing a position in lookup_array.</p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Syntax</h2>
+            </div>
+          </p-divider>
+
+          <h3 class="function-prototype pl-4">
+            =
+            <span class="function-name">MATCH</span>
+            <span class="bracket">(</span>
+            <span class="required-parameter">lookup_value</span>,
+            <span class="required-parameter">lookup_array</span>,
+
+            [match_lookup]
+            <span class="bracket">)</span>
+          </h3>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Arguments </h2>
+            </div>
+          </p-divider>
+          <dl class="pl-4">
+            <dt>lookup_value </dt>
+            <dd>- The value to match in lookup_array.</dd>
+            <dt>lookup_array </dt>
+            <dd>- A range of cells or an array reference.</dd>
+            <dt>match_type - </dt>
+            <dd>- The column in the table from which to retrieve a value.</dd>
+            <dt>range_lookup</dt>
+            <dd>-[optional] TRUE = exact or next smallest (default), 0 = exact match, -1 = exact or next largest</dd>
+
+          </dl>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+
+
+
+  </p-accordion>
+</div>
