@@ -15,18 +15,18 @@ export class CourseContentComponent implements OnInit {
       items: [
         {
           label: 'Introduction',
-          icon:'pi pi-fw pi-slack',
+          icon:'pi pi-fw pi-circle-fill',
           routerLink: "./MSExcelBasicIntroduction"
         },
         {
           label: 'Financial Functions',
-          icon:'pi pi-fw  pi-slack',
+          icon:'pi pi-fw  pi-circle-fill',
           routerLink: "./MSExcelBasicFinancialFunction"
 
         },
         {
           label: 'Find and Lookup Value',
-          icon:'pi pi-fw  pi-slack',
+          icon:'pi pi-fw  pi-circle-fill',
           routerLink: "./MSExcelBasicLookupFunction"
         },
         {
