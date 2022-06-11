@@ -25,7 +25,7 @@
         <div style="color: #3804a0;">VLOOKUP</div>
       </ng-template>
       <ng-template pTemplate="content">
-        <div>
+        <div class="text-body">
           <p-divider align="left">
             <div class="inline-flex align-items-center">
               <h2>Summary</h2>
@@ -42,7 +42,11 @@
             </div>
           </p-divider>
           <p class="pl-4">Lookup a value in a table by matching on the first column</p>
-          <h2>Return value </h2>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Return value </h2>
+            </div>
+          </p-divider>
           <p class="pl-4">The matched value from a table.</p>
           <p-divider align="left">
             <div class="inline-flex align-items-center">
@@ -85,7 +89,7 @@
         <div style="color: #3804a0;">MATCH</div>
       </ng-template>
       <ng-template pTemplate="content">
-        <div>
+        <div class="text-body">
           <p-divider align="left">
             <div class="inline-flex align-items-center">
               <h2>Summary</h2>
@@ -138,6 +142,68 @@
             <dd>- The column in the table from which to retrieve a value.</dd>
             <dt>range_lookup</dt>
             <dd>-[optional] TRUE = exact or next smallest (default), 0 = exact match, -1 = exact or next largest</dd>
+
+          </dl>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <div style="color: #3804a0;">INDEX</div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="text-body">
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Summary</h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">
+            The Excel <span style="color: blue;" pTooltip="=INDEX (array, row_num, [col_num], [area_num])">INDEX</span> function returns the value at a given location in a range or array. You can use INDEX to retrieve individual values, or entire rows and columns. The MATCH function is often used together with INDEX to provide row and column numbers.
+          </p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Purpose</h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">Get a value in a list or table based on location</p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Return value </h2>
+            </div>
+          </p-divider>
+          <p class="pl-4">The value at a given location.</p>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Syntax</h2>
+            </div>
+          </p-divider>
+
+          <h3 class="function-prototype pl-4">
+            =
+            <span class="function-name">INDEX </span>
+            <span class="bracket">(</span>
+            <span class="required-parameter" pTooltip=" array=> A range of cells, or an array constant.">array</span>,
+            <span class="required-parameter"  pTooltip=" row_num=> The row position in the reference or array.">row_num</span>,
+            <span  pTooltip=" col_num=> [optional] The column position in the reference or array.">[col_num],</span>
+            <span  pTooltip=" area_num=> [optional] The range in reference that should be used."> [area_num]</span>
+            <span class="bracket">)</span>
+          </h3>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <h2>Arguments </h2>
+            </div>
+          </p-divider>
+          <dl class="pl-4">
+            <dt>array  </dt>
+            <dd>- A range of cells, or an array constant.</dd>
+            <dt>row_num  </dt>
+            <dd>- The row position in the reference or array.</dd>
+            <dt>col_num  - </dt>
+            <dd>- [optional] The column position in the reference or array.</dd>
+            <dt>area_num </dt>
+            <dd>-[optional] The range in reference that should be used.</dd>
 
           </dl>
         </div>

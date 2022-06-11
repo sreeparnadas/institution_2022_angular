@@ -1,3 +1,4 @@
+import { TooltipModule } from 'primeng/tooltip';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,7 +24,8 @@ import { AccordionModule } from 'primeng/accordion';
     ButtonModule,
     FieldsetModule,
     DividerModule,
-    CardModule
+    CardModule,
+    TooltipModule
   ]
 })
 export class MsexcelBasicLookupFunctionModule { }
