@@ -25,7 +25,7 @@ export class MSExcelBasicIntroductionComponent implements OnInit {
   }
   download2(file: string) {
     this.downloadService
-      .download('assets/downloads/'+file)
+      .download('assets/excels/'+file)
       .subscribe((blob: string | Blob) => saveAs(blob, file));
   }
 
