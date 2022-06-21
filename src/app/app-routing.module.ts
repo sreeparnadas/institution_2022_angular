@@ -101,6 +101,10 @@ const routes: Routes = [
 
   { path: 'excelDateFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-date-function/excel-date-function.module').then(m => m.ExcelDateFunctionModule) },
 
+  
+
+  { path: 'ExcelDatabase', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-database/excel-database.module').then(m => m.ExcelDatabaseModule) },
+
 
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
 

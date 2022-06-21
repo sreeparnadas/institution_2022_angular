@@ -40,8 +40,9 @@ export class CourseContentComponent implements OnInit {
           routerLink: "./MSExcelDateFunction"
         },
         {
-          label: 'Basic Function',
-          icon:'pi pi-fw pi-slack'
+          label: 'Excel Database Function',
+          icon:'pi pi-fw pi-slack',
+          routerLink: "./MSExcelDatabaseFunction"
         },
         {
           label: 'Cell Range',

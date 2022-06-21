@@ -19,7 +19,9 @@ const routes: Routes = [
 
                             { path: 'MSExcelGeneralFunction', loadChildren: () => import('./ExcelBasic/msexcel-general-function/msexcel-general-function.module').then(m =>m.MsexcelGeneralFunctionModule) },
 
-                            { path: 'MSExcelDateFunction', loadChildren: () => import('./ExcelBasic/excel-date-function/excel-date-function.module').then(m =>m.ExcelDateFunctionModule) }
+                            { path: 'MSExcelDateFunction', loadChildren: () => import('./ExcelBasic/excel-date-function/excel-date-function.module').then(m =>m.ExcelDateFunctionModule) },
+
+                            { path: 'MSExcelDatabaseFunction', loadChildren: () => import('./ExcelBasic/excel-database/excel-database.module').then(m =>m.ExcelDatabaseModule) }
                           ]
                         }
                        ];
