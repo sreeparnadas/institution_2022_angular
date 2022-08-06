@@ -1,0 +1,332 @@
+<div class="container-fluid page">
+  <div class="page__box p-3 mt-2">Fees Received</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-fluid">
+      
+      <div class="d-flex">
+        <!-- start working with Left div (panel) -->
+        <div class="p-3 bg-info flex-fill" style="width:60% ; border: 2px dotted black; border-radius: 20px; ">
+          <form [formGroup]="FeesReceivedFormGroup">
+              <div class="row">
+                <div class="col-sm-4">
+                  <ng-select [items]="studentNameList"
+                                    fxFlex="100"
+                                    bindLabel="ledger_name"
+                                    (change)="changeCourseId()"
+                                    class="custom"
+                                    bindValue="id"
+                                    appendTo="body"
+                                    formControlName="studentId"
+                                    placeholder="Student Name" >
+                    </ng-select>
+                </div>
+                <div class="col-sm-5">
+                  <ng-select [items]="courseNameList"
+                                fxFlex="100"
+                                bindLabel="full_name"
+                                (ngModelChange)="getDetails(7)"
+                                class="custom"
+                                bindValue="id"
+                                appendTo="body"
+                                formControlName="studentToCourseId"
+                                placeholder="Course Name">
+                      </ng-select>
+                </div>
+                <div class="col-sm-3">
+                  <mat-form-field style = "width:100%">
+                  <mat-label style="color:rgb(36, 34, 34) ;">Transaction Date</mat-label>
+                  <input class="col-9" matInput #ref [matDatepicker]="transactionDate" formControlName="transactionDate" >
+                  <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
+                  <mat-datepicker #transactionDate></mat-datepicker>
+                </mat-form-field>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="form-group" >
+                    <textarea class="col-12" formControlName="comment" placeholder="Description" style="border: 2px dotted black; border-radius: 20px; ">
+                    </textarea>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group" *ngIf = "hiddenInput">
+                    <mat-form-field>
+                      <input matInput placeholder="Transaction ID" formControlName="transactionId" >
+                    </mat-form-field>
+
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row" style="border: 2px dotted black; border-radius: 20px; background-color: cornsilk;">
+                <div class="col-sm-5">
+                  <ng-select [items]="feesNameList"
+                    fxFlex="100"
+                    bindLabel="ledger_name"
+                    class="custom"
+                    bindValue="id"
+                    appendTo="body"
+                    formControlName="ledgerId"
+                    placeholder="Fees Name">
+                  </ng-select>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field style = "width:100%">
+                    <mat-label style="color:black ;">Fee Amount</mat-label>
+                    <input matInput formControlName="amount" placeholder="Fee Amount" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                  <button pButton  >
+                    <i class="bi bi-save" (click)="onAddFees();"> Add </i>
+                  </button>
+                </div>
+              </div>
+          </form>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" style="display: none;">Ledger id</th>
+                <th scope="col">Fee Name</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of tempFeesArray; let indexOfelement=index;">
+                  <th scope="row">{{indexOfelement+1}}</th>
+                  <th scope="row" style="display: none;">{{item.ledgerId}}</th>
+                  <td>{{item.feesName}}</td>
+                  <td align="right">{{item.amount | currency:'INR'}}</td>
+                  <td><button type="button" class="btn btn-success" (click)="onDelete(indexOfelement);">Remove</button></td>
+                </tr>
+                <tr class="table-dark">
+                  <th colspan="2">Grand Total</th>
+                
+                  <td align="right">{{totalAmount | currency:'INR'}}</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tbody>
+          </table>
+          
+            <p class="text-right">
+              <button type="button" class="btn btn-outline-warning btn-space" (click)="clearFeesReceived();">Clear</button>
+              <button type="button" class="btn btn-outline-danger btn-space" *ngIf="isShown" (click)="onUpdate();">Update</button>
+              <button type="button" class="btn btn-outline-success btn-space" [disabled]="!FeesReceivedFormGroup.valid || FeesReceivedFormGroup.value.id" *ngIf="!isShown" (click)="onSave();">Submit</button>
+              <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived" (click)="onCashReceived();">Received Cash</button>
+            
+            </p>
+            <div class="d-flex flex-row bd-highlight mb-3" *ngIf="isCashReceived" style="border: 2px dotted blue ; width:760px; height:100px;">
+          
+              <form [formGroup]="BankReceivedFormGroup">
+                <div class="d-flex flex-row bd-highlight mb-3" style="background-color:gray ;">
+                  <div class="p-2 col-4 bd-highlight" style="border: 2px dotted black;border-radius: 20px;font-size: medium; margin-right: 5px;">
+                  
+                    <mat-form-field style = "width:100%">
+                      <mat-label>Account No</mat-label>
+                      <input matInput formControlName="accountNo" placeholder="Account Nummber" required>
+                    </mat-form-field>
+                    
+                </div>
+                <div class="p-2 col-3 bd-highlight" style="border: 2px dotted black;border-radius: 20px;font-size: medium;margin-right: 5px; ">
+                  <mat-form-field style = "width:100%">
+                    <mat-label>IFSC No</mat-label>
+                    <input matInput formControlName="ifscNo" placeholder="IFSC No" required>
+                  </mat-form-field>            
+                  </div>
+                  <div class="p-2 col-3 bd-highlight" style="border: 2px dotted black;border-radius: 20px;font-size: medium;margin-right: 5px; ">
+                    <mat-form-field style = "width:100%">
+                      <mat-label>Branch Name</mat-label>
+                      <input matInput formControlName="branch" placeholder="Branch Name" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="p-2 col-2 bd-highlight">
+                    <button type="button" class="btn btn-outline-danger" (click)="onBankReceived();">Received Bank</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle" [transitionOptions]="'0.8ms'">
+              <ng-template pTemplate="header">
+                <h3>Header Content</h3>
+              </ng-template>
+              <ng-template pTemplate="footer">
+                <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+                <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+              </ng-template>
+            </p-confirmDialog>
+        </div>
+        <!-- End working with Left div (panel) -->
+
+         <!-- start working with Right div (panel) -->
+        <div class="p-3 flex-fill" style="width:40% ;">
+          <div class="container" *ngIf="!showBox">
+          <div style="border: 2px dotted rgb(1, 1, 19);">
+            <div class="row">
+              <div class="col-2 ">
+                  <img src="assets/img/baitLogo.png" width="100px" alt="AdminLTE Logo" style="opacity: .8">
+              </div>
+              <div class="col-10" align="center">
+              
+                  <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: large; font-family: 'Cooper Black';">
+                      Barrackpore Academy Of Information Technology</p>
+                  <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">Stalin Nagar, Barrackpore, Chiramore, Pin:700120</p>
+                  <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">E-mail;barrackporeacademyofit2014@gmail.com | Contact: 7605887990</p>
+                
+                  <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+              </div>
+              
+          </div> 
+
+          </div>
+          <div class="row">
+            <div class="col-7 " style="font-size:medium;">
+                <table>
+                    <tr>
+                        <td >Student Name</td>
+                        <td>:</td>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td >Contact No</td>
+                        <td>:</td>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Course Name</td>
+                        <td>:</td>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-5 " style="font-size:medium;">
+                <table>
+                    <tr>
+                        <td>Bill No</td>
+                        <td>:</td>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Bill Date</td>
+                        <td>:</td>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Payment Date</td>
+                        <td>:</td>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+              <div class="col-md text-center">
+              <table style="border-collapse: collapse; width: 100%; margin:0 auto; font-size:medium;">
+                  <thead>
+                      <tr  style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
+                          <th>Sl No</th>
+                          <th>Fees Name</th>
+                          <th class="text-right">Amount</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr >
+                          <td></td>
+                          <td></td>
+                          <td class="text-right"></td>
+                      </tr>
+                      
+                  </tbody>
+                  <tfoot>
+                      <tr style="background-color: rgb(228, 227, 227);">
+                          <th></th>
+                          <th>Discount(-)</th>
+                          <th class="text-right"></th>
+                      </tr>
+                      <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
+                          <th>Total</th>
+                          <td></td>
+                          <th class="text-right"></th>
+                      </tr>
+                      <tr >
+                          <th>In Words:</th>
+                          <td>:</td>
+                          <th class="text-left"></th>
+                      </tr>
+                      <tr style="background-color: lightgrey; border: 1px solid rgb(1, 1, 19);">
+                          <td>Next Payment Date</td>
+                          <th></th>
+                          <th class="text-left">Current Due: &nbsp; </th>
+                      </tr>
+                  </tfoot>
+              </table>
+            </div>
+          </div>
+          <div class="row" style="font-size: small;">
+            <div class="col-7">
+                Notice:<p style="margin-bottom: 0 ;margin-top: 0 ; font-style: oblique; font-size: small;">1) It is Computer Generated Bill</p>
+                <p style="margin-bottom: 0 ;margin-top: 0 ;font-style: oblique;">2) Advanced Fees Cannot be Refund.</p>
+                
+            </div>
+            <div class="col-3 ">
+              <p class="text-right">Signature</p>
+              <p class="text-right">-----------------</p>
+            </div>
+          </div> 
+          <div mat-dialog-actions>
+            <button class="btn btn-danger" (click)="onClickedOutside($event)">Close</button>
+            <button class="btn btn-success" printSectionId="pdfTable"
+            printTitle="Develop By Ronit"
+          
+            ngxPrint>Print</button>
+            
+          </div>
+          </div>
+      </div>
+       <!--End print DIV-->
+       <div class="container" *ngIf="showBox" style="font-size:medium ;">
+         
+          
+              <h1>Fees Charge List</h1>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" style="display: none;">Transaction id</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Transaction Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of feesReceivedArray; let indexOfelement=index;">
+                      <th scope="row">{{indexOfelement+1}}</th>
+                      <th scope="row" style="display: none;">{{item.id}}</th>
+                      <td>{{item.ledger_name}}</td>
+                      <td>{{item.transaction_date | date :'dd-MMM-yyyy' }}</td>
+                      <td align="right">{{item.total | currency:'INR'}}</td>
+                      <td><button type="button" class="btn btn-success"  (click)="editFeesReceived(item)"><i class="bi bi-pen"></i></button> &nbsp;
+                        <button type="button" class="btn btn-outline-danger" (click)="onClickedOutside($event)" ><i class="bi bi-printer"></i></button>
+                      </td>
+                    </tr>
+                  
+                  </tbody>
+              </table>
+              <!-- <div style="background-color: #e7e709;">
+                <pre>
+                  tempItemObj = {{tempObj | json}}
+                </pre>
+              </div> -->
+          
+          
+      </div>
+    
+          <!-- End working with Right div (panel) -->
+      
+      
+    </div>
+
+  </div>
+</div>
+

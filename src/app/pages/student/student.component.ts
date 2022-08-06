@@ -498,8 +498,6 @@ export class StudentComponent implements OnInit, OnChanges{
     return $event.target.value;
   }
 
-
-
   setDobSQL(value: string) {
     this.studentBasicFormGroup.patchValue({dobSQL: this.commonService.getSQLDate(value)});
   }

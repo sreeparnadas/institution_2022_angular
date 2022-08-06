@@ -95,12 +95,20 @@ export class CourseComponent implements OnInit {
       accept: () => {
         //const index: number = this.myArray.indexOf(value);
         //this.myArray.splice(index, 1);
-        const index: number = this.courses.indexOf(courseData.courseId);
-         this.courseService.deleteCourse(courseData.courseId).subscribe(response => {
-           this.showSuccess("Record Deleted successfully");
-           let index = this.courses.findIndex(x => x.courseId === courseData.courseId);
-            if (index !== -1) {
+      
+        //const index: number = this.courses.indexOf(courseData.courseId);
+
+        let index = this.courses.findIndex(x => x.courseId === courseData.courseId);
+        
+        console.log("Array: ",this.courses);
+        console.log("courseData: ",courseData.courseId);
+          this.courseService.deleteCourse(courseData.courseId).subscribe(response => {
+           
+            console.log("index...1:",response.success);
+            if (index != -1) {
+              
               this.courses.splice(index, 1);
+              console.log("index...",index);
             }
 
         },error=>{
@@ -114,7 +122,7 @@ export class CourseComponent implements OnInit {
             this.showErrorMessage = false;
           }, 20000);
           this.showError(error.statusText);
-        })
+        }) 
 
       },
       reject: () => {
@@ -180,9 +188,10 @@ export class CourseComponent implements OnInit {
         this.courseData.description=this.courseNameFormGroup.value.description;
 
         this.courseService.saveCourse(this.courseData).subscribe(response => {
-
-          if (response.status === true){
+          
+          if (response.success != ""){
             this.showSuccess("Record added successfully");
+            console.log("success:",response.success);
           }
 
         },error=>{

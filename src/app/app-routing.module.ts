@@ -54,7 +54,7 @@ const routes: Routes = [
     data: {loginType: 'owner'},
   },
 
-
+  
 
   { path: 'LineChart', loadChildren: () => import('./pages/developer/charts/line-chart/line-chart.module').then(m => m.LineChartModule) },
 
@@ -105,6 +105,11 @@ const routes: Routes = [
 
   { path: 'ExcelDatabase', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-database/excel-database.module').then(m => m.ExcelDatabaseModule) },
 
+  { path: 'FeesReceived', loadChildren: () => import('./pages/fees-received/fees-received.module').then(m => m.FeesReceivedModule) },
+
+  { path: 'LastTransactionPopup', loadChildren: () => import('./pages/last-transaction-popup/last-transaction-popup.module').then(m => m.LastTransactionPopupModule) },
+
+  
 
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
 

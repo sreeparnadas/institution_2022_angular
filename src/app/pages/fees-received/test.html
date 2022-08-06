@@ -1,0 +1,87 @@
+ <!-- -----------------Left Div--------------------- -->
+ <div class="card">
+    <div class="card-body transaction-master-form">
+      <form [formGroup]="FeesReceivedFormGroup">
+
+        
+         <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 col-8 bd-highlight">
+           
+              <ng-select [items]="students"
+                         fxFlex="100"
+                         bindLabel="studentName"
+                         class="custom"
+                         bindValue="studentId"
+                         appendTo="body"
+                         formControlName="ledger_id"
+                         placeholder="Student Name">
+              </ng-select>
+            
+         </div>
+         
+          <div class="p-2 col-4 bd-highlight">
+            <mat-form-field style = "width:100%">
+              <mat-label style="color:black ;">Joinig Date</mat-label>
+              <input class="col-9" matInput #ref [matDatepicker]="joining_date" formControlName="joining_date" >
+             
+              <mat-datepicker-toggle matSuffix [for]="joining_date"></mat-datepicker-toggle>
+              <mat-datepicker #joining_date></mat-datepicker>
+
+            </mat-form-field>
+            
+          </div>
+        </div>
+        <div class="form-group">
+          <h5>Description</h5>
+          <textarea class="col-12" formControlName="description" [style]="{'height':'50px'}">
+          </textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body transaction-details-form">
+      <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 col-4 bd-highlight">
+         
+            <ng-select [items]="students"
+                       fxFlex="100"
+                       bindLabel="studentName"
+                       class="custom"
+                       bindValue="studentId"
+                       appendTo="body"
+                       formControlName="ledger_id"
+                       placeholder="Fees Name">
+            </ng-select>
+          
+       </div>
+       
+        <div class="p-2 col-2 bd-highlight">
+          <mat-form-field style = "width:100%">
+            <mat-label style="color:black ;">Fee Amount</mat-label>
+            <input matInput formControlName="shortName" placeholder="Fee Amount" required>
+          </mat-form-field>
+          
+        </div>
+        <div class="p-2 col-2 bd-highlight">
+          <mat-form-field style = "width:100%">
+            <button mat-button color="accent">Accent</button>
+            <input matInput  placeholder="Fee Amount" required>
+          </mat-form-field>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -----------------End Left div----------------------------- -->
+  <!-- -----------------start Right div----------------------------- -->
+  <div class="p-2 bd-highlight">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex bd-highlight mb-3">
+            </div>
+        </div>
+    </div>
+  </div>
+<!-- -----------------end Right div----------------------------- -->

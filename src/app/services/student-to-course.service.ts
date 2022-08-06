@@ -31,6 +31,16 @@ export class StudentToCourseService {
     })));
   }
  
+  updateStudentToCourse(studentTocoursetData:any){
+    return this.http.patch<any>(this.commonService.getAPI() + '/studentCourseRegistrations', studentTocoursetData)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      console.log('at service',response);
+      if (response.status === true){
+        this.studentToCourseList.unshift(response.data);
+        this.durationTypeSubject.next([...this.courseList]);
+      }
+    }))
+  }
   saveStudentToCourse(studentTocoursetData:any){
     return this.http.post<any>(this.commonService.getAPI() + '/studentCourseRegistrations', studentTocoursetData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
@@ -61,5 +71,16 @@ export class StudentToCourseService {
 
   getStudentToCourses(){
     return [...this.studentToCourseList];
+  }
+
+  deleteStudentToCourse(id:any){
+    console.log("service id:",id);
+    //return 0;
+     return this.http.delete<any>(this.commonService.getAPI() + '/studentCourseRegistrations/'+ id)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+     
+     
+    }))
+
   }
 }

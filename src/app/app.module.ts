@@ -33,10 +33,12 @@ import {SidenavStudentModule} from "./sidenavs/sidenav-student/sidenav-student.m
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    // SidenavComponent,
+     // SidenavComponent,
   ],
     imports: [
         BrowserModule,
@@ -53,7 +55,9 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
         FontAwesomeModule,
         MatProgressSpinnerModule,
         SidenavTutorialModule,
-        SidenavStudentModule
+        SidenavStudentModule,
+        
+   
     ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
