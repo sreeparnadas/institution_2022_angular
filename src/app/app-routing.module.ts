@@ -109,6 +109,8 @@ const routes: Routes = [
 
   { path: 'LastTransactionPopup', loadChildren: () => import('./pages/last-transaction-popup/last-transaction-popup.module').then(m => m.LastTransactionPopupModule) },
 
+  { path: 'birthday', loadChildren: () => import('./pages/birthday/birthday.module').then(m => m.BirthdayModule) },
+
   
 
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
