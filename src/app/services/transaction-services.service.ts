@@ -29,7 +29,7 @@ export class TransactionServicesService {
 
 
   fetchAllStudentToCourses($id: any){
-    return this.http.get<any>(this.commonService.getAPI() + '/getStudentCourseRegistrations/'+$id)
+    return this.http.get<any>(this.commonService.getAPI() + '/students/studentId/'+$id+'/courses')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
       console.log("Student to courseList:",this.studentToCourseList); 
@@ -38,7 +38,7 @@ export class TransactionServicesService {
   }
 
   fetchAllFeesName(){
-    return this.http.get<any>(this.commonService.getAPI() + '/transactions/feesName')
+    return this.http.get<any>(this.commonService.getAPI() + '/students/feesName')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.feesNameList=response.data;
       console.log("Fees Name List:",this.feesNameList); 
@@ -46,7 +46,7 @@ export class TransactionServicesService {
     })));
   }
   fetchAllStudentName(){
-    return this.http.get<any>(this.commonService.getAPI() + '/transactions/studentName')
+    return this.http.get<any>(this.commonService.getAPI() + '/students')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.studentNameList=response.data;
       console.log("Fees Name List:",this.studentNameList); 

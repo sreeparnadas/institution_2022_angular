@@ -17,10 +17,10 @@
                     <div class="col-sm-4">
                       <ng-select [items]="studentNameList"
                                         fxFlex="100"
-                                        bindLabel="ledger_name"
+                                        bindLabel="studentName"
                                         (change)="changeCourseId()"
                                         class="custom"
-                                        bindValue="id"
+                                        bindValue="studentId"
                                         appendTo="body"
                                         formControlName="studentId"
                                         placeholder="Student Name" >
@@ -29,10 +29,10 @@
                     <div class="col-sm-5">
                       <ng-select [items]="courseNameList"
                                     fxFlex="100"
-                                    bindLabel="full_name"
+                                    bindLabel="fullName"
                                     (ngModelChange)="getDetails(7)"
                                     class="custom"
-                                    bindValue="id"
+                                    bindValue="courseId"
                                     appendTo="body"
                                     formControlName="studentToCourseId"
                                     placeholder="Course Name">
@@ -54,7 +54,7 @@
 <!--                        <textarea [rows]="2" [cols]="100" matInput formControlName="comment" placeholder="Description"></textarea>-->
 <!--                      </mat-form-field>-->
 <!--                      <textarea pInputTextarea></textarea>-->
-                      <textarea [rows]="2" [cols]="100" matInput autoResize="autoResize" placeholder="Description"></textarea>
+                      <textarea [rows]="2" [cols]="100" matInput autoResize="autoResize" formControlName="comment" placeholder="Description"></textarea>
                     </div>
                     <div class="col-sm-4">
                       <div class="form-group" *ngIf = "hiddenInput">
@@ -325,7 +325,7 @@
 
                       </tbody>
                   </table>
-                  <!-- <div style="background-color: #e7e709;">
+                   <div style="background-color: #e7e709;">
                     <pre>
                       tempItemObj = {{tempObj | json}}
                     </pre>
