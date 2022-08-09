@@ -29,7 +29,8 @@ export class TransactionServicesService {
 
 
   fetchAllStudentToCourses($id: any){
-    return this.http.get<any>(this.commonService.getAPI() + '/students/studentId/'+$id+'/courses')
+    //return this.http.get<any>(this.commonService.getAPI() + '/students/studentId/'+$id+'/courses')
+    return this.http.get<any>(this.commonService.getAPI() + '/students/studentToCourses/'+$id)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
       console.log("Student to courseList:",this.studentToCourseList); 
