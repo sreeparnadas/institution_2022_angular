@@ -22,7 +22,7 @@ export class TransactionServicesService {
   studentNameSubject = new Subject<any[]>();
   feesReceivedSubject = new Subject<any[]>();
   transactionListSubject = new Subject<any[]>();
-  constructor(private commonService: CommonService, private errorService: ErrorService, private http: HttpClient) { 
+  constructor(private commonService: CommonService, private errorService: ErrorService, private http: HttpClient) {
 
 
   }
@@ -33,7 +33,6 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/students/studentToCourses/'+$id)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
-      console.log("Student to courseList:",this.studentToCourseList); 
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
   }
@@ -42,7 +41,6 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/students/feesName')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.feesNameList=response.data;
-      console.log("Fees Name List:",this.feesNameList); 
       this.feesNameSubject.next([...this.feesNameList]);
     })));
   }
@@ -50,7 +48,6 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/students')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.studentNameList=response.data;
-      console.log("Fees Name List:",this.studentNameList); 
       this.studentNameSubject.next([...this.studentNameList]);
     })));
   }
@@ -58,7 +55,6 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/transactions/feesName')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.feesNameList=response.data;
-      console.log("Fees Name List:",this.feesNameList); 
       this.feesNameSubject.next([...this.feesNameList]);
     })));
   }
@@ -67,7 +63,6 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/transactions/getFeesRecevied')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.feesReceivedList=response.data;
-      console.log("Fees Received List:",this.feesReceivedList); 
       this.feesReceivedSubject.next([...this.feesReceivedList]);
     })));
   }
@@ -75,14 +70,12 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/transactions/getTransaction/'+$id)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.transactionList=response.data;
-      console.log("Fees Received List:",this.transactionList); 
       this.transactionListSubject.next([...this.transactionList]);
     })));
   }
   feesCharge(feeChargeData:any){
     return this.http.post<any>(this.commonService.getAPI() + '/transactions/feesCharged', feeChargeData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
-      console.log('at service',response);
       if (response.status === true){
         this.studentToCourseList.unshift(response.data);
         this.studentToCourseSubject.next([...this.studentToCourseList]);
@@ -93,7 +86,6 @@ export class TransactionServicesService {
   saveFeesReceive(feeReceivedData:any){
     return this.http.post<any>(this.commonService.getAPI() + '/transactions/feesReceived', feeReceivedData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
-      console.log('at service',response);
       if (response.status === true){
         this.studentToCourseList.unshift(response.data);
         this.studentToCourseSubject.next([...this.studentToCourseList]);
@@ -104,7 +96,6 @@ export class TransactionServicesService {
   updateFeesReceive(id:any,updateFeeReceivedData:any){
     return this.http.put<any>(this.commonService.getAPI() + '/transactions/updateFeesReceived/' +id, updateFeeReceivedData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
-      console.log('at service',response);
       if (response.status === true){
         this.studentToCourseList.unshift(response.data);
         this.studentToCourseSubject.next([...this.studentToCourseList]);

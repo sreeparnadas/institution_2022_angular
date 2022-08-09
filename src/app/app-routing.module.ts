@@ -5,6 +5,7 @@ import {AuthGuard} from "./services/auth.guard";
 import {AuthOwnerGuard} from "./services/auth-owner.guard";
 import {CourseResolver} from "./resolvers/course.resolver";
 import { StudentCourseRegistrationResolver } from './resolvers/student-course-registration.resolver';
+import {FeesReceivedResolver} from "./resolvers/fees-received.resolver";
 
 
 
@@ -54,7 +55,7 @@ const routes: Routes = [
     data: {loginType: 'owner'},
   },
 
-  
+
 
   { path: 'LineChart', loadChildren: () => import('./pages/developer/charts/line-chart/line-chart.module').then(m => m.LineChartModule) },
 
@@ -101,17 +102,20 @@ const routes: Routes = [
 
   { path: 'excelDateFunction', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-date-function/excel-date-function.module').then(m => m.ExcelDateFunctionModule) },
 
-  
+
 
   { path: 'ExcelDatabase', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-database/excel-database.module').then(m => m.ExcelDatabaseModule) },
 
-  { path: 'FeesReceived', loadChildren: () => import('./pages/fees-received/fees-received.module').then(m => m.FeesReceivedModule) },
+  { path: 'FeesReceived'
+    , loadChildren: () => import('./pages/fees-received/fees-received.module').then(m => m.FeesReceivedModule)
+    , resolve: {feesReceivedResolver: FeesReceivedResolver},
+  },
 
   { path: 'LastTransactionPopup', loadChildren: () => import('./pages/last-transaction-popup/last-transaction-popup.module').then(m => m.LastTransactionPopupModule) },
 
   { path: 'birthday', loadChildren: () => import('./pages/birthday/birthday.module').then(m => m.BirthdayModule) },
 
-  
+
 
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
 
