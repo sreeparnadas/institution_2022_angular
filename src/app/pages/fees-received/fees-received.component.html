@@ -15,57 +15,41 @@
               <form [formGroup]="FeesReceivedFormGroup">
                   <div class="row">
                     <div class="col-sm-4">
-                      <ng-select [items]="studentNameList"
-                                        fxFlex="100"
-                                        bindLabel="studentName"
-                                        (change)="changeCourseId()"
-                                        class="custom"
-                                        bindValue="studentId"
-                                        appendTo="body"
-                                        formControlName="studentId"
-                                        placeholder="Student Name" >
-                        </ng-select>
-                    </div>
-                    <div class="col-sm-5">
-                      <ng-select [items]="courseNameList"
-                                    fxFlex="100"
-                                    bindLabel="full_name"
-                                    (ngModelChange)="getDetails(7)"
-                                    class="custom"
-                                    bindValue="id"
-                                    appendTo="body"
-                                    formControlName="studentToCourseId"
-                                    placeholder="Course Name">
-                          </ng-select>
-                    </div>
-                    <div class="col-sm-3">
                       <mat-form-field>
-                      <mat-label >Transaction Date</mat-label>
-                      <input class="col-9" matInput #ref [matDatepicker]="transactionDate" formControlName="transactionDate" >
-                      <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
-                      <mat-datepicker #transactionDate></mat-datepicker>
-                    </mat-form-field>
-                  </div>
+                        <mat-label >Transaction Date</mat-label>
+                        <input class="col-9" matInput #ref [matDatepicker]="transactionDate" formControlName="transactionDate" >
+                        <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
+                        <mat-datepicker #transactionDate></mat-datepicker>
+                      </mat-form-field>
+                    </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-8">
-<!--                      <mat-form-field appearance="fill" width="100%">-->
-<!--                        <mat-label>Leave a comment</mat-label>-->
-<!--                        <textarea [rows]="2" [cols]="100" matInput formControlName="comment" placeholder="Description"></textarea>-->
-<!--                      </mat-form-field>-->
-<!--                      <textarea pInputTextarea></textarea>-->
-                      <textarea [rows]="2" [cols]="100" matInput autoResize="autoResize" formControlName="comment" placeholder="Description"></textarea>
+                    <div class="col-sm-6">
+                      <ng-select [items]="studentNameList"
+                          fxFlex="100"
+                          bindLabel="studentName"
+                          (change)="changeCourseId()"
+                          class="custom"
+                          bindValue="studentId"
+                          appendTo="body"
+                          formControlName="studentId"
+                          placeholder="Student Name" >
+                      </ng-select>
                     </div>
-                    <div class="col-sm-4">
-                      <div class="form-group" *ngIf = "hiddenInput">
-                        <mat-form-field>
-                          <input matInput placeholder="Transaction ID" formControlName="transactionId" >
-                        </mat-form-field>
-
-                      </div>
+                    <div class="col-sm-6">
+                      <ng-select [items]="courseNameList"
+                          fxFlex="100"
+                          bindLabel="full_name"
+                          (ngModelChange)="getDetails(7)"
+                          class="custom"
+                          bindValue="id"
+                          appendTo="body"
+                          formControlName="studentToCourseId"
+                          placeholder="Course Name">
+                      </ng-select>
                     </div>
-
                   </div>
+                  
                   <div class="row">
                     <div class="col-sm-5">
                       <ng-select [items]="feesNameList"
@@ -89,6 +73,20 @@
                         <i class="bi bi-save" (click)="onAddFees();"> Add </i>
                       </button>
                     </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <textarea [rows]="2" [cols]="100" matInput autoResize="autoResize" formControlName="comment" placeholder="Description"></textarea>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group" *ngIf = "hiddenInput">
+                        <mat-form-field>
+                          <input matInput placeholder="Transaction ID" formControlName="transactionId" >
+                        </mat-form-field>
+
+                      </div>
+                    </div>
+
                   </div>
               </form>
               <table class="table table-striped">
@@ -171,7 +169,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 <mat-icon class="example-tab-icon">list</mat-icon>
-                Upcoming Due List
+                View List
               </ng-template>
                  <!-- start working with Right div (panel) -->
             <div class="p-3 flex-fill" style="width:100% ;">

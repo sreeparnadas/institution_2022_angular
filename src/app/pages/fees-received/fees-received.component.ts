@@ -74,7 +74,7 @@ export class FeesReceivedComponent implements OnInit {
 
       studentId : new FormControl(1, [Validators.required]),
       transactionId : new FormControl(0, [Validators.required]),
-      comment : new FormControl(null, [Validators.required]),
+      comment : new FormControl(),
       amount : new FormControl(null, [Validators.required]),
       transactionDate : new FormControl(val),
       studentToCourseId:new FormControl(1, [Validators.required]),
