@@ -221,6 +221,7 @@ export class FeesReceivedComponent implements OnInit {
           },
           transactionDetails: Object.values(this.tempFeesArray)
         }
+        console.log("tran:",transactionId);
         this.transactionServicesService.updateFeesCharge(transactionId,this.tempObj).subscribe(response => {
           if (response.success === 1){
             this.getAllReceivedFees();
