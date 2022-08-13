@@ -304,6 +304,7 @@
                         <th scope="col">#</th>
                         <th scope="col" style="display: none;">Transaction id</th>
                         <th scope="col">Student Name</th>
+                        <th scope="col">Course Name</th>
                         <th scope="col">Transaction Date</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Action</th>
@@ -314,8 +315,9 @@
                           <th scope="row">{{indexOfelement+1}}</th>
                           <th scope="row" style="display: none;">{{item.id}}</th>
                           <td>{{item.ledger_name}}</td>
+                          <td>{{item.full_name}}</td>
                           <td>{{item.transaction_date | date :'dd-MMM-yyyy' }}</td>
-                          <td align="right">{{item.total | currency:'INR'}}</td>
+                          <td align="right">{{item.amount | currency:'INR'}}</td>
                           <td><button type="button" class="btn btn-success"  (click)="editFeesReceived(item)"><i class="bi bi-pen"></i></button> &nbsp;
                             <button type="button" class="btn btn-outline-danger" (click)="onClickedOutside($event)" ><i class="bi bi-printer"></i></button>
                           </td>

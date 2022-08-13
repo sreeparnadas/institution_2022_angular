@@ -160,6 +160,7 @@ export class FeesReceivedComponent implements OnInit {
   }
 
   editFeesReceived(feeDetails:any){
+    console.log("id:",feeDetails.id);
     this.isShown = true;
     this.tempFeesArray=[];
     this.totalAmount=0;
@@ -220,7 +221,7 @@ export class FeesReceivedComponent implements OnInit {
           },
           transactionDetails: Object.values(this.tempFeesArray)
         }
-        this.transactionServicesService.updateFeesReceive(transactionId,this.tempObj).subscribe(response => {
+        this.transactionServicesService.updateFeesCharge(transactionId,this.tempObj).subscribe(response => {
           if (response.success === 1){
             this.getAllReceivedFees();
             this.tempFeesArray=[];
