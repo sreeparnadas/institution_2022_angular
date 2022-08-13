@@ -6,6 +6,7 @@ import { BirthdayComponent } from './birthday.component';
 import {ButtonModule} from "primeng/button";
 import {GalleriaModule} from "primeng/galleria";
 import {PhotoGalleryModule} from "./photo-gallery/photo-gallery.module";
+import {TextCarouselModule} from "./text-carousel/text-carousel.module";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {PhotoGalleryModule} from "./photo-gallery/photo-gallery.module";
     PhotoGalleryModule,
     GalleriaModule,
     ButtonModule,
+    TextCarouselModule,
   ]
 })
 export class BirthdayModule { }
