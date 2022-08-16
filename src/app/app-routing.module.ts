@@ -115,6 +115,11 @@ const routes: Routes = [
 
   { path: 'birthday', loadChildren: () => import('./pages/birthday/birthday.module').then(m => m.BirthdayModule) },
 
+  { path: 'PhotoGallery', loadChildren: () => import('./pages/birthday/photo-gallery/photo-gallery.module').then(m => m.PhotoGalleryModule) },
+
+
+  { path: 'TextCarousel', loadChildren: () => import('./pages/birthday/text-carousel/text-carousel.module').then(m => m.TextCarouselModule) },
+
 
 
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
