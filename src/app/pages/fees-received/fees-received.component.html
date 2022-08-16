@@ -118,16 +118,16 @@
 
                 <p class="text-right">
                   <button type="button" class="btn btn-outline-warning btn-space" (click)="clearFeesReceived();">Clear</button>
-                  <button type="button" class="btn btn-outline-danger btn-space" *ngIf="isShown" (click)="onUpdate();">Update</button>
+                  <button type="button" class="btn btn-outline-danger btn-space" *ngIf="isShown" [disabled]="!FeesReceivedFormGroup.valid || FeesReceivedFormGroup.value.id" (click)="onUpdate();">Update</button>
                   <button type="button" class="btn btn-outline-success btn-space" [disabled]="!FeesReceivedFormGroup.valid || FeesReceivedFormGroup.value.id" *ngIf="!isShown" (click)="onSave();">Submit</button>
                   <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived" (click)="onCashReceived();">Received Cash</button>
 
                 </p>
-                <div class="d-flex flex-row bd-highlight mb-3" *ngIf="isCashReceived" style="border: 2px dotted blue ; width:760px; height:100px;">
+                <div class="d-flex flex-row bd-highlight mb-3" *ngIf="isCashReceived" style="width:1000px; height:100px;">
 
                   <form [formGroup]="BankReceivedFormGroup">
-                    <div class="d-flex flex-row bd-highlight mb-3" style="background-color:gray ;">
-                      <div class="p-2 col-4 bd-highlight" style="border: 2px dotted black;border-radius: 20px;font-size: medium; margin-right: 5px;">
+                    <div class="d-flex flex-row bd-highlight mb-3" >
+                      <div class="p-2 col-4 bd-highlight" style="font-size: medium; margin-right: 5px;">
 
                         <mat-form-field style = "width:100%">
                           <mat-label>Account No</mat-label>
@@ -135,20 +135,20 @@
                         </mat-form-field>
 
                     </div>
-                    <div class="p-2 col-3 bd-highlight" style="border: 2px dotted black;border-radius: 20px;font-size: medium;margin-right: 5px; ">
+                    <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
                       <mat-form-field style = "width:100%">
                         <mat-label>IFSC No</mat-label>
                         <input matInput formControlName="ifscNo" placeholder="IFSC No" required>
                       </mat-form-field>
                       </div>
-                      <div class="p-2 col-3 bd-highlight" style="border: 2px dotted black;border-radius: 20px;font-size: medium;margin-right: 5px; ">
+                      <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
                         <mat-form-field style = "width:100%">
                           <mat-label>Branch Name</mat-label>
                           <input matInput formControlName="branch" placeholder="Branch Name" required>
                         </mat-form-field>
                       </div>
                       <div class="p-2 col-2 bd-highlight">
-                        <button type="button" class="btn btn-outline-danger" (click)="onBankReceived();">Received Bank</button>
+                        <button type="button" class="btn btn-outline-danger" [disabled]="!BankReceivedFormGroup.valid || BankReceivedFormGroup.value.id" (click)="onBankReceived();">Received Bank</button>
                       </div>
                     </div>
                   </form>
