@@ -1,4 +1,5 @@
 import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -46,6 +47,7 @@ export class FeesReceivedComponent implements OnInit {
   popUpRestultArray:any[]=[];
   ledgerId:number=0;
   amount:number=0;
+  event:number=0;
   tempTotalAmount:number=0;
   totalAmount:number=0;
   removeTotalAmount:number=0;
@@ -53,6 +55,8 @@ export class FeesReceivedComponent implements OnInit {
   errorMessage: any;
   msgs: { severity: string; summary: string; detail: string; }[] | undefined;
   animal: any;
+  datepipe!: DatePipe;
+ 
 
 
   constructor(private transactionServicesService: TransactionServicesService,
@@ -96,7 +100,10 @@ export class FeesReceivedComponent implements OnInit {
   }
   active=0;
   onTabChanged(event:any){
-
+    this.event=event;
+    //console.log("Tab id:",event.tab);
+    console.log("Tab id:",this.event)
+    //if(event===1)
   }
   onClickedOutside(e: Event) {
     if(this.showBox===false){
@@ -161,11 +168,14 @@ export class FeesReceivedComponent implements OnInit {
 
   editFeesReceived(feeDetails:any){
     console.log("id:",feeDetails.id);
+    this.event=0;
+    this.onTabChanged(this.event);
     this.isShown = true;
     this.tempFeesArray=[];
     this.totalAmount=0;
     this.transactionServicesService.fetchAllTransaction(feeDetails.id).subscribe(response=>{
       this.transactionList=response.data;
+      console.log("array",this.transactionList);
       this.transactionServicesService.fetchAllStudentToCourses(response.data[0].student_id).subscribe(response=>{
         this.courseNameList=response.data;
       })
@@ -177,7 +187,7 @@ export class FeesReceivedComponent implements OnInit {
 
       for(let val of this.transactionList){
         this.tempItemObj={
-          ledgerId:val.fees_id,
+          ledgerId:val.ledger_id,
           transactionTypeId:2,
           feesName:val.ledger_name,
           amount:val.amount
@@ -186,6 +196,7 @@ export class FeesReceivedComponent implements OnInit {
         this.tempFeesArray.push(this.tempItemObj);
         this.totalAmount=Number(this.totalAmount)+Number(val.amount);
       }
+      
     })
   }
 
@@ -196,10 +207,13 @@ export class FeesReceivedComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
+        
+       
         let transactionId=this.FeesReceivedFormGroup.get('transactionId')?.value;
         let studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
         let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
-        let transactionDate=this.FeesReceivedFormGroup.get('transactionDate')?.value;
+        let tr_date=this.FeesReceivedFormGroup.get('transactionDate')?.value;
+        let transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
         let comment=this.FeesReceivedFormGroup.get('comment')?.value;
         let feesYear=new Date().getFullYear();
         let feesMonth=new Date().getMonth().toString();

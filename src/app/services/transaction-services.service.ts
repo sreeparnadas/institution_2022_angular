@@ -94,7 +94,7 @@ export class TransactionServicesService {
   }
 
   updateFeesCharge(id:any,updateFeeReceivedData:any){
-    return this.http.put<any>(this.commonService.getAPI() + '/transactions/updateFeesCharged/' +id, updateFeeReceivedData)
+    return this.http.patch<any>(this.commonService.getAPI() + '/transactions/updateFeesCharged/' +id, updateFeeReceivedData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
       if (response.status === true){
         this.studentToCourseList.unshift(response.data);
