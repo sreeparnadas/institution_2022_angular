@@ -9,7 +9,7 @@ export interface Product {
   description?:string;
   price?:number;
   quantity?:number;
-  inventoryStatus?:string;
+  wisher?:string;
   category?:string;
   image?:string;
   rating?:number;
