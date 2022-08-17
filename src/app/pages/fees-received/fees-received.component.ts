@@ -152,8 +152,12 @@ export class FeesReceivedComponent implements OnInit {
       amount : new FormControl(null, [Validators.required]),
       transactionDate : new FormControl(val),
       studentToCourseId:new FormControl(1, [Validators.required]),
-      ledgerId : new FormControl(7, [Validators.required]),
-
+      ledgerId : new FormControl(7, [Validators.required])
+    })
+    this.BankReceivedFormGroup = new FormGroup({
+      accountNo : new FormControl(null, [Validators.required]),
+      ifscNo : new FormControl(null, [Validators.required]),
+      branch : new FormControl(null, [Validators.required])
     })
     this.tempFeesArray=[];
     this.totalAmount=0;
@@ -241,6 +245,7 @@ export class FeesReceivedComponent implements OnInit {
             this.getAllReceivedFees();
             this.tempFeesArray=[];
             this.totalAmount=0;
+            this.clearFeesReceived();
             this.showSuccess("Record Updated successfully");
           }
 
@@ -319,11 +324,12 @@ export class FeesReceivedComponent implements OnInit {
         }
         this.transactionServicesService.saveFeesReceive(this.tempObj).subscribe(response => {
          this.referenceTransactionMasterId=response.data.transactionMasterId;
+         this.isCashReceived=false;
             if (response.success === 1){
               //this.getAllReceivedFees();
               this.tempFeesArray=[];
               this.tempTotalAmount=0;
-              this.isCashReceived=false;
+              this.clearFeesReceived();
               this.showSuccess("Record added successfully");
             }
 
@@ -377,11 +383,12 @@ export class FeesReceivedComponent implements OnInit {
         }
         this.transactionServicesService.saveFeesReceive(this.tempObj).subscribe(response => {
          this.referenceTransactionMasterId=response.data.transactionMasterId;
+         this.isCashReceived=false;
             if (response.success === 1){
               //this.getAllReceivedFees();
               this.tempFeesArray=[];
               this.tempTotalAmount=0;
-              this.isCashReceived=false;
+              this.clearFeesReceived();
               this.showSuccess("Record added successfully");
             }
 
@@ -442,6 +449,7 @@ export class FeesReceivedComponent implements OnInit {
               this.getAllReceivedFees();
               this.tempFeesArray=[];
               this.totalAmount=0;
+              this.clearFeesReceived();
               this.showSuccess("Record added successfully");
             }
 
