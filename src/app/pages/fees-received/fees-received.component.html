@@ -123,36 +123,61 @@
                   <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived" (click)="onCashReceived();">Received Cash</button>
 
                 </p>
-                <div class="d-flex flex-row bd-highlight mb-3" *ngIf="isCashReceived" style="width:1000px; height:100px;">
-
-                  <form [formGroup]="BankReceivedFormGroup">
-                    <div class="d-flex flex-row bd-highlight mb-3" >
-                      <div class="p-2 col-4 bd-highlight" style="font-size: medium; margin-right: 5px;">
-
-                        <mat-form-field style = "width:100%">
-                          <mat-label>Account No</mat-label>
-                          <input matInput formControlName="accountNo" placeholder="Account Nummber" required>
-                        </mat-form-field>
-
+               <!--  <fieldset class="border p-2"> -->
+                <fieldset class="border p-2" *ngIf="isCashReceived">
+                  <legend>Bank Details</legend>
+                <form [formGroup]="BankReceivedFormGroup">
+                <div class="d-flex flex-row bd-highlight mb-3" style="width:1000px; height:100px;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <mat-form-field style = "width:100%">
+                        <mat-label>Account No</mat-label>
+                        <input matInput formControlName="accountNo" placeholder="Account Nummber" required>
+                      </mat-form-field>
                     </div>
-                    <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
+                    <div class="col-sm-3">
                       <mat-form-field style = "width:100%">
                         <mat-label>IFSC No</mat-label>
                         <input matInput formControlName="ifscNo" placeholder="IFSC No" required>
                       </mat-form-field>
-                      </div>
-                      <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
-                        <mat-form-field style = "width:100%">
-                          <mat-label>Branch Name</mat-label>
-                          <input matInput formControlName="branch" placeholder="Branch Name" required>
-                        </mat-form-field>
-                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <mat-form-field style = "width:100%">
+                        <mat-label>Branch Name</mat-label>
+                        <input matInput formControlName="branch" placeholder="Branch Name" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
                       <div class="p-2 col-2 bd-highlight">
                         <button type="button" class="btn btn-outline-danger" [disabled]="!BankReceivedFormGroup.valid || BankReceivedFormGroup.value.id" (click)="onBankReceived();">Received Bank</button>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
+              </form>
+            </fieldset>
+                   <!--  <legend class="float-none w-auto">Enter Account Details</legend> 
+                  <form [formGroup]="BankReceivedFormGroup">
+                    <div class="d-flex flex-row bd-highlight mb-3" >
+                      <div class="p-2 col-4 bd-highlight" style="font-size: medium; margin-right: 5px;">
+
+                        
+
+                    </div>
+                    <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
+                      
+                      </div>
+                      <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
+                       
+                      </div>
+                      
+                    </div>
+                  </form>
+                  
+                </div>
+              </fieldset> -->
+                  
+                  
                 <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle" [transitionOptions]="'0.8ms'">
                   <ng-template pTemplate="header">
                     <h3>Header Content</h3>
@@ -164,6 +189,7 @@
                 </p-confirmDialog>
             </div>
             <!-- End working with Left div (panel) -->
+           
             </mat-tab>
 
             <mat-tab>
