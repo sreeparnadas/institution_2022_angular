@@ -5,6 +5,7 @@ import { TextCarouselRoutingModule } from './text-carousel-routing.module';
 import { TextCarouselComponent } from './text-carousel.component';
 import {CarouselModule} from "primeng/carousel";
 import {ButtonModule} from "primeng/button";
+import {ChipModule} from "primeng/chip";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {ButtonModule} from "primeng/button";
         CommonModule,
         TextCarouselRoutingModule,
         CarouselModule,
-      ButtonModule
+        ButtonModule,
+        ChipModule
     ]
 })
 export class TextCarouselModule { }
