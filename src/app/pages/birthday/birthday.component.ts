@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {CommonService} from "../../services/common.service";
+
 
 @Component({
   selector: 'app-birthday',
@@ -8,6 +9,7 @@ import {CommonService} from "../../services/common.service";
 })
 export class BirthdayComponent implements OnInit {
   isDeviceXS = false;
+
   constructor(private commonService: CommonService) {
     this.isDeviceXS=commonService.getDeviceXs();
   }
