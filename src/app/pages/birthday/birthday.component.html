@@ -1,13 +1,13 @@
 <div class="d-flex flex-column" style="height: 90vh;">
   <div class="p-2 text-center" style="background-color: rgb(77, 68, 68)">I am Header, i will stay here</div>
    <div class="flex-xs-column flex-xl-row p-2">
-    <div class="container-fluid rounded d-flex flex-xl-row justify-content-xl-between flex-column">
+    <div class="container-fluid rounded d-flex justify-content-xl-between" [ngClass]="isDeviceXS? 'flex-column': 'flex-row'" >
       <!-- Left -->
       <div class="p-2 col-xl-4" style="background-color: rgb(199, 192, 192)">
         <app-text-carousel></app-text-carousel>
       </div>
       <!-- Right -->
-      <div class="bloc_2 p-2 col-xl-8" style="background-color: antiquewhite">
+      <div class="bloc_2 p-2 col-xl-8" style="background-color: antiquewhite" data-aos="fade-right" data-aos-duration="3000" data-aos-easing="linear" data-aos-delay="1000">
         <!-- Gallery -->
         <div class="row">
           <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">

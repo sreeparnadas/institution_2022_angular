@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CommonService} from "../../services/common.service";
 
 @Component({
   selector: 'app-birthday',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./birthday.component.scss']
 })
 export class BirthdayComponent implements OnInit {
-
-  constructor() { }
+  isDeviceXS = false;
+  constructor(private commonService: CommonService) {
+    this.isDeviceXS=commonService.getDeviceXs();
+  }
 
   ngOnInit(): void {
   }
