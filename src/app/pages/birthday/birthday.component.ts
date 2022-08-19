@@ -12,15 +12,15 @@ import {CommonService} from "../../services/common.service";
 })
 export class BirthdayComponent implements OnInit {
   isDeviceXS = false;
-  products: Picture[] =[];
+  images: any[] =[];
 
   constructor(private commonService: CommonService, private photoService: PhotoService) {
     this.isDeviceXS=commonService.getDeviceXs();
   }
 
   ngOnInit(): void {
-    this.photoService.getImages().then(products => {
-      this.products = products;
+    this.photoService.getImages().then(images => {
+      this.images = images;
     });
   }
 
