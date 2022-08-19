@@ -48,7 +48,7 @@ export class PhotoGalleryComponent implements OnInit {
   constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.photoService.getImages().then((images: Picture[]) => this.images = images)
+    // this.photoService.getImages().then((images: Picture[]) => this.images = images)
   }
   next() {
     this.activeIndex++;

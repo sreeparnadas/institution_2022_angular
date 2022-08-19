@@ -10,21 +10,22 @@
       <div class="bloc_2 p-2 col-xl-8" style="background-color: antiquewhite" data-aos="fade-right" data-aos-duration="3000" data-aos-easing="linear" data-aos-delay="1000">
         <!-- Gallery -->
         <div class="row">
-          <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-            <img
-              src="assets/gallery/mams_day/pic_single.jpg"
+          <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngfor="let product of products">
+            <!-- <img
+              [src]="(products.src)"
               class="w-100 shadow-1-strong rounded mb-4"
               alt="Boat on Calm Water"
-            />
+            /> -->
+            {{product | json}}
 
-            <img
+            <!-- <img
               src="assets/gallery/mams_day/pic25.jpg"
               class="w-100 shadow-1-strong rounded mb-4"
               alt="Wintry Mountain Landscape"
-            />
+            /> -->
           </div>
 
-          <div class="col-lg-4 mb-4 mb-lg-0">
+          <!-- <div class="col-lg-4 mb-4 mb-lg-0">
             <img
               src="assets/gallery/mams_day/pic5.jpg"
               class="w-100 shadow-1-strong rounded mb-4"
@@ -66,7 +67,7 @@
           </div>
           <div class="col-lg-4 mb-4 mb-lg-0">
             <img
-              src="assets/gallery/mams_day/pic70.jpg"
+              src="assets/gallery/mams_day/pic38.jpg"
               class="w-100 shadow-1-strong rounded mb-4"
               alt="Waves at Sea"
             />
@@ -189,7 +190,7 @@
             />
 
             <img
-              src="assets/gallery/mams_day/picsingle_4.jpg"
+              src="assets/gallery/mams_day/pic_single4.jpg"
               class="w-100 shadow-1-strong rounded mb-4"
               alt="Yosemite National Park"
             />
@@ -233,6 +234,20 @@
               alt="Yosemite National Park"
             />
           </div>
+
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <img
+              src="assets/gallery/mams_day/pic76.jpg"
+              class="w-100 shadow-1-strong rounded mb-4"
+              alt="Waves at Sea"
+            />
+
+            <img
+              src="assets/gallery/mams_day/pic77.jpg"
+              class="w-100 shadow-1-strong rounded mb-4"
+              alt="Yosemite National Park"
+            />
+          </div> -->
         </div>
         <!-- Gallery -->
       </div>
