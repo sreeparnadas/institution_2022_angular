@@ -1,6 +1,6 @@
-<p-carousel [value]="products" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+<p-carousel [value]="products"  styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
   <ng-template pTemplate="header">
-    <h5>Circular, AutoPlay, 3 Items per Page and Scroll by 1</h5>
+    <h2>Wishes from your nearest people</h2>
   </ng-template>
   <ng-template let-product pTemplate="item">
     <div class="product-item">
@@ -8,7 +8,6 @@
         <div class="p-mb-3">
         </div>
         <div>
-          <h4 class="p-mb-1">{{product.name}}</h4>
           <div class="text-justify" id="description">
             {{product.description}}
           </div>
@@ -16,7 +15,7 @@
           <!-- <span [class]="'product-badge status-'+product.wisher.toLowerCase()">{{product.wisher}}</span> -->
 
 
-          <div class="text-right">
+          <div class="text-right mt-2">
             <!--            <img [src]="getAvatar(product)" width="50px" >{{product.wisher}}-->
             <p-chip label="{{product.wisher}}" [image]="getAvatar(product)" [removable]="false"></p-chip>
           </div>
