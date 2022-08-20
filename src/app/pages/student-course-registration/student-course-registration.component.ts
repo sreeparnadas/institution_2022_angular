@@ -36,7 +36,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
   ledger_id: any[] = [];
   course_id: any[]= [];
   studentToCourseFormGroup : FormGroup | any;
-
+  tempItemValueObj!: object;
   studentTocourseData: {
     id?:number;
     reference_number?:number;
@@ -93,7 +93,9 @@ export class StudentCourseRegistrationComponent implements OnInit {
       effective_date : new FormControl(val),
       actual_course_duration : new FormControl(null, [Validators.required]),
       duration_type_id : new FormControl(1, [Validators.required]),
-      studentToCourseID: new FormControl(0, [Validators.required])
+      studentToCourseID: new FormControl(0, [Validators.required]),
+      transactionMasterID: new FormControl(0, [Validators.required]),
+      transactionDetailsID: new FormControl(0, [Validators.required])
     })
 
 
@@ -156,8 +158,29 @@ export class StudentCourseRegistrationComponent implements OnInit {
     this.studentTocourseData.actual_course_duration=this.studentToCourseFormGroup.value.actual_course_duration;
     this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
     this.studentTocourseData.isStarted=1;
-    this.studentToCourseService.saveStudentToCourse(this.studentTocourseData).subscribe(response => {
-console.log("Save data:",this.studentTocourseData);
+
+    this.tempItemValueObj = {
+      studentId: this.studentToCourseFormGroup.value.ledger_id,
+      courseId: this.studentToCourseFormGroup.value.course_id,
+      baseFee: this.studentToCourseFormGroup.value.base_fee,
+      discountAllowed: this.studentToCourseFormGroup.value.discount_allowed,
+      joiningDate: this.studentToCourseFormGroup.value.joining_date,
+      effectiveDate: this.studentToCourseFormGroup.value.effective_date,
+      actual_course_duration: this.studentToCourseFormGroup.value.actual_course_duration,
+      duration_type_id: this.studentToCourseFormGroup.value.duration_type_id,
+      isStarted: 1,
+      userId: 1,
+      feesYear: new Date().getFullYear(),
+      feesMonth: new Date().getMonth().toString(),
+      transactionDetails: [
+        {
+           amount: this.studentToCourseFormGroup.value.base_fee
+        }
+      ]
+    }
+
+    this.studentToCourseService.saveStudentToCourse(this.tempItemValueObj).subscribe(response => {
+    console.log("Save data:",this.studentTocourseData);
       if (response.status === true){
         this.showSuccess("Record added successfully");
       }
@@ -184,6 +207,8 @@ console.log("Save data:",this.studentTocourseData);
   editStudentToCourse(courseTostudentData:any){
     this.isShown = true;
     console.log(courseTostudentData);
+    this.studentToCourseFormGroup.patchValue({transactionMasterID: courseTostudentData.transaction_masters_id});
+    this.studentToCourseFormGroup.patchValue({transactionDetailsID: courseTostudentData.transaction_details_id});
     this.studentToCourseFormGroup.patchValue({studentToCourseID: courseTostudentData.id});
     this.studentToCourseFormGroup.patchValue({ledger_id: courseTostudentData.ledger_id});
     this.studentToCourseFormGroup.patchValue({course_id: courseTostudentData.course_id});

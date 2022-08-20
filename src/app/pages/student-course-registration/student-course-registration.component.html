@@ -54,9 +54,9 @@
                       </mat-form-field>
                     </div>
                     <div class="col-sm-4">
-                      <div class="form-group" *ngIf = "hiddenInput">
+                      <div class="form-group" *ngIf="hiddenInput">
                         <mat-form-field class="col-12">
-                          <input matInput placeholder="Course ID" formControlName="studentToCourseID" >
+                          <input matInput placeholder="Student Course ID" formControlName="studentToCourseID" >
                         </mat-form-field>
                       </div>
                     </div>
@@ -86,6 +86,13 @@
   
                       </mat-form-field>
                     </div>
+                    <div class="col-sm-4">
+                      <div class="form-group" *ngIf="hiddenInput">
+                        <mat-form-field class="col-12">
+                          <input matInput placeholder="Transaction ID" formControlName="transactionMasterID" >
+                        </mat-form-field>
+                      </div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-4">
@@ -104,6 +111,13 @@
                           appendTo="body"
                           placeholder="Duration Type">
                       </ng-select>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group" *ngIf="hiddenInput">
+                        <mat-form-field class="col-12">
+                          <input matInput placeholder="Transaction Details ID" formControlName="transactionDetailsID" >
+                        </mat-form-field>
+                      </div>
                     </div>
                   </div>
                   <div align="right">
@@ -196,6 +210,11 @@
           </ng-template>
 
           Content 3
+          <div style="background-color:yellow ;">
+            <pre>
+              update code = {{tempItemValueObj | json}}
+            </pre>
+        </div>
         </mat-tab>
       </mat-tab-group>
     </div>
