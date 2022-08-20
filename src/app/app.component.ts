@@ -18,12 +18,19 @@ import {ScrollDispatcher} from "@angular/cdk/overlay";
 })
 export class AppComponent implements OnInit {
   mediaSub: Subscription;
-  private isDeviceXs: boolean | undefined;
+  isDeviceXs: boolean | undefined;
   isNavigating: boolean=false;
-
   navFixed = false;
+  projectData: any;
 
-  constructor(private scrollDispatcher: ScrollDispatcher,public router: Router, public authService: AuthService, public mediaObserver: MediaObserver,private commonService: CommonService, private primengConfig: PrimeNGConfig ) {
+
+  constructor(private scrollDispatcher: ScrollDispatcher
+              ,public router: Router
+              , public authService: AuthService
+              , public mediaObserver: MediaObserver
+              , private commonService: CommonService
+              , private primengConfig: PrimeNGConfig
+  ) {
     //this scroll dispatcher works on scroll
     this.scrollDispatcher.scrolled().subscribe(x => {
       AOS.refresh();
@@ -68,4 +75,9 @@ export class AppComponent implements OnInit {
       this.sideBarOpen=!this.sideBarOpen;
     }
   }
+
+
+
+
+
 }

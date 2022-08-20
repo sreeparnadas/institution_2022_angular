@@ -6,4 +6,5 @@ export class Picture{
   large1?: string;
   large2?: string;
   comment?: string;
+  src?:string;
 }

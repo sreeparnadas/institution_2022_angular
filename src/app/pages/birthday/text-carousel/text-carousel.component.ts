@@ -36,4 +36,7 @@ export class TextCarouselComponent implements OnInit {
   }
 
 
+  getAvatar(product: Product) {
+    return "/assets/img/avatars/"+product.image;
+  }
 }
