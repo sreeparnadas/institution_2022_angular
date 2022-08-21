@@ -120,6 +120,8 @@ const routes: Routes = [
 
   { path: 'TextCarousel', loadChildren: () => import('./pages/birthday/text-carousel/text-carousel.module').then(m => m.TextCarouselModule) },
 
+  { path: 'TextCarouselNGX', loadChildren: () => import('./pages/birthday/text-carousel-ngx/text-carousel-ngx.module').then(m => m.TextCarouselNGXModule) },
+
 
 
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
