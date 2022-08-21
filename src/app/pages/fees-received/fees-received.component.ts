@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, FormBuilder }  from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
 import { CommonService } from 'src/app/services/common.service';
@@ -31,8 +31,8 @@ export class FeesReceivedComponent implements OnInit {
   students: any[] = [];
   studentToCourseId:any;
   studentNameList: any[] = [];
-  FeesReceivedFormGroup : FormGroup | any;
-  BankReceivedFormGroup : FormGroup | any;
+  FeesReceivedFormGroup : UntypedFormGroup | any;
+  BankReceivedFormGroup : UntypedFormGroup | any;
   feesNameList:any[]=[];
   courseNameList:any=[];
   transactionList:any=[];
@@ -74,21 +74,21 @@ export class FeesReceivedComponent implements OnInit {
   ngOnInit(): void {
     const now = new Date();
     let val = formatDate(now, 'yyyy-MM-dd', 'en');
-    this.FeesReceivedFormGroup = new FormGroup({
+    this.FeesReceivedFormGroup = new UntypedFormGroup({
 
-      studentId : new FormControl(1, [Validators.required]),
-      transactionId : new FormControl(0, [Validators.required]),
-      comment : new FormControl(),
-      amount : new FormControl(null, [Validators.required]),
-      transactionDate : new FormControl(val),
-      studentToCourseId:new FormControl(1, [Validators.required]),
-      ledgerId : new FormControl(7, [Validators.required]),
+      studentId : new UntypedFormControl(1, [Validators.required]),
+      transactionId : new UntypedFormControl(0, [Validators.required]),
+      comment : new UntypedFormControl(),
+      amount : new UntypedFormControl(null, [Validators.required]),
+      transactionDate : new UntypedFormControl(val),
+      studentToCourseId:new UntypedFormControl(1, [Validators.required]),
+      ledgerId : new UntypedFormControl(7, [Validators.required]),
     })
 
-    this.BankReceivedFormGroup = new FormGroup({
-      accountNo : new FormControl(null, [Validators.required]),
-      ifscNo : new FormControl(null, [Validators.required]),
-      branch : new FormControl(null, [Validators.required])
+    this.BankReceivedFormGroup = new UntypedFormGroup({
+      accountNo : new UntypedFormControl(null, [Validators.required]),
+      ifscNo : new UntypedFormControl(null, [Validators.required]),
+      branch : new UntypedFormControl(null, [Validators.required])
     })
 
     // this.transactionServicesService.fetchAllFeesName().subscribe(response=>{
@@ -145,19 +145,19 @@ export class FeesReceivedComponent implements OnInit {
     this.isShown = false;
     const now = new Date();
     let val = formatDate(now, 'yyyy-MM-dd', 'en');
-    this.FeesReceivedFormGroup = new FormGroup({
-      transactionId : new FormControl(0, [Validators.required]),
-      studentId : new FormControl(1, [Validators.required]),
-      comment : new FormControl(null, [Validators.required]),
-      amount : new FormControl(null, [Validators.required]),
-      transactionDate : new FormControl(val),
-      studentToCourseId:new FormControl(1, [Validators.required]),
-      ledgerId : new FormControl(7, [Validators.required])
+    this.FeesReceivedFormGroup = new UntypedFormGroup({
+      transactionId : new UntypedFormControl(0, [Validators.required]),
+      studentId : new UntypedFormControl(1, [Validators.required]),
+      comment : new UntypedFormControl(null, [Validators.required]),
+      amount : new UntypedFormControl(null, [Validators.required]),
+      transactionDate : new UntypedFormControl(val),
+      studentToCourseId:new UntypedFormControl(1, [Validators.required]),
+      ledgerId : new UntypedFormControl(7, [Validators.required])
     })
-    this.BankReceivedFormGroup = new FormGroup({
-      accountNo : new FormControl(null, [Validators.required]),
-      ifscNo : new FormControl(null, [Validators.required]),
-      branch : new FormControl(null, [Validators.required])
+    this.BankReceivedFormGroup = new UntypedFormGroup({
+      accountNo : new UntypedFormControl(null, [Validators.required]),
+      ifscNo : new UntypedFormControl(null, [Validators.required]),
+      branch : new UntypedFormControl(null, [Validators.required])
     })
     this.tempFeesArray=[];
     this.totalAmount=0;

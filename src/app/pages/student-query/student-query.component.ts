@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {StudentQueryService} from "../../services/student-query.service";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {DatePipe} from "@angular/common";
@@ -16,7 +16,7 @@ interface Alert {
 })
 export class StudentQueryComponent implements OnInit {
 
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   //
   studentQueryForm : any;
 
@@ -42,16 +42,16 @@ export class StudentQueryComponent implements OnInit {
               , private messageService: MessageService
   ) {
 
-    this.studentQueryForm = new FormGroup({
-      studentName : new FormControl(),
-      fatherName : new FormControl(null),
-      motherName : new FormControl(null),
-      address : new FormControl(null),
-      guardianName : new FormControl(null),
-      relationToGuardian : new FormControl(null,[Validators.required]),
-      educationalInstitution : new FormControl(null,[Validators.required]),
-      phoneNumber : new FormControl(null,[Validators.required]),
-      query : new FormControl(null,[Validators.required])
+    this.studentQueryForm = new UntypedFormGroup({
+      studentName : new UntypedFormControl(),
+      fatherName : new UntypedFormControl(null),
+      motherName : new UntypedFormControl(null),
+      address : new UntypedFormControl(null),
+      guardianName : new UntypedFormControl(null),
+      relationToGuardian : new UntypedFormControl(null,[Validators.required]),
+      educationalInstitution : new UntypedFormControl(null,[Validators.required]),
+      phoneNumber : new UntypedFormControl(null,[Validators.required]),
+      query : new UntypedFormControl(null,[Validators.required])
     });
   }
 

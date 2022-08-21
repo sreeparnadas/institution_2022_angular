@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
 import { ActivatedRoute } from '@angular/router';
@@ -35,7 +35,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
   studentTocourses: StudentToCourse[] = [];
   ledger_id: any[] = [];
   course_id: any[]= [];
-  studentToCourseFormGroup : FormGroup | any;
+  studentToCourseFormGroup : UntypedFormGroup | any;
   tempItemValueObj!: object;
   studentTocourseData: {
     id?:number;
@@ -83,19 +83,19 @@ export class StudentCourseRegistrationComponent implements OnInit {
   ngOnInit(): void {
     const now = new Date();
     let val = formatDate(now, 'yyyy-MM-dd', 'en');
-    this.studentToCourseFormGroup = new FormGroup({
+    this.studentToCourseFormGroup = new UntypedFormGroup({
    
-      ledger_id : new FormControl(1, [Validators.required]),
-      course_id : new FormControl(1, [Validators.required]),
-      base_fee : new FormControl(null, [Validators.required]),
-      discount_allowed : new FormControl(null, [Validators.required]),
-      joining_date : new FormControl(val),
-      effective_date : new FormControl(val),
-      actual_course_duration : new FormControl(null, [Validators.required]),
-      duration_type_id : new FormControl(1, [Validators.required]),
-      studentToCourseID: new FormControl(0, [Validators.required]),
-      transactionMasterID: new FormControl(0, [Validators.required]),
-      transactionDetailsID: new FormControl(0, [Validators.required])
+      ledger_id : new UntypedFormControl(1, [Validators.required]),
+      course_id : new UntypedFormControl(1, [Validators.required]),
+      base_fee : new UntypedFormControl(null, [Validators.required]),
+      discount_allowed : new UntypedFormControl(null, [Validators.required]),
+      joining_date : new UntypedFormControl(val),
+      effective_date : new UntypedFormControl(val),
+      actual_course_duration : new UntypedFormControl(null, [Validators.required]),
+      duration_type_id : new UntypedFormControl(1, [Validators.required]),
+      studentToCourseID: new UntypedFormControl(0, [Validators.required]),
+      transactionMasterID: new UntypedFormControl(0, [Validators.required]),
+      transactionDetailsID: new UntypedFormControl(0, [Validators.required])
     })
 
 
@@ -316,16 +316,16 @@ console.log("Delete data:",courseTostudentData);
   }
   clearStudentToCourse(){
     this.isShown = false;
-    this.studentToCourseFormGroup = new FormGroup({
-      ledger_id : new FormControl(1, [Validators.required]),
-      course_id : new FormControl(1, [Validators.required]),
-      base_fee : new FormControl(null, [Validators.required]),
-      discount_allowed : new FormControl(null, [Validators.required]),
-      joining_date : new FormControl(null, [Validators.required]),
-      effective_date : new FormControl(null, [Validators.required]),
-      actual_course_duration : new FormControl(null, [Validators.required]),
-      duration_type_id : new FormControl(1, [Validators.required]),
-      studentToCourseID: new FormControl(null, [Validators.required])
+    this.studentToCourseFormGroup = new UntypedFormGroup({
+      ledger_id : new UntypedFormControl(1, [Validators.required]),
+      course_id : new UntypedFormControl(1, [Validators.required]),
+      base_fee : new UntypedFormControl(null, [Validators.required]),
+      discount_allowed : new UntypedFormControl(null, [Validators.required]),
+      joining_date : new UntypedFormControl(null, [Validators.required]),
+      effective_date : new UntypedFormControl(null, [Validators.required]),
+      actual_course_duration : new UntypedFormControl(null, [Validators.required]),
+      duration_type_id : new UntypedFormControl(1, [Validators.required]),
+      studentToCourseID: new UntypedFormControl(null, [Validators.required])
     })
   }
 }
