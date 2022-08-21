@@ -9,6 +9,7 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 export class TextCarouselNGXComponent implements OnInit {
   customOptions: OwlOptions = {
     loop: true,
+    autoplay: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
