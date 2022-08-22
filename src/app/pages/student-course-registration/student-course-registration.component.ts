@@ -88,15 +88,14 @@ export class StudentCourseRegistrationComponent implements OnInit {
       ledger_id : new FormControl(1, [Validators.required]),
       course_id : new FormControl(1, [Validators.required]),
       base_fee : new FormControl(null, [Validators.required]),
-      discount_allowed : new FormControl(null, [Validators.required]),
+      discount_allowed : new FormControl(0, [Validators.required]),
       joining_date : new FormControl(val),
       effective_date : new FormControl(val),
       actual_course_duration : new FormControl(null, [Validators.required]),
       duration_type_id : new FormControl(1, [Validators.required]),
       studentToCourseID: new FormControl(0, [Validators.required]),
-      transactionMasterID: new FormControl(0, [Validators.required]),
-      transactionDetailsID: new FormControl(0, [Validators.required])
-    })
+      transactionMasterID: new FormControl(0, [Validators.required])
+      })
 
 
     this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
@@ -174,7 +173,14 @@ export class StudentCourseRegistrationComponent implements OnInit {
       feesMonth: new Date().getMonth().toString(),
       transactionDetails: [
         {
-           amount: this.studentToCourseFormGroup.value.base_fee
+          transactionTypeId:2,
+          ledgerId:8,
+          amount: this.studentToCourseFormGroup.value.base_fee
+        },
+         {
+          transactionTypeId:1,
+          ledgerId:this.studentToCourseFormGroup.value.ledger_id,
+          amount: this.studentToCourseFormGroup.value.base_fee
         }
       ]
     }
@@ -208,7 +214,6 @@ export class StudentCourseRegistrationComponent implements OnInit {
     this.isShown = true;
     console.log(courseTostudentData);
     this.studentToCourseFormGroup.patchValue({transactionMasterID: courseTostudentData.transaction_masters_id});
-    this.studentToCourseFormGroup.patchValue({transactionDetailsID: courseTostudentData.transaction_details_id});
     this.studentToCourseFormGroup.patchValue({studentToCourseID: courseTostudentData.id});
     this.studentToCourseFormGroup.patchValue({ledger_id: courseTostudentData.ledger_id});
     this.studentToCourseFormGroup.patchValue({course_id: courseTostudentData.course_id});
@@ -288,7 +293,36 @@ console.log("Delete data:",courseTostudentData);
         this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
         this.studentTocourseData.is_started=1;
        
-        this.studentToCourseService.updateStudentToCourse(this.studentTocourseData).subscribe(response => {
+        this.tempItemValueObj = {
+          studentToCourseID: this.studentToCourseFormGroup.value.studentToCourseID,
+          studentId: this.studentToCourseFormGroup.value.ledger_id,
+          transactionMasterId: this.studentToCourseFormGroup.value.transactionMasterID,
+          courseId: this.studentToCourseFormGroup.value.course_id,
+          baseFee: this.studentToCourseFormGroup.value.base_fee,
+          discountAllowed: this.studentToCourseFormGroup.value.discount_allowed,
+          joiningDate: this.studentToCourseFormGroup.value.joining_date,
+          effectiveDate: this.studentToCourseFormGroup.value.effective_date,
+          actual_course_duration: this.studentToCourseFormGroup.value.actual_course_duration,
+          duration_type_id: this.studentToCourseFormGroup.value.duration_type_id,
+          isStarted: 1,
+          userId: 1,
+          feesYear: new Date().getFullYear(),
+          feesMonth: new Date().getMonth().toString(),
+          transactionDetails: [
+            {
+              transactionTypeId:2,
+              ledgerId:8,
+              amount: this.studentToCourseFormGroup.value.base_fee
+            },
+             {
+              transactionTypeId:1,
+              ledgerId:this.studentToCourseFormGroup.value.ledger_id,
+              amount: this.studentToCourseFormGroup.value.base_fee
+            }
+          ]
+        }
+    
+        this.studentToCourseService.updateStudentToCourse(this.tempItemValueObj).subscribe(response => {
 
           if (response.status === true){
             this.showSuccess("Record Updated successfully");
