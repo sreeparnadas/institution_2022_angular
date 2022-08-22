@@ -100,7 +100,7 @@
       "id": "1008",
       "code": "mbvjkgip5",
       "name": "Galaxy Earrings",
-      "description": "There are many variations of passages of Lorem Ipsum available",
+      "description": "Dear mam,I am your b-bact and i love you like my mother,teacher and everything that you know I don't have enough vocabulary to describe my feelings for you....I am really feel blesseed to have you all in my life you scold me like my mom you teach me anything like my guide you shared me somethings like my friend and also kidding with me like my buddy..                  Wishing you a day that is as special as you are...fly high to the happiness.. ...                       kintu tumi mounita k ettu besi valobaso...ami jani ha ami kintu tomake mounitar thekeo besi valobasi..............Happiest Birthday Mammam",
       "image": "ritaja.png",
       "price": 34,
       "category": "Accessories",
@@ -227,6 +227,46 @@
       "quantity": 63,
       "wisher": "Sreeparna",
       "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Happy birthday ma'am,  have a great day. Wish your birthday will be as wonderful as you are.",
+      "image": "sahil.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "Sahil",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "শুভ জন্মদিন ম্যাম❤️আপনি ভালো থাকবেন।আপনার ব্যাপারে যে কোথা থেকে শুরু করব সেটাই বুঝতে পারছি না। আপনি সত্যি খুব ভালো।☺️ আপনার মতো ম্যাম পাওয়া সত্যি খুব ভাগ্যের ব্যাপার✨। হয়তো আপনা কে খুব ভালো ভাবে চিনি না বা জানি না কিন্তু যতটা জেনেছি বুঝেছি তাতে এটা বুঝতে পেরেছি যে আপনি কেমন। আপনাদের মতো মানুষ খুব কম হয়। স্যার আর আপনার সাথে কোনো কিছুর তুলনা হয় না। আপনাদের কাছে গেলে বা সাথে থাকলে কখনো বারি ফিরতে মন চায় না। আপনারা খুব ভালো থাকবেন একসাথে।",
+
+      "image": "barsha.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "barsha",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "I wanted to use this opportunity to thank you for all you have taught me since we met. I know it's your job, but the way you make me learn each and everything,it feels like a gift to me,I wish you to have a long life and wish to have your guidance this way not for only in study but also in life too. Here's wishing you all of the happiness in life as you mark another journey around the sun.❤️♥️",
+
+      "image": "indranil.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "indranil",
+      "rating": 3
     }
+
+
   ]
 }
