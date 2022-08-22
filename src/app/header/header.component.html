@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="commonService.isHeaderVisible()">
   <div class="container-fluid">
     <button (click)="toggleSlidebar()" mat-icon-button ><mat-icon>menu</mat-icon></button>
     <button *ngIf="authService.isAuthenticated()" mat-button class="rounded-circle" [matMenuTriggerFor]="test1">

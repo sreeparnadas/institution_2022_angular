@@ -24,7 +24,7 @@ export class CommonService {
 
   value$ = new BehaviorSubject(20);
   currentValue = 0;
-
+  headerVisibleFlag = true;
   isDeviceXs = false;
   projectData: ProjectData | undefined;
   public currentTime: object | undefined;
@@ -61,6 +61,12 @@ export class CommonService {
   }
   getVariableSettingsListener(){
     return this.projectDataSubject.asObservable();
+  }
+  isHeaderVisible(){
+    return this.headerVisibleFlag;
+  }
+  setIsHeaderVisible(choice: boolean){
+    this.headerVisibleFlag=choice;
   }
   updateVariableSettings(projectData: ProjectData){
     this.projectData = projectData;

@@ -1,20 +1,13 @@
-<div>Some tags before</div>
-<owl-carousel-o [options]="customOptions">
-  <ng-template carouselSlide>Slide 1</ng-template>
-  <ng-template carouselSlide>Slide 2</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
-  <ng-template carouselSlide>Slide 3</ng-template>
+<owl-carousel-o [options]="customOptions"
+                (translated)="getPassedData($event)"
+                (dragging)="startDragging($event.dragging)"
+                (initialized)="getData($event)"
+                (change)="getData($event)"
+                (changed)="getData($event)"
+>
+
+  <ng-template carouselSlide *ngFor="let slide of slidesStore" [id]="slide.id">
+    <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+  </ng-template>
+
 </owl-carousel-o>
-<div>Some tags after</div>

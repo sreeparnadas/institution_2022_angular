@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
               ,public router: Router
               , public authService: AuthService
               , public mediaObserver: MediaObserver
-              , private commonService: CommonService
+              , public commonService: CommonService
               , private primengConfig: PrimeNGConfig
   ) {
     //this scroll dispatcher works on scroll
