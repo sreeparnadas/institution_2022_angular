@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
+import {PhotoService, Product} from "../../../services/photo.service";
 
 @Component({
   selector: 'app-text-carousel-ngx',
@@ -44,31 +45,44 @@ export class TextCarouselNGXComponent implements OnInit {
   customOptions: OwlOptions = {
     loop: true,
     autoplay: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
+    mouseDrag: true,
+    autoplayHoverPause: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
     navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
+    navText: ['&#8249', '&#8250;'],
+    center: false,
+    autoWidth: false,
+    stagePadding: -5,
+    responsive : {
+      //breakpoint from 0 and up
+      0 : {
+        items : 1,
       },
-      400: {
-        items: 2
+      // add as many breakpoints as desired , breakpoint from 480 up
+      480 : {
+        items:1,
       },
-      740: {
-        items: 3
+      // breakpoint from 768 up
+      768 : {
+        items:1,
       },
-      940: {
-        items: 4
-      }
+      992 :{
+        items:1,
+      },
     },
+    items: 1,
     nav: true
   }
-  constructor() { }
+  products: Product[] = [];
+
+  constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
+    this.photoService.getProductsSmall().then(products => {
+      this.products = products;
+    });
   }
 
   getPassedData(data: SlidesOutputData) {
@@ -82,5 +96,9 @@ export class TextCarouselNGXComponent implements OnInit {
 
   getData(data: SlidesOutputData) {
     console.log(data);
+  }
+
+  getAvatar(product: Product) {
+    return "/assets/img/avatars/"+product.image;
   }
 }

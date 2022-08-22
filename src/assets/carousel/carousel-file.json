@@ -9,7 +9,7 @@
       "price": 65,
       "category": "Accessories",
       "quantity": 24,
-      "wisher": "-সুরঞ্জন",
+      "wisher": "সুরঞ্জন",
       "rating": 5
     },
     {
@@ -21,7 +21,7 @@
       "price": 72,
       "category": "Accessories",
       "quantity": 61,
-      "wisher": "-From Rita",
+      "wisher": "Rita",
       "rating": 4
     },
     {
@@ -33,7 +33,7 @@
       "price": 79,
       "category": "Fitness",
       "quantity": 2,
-      "wisher": "-Koustav",
+      "wisher": "Koustav",
       "rating": 3
     },
     {
@@ -45,7 +45,7 @@
       "price": 29,
       "category": "Clothing",
       "quantity": 25,
-      "wisher": "-Pronoy",
+      "wisher": "Pronoy",
       "rating": 5
     },
     {
@@ -57,7 +57,7 @@
       "price": 29,
       "category": "Clothing",
       "quantity": 25,
-      "wisher": "-Priyam",
+      "wisher": "Priyam",
       "rating": 5
     },
     {
@@ -69,7 +69,7 @@
       "price": 15,
       "category": "Accessories",
       "quantity": 73,
-      "wisher": "-Bithin",
+      "wisher": "Bithin",
       "rating": 4
     },
     {
@@ -93,7 +93,7 @@
       "price": 32,
       "category": "Accessories",
       "quantity": 5,
-      "wisher": "-Poulami",
+      "wisher": "Poulami",
       "rating": 3
     },
     {
@@ -153,7 +153,7 @@
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
-      "wisher": "-Tamoshree & Rupam",
+      "wisher": "Tamoshree&Rupam",
       "rating": 3
     },
     {
@@ -165,7 +165,7 @@
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
-      "wisher": "-Kinjal",
+      "wisher": "Kinjal",
       "rating": 3
     },
     {
@@ -177,7 +177,7 @@
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
-      "wisher": "-Mou",
+      "wisher": "Mou",
       "rating": 3
     },
     {
@@ -189,7 +189,7 @@
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
-      "wisher": "-Faria",
+      "wisher": "Faria",
       "rating": 3
     },
     {
@@ -201,7 +201,7 @@
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
-      "wisher": "-Livon",
+      "wisher": "Livon",
       "rating": 3
     },
     {
@@ -213,7 +213,7 @@
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
-      "wisher": "-Sristi",
+      "wisher": "Sristi",
       "rating": 3
     },
     {
@@ -225,7 +225,7 @@
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
-      "wisher": "-Sreeparna",
+      "wisher": "Sreeparna",
       "rating": 3
     }
   ]
