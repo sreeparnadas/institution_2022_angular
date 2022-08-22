@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
 import {PhotoService, Product} from "../../../services/photo.service";
+import {NgxNumToWordsService, SUPPORTED_LANGUAGE} from "ngx-num-to-words";
 
 @Component({
   selector: 'app-text-carousel-ngx',
@@ -46,7 +47,12 @@ export class TextCarouselNGXComponent implements OnInit {
 
   products: Product[] = [];
 
-  constructor(private photoService: PhotoService) {
+  numberInWords!: string;
+  // @ts-ignore
+  lang!: SUPPORTED_LANGUAGE = 'en';
+  value = 123;
+
+  constructor(private photoService: PhotoService, public ngxNumToWordsService: NgxNumToWordsService) {
     this.customOptions = {
       loop: true,
       autoplay: true,
