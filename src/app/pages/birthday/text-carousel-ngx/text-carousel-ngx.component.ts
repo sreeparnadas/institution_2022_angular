@@ -9,6 +9,7 @@ import {PhotoService, Product} from "../../../services/photo.service";
 })
 export class TextCarouselNGXComponent implements OnInit {
   activeSlides: SlidesOutputData | undefined;
+  customOptions: OwlOptions;
   slidesStore = [
     {
       id: '1',
@@ -42,42 +43,29 @@ export class TextCarouselNGXComponent implements OnInit {
     }
   ]
 
-  customOptions: OwlOptions = {
-    loop: true,
-    autoplay: true,
-    mouseDrag: true,
-    autoplayHoverPause: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: true,
-    navSpeed: 700,
-    navText: ['&#8249', '&#8250;'],
-    center: false,
-    autoWidth: false,
-    stagePadding: -5,
-    responsive : {
-      //breakpoint from 0 and up
-      0 : {
-        items : 1,
-      },
-      // add as many breakpoints as desired , breakpoint from 480 up
-      480 : {
-        items:1,
-      },
-      // breakpoint from 768 up
-      768 : {
-        items:1,
-      },
-      992 :{
-        items:1,
-      },
-    },
-    items: 1,
-    nav: true
-  }
+
   products: Product[] = [];
 
-  constructor(private photoService: PhotoService) { }
+  constructor(private photoService: PhotoService) {
+    this.customOptions = {
+      loop: true,
+      autoplay: true,
+      mouseDrag: true,
+      autoplayHoverPause: true,
+      touchDrag: true,
+      pullDrag: true,
+      dots: true,
+      navSpeed: 700,
+      navText: ['&#8249', '&#8250;'],
+      center: false,
+      stagePadding: 0,
+      autoHeight: false,
+      autoWidth: false,
+
+      items: 0,
+      nav: true
+    }
+  }
 
   ngOnInit(): void {
     this.photoService.getProductsSmall().then(products => {
@@ -87,18 +75,19 @@ export class TextCarouselNGXComponent implements OnInit {
 
   getPassedData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
+
   }
 
   startDragging(event: any){
-    console.log(event);
+    // console.log(event);
   }
 
   getData(data: SlidesOutputData) {
-    console.log(data);
+    // console.log(data);
   }
 
   getAvatar(product: Product) {
     return "/assets/img/avatars/"+product.image;
   }
+
 }

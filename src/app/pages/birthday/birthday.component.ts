@@ -13,6 +13,7 @@ import {CommonService} from "../../services/common.service";
 export class BirthdayComponent implements OnInit {
   isDeviceXS = false;
   images: any[] =[];
+  showAllWishes=false;
 
   constructor(private commonService: CommonService, private photoService: PhotoService) {
     this.isDeviceXS=commonService.getDeviceXs();
