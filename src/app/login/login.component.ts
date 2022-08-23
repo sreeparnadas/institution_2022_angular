@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Md5} from "ts-md5";
 import {Router} from "@angular/router";
@@ -10,18 +10,18 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
   private loginableStudents: any[] = [];
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private fb: UntypedFormBuilder, private authService: AuthService, private router: Router) { }
   hide: boolean = true;
   ngOnInit(): void {
     this.authService.fetchStudents().then(students => {
       this.loginableStudents = students;
     });
 
-    this.loginForm=new FormGroup({
-      loginId : new FormControl('',[Validators.required,Validators.email]),
-      loginPassword : new FormControl('',[Validators.required,Validators.minLength(6)])
+    this.loginForm=new UntypedFormGroup({
+      loginId : new UntypedFormControl('',[Validators.required,Validators.email]),
+      loginPassword : new UntypedFormControl('',[Validators.required,Validators.minLength(6)])
     })
   }
   login(){

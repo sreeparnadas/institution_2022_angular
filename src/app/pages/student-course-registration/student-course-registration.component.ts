@@ -96,6 +96,8 @@ export class StudentCourseRegistrationComponent implements OnInit {
       studentToCourseID: new FormControl(0, [Validators.required]),
       transactionMasterID: new FormControl(0, [Validators.required])
       })
+  
+
 
 
     this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
@@ -148,7 +150,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
   header: 'Delete Confirmation',
   icon: 'pi pi-info-circle',
   accept: () => {
-    this.studentTocourseData.studentId=this.studentToCourseFormGroup.value.ledger_id;
+   /*  this.studentTocourseData.studentId=this.studentToCourseFormGroup.value.ledger_id;
     this.studentTocourseData.courseId=this.studentToCourseFormGroup.value.course_id;
     this.studentTocourseData.baseFee=this.studentToCourseFormGroup.value.base_fee;
     this.studentTocourseData.discountAllowed=this.studentToCourseFormGroup.value.discount_allowed;
@@ -156,7 +158,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
     this.studentTocourseData.effectiveDate=this.studentToCourseFormGroup.value.effective_date;
     this.studentTocourseData.actual_course_duration=this.studentToCourseFormGroup.value.actual_course_duration;
     this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
-    this.studentTocourseData.isStarted=1;
+    this.studentTocourseData.isStarted=1; */
 
     this.tempItemValueObj = {
       studentId: this.studentToCourseFormGroup.value.ledger_id,
@@ -282,7 +284,7 @@ console.log("Delete data:",courseTostudentData);
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.studentTocourseData.id=this.studentToCourseFormGroup.value.studentToCourseID;
+       /*  this.studentTocourseData.id=this.studentToCourseFormGroup.value.studentToCourseID;
         this.studentTocourseData.ledger_id=this.studentToCourseFormGroup.value.ledger_id;
         this.studentTocourseData.course_id=this.studentToCourseFormGroup.value.course_id;
         this.studentTocourseData.base_fee=this.studentToCourseFormGroup.value.base_fee;
@@ -291,7 +293,7 @@ console.log("Delete data:",courseTostudentData);
         this.studentTocourseData.effective_date=this.studentToCourseFormGroup.value.effective_date;
         this.studentTocourseData.actual_course_duration=this.studentToCourseFormGroup.value.actual_course_duration;
         this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
-        this.studentTocourseData.is_started=1;
+        this.studentTocourseData.is_started=1; */
        
         this.tempItemValueObj = {
           studentToCourseID: this.studentToCourseFormGroup.value.studentToCourseID,
@@ -363,3 +365,4 @@ console.log("Delete data:",courseTostudentData);
     })
   }
 }
+

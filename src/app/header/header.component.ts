@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   defaultPicture: string = "";
   imageSrc: string | ArrayBuffer | null ="";
   file: File | undefined;
-  constructor(public authService: AuthService, private commonService: CommonService) {
+  constructor(public authService: AuthService, public commonService: CommonService) {
 
   }
 

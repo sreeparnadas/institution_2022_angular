@@ -16,6 +16,7 @@ export class BirthdayComponent implements OnInit {
 
   constructor(private commonService: CommonService, private photoService: PhotoService) {
     this.isDeviceXS=commonService.getDeviceXs();
+    this.commonService.setIsHeaderVisible(false);
   }
 
   ngOnInit(): void {

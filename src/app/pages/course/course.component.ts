@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {StorageMap} from "@ngx-pwa/local-storage";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
@@ -76,15 +76,15 @@ export class CourseComponent implements OnInit {
 
 
   }
-  courseNameFormGroup = new FormGroup({
-    feesModeTypeId : new FormControl(1, [Validators.required]),
-    durationTypeId : new FormControl(2, [Validators.required]),
-    fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
-    courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
-    shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
-    courseDuration : new FormControl(),
-    description : new FormControl(),
-    courseId : new FormControl()
+  courseNameFormGroup = new UntypedFormGroup({
+    feesModeTypeId : new UntypedFormControl(1, [Validators.required]),
+    durationTypeId : new UntypedFormControl(2, [Validators.required]),
+    fullName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
+    courseCode : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
+    shortName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
+    courseDuration : new UntypedFormControl(),
+    description : new UntypedFormControl(),
+    courseId : new UntypedFormControl()
   })
   loading: boolean = false;
   deleteCourse(courseData:any){
@@ -216,15 +216,15 @@ export class CourseComponent implements OnInit {
   clearCourse(){
     this.isShown = false;
     //this.courseNameFormGroup.reset();
-    this.courseNameFormGroup = new FormGroup({
-      feesModeTypeId : new FormControl(1, [Validators.required]),
-      durationTypeId : new FormControl(2, [Validators.required]),
-      fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
-      courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
-      shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
-      courseDuration : new FormControl(),
-      description : new FormControl(),
-      courseId : new FormControl()
+    this.courseNameFormGroup = new UntypedFormGroup({
+      feesModeTypeId : new UntypedFormControl(1, [Validators.required]),
+      durationTypeId : new UntypedFormControl(2, [Validators.required]),
+      fullName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
+      courseCode : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
+      shortName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
+      courseDuration : new UntypedFormControl(),
+      description : new UntypedFormControl(),
+      courseId : new UntypedFormControl()
     });
   }
   editCourse(courseData:any){
