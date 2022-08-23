@@ -32,6 +32,9 @@
     <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
   </a>
   <div *ngIf="displayMaster_1">
+    <a mat-list-item  [routerLink]="['/FeesCharge']" routerLinkActive="list-item-active">
+      <i class="bi bi-person-check-fill"></i> &nbsp; Fees Charge
+    </a>
     <a mat-list-item  [routerLink]="['/FeesReceived']" routerLinkActive="list-item-active">
       <i class="bi bi-person-check-fill"></i> &nbsp; Fees Received
     </a>

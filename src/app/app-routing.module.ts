@@ -122,6 +122,8 @@ const routes: Routes = [
 
   { path: 'TextCarouselNGX', loadChildren: () => import('./pages/birthday/text-carousel-ngx/text-carousel-ngx.module').then(m => m.TextCarouselNGXModule) },
 
+  { path: 'FeesCharge', loadChildren: () => import('./pages/fees-charge/fees-charge.module').then(m => m.FeesChargeModule) },
+
 
 
   // { path: 'CourseContentHome', loadChildren: () => import('./pages/course-content/course-content-home/course-content-home.module').then(m => m.CourseContentHomeModule) },
