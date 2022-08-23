@@ -6,6 +6,7 @@ import { TextCarouselNGXComponent } from './text-carousel-ngx.component';
 import {CarouselModule, OwlOptions} from "ngx-owl-carousel-o";
 import {ButtonModule} from "primeng/button";
 import {ChipModule} from "primeng/chip";
+import {NgxNumToWordsModule} from "ngx-num-to-words";
 
 
 
@@ -21,7 +22,8 @@ import {ChipModule} from "primeng/chip";
     TextCarouselNGXRoutingModule,
     CarouselModule,
     ButtonModule,
-    ChipModule
+    ChipModule,
+    NgxNumToWordsModule
   ]
 })
 export class TextCarouselNGXModule {
