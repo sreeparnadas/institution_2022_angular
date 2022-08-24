@@ -20,7 +20,7 @@ export class FeesChargeComponent implements OnInit {
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
   disabled = false;
-
+  hiddenPopup:boolean=false;
   hiddenInput: boolean = false ;
   showBox:boolean=true;
   isShown: boolean = false ; // hidden by default
@@ -33,17 +33,20 @@ export class FeesChargeComponent implements OnInit {
   FeesChargeFormGroup : FormGroup | any;
   BankReceivedFormGroup : FormGroup | any;
   feesNameList:any[]=[];
+  CourseId:any;
   courseNameList:any=[];
   transactionList:any=[];
   tempFeesArray:any=[];
   feesReceivedArray:any=[];
   tempItemObj!:object;
+  tempGetActiveCourseObj!:object;
   tempSaveItemObj!:object;
   tempObj!:object;
   tempChargeObj!:object;
   tempCashChargeObj!:object;
   courses: any[] = [];
   popUpRestultArray:any[]=[];
+  getCourseIdArray:any[]=[];
   ledgerId:number=0;
   amount:number=0;
   event:number=0;
@@ -266,30 +269,33 @@ export class FeesChargeComponent implements OnInit {
    });
 
  }
- getDetails(id:any){
-  this.studentToCourseId=id;
-  this.openModel(id);
-  this.isPopupButton=true;
-}
-openModel(id:any){
-  this.transactionServicesService.fetchAllTransaction(id).subscribe(response=>{
-  this.popUpRestultArray=response.data;
-  if(id>0){
-   //start working with Dialog box
-    const dialogRef = this.dialog.open(LastTransactionPopupComponent, {
-      width: '750px',
-      disableClose:true,
-      hasBackdrop:false,
-      data: this.popUpRestultArray
-    }
-    );
-    dialogRef.afterClosed().subscribe(result => {
-      this.animal = result;
-    });
+ 
+getActiveCourse(){
+  if(this.hiddenPopup==false){
+    this.hiddenPopup=!this.hiddenPopup;
   }
-//end code
+  let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+  let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
+ 
+this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(response=>{
+  this.getCourseIdArray=response.data;
+  this.CourseId=response.data[0].course_id;
+  console.log("Course data:", response.data[0].course_id);
+    //end code
+    this.tempGetActiveCourseObj={
+      ledger_id: studentId,
+      course_id: this.CourseId
+  };
+  this.transactionServicesService.fetchAllActiveCourse(this.tempGetActiveCourseObj).subscribe(response=>{
+    this.popUpRestultArray=response.data;
+    console.log("received data:", this.popUpRestultArray);
+      //end code
+  
+      })
 
-})
+    })
+    
+  
   }
   onBankReceived(){
     this.confirmationService.confirm({

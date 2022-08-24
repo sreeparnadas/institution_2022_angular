@@ -73,6 +73,22 @@ export class TransactionServicesService {
       this.transactionListSubject.next([...this.transactionList]);
     })));
   }
+  fetchAllActiveCourse(data:any){
+    return this.http.post<any>(this.commonService.getAPI() + '/getRegisterCourseByStudentId', data)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
+      this.studentToCourseList=response.data;
+      console.log("Student to courseList:",this.studentToCourseList); 
+      this.studentToCourseSubject.next([...this.studentToCourseList]);
+    })));
+  }
+  fetchCourseId($id:any){
+    return this.http.get<any>(this.commonService.getAPI() + '/getCourseId/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
+      this.studentToCourseList=response.data;
+      console.log("Student to courseList:",this.studentToCourseList); 
+      this.studentToCourseSubject.next([...this.studentToCourseList]);
+    })));
+  }
   feesCharge(feeChargeData:any){
     return this.http.post<any>(this.commonService.getAPI() + '/transactions/feesCharged', feeChargeData)
     .pipe(catchError(this.errorService.serverError), tap(response => {

@@ -7,7 +7,7 @@ import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "prim
 import { CommonService } from 'src/app/services/common.service';
 import { TransactionServicesService } from 'src/app/services/transaction-services.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { LastTransactionPopupComponent } from '../last-transaction-popup/last-transaction-popup.component';
+
 
 
 @Component({
@@ -266,31 +266,8 @@ export class FeesReceivedComponent implements OnInit {
     });
 
   }
-  getDetails(id:any){
-    this.studentToCourseId=id;
-    this.openModel(id);
-    this.isPopupButton=true;
-  }
-  openModel(id:any){
-  this.transactionServicesService.fetchAllTransaction(id).subscribe(response=>{
-  this.popUpRestultArray=response.data;
-  if(id>0){
-   //start working with Dialog box
-    const dialogRef = this.dialog.open(LastTransactionPopupComponent, {
-      width: '750px',
-      disableClose:true,
-      hasBackdrop:false,
-      data: this.popUpRestultArray
-    }
-    );
-    dialogRef.afterClosed().subscribe(result => {
-      this.animal = result;
-    });
-  }
-//end code
-
-})
-  }
+ 
+  
 
   onBankReceived(){
     this.confirmationService.confirm({
