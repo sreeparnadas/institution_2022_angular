@@ -267,7 +267,48 @@
       "quantity": 63,
       "wisher": "indranil",
       "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Wish you a very happy birthday mam..I pray that may you be blessed with all the happiness and success in your life.You are the most amazing person I know,with lots of love and respect.",
+
+      "image": "sneharam.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "sneha",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "(Happy birthday mam )আমি হলাম সেই ছাত্র যাকে আপনি দাড়ি র গোপ থাকার জন্য চিনতে পারেননি । কি আর করা যাবে মানুষ যত  young হতে থাকে তত ভোলার শক্তি বাড়ে। 🫶🏻🙏🏻😅আপনার কাছে যত দিন পরেছি তত কম্পু এর প্রতি ভালোবাসা বেড়েছে । 🔥প্রথম প্রথম আপনাকে রাগী মনে হোত । মনে হতো এই scale দিয়ে মারবেন। কিন্তু এই কিছুদিন যাবৎ উপলব্ধি করলাম যে আপনি সাংঘাতিক savage 🥲🫶🏻যাই হোক ম্যাম সব শেষে প্রণাম আর ভালোবাসা নেবেন আর মজা করবেন আজকের দিনটা 🥳🥳কোনো ভুল হলে মার্জনা করিবেন❤️❤️",
+       "image": "soumya.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "soumya",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Happy Birthday Madam 🙏🏻♥🎂. Apnake Jonmo din ar onek onek subechha. Apnar Bapare ar ki bolbo apni to sorbogun somponno. Apni jemon Teacher hisabe poran temony Friend hisabe golpo & Yarki o koren.😌💖.Apnar sorir o mon sustho thakuk Atay kamona kori. Ar apnar Ashirbad jeno sob somoy amder opor thake. 🙏🏻💝",
+       "image": "soumya.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "shayan",
+      "rating": 3
     }
+
+
+
+
 
 
   ]
