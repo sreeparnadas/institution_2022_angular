@@ -16,7 +16,7 @@
                   <div class="row">
                     <div class="col-sm-4">
                       <mat-form-field>
-                        <mat-label >Transaction Date</mat-label>
+                        <mat-label >Received Date</mat-label>
                         <input class="col-9" matInput #ref [matDatepicker]="transactionDate" formControlName="transactionDate" >
                         <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
                         <mat-datepicker #transactionDate></mat-datepicker>
@@ -40,7 +40,6 @@
                       <ng-select [items]="courseNameList"
                           fxFlex="100"
                           bindLabel="full_name"
-                          (ngModelChange)="getDetails(7)"
                           class="custom"
                           bindValue="id"
                           appendTo="body"
@@ -50,65 +49,36 @@
                     </div>
                   </div>
                   
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <ng-select [items]="feesNameList"
-                        fxFlex="100"
-                        bindLabel="ledger_name"
-                        class="custom"
-                        bindValue="id"
-                        appendTo="body"
-                        formControlName="ledgerId"
-                        placeholder="Fees Name">
-                      </ng-select>
-                    </div>
-                    <div class="col-sm-4">
-                      <mat-form-field >
-                        <mat-label >Fee Amount</mat-label>
-                        <input matInput formControlName="amount" placeholder="Fee Amount" required>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-sm-3">
-                      <button pButton  >
-                        <i class="bi bi-save" (click)="onAddFees();"> Add </i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <textarea [rows]="2" [cols]="100" matInput autoResize="autoResize" formControlName="comment" placeholder="Description"></textarea>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="form-group" *ngIf = "hiddenInput">
-                        <mat-form-field>
-                          <input matInput placeholder="Transaction ID" formControlName="transactionId" >
-                        </mat-form-field>
-
-                      </div>
-                    </div>
-
-                  </div>
+                 
+                 
               </form>
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" style="display: none;">Ledger id</th>
-                    <th scope="col">Fee Name</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" >Ledger id</th>
+                    <th scope="col">Fees Name</th>
+                    <th scope="col">Total Billed</th>
+                    <th scope="col">Total Received</th>
+                    <th scope="col">Net Due</th>
+                    <th scope="col">Payment</th>
                   </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of tempFeesArray; let indexOfelement=index;">
                       <th scope="row">{{indexOfelement+1}}</th>
-                      <th scope="row" style="display: none;">{{item.ledgerId}}</th>
+                      <th scope="row">{{item.ledgerId}}</th>
+                      <td>{{item.feesName}}</td>
+                      <td>{{item.feesName}}</td>
                       <td>{{item.feesName}}</td>
                       <td align="right">{{item.amount | currency:'INR'}}</td>
-                      <td><button type="button" class="btn btn-success" (click)="onDelete(indexOfelement);">Remove</button></td>
+                      <td><mat-form-field appearance="fill">
+                        <mat-label>Input</mat-label>
+                        <input matInput>
+                      </mat-form-field></td>
                     </tr>
                     <tr class="table-dark">
-                      <th colspan="2">Grand Total</th>
+                      <th colspan="6">Grand Total</th>
 
                       <td align="right">{{totalAmount | currency:'INR'}}</td>
                       <td>&nbsp;</td>
