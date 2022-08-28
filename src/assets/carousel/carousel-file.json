@@ -114,7 +114,7 @@
       "id": "1009",
       "code": "vbb124btr",
       "name": "Game Controller",
-      "description": "If you are going to use a passage of Lorem Ipsum",
+      "description": "wishing you a day with full of laughter and happiness. we all are so lucky to have you, you're such a mature person and sincere to your work, you're a great teacher and besides this you're a good human being although you behave very friendly with me. i wish this year brings you a lot of joy, happiness and success. once again happy birthday and enjoy today, create wonderful memories",
       "image": "mounita.png",
       "price": 99,
       "category": "Electronics",
@@ -316,7 +316,21 @@
       "quantity": 63,
       "wisher": "Shreya",
       "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "শুভ জন্মদিন ম্যাম..খুব ভালো থাকো, সুস্থ থাকো, আনন্দে থাকো❤️❤️❤️",
+      "image": "namrata.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "Namrata",
+      "rating": 3
     }
+
+
 
 
   ]
