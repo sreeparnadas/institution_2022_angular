@@ -6,6 +6,8 @@
       "name": "Tanusree Hui",
       "description": " যখন যেখানে চাও উজ্জ্বলতায়\n যেন মুখে হাসি আসে তোমার কথায়,\n মন পুরে তান দিলে কোনো সামগানে \n তোমার হাসির দিকে কী আকুল পানে\n যে কোনো দাগের মত চিহ্ন বিরাম\n এমনই তো ভালবেসে তাকিয়েছিলাম।\n যে আদর করে গেলে কিশোরী উজান,\n স্নেহের সুরেই তায় মন পুরে তান।\n জন্মদিনের মত আপন করেই\n লিখেছি বয়স এসে প্রতি বছরেই।\n বড় হল ছেলে মেয়ে ছোটো হল মা;\n হাসি রাখি আঁচলেতে ঢাকি কান্না।\n হাজার বছর শেষ তারায় তারায়\n যেন মুখে হাসি আসে তোমার কথায়।\n যখন যেখানে চাও উজ্জ্বলতায়\n যেন মুখে হাসি আসে তোমার কথায়।\n ",
       "image": "suranjan.png",
+      "image_message": "",
+      "is_image_message": false,
       "price": 65,
       "category": "Accessories",
       "quantity": 24,
@@ -112,7 +114,7 @@
       "id": "1009",
       "code": "vbb124btr",
       "name": "Game Controller",
-      "description": "If you are going to use a passage of Lorem Ipsum",
+      "description": "Happy birthday 🥳 mam 🎂, many many happy returns of the day, I love you mam,\nতুমি সবসময় ভালো থাকো, হেব্বি থাকো , আর মিষ্টি করে হাসবে সবসময়, আর আমরা যখন ই পারবো তোমার কাছে গিয়ে কিন্তু চা খাবো, তুমি ভালো করে সবসময় পরীক্ষা দাও আর এবার এর পরীক্ষা শেষ হলে কিন্তু আমার হাত এর চিকেন স্যুপ খেতে আসতেই হবে \nYou are a one of the sweetest and friendly teacher for me, And also a great human being❤️, We love you mam\n, আমরা এইভাবেই তোমায় ভালোবাসবো আর তোমার হাতের চা খাবো mam",
       "image": "mounita.png",
       "price": 99,
       "category": "Electronics",
@@ -149,7 +151,7 @@
       "code": "cm230f032",
       "name": "Gaming Set",
       "description": "Dear ma'am, \n We didn't get to do many classes with you but the ones that we had done have been wholesome. Both You and sir have been more of a good friend to us, who has always taught us with utmost care. We're glad that we had a chance to meet you. 😊 \n Today is a day of great importance for you, and we send our warm wishes to you through this small token of love. Happy Birthday ma'am. We hope for your good health and long life. We hope that you're happy always. Thank you for making computer sooo interesting to us. Many many happy returns of the day. ❤️",
-      "image": "abhishek.png",
+      "image": "rupam-tamosree.png",
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
@@ -197,7 +199,7 @@
       "code": "cm230f032",
       "name": "Gaming Set",
       "description": "The lessons you teach us will always remain in our hearts like an engraved gem. We have only love and respect for you in our hearts. Happy birthday Ma'am!",
-      "image": "mou.png",
+      "image": "",
       "price": 299,
       "category": "Electronics",
       "quantity": 63,
@@ -290,7 +292,82 @@
       "quantity": 63,
       "wisher": "soumya",
       "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Happy Birthday Madam 🙏🏻♥🎂. Apnake Jonmo din ar onek onek subechha. Apnar Bapare ar ki bolbo apni to sorbogun somponno. Apni jemon Teacher hisabe poran temony Friend hisabe golpo & Yarki o koren.😌💖.Apnar sorir o mon sustho thakuk Atay kamona kori. Ar apnar Ashirbad jeno sob somoy amder opor thake. 🙏🏻💝",
+       "image": "sayan.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "shayan",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Happy Birthday Mam.. Many many happy returns of the day.. ajker din ta khub khub valo vabe katan.. ❤",
+      "image": "shreya.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "Shreya",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "শুভ জন্মদিন ম্যাম..খুব ভালো থাকো, সুস্থ থাকো, আনন্দে থাকো❤️❤️❤️",
+      "image": "namrata.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "Namrata",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "The lessons you taught us will always remain in our hearts like an engraved gem🔥\nI've only love and respect for you in my hearts ❤️  Happy Birthday mam❤️ \nWish you many many happy returns of this day 🌼♥️",
+      "image": "usmita.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "Usmita",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Wish You Happy Birthday 🎁🎂🎈",
+      "image": "dibakar.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "Dibakar",
+      "rating": 3
+    },
+    {
+      "id": "1010",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Happy Birthday ma'am. Enjoy your day and have fun ❤️. Lots of love 🐼",
+      "image": "poulami.png",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "wisher": "Poulami",
+      "rating": 3
     }
+
+
+
 
 
 
