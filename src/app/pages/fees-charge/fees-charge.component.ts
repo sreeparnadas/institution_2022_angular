@@ -68,7 +68,7 @@ export class FeesChargeComponent implements OnInit {
     this.activatedRoute.data.subscribe((response: any) => {
       this.studentNameList = response.feesChargeResolver.studentsCharge.data;
       this.feesNameList = response.feesChargeResolver.feesNames.data;
-    });
+      });
     }
 
     ngOnInit(): void {
@@ -145,6 +145,7 @@ export class FeesChargeComponent implements OnInit {
   }
   clearFeesReceived(){
     this.isShown = false;
+    this.hiddenPopup=false;
     const now = new Date();
     let val = formatDate(now, 'yyyy-MM-dd', 'en');
     this.FeesChargeFormGroup = new FormGroup({
@@ -174,6 +175,7 @@ export class FeesChargeComponent implements OnInit {
   }
 
   editFeesReceived(feeDetails:any){
+    this.hiddenPopup=false;
     console.log("id:",feeDetails.id);
     this.event=0;
     this.onTabChanged(this.event);
@@ -208,7 +210,7 @@ export class FeesChargeComponent implements OnInit {
   }
 
   onUpdate(){
-
+    this.hiddenPopup=false;
     this.confirmationService.confirm({
      message: 'Do you want to Save this record?',
      header: 'Delete Confirmation',
@@ -271,9 +273,8 @@ export class FeesChargeComponent implements OnInit {
  }
  
 getActiveCourse(){
-  if(this.hiddenPopup==false){
-    this.hiddenPopup=!this.hiddenPopup;
-  }
+  this.hiddenPopup=true;
+   
   let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
   let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
  
@@ -298,6 +299,7 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
   
   }
   onBankReceived(){
+    this.hiddenPopup=false;
     this.confirmationService.confirm({
       message: 'Do you want to Save this record?',
       header: 'Save Confirmation',
@@ -417,7 +419,7 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
   }
 
   onSave(){
-
+    this.hiddenPopup=false;
     this.confirmationService.confirm({
      message: 'Do you want to Save this record?',
      header: 'Delete Confirmation',
