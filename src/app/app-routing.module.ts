@@ -125,6 +125,8 @@ const routes: Routes = [
   { path: 'FeesCharge', loadChildren: () => import('./pages/fees-charge/fees-charge.module').then(m => m.FeesChargeModule) },
 
   { path: 'TestTable', loadChildren: () => import('./pages/test-table/test-table.module').then(m => m.TestTableModule) },
+  { path: 'BijoyaRegistration', loadChildren: () => import('./pages/bijoya-registration/bijoya-registration.module').then(m => m.BijoyaRegistrationModule) },
+
 
 
 
