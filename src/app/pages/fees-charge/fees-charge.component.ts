@@ -17,6 +17,7 @@ import { LastTransactionPopupComponent } from '../last-transaction-popup/last-tr
 })
 export class FeesChargeComponent implements OnInit {
   checked = false;
+  showTableRow:boolean=false;
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
   disabled = false;
@@ -112,6 +113,12 @@ export class FeesChargeComponent implements OnInit {
     this.showBox = !this.showBox;}
   else{
     this.showBox = false;}
+  }
+  onClickedRowShow(e: Event) {
+    if(this.showTableRow===false){
+    this.showTableRow = !this.showTableRow;}
+  else{
+    this.showTableRow = false;}
   }
   getAllReceivedFees(){
     this.transactionServicesService.fetchAllFeesReceived().subscribe(response=>{
