@@ -366,6 +366,32 @@
                             <td align="right">{{item.feesTotal | currency:'INR'}}</td>
                             <td><button type="button" class="btn btn-success"  (click)="editFeesReceived(item)"><i class="bi bi-pen"></i></button> &nbsp;
                               <button type="button" class="btn btn-outline-danger" (click)="onClickedOutside($event)" ><i class="bi bi-printer"></i></button>
+                              <button type="button" class="btn btn-outline-danger" (click)="onClickedRowShow($event)"><i class="bi bi-plus"></i></button>
+                              <tr *ngIf = "showTableRow">
+                                <div>
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col" style="display: none;">studentToCourseId</th>
+                                        <th scope="col">Student Name</th>
+                                        <th scope="col">Course Name</th>
+                                        <th scope="col">Amount</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr >
+                                        <th scope="row">&nbsp;</th>
+                                        <th scope="row" style="display: none;">&nbsp;</th>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td align="right">&nbsp;</td>
+                                        
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </tr>
                             </td>
                           </tr> -->
                           <tr>
@@ -377,6 +403,7 @@
                             <td>1</td>
                             <td>Sukanta</td>
                           </tr>
+                         
   
                         </tbody>
                     </table> 
