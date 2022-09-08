@@ -6,6 +6,10 @@ import { BijoyaRegistrationComponent } from './bijoya-registration.component';
 
 import {FocusTrapModule} from 'primeng/focustrap';
 import {StyleClassModule} from 'primeng/styleclass';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -17,7 +21,11 @@ import {StyleClassModule} from 'primeng/styleclass';
     BijoyaRegistrationRoutingModule,
 
     FocusTrapModule,
-    StyleClassModule
+    StyleClassModule,
+
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
   ]
 })
 export class BijoyaRegistrationModule { }
