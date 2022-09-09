@@ -118,4 +118,13 @@ export class TransactionServicesService {
       }
     }))
   }
+
+  fetchFeesChargeDetailsById($id:any){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/feesChargedDetails/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
+      this.studentToCourseList=response.data;
+      console.log("Fees Course Details:",this.studentToCourseList); 
+      this.studentToCourseSubject.next([...this.studentToCourseList]);
+    })));
+  }
 }

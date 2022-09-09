@@ -17,6 +17,7 @@ import { LastTransactionPopupComponent } from '../last-transaction-popup/last-tr
 })
 export class FeesChargeComponent implements OnInit {
   checked = false;
+  totalFees:number=0;
   showTableRow:boolean=false;
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
@@ -39,6 +40,7 @@ export class FeesChargeComponent implements OnInit {
   transactionList:any=[];
   tempFeesArray:any=[];
   feesReceivedArray:any=[];
+  feesChargeDetailsArray:any=[];
   tempItemObj!:object;
   tempGetActiveCourseObj!:object;
   tempSaveItemObj!:object;
@@ -114,7 +116,17 @@ export class FeesChargeComponent implements OnInit {
   else{
     this.showBox = false;}
   }
-  onClickedRowShow(e: Event) {
+  onClickedRowShow(studentCourseRegistrationId:any) {
+    this.totalFees=0;
+    console.log("Tab id:",studentCourseRegistrationId);
+    this.transactionServicesService.fetchFeesChargeDetailsById(studentCourseRegistrationId).subscribe(response=>{
+      this.feesChargeDetailsArray=response.data;
+      console.log("FeesChargeDetails:",this.feesChargeDetailsArray);
+      for (let val of this.feesChargeDetailsArray) {
+        this.totalFees+=val.amount;
+      }
+      console.log(this.totalFees);
+    })
     if(this.showTableRow===false){
     this.showTableRow = !this.showTableRow;}
   else{
@@ -284,7 +296,15 @@ getActiveCourse(){
    
   let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
   let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
- 
+
+  this.transactionServicesService.fetchFeesChargeDetailsById(studentToCourseId).subscribe(response=>{
+    this.feesChargeDetailsArray=response.data;
+    console.log("FeesChargeDetails:",this.feesChargeDetailsArray);
+    for (let val of this.feesChargeDetailsArray) {
+      this.totalFees+=val.amount;
+    }
+    console.log(this.totalFees);
+  })
 this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(response=>{
   this.getCourseIdArray=response.data;
   this.CourseId=response.data[0].course_id;

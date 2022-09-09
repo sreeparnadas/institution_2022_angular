@@ -51,27 +51,41 @@
                         <button type="button" class="btn btn-outline-success btn-space"  (click)="getActiveCourse();">Go >></button>
                       </div>
                     </div>
-                    <div class="row" *ngIf = "hiddenPopup">
+                   
                       <!-- if div active table display -->
-                      <table class="table table-dark">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Course Name</th>
-                                <th>Charge Date</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of popUpRestultArray; let indexOfelement=index;">
-                                <td>{{indexOfelement+1}}</td>
-                                <td>{{item.full_name}}</td>
-                                <td>{{item.joining_date}}</td>
-                                <td>{{item.base_fee}}</td>
-                            </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                      <div style="border: 5px dotted red; border-radius: 10px;" *ngIf = "hiddenPopup">
+                        <h1>Fees Charge Details</h1>
+                        <table class="table table-striped">
+                         <thead>
+                           <tr>
+                             <th scope="col">#</th>
+                             <th scope="col" style="display: none;">TransactionId</th>
+                             <th scope="col">Transaction No</th>
+                             <th scope="col">Charge Name</th>
+                             <th scope="col">Fees</th>
+                             <th scope="col">Action</th>
+                           </tr>
+                         </thead>
+                         <tbody>
+                          <tr *ngFor="let item of feesChargeDetailsArray; let indexOfelement=index;">
+                            <th scope="row">{{indexOfelement+1}}</th>
+                            <th scope="row" style="display: none;">{{item.id}}</th>
+                            <td>{{item.transaction_number}}</td>
+                            <td>{{item.ledger_name}}</td>
+                            <td align="right">{{item.amount | currency:'INR'}}</td>
+                            <td><button type="button" class="btn btn-success"  (click)="editFeesReceived(item)"><i class="bi bi-pen"></i></button> &nbsp;
+                            </td>
+                          </tr> 
+                          <tr style="background-color:rgb(168, 160, 160) ;">
+                            <th align="right" colspan="3">Grand Total</th>
+                            
+                            <th style="text-align: right;">{{totalFees | currency:'INR'}}</th>
+                            
+                          </tr>
+                         </tbody>
+                        </table>
+                      </div>
+                    
                     <div class="row">
                       <div class="col-sm-5">
                         <ng-select [items]="feesNameList"
@@ -345,6 +359,38 @@
                 </div>
              <!--End print DIV-->
               <div class="container" *ngIf="showBox" style="font-size:medium; background-color: white;">
+                <div style="border: 2px dotted red;" *ngIf = "showTableRow">
+                  <h1>Fees Charge Details</h1>
+                  <table class="table table-striped">
+                   <thead>
+                     <tr>
+                       <th scope="col">#</th>
+                       <th scope="col" style="display: none;">TransactionId</th>
+                       <th scope="col">Transaction No</th>
+                       <th scope="col">Charge Name</th>
+                       <th scope="col">Fees</th>
+                       <th scope="col">Action</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                    <tr *ngFor="let item of feesChargeDetailsArray; let indexOfelement=index;">
+                      <th scope="row">{{indexOfelement+1}}</th>
+                      <th scope="row" style="display: none;">{{item.id}}</th>
+                      <td>{{item.transaction_number}}</td>
+                      <td>{{item.ledger_name}}</td>
+                      <td align="right">{{item.amount | currency:'INR'}}</td>
+                      <td><button type="button" class="btn btn-success"  (click)="editFeesReceived(item)"><i class="bi bi-pen"></i></button> &nbsp;
+                      </td>
+                    </tr> 
+                    <tr style="background-color:rgb(168, 160, 160) ;">
+                      <th align="right" colspan="3">Grand Total</th>
+                      
+                      <th style="text-align: right;">{{totalFees | currency:'INR'}}</th>
+                      
+                    </tr>
+                   </tbody>
+                  </table>
+                </div>
                     <h1>Fees Charge List</h1>
                      <table class="table table-striped">
                       <thead>
@@ -358,51 +404,19 @@
                         </tr>
                       </thead>
                       <tbody>
-                         <!--  <tr *ngFor="let item of feesReceivedArray; let indexOfelement=index;">
+                          <tr *ngFor="let item of feesReceivedArray; let indexOfelement=index;">
                             <th scope="row">{{indexOfelement+1}}</th>
                             <th scope="row" style="display: none;">{{item.studentCourseRegistrationId}}</th>
                             <td>{{item.studentName}}</td>
                             <td>{{item.courseName}}</td>
                             <td align="right">{{item.feesTotal | currency:'INR'}}</td>
-                            <td><button type="button" class="btn btn-success"  (click)="editFeesReceived(item)"><i class="bi bi-pen"></i></button> &nbsp;
-                              <button type="button" class="btn btn-outline-danger" (click)="onClickedOutside($event)" ><i class="bi bi-printer"></i></button>
-                              <button type="button" class="btn btn-outline-danger" (click)="onClickedRowShow($event)"><i class="bi bi-plus"></i></button>
-                              <tr *ngIf = "showTableRow">
-                                <div>
-                                  <table class="table table-striped">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col" style="display: none;">studentToCourseId</th>
-                                        <th scope="col">Student Name</th>
-                                        <th scope="col">Course Name</th>
-                                        <th scope="col">Amount</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr >
-                                        <th scope="row">&nbsp;</th>
-                                        <th scope="row" style="display: none;">&nbsp;</th>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td align="right">&nbsp;</td>
-                                        
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </tr>
+                            <td> 
+                              <button type="button" class="btn btn-outline-danger" (click)="onClickedOutside($event)" ><i class="bi bi-printer"></i></button>&nbsp;
+                              <button type="button" class="btn btn-outline-danger" (click)="onClickedRowShow(item.studentCourseRegistrationId)"><i class="bi bi-plus"></i></button>
+                             
                             </td>
-                          </tr> -->
-                          <tr>
-                            <td>sl</td>
-                            <td>name</td>
-                          </tr>
-                          <div>hello </div>
-                          <tr>
-                            <td>1</td>
-                            <td>Sukanta</td>
-                          </tr>
+                          </tr> 
+                       
                          
   
                         </tbody>
