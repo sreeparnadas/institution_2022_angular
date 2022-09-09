@@ -3,13 +3,13 @@
     <div class="col-8 text-center">
         <h1>Regitration Form</h1>
 
-        <form action="" class="bg p-3">
+        <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
             <div class="">
                 <div class="form-group">
                     <div class="input-group">
                         <mat-form-field class="example-full-width" style="width: 90% !important;">
                             <mat-label><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
-                            <input matInput placeholder="Enter Your Name" value="">
+                            <input formControlName="student_name" matInput placeholder="Enter Your Name" value="">
                         </mat-form-field>
                         <!-- <div class="invalid-tooltip">
                             Please choose a unique and valid username.
@@ -24,7 +24,7 @@
                     <div class="input-group">
                         <mat-form-field class="example-full-width" style="width: 90% !important;">
                             <mat-label><i class="bi bi-envelope-fill mr-1"></i>Email</mat-label>
-                            <input matInput placeholder="Enter Your Email" value="">
+                            <input formControlName="email" matInput placeholder="Enter Your Email" value="">
                         </mat-form-field>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <div class="input-group">
                         <mat-form-field class="example-full-width" style="width: 90% !important;">
                             <mat-label><i class="bi bi-telephone-fill mr-1"></i>Contact Number</mat-label>
-                            <input matInput placeholder="Enter Your Contact Number" value="">
+                            <input formControlName="contact_number" matInput placeholder="Enter Your Contact Number" value="">
                         </mat-form-field>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     <div class="input-group">
                         <mat-form-field class="example-full-width" style="width: 90% !important;">
                             <mat-label><i class="bi bi-whatsapp mr-1"></i>Whatsapp Number</mat-label>
-                            <input matInput placeholder="Enter Your Whatsapp Number" value="">
+                            <input formControlName="whatsapp_number" matInput placeholder="Enter Your Whatsapp Number" value="">
                         </mat-form-field>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     <div class="input-group">
                         <mat-form-field class="example-full-width" style="width: 90% !important;">
                             <mat-label><i class="bi bi-telegram mr-1"></i>Telegram Number</mat-label>
-                            <input matInput placeholder="Enter Your Telegram Number" value="">
+                            <input formControlName="telegram_number" matInput placeholder="Enter Your Telegram Number" value="">
                         </mat-form-field>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="input-group">
                         <mat-form-field class="example-full-width" style="width: 90% !important;">
                             <mat-label><i class="bi bi-award-fill mr-1"></i>Member Number</mat-label>
-                            <input matInput placeholder="Enter Your Member Number" min="1" type="number" value="1">
+                            <input formControlName="member_number" matInput placeholder="Enter Your Member Number" min="1" type="number" value="1">
                         </mat-form-field>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
     
     <!-- <div class="col-4"></div> -->
 </div>
-<button type="submit" class="btn btn-primary m-1">Submit</button>
+<button type="submit" class="btn btn-primary m-1" (click)="saveStudent()">Submit</button>
 <!-- <div class="bg-dark">
     <form class="">
 
