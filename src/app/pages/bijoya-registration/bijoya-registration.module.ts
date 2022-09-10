@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 
 
@@ -33,6 +34,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    ConfirmDialogModule
   ]
 })
 export class BijoyaRegistrationModule { }
