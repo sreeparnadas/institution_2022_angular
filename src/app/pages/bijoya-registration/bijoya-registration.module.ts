@@ -10,12 +10,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 
 @NgModule({
   declarations: [
     BijoyaRegistrationComponent
+  ],
+  providers: [
+    ConfirmationService,
+    MessageService
   ],
   imports: [
     CommonModule,
