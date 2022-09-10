@@ -9,6 +9,7 @@ import {StyleClassModule} from 'primeng/styleclass';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,6 +23,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 
     FocusTrapModule,
     StyleClassModule,
+    ReactiveFormsModule,
 
     MatFormFieldModule,
     MatInputModule,
