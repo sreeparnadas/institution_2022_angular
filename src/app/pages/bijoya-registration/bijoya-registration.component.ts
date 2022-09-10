@@ -21,7 +21,7 @@ export class BijoyaRegistrationComponent implements OnInit {
   msgs: { severity: string; summary: string; detail: string }[] = [];
   showErrorMessage: boolean = false;
   errorMessage: any;
-  
+
 
 
 
@@ -55,7 +55,7 @@ export class BijoyaRegistrationComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -65,64 +65,64 @@ export class BijoyaRegistrationComponent implements OnInit {
 
 
   saveStudent() {
-    
-
-    // this.confirmationService.confirm({
-      
-      
-
-    //   message: 'Do you want to Save this record?',
-    //   header: 'Delete Confirmation',
-    //   icon: 'pi pi-info-circle',
-
-    //   accept: () => {
-    //     console.log("test save");
-    //     this.studentData.studentName = this.studentInfoFormGroup.value.student_name;
-    //     this.studentData.email = this.studentInfoFormGroup.value.email;
-    //     this.studentData.contactNumber = this.studentInfoFormGroup.value.contact_number;
-    //     this.studentData.whatsappNumber = this.studentInfoFormGroup.value.whatsapp_number;
-    //     this.studentData.telegramNumber = this.studentInfoFormGroup.value.telegram_number;
-    //     this.studentData.memberNumber = this.studentInfoFormGroup.value.member_number;
-    //     // console.log(this.studentData);
 
 
-    //     this.bijoyaRegistrationService.saveStudentInfo(this.studentData).subscribe(response => {
-          
-    //       if (response.success != ""){
-    //         this.showSuccess("Record added successfully");
-    //         console.log(response.data);
-    //       }
-    //     },error=>{
-    //       console.log("test save");
-    //       this.showErrorMessage = true;
-    //       this.errorMessage = error.message;
-    //       const alerts: Alert[] = [{
-    //         type: 'success',
-    //         message: this.errorMessage,
-    //       }]
-    //       setTimeout(()=>{
-    //         this.showErrorMessage = false;
-    //       }, 20000);
-    //       this.showError(error.statusText);
-    //     })
-    //   },
-    //   reject: () => {
+    this.confirmationService.confirm({
 
-    //     this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
-    //   }
-    // });
 
-        
-        
-    
-    
+
+      message: 'Do you want to Save this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+
+      accept: () => {
+        console.log("test save");
         this.studentData.studentName = this.studentInfoFormGroup.value.student_name;
         this.studentData.email = this.studentInfoFormGroup.value.email;
         this.studentData.contactNumber = this.studentInfoFormGroup.value.contact_number;
         this.studentData.whatsappNumber = this.studentInfoFormGroup.value.whatsapp_number;
         this.studentData.telegramNumber = this.studentInfoFormGroup.value.telegram_number;
         this.studentData.memberNumber = this.studentInfoFormGroup.value.member_number;
-      
+        // console.log(this.studentData);
+
+
+        this.bijoyaRegistrationService.saveStudentInfo(this.studentData).subscribe(response => {
+
+          if (response.success != ""){
+            this.showSuccess("Record added successfully");
+            console.log(response.data);
+          }
+        },error=>{
+          console.log("test save");
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+          this.showError(error.statusText);
+        })
+      },
+      reject: () => {
+
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
+
+
+
+
+
+        this.studentData.studentName = this.studentInfoFormGroup.value.student_name;
+        this.studentData.email = this.studentInfoFormGroup.value.email;
+        this.studentData.contactNumber = this.studentInfoFormGroup.value.contact_number;
+        this.studentData.whatsappNumber = this.studentInfoFormGroup.value.whatsapp_number;
+        this.studentData.telegramNumber = this.studentInfoFormGroup.value.telegram_number;
+        this.studentData.memberNumber = this.studentInfoFormGroup.value.member_number;
+
 
 
         this.bijoyaRegistrationService.saveStudentInfo(this.studentData).subscribe(response => {
@@ -155,6 +155,6 @@ export class BijoyaRegistrationComponent implements OnInit {
   showError(message: string) {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
   }
-  
+
 
 }
