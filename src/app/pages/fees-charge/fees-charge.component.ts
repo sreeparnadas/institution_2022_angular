@@ -18,6 +18,8 @@ import { LastTransactionPopupComponent } from '../last-transaction-popup/last-tr
 export class FeesChargeComponent implements OnInit {
   checked = false;
   totalFees:number=0;
+  studentName:any;
+  courseName:any;
   showTableRow:boolean=false;
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
@@ -116,17 +118,21 @@ export class FeesChargeComponent implements OnInit {
   else{
     this.showBox = false;}
   }
-  onClickedRowShow(studentCourseRegistrationId:any) {
+  onClickedRowShow(data:any) {
     this.totalFees=0;
-    console.log("Tab id:",studentCourseRegistrationId);
-    this.transactionServicesService.fetchFeesChargeDetailsById(studentCourseRegistrationId).subscribe(response=>{
+    this.studentName=data.studentName;
+    this.courseName=data.courseName;
+   /*  console.log("studentCourseRegistrationId:",data.studentCourseRegistrationId);
+    console.log("studentName:",data.studentName);
+    console.log("courseName:",data.courseName); */
+     this.transactionServicesService.fetchFeesChargeDetailsById(data.studentCourseRegistrationId).subscribe(response=>{
       this.feesChargeDetailsArray=response.data;
       console.log("FeesChargeDetails:",this.feesChargeDetailsArray);
       for (let val of this.feesChargeDetailsArray) {
         this.totalFees+=val.amount;
       }
       console.log(this.totalFees);
-    })
+    }) 
     if(this.showTableRow===false){
     this.showTableRow = !this.showTableRow;}
   else{

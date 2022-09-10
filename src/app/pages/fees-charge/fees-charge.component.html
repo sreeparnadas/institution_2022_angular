@@ -359,8 +359,8 @@
                 </div>
              <!--End print DIV-->
               <div class="container" *ngIf="showBox" style="font-size:medium; background-color: white;">
-                <div style="border: 2px dotted red;" *ngIf = "showTableRow">
-                  <h1>Fees Charge Details</h1>
+                <div style="border: 5px dotted red; border-radius: 10px;" *ngIf = "showTableRow">
+                  <h1>Fees Charge Details  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:brown ; font-family: 'Arial Black';background-color: #e7e709;">{{studentName}}</span>&nbsp;&nbsp;<span style="color:rgb(73, 19, 234) ; font-family: 'Arial Black';background-color: #e7e709;">Course:&nbsp;{{courseName}}</span></h1>
                   <table class="table table-striped">
                    <thead>
                      <tr>
@@ -412,7 +412,7 @@
                             <td align="right">{{item.feesTotal | currency:'INR'}}</td>
                             <td> 
                               <button type="button" class="btn btn-outline-danger" (click)="onClickedOutside($event)" ><i class="bi bi-printer"></i></button>&nbsp;
-                              <button type="button" class="btn btn-outline-danger" (click)="onClickedRowShow(item.studentCourseRegistrationId)"><i class="bi bi-plus"></i></button>
+                              <button type="button" class="btn btn-outline-danger" (click)="onClickedRowShow(item)"><i class="bi bi-plus"></i></button>
                              
                             </td>
                           </tr> 
