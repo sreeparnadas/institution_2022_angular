@@ -1,16 +1,16 @@
-<div class="d-flex">
+<div class="d-flex m-2 flex-column">
   <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <!-- <div class="col-4 "></div> -->
-    <div class="col-8 text-center">
+    <div [ngClass]="isDeviceXS? 'col-12 text-center': 'col-3 text-center'">
         <h1>Regitration Form</h1>
-
         <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
             <div class="">
                 <div class="form-group">
                     <div class="input-group">
-                        <mat-form-field class="example-full-width" style="width: 90% !important;">
+                        <mat-form-field class="example-full-width" hintLabel="Max 10 characters" style="width: 90% !important;">
                             <mat-label><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
-                            <input formControlName="student_name" matInput placeholder="Enter Your Name" value="">
+                            <input formControlName="student_name" #studentName maxlength="10" matInput placeholder="Enter Your Name" value="">
+                            <mat-hint align="end">{{studentName.value.length || 0}}/10</mat-hint>
                         </mat-form-field>
                         <!-- <div class="invalid-tooltip">
                             Please choose a unique and valid username.
@@ -77,14 +77,11 @@
                 </div>
             </div>
         </form>
-
-
-
     </div>
 
-    <!-- <div class="col-4"></div> -->
+  <button type="submit" [ngClass]="isDeviceXS? 'col-11 text-center': 'col-2 text-center'" class="btn btn-primary m-1" (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid">Submit </button>
 </div>
-<button type="submit" class="btn btn-primary m-1" (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid">Submit </button>
+
 <!-- <button type="submit" class="btn btn-primary m-1" (click)="saveStudent()" >Submit</button> -->
 <!-- <button type="submit" class="btn btn-primary m-1" (click)="confirm()">test</button> -->
 <!-- <div class="bg-dark">

@@ -7,6 +7,7 @@ import { BijoyaRegistrationService } from 'src/app/services/bijoya-registration.
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { BijoyaRegistration } from 'src/app/models/bijoya-regitration.model';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import {CommonService} from "../../services/common.service";
 
 interface Alert {
   type: string;
@@ -19,7 +20,7 @@ interface Alert {
   styleUrls: ['./bijoya-registration.component.scss']
 })
 export class BijoyaRegistrationComponent implements OnInit {
-
+  isDeviceXS = false;
   msgs: { severity: string; summary: string; detail: string }[] = [];
   showErrorMessage: boolean = false;
   errorMessage: any;
@@ -55,9 +56,10 @@ export class BijoyaRegistrationComponent implements OnInit {
     private bijoyaRegistrationService: BijoyaRegistrationService,
     // private activatedRoute: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private commonService: CommonService
   ) {
-
+    this.isDeviceXS=commonService.getDeviceXs();
   }
 
   ngOnInit(): void {
@@ -127,7 +129,7 @@ export class BijoyaRegistrationComponent implements OnInit {
 
 
 
-        
+
 
 
 
@@ -155,6 +157,5 @@ export class BijoyaRegistrationComponent implements OnInit {
   showError(message: string) {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
   }
-
 
 }
