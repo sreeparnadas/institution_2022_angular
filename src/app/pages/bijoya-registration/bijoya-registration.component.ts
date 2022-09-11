@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // import { ConfirmationService } from 'primeng/api';
+import Swal from 'sweetalert2';
+
 import { BijoyaRegistrationService } from 'src/app/services/bijoya-registration.service';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { BijoyaRegistration } from 'src/app/models/bijoya-regitration.model';
@@ -88,9 +90,18 @@ export class BijoyaRegistrationComponent implements OnInit {
 
         this.bijoyaRegistrationService.saveStudentInfo(this.studentData).subscribe(response => {
 
-          if (response.success != ""){
-            this.showSuccess("Record added successfully");
-            console.log(response.data);
+          if (response.success==1){
+            // this.showSuccess("Record added successfully");
+            // console.log(response.data);
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'successfully registered',
+              // showConfirmButton: false,
+              timer: 1000
+            });
+            this.studentInfoFormGroup.reset();
           }
         },error=>{
           console.log("test save");
