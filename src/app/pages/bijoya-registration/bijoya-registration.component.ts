@@ -41,9 +41,9 @@ export class BijoyaRegistrationComponent implements OnInit {
   studentInfoFormGroup = new UntypedFormGroup({
     student_name: new UntypedFormControl(null, [Validators.required]),
     email: new UntypedFormControl(null),
-    contact_number: new UntypedFormControl(null, [Validators.required, Validators.minLength(12)]),
-    whatsapp_number: new UntypedFormControl(null, [Validators.minLength(10)]),
-    telegram_number: new UntypedFormControl(null, [Validators.minLength(10)]),
+    contact_number: new UntypedFormControl(null, [Validators.required]),
+    whatsapp_number: new UntypedFormControl(null),
+    telegram_number: new UntypedFormControl(null),
     member_number: new UntypedFormControl(1, [Validators.required]),
   });
 
@@ -116,18 +116,7 @@ export class BijoyaRegistrationComponent implements OnInit {
 
 
 
-        this.studentData.studentName = this.studentInfoFormGroup.value.student_name;
-        this.studentData.email = this.studentInfoFormGroup.value.email;
-        this.studentData.contactNumber = this.studentInfoFormGroup.value.contact_number;
-        this.studentData.whatsappNumber = this.studentInfoFormGroup.value.whatsapp_number;
-        this.studentData.telegramNumber = this.studentInfoFormGroup.value.telegram_number;
-        this.studentData.memberNumber = this.studentInfoFormGroup.value.member_number;
-
-
-
-        this.bijoyaRegistrationService.saveStudentInfo(this.studentData).subscribe(response => {
-          console.log(response.data);
-        })
+        
 
 
 
@@ -136,15 +125,15 @@ export class BijoyaRegistrationComponent implements OnInit {
 
 
 
-  confirm() {
-    console.log("test");
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to confirm ?',
-      header: 'Confirm !',
-      accept:()=>{console.log("Accepted")},
-      reject:()=>{console.log("Rejected")}
-    });
-  }
+  // confirm() {
+  //   console.log("test");
+  //   this.confirmationService.confirm({
+  //     message: 'Are you sure you want to confirm ?',
+  //     header: 'Confirm !',
+  //     accept:()=>{console.log("Accepted")},
+  //     reject:()=>{console.log("Rejected")}
+  //   });
+  // }
 
 
 
