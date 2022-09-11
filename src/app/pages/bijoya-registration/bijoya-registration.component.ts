@@ -42,7 +42,7 @@ export class BijoyaRegistrationComponent implements OnInit {
   studentInfo: BijoyaRegistration[] = [];
   studentInfoFormGroup = new UntypedFormGroup({
     student_name: new UntypedFormControl(null, [Validators.required]),
-    email: new UntypedFormControl(null),
+    email: new UntypedFormControl(null, [Validators.email]),
     contact_number: new UntypedFormControl(null, [Validators.required]),
     whatsapp_number: new UntypedFormControl(null),
     telegram_number: new UntypedFormControl(null),
