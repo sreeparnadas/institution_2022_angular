@@ -9,7 +9,7 @@ import {StyleClassModule} from 'primeng/styleclass';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 
@@ -29,8 +29,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 
     FocusTrapModule,
     StyleClassModule,
+    FormsModule,
     ReactiveFormsModule,
-
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,

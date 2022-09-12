@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ErrorHandler, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // import { ConfirmationService } from 'primeng/api';
 import Swal from 'sweetalert2';
 
 import { BijoyaRegistrationService } from 'src/app/services/bijoya-registration.service';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {FormGroup, UntypedFormControl, FormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import { BijoyaRegistration } from 'src/app/models/bijoya-regitration.model';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import {CommonService} from "../../services/common.service";
@@ -24,6 +24,7 @@ export class BijoyaRegistrationComponent implements OnInit {
   msgs: { severity: string; summary: string; detail: string }[] = [];
   showErrorMessage: boolean = false;
   errorMessage: any;
+  errors: any={};
 
 
 
@@ -41,13 +42,13 @@ export class BijoyaRegistrationComponent implements OnInit {
   } = {};
 
   studentInfo: BijoyaRegistration[] = [];
-  studentInfoFormGroup = new UntypedFormGroup({
-    student_name: new UntypedFormControl(null, [Validators.required]),
-    email: new UntypedFormControl(null, [Validators.email]),
-    contact_number: new UntypedFormControl(null, [Validators.required]),
-    whatsapp_number: new UntypedFormControl(null),
-    telegram_number: new UntypedFormControl(null),
-    member_number: new UntypedFormControl(1, [Validators.required]),
+  studentInfoFormGroup = new FormGroup({
+    studentName: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.email]),
+    contactNumber: new FormControl(null, [Validators.required]),
+    whatsappNumber: new FormControl(null),
+    telegramNumber: new FormControl(null),
+    memberNumber: new FormControl(1, [Validators.required]),
   });
 
 
@@ -57,7 +58,8 @@ export class BijoyaRegistrationComponent implements OnInit {
     // private activatedRoute: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private errorHandler: ErrorHandler
   ) {
     this.isDeviceXS=commonService.getDeviceXs();
   }
@@ -65,6 +67,7 @@ export class BijoyaRegistrationComponent implements OnInit {
   ngOnInit(): void {
 
     this.bijoyaRegistrationService.saveStudentInfo(this.studentData);
+
   }
 
 
@@ -81,16 +84,16 @@ export class BijoyaRegistrationComponent implements OnInit {
 
       accept: () => {
         console.log("test save");
-        this.studentData.studentName = this.studentInfoFormGroup.value.student_name;
-        this.studentData.email = this.studentInfoFormGroup.value.email;
-        this.studentData.contactNumber = this.studentInfoFormGroup.value.contact_number;
-        this.studentData.whatsappNumber = this.studentInfoFormGroup.value.whatsapp_number;
-        this.studentData.telegramNumber = this.studentInfoFormGroup.value.telegram_number;
-        this.studentData.memberNumber = this.studentInfoFormGroup.value.member_number;
+        // this.studentData.studentName = this.studentInfoFormGroup.value.studentName;
+        // this.studentData.email = this.studentInfoFormGroup.value.email;
+        // this.studentData.contactNumber = this.studentInfoFormGroup.value.contactNumber;
+        // this.studentData.whatsappNumber = this.studentInfoFormGroup.value.whatsappNumber;
+        // this.studentData.telegramNumber = this.studentInfoFormGroup.value.telegramNumber;
+        // this.studentData.memberNumber = this.studentInfoFormGroup.value.memberNumber;
         // console.log(this.studentData);
 
 
-        this.bijoyaRegistrationService.saveStudentInfo(this.studentData).subscribe(response => {
+        this.bijoyaRegistrationService.saveStudentInfo(this.studentInfoFormGroup.value).subscribe(response => {
 
           if (response.success==1){
             // this.showSuccess("Record added successfully");
