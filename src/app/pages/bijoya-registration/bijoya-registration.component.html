@@ -5,21 +5,23 @@
         <h1>Regitration Form</h1>
         <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
             <div class="">
+
+
                 <div class="form-group">
                     <div class="input-group">
-                        <mat-form-field class="example-full-width" hintLabel="Max {{abcd.maxLength}} characters" style="width: 90% !important;">
+                        <mat-form-field class="example-full-width" hintLabel="Max {{studentNameLocal.maxLength}} characters" style="width: 90% !important;">
                             <mat-label><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
-                            <input formControlName="studentName" #abcd maxlength="50" matInput placeholder="Enter Your Name" value="">
-                            <mat-hint align="end">{{abcd.value.length || 0}}/{{abcd.maxLength}}</mat-hint>
+                            <input formControlName="studentName" #studentNameLocal maxlength="50" matInput placeholder="Enter Your Name" value="">
+                            <mat-hint align="end">{{studentNameLocal.value.length || 0}}/{{studentNameLocal.maxLength}} </mat-hint>
                           <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors">
                             <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors['required']">
                               Student Name is required
                             </mat-error>
+                            <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors['minlength']">
+                              Required at least 5 character
+                            </mat-error>
                           </mat-error>
                         </mat-form-field>
-                        <!-- <div class="invalid-tooltip">
-                            Please choose a unique and valid username.
-                        </div> -->
                     </div>
                 </div>
             </div>

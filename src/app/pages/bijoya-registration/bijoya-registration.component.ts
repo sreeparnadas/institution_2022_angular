@@ -43,7 +43,7 @@ export class BijoyaRegistrationComponent implements OnInit {
 
   studentInfo: BijoyaRegistration[] = [];
   studentInfoFormGroup = new FormGroup({
-    studentName: new FormControl(null, [Validators.required]),
+    studentName: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     email: new FormControl(null, [Validators.email]),
     contactNumber: new FormControl(null, [Validators.required]),
     whatsappNumber: new FormControl(null),
@@ -58,8 +58,7 @@ export class BijoyaRegistrationComponent implements OnInit {
     // private activatedRoute: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private commonService: CommonService,
-    private errorHandler: ErrorHandler
+    private commonService: CommonService
   ) {
     this.isDeviceXS=commonService.getDeviceXs();
   }
@@ -78,23 +77,12 @@ export class BijoyaRegistrationComponent implements OnInit {
 
 
 
-      message: 'Do you want to Save this record?',
-      header: 'Delete Confirmation',
+      message: 'Do you want to Register?',
+      header: 'I am Coming',
       icon: 'pi pi-info-circle',
 
       accept: () => {
-        console.log("test save");
-        // this.studentData.studentName = this.studentInfoFormGroup.value.studentName;
-        // this.studentData.email = this.studentInfoFormGroup.value.email;
-        // this.studentData.contactNumber = this.studentInfoFormGroup.value.contactNumber;
-        // this.studentData.whatsappNumber = this.studentInfoFormGroup.value.whatsappNumber;
-        // this.studentData.telegramNumber = this.studentInfoFormGroup.value.telegramNumber;
-        // this.studentData.memberNumber = this.studentInfoFormGroup.value.memberNumber;
-        // console.log(this.studentData);
-
-
         this.bijoyaRegistrationService.saveStudentInfo(this.studentInfoFormGroup.value).subscribe(response => {
-
           if (response.success==1){
             // this.showSuccess("Record added successfully");
             // console.log(response.data);
