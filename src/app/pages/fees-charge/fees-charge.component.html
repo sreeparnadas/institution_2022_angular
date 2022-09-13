@@ -422,13 +422,13 @@
 <!--                        </tbody>-->
 <!--                    </table> -->
 
-                <p-table [value]="feesReceivedArray" dataKey="courseName">
+                <p-table [value]="feesReceivedArray" dataKey="courseName" responsiveLayout="scroll">
                   <ng-template pTemplate="header">
                     <tr>
                       <th style="width: 3rem"></th>
                       <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
-                      <th>courseName</th>
-                      <th>feesTotal</th>
+                      <th>Course</th>
+                      <th>Total Charged</th>
 
                     </tr>
                   </ng-template>
@@ -439,7 +439,7 @@
                       </td>
                       <td>{{fees.studentName}}</td>
                       <td>{{fees.courseName}}</td>
-                      <td>{{fees.feesTotal}}</td>
+                      <td>{{fees.feesTotal | currency: 'INR'}}</td>
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="rowexpansion" let-fee>
@@ -449,26 +449,26 @@
                           <p-table [value]="fee.feesDetails" dataKey="id">
                             <ng-template pTemplate="header">
                               <tr>
-                              <th >Transaction Number </th>
-                              <th >Particulars </th>
-                              <th >Amount </th>
-
+                                <th >Date </th>
+                                <th >Transaction Number </th>
+                                <th >Particulars </th>
+                                <th >Amount </th>
                               </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-feeDetail>
                               <tr>
+                                <td>{{feeDetail.transaction_date | date:'dd/MM/yyyy'}}</td>
                                 <td>{{feeDetail.transaction_number}}</td>
                                 <td>{{feeDetail.ledger_name}}</td>
-                                <td>{{feeDetail.amount}}</td>
-
+                                <td>{{feeDetail.amount | currency: 'INR'}}</td>
                               </tr>
                             </ng-template>
                           </p-table>
                         </div>
                       </td>
-                </tr>
+                  </tr>
                 </ng-template>
-                </p-table>
+              </p-table>
 
 
                 </div>
