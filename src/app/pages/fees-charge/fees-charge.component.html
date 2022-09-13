@@ -446,22 +446,26 @@
                     <tr>
                       <td colspan="7">
                         <div class="p-p-3">
-                          <p-table [value]="fee.studentCourseRegistrationId" dataKey="studentCourseRegistrationId">
+                          <p-table [value]="fee.feesDetails" dataKey="id">
                             <ng-template pTemplate="header">
-                    <tr>
-                      <th >Id </th>
+                              <tr>
+                              <th >Transaction Number </th>
+                              <th >Particulars </th>
+                              <th >Amount </th>
 
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body">
-                    <tr>
-                      <td>Test</td>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-feeDetail>
+                              <tr>
+                                <td>{{feeDetail.transaction_number}}</td>
+                                <td>{{feeDetail.ledger_name}}</td>
+                                <td>{{feeDetail.amount}}</td>
 
-                    </tr>
-                  </ng-template>
-                </p-table>
-              </div>
-                </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                        </div>
+                      </td>
                 </tr>
                 </ng-template>
                 </p-table>
