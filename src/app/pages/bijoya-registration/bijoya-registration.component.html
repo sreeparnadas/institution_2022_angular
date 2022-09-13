@@ -38,7 +38,7 @@
                             <mat-label><i class="bi bi-envelope-fill mr-1"></i>Email</mat-label>
                             <input formControlName="email" matInput #studentEmail placeholder="Enter Your valid Email" value="">
                             <mat-hint align="end">
-                                {{studentEmail.value.length || 0}}                                
+                                {{studentEmail.value.length || 0}}
                             </mat-hint>
                             <mat-error *ngIf="studentInfoFormGroup.controls['email'].errors">
                                 <mat-error *ngIf="studentInfoFormGroup.controls['email'].errors['email']">
@@ -56,17 +56,17 @@
                     <div class="input-group">
                         <mat-form-field class="example-full-width" style="width: 90% !important;" hintLabel="Contact number is required.">
                             <mat-label><i class="bi bi-telephone-fill mr-1"></i>Contact Number</mat-label>
-                            <input formControlName="contactNumber" matInput placeholder="Enter Your Contact Number" value="">                            
+                            <input formControlName="contactNumber" #contactNumber matInput placeholder="Enter Your Contact Number" value="">
                             <mat-error *ngIf="studentInfoFormGroup.controls['contactNumber'].errors">
                                 <mat-error *ngIf="studentInfoFormGroup.controls['contactNumber'].errors['required']">
                                     Contact Number Required.
                                 </mat-error>
                             </mat-error>
-                            
+
                         </mat-form-field>
                         <div align="end">
                             add numbers to
-                            <i class="bi bi-whatsapp m-2" (click)="addWhatsappNumber()"></i>
+                            <i class="bi bi-whatsapp m-2" (click)="addWhatsappNumber(contactNumber.value)"></i>
                             <i class="bi bi-telegram" (click)="addTelegramNumber()"></i>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
 
     <button type="submit" [ngClass]="isDeviceXS? 'col-11 text-center': 'col-2 text-center'" class="btn btn-primary m-1"
         (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid">Submit </button>
-        
+
 </div>
 <!-- <div>{{studentInfoFormGroup | json}}</div> -->
 
