@@ -149,4 +149,14 @@ export class BijoyaRegistrationComponent implements OnInit {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
   }
 
+  addWhatsappNumber(){
+    console.log("Whatapp");
+    this.studentInfoFormGroup.value.whatsappNumber = this.studentInfoFormGroup.value.contactNumber;
+    console.log(this.studentInfoFormGroup.value);
+  }
+
+  addTelegramNumber(){
+    console.log("Whatapp");
+  }
+
 }
