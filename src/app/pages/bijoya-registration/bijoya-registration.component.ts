@@ -154,8 +154,11 @@ export class BijoyaRegistrationComponent implements OnInit {
     this.studentInfoFormGroup.get('whatsappNumber').setValue(contactNumber);
   }
 
-  addTelegramNumber(){
-    console.log("Whatapp");
+  addTelegramNumber(contactNumber: string){
+    // console.log("Whatapp");
+    // @ts-ignore
+    this.studentInfoFormGroup.get('telegramNumber')?.setValue(contactNumber);
+
   }
 
 }

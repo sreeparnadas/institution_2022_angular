@@ -54,6 +54,7 @@
             <div class=" ">
                 <div class="form-group ">
                     <div class="input-group">
+                        
                         <mat-form-field class="example-full-width" style="width: 90% !important;" hintLabel="Contact number is required.">
                             <mat-label><i class="bi bi-telephone-fill mr-1"></i>Contact Number</mat-label>
                             <input formControlName="contactNumber" #contactNumber matInput placeholder="Enter Your Contact Number" value="">
@@ -67,7 +68,7 @@
                         <div align="end">
                             add numbers to
                             <i class="bi bi-whatsapp m-2" (click)="addWhatsappNumber(contactNumber.value)"></i>
-                            <i class="bi bi-telegram" (click)="addTelegramNumber()"></i>
+                            <i class="bi bi-telegram" (click)="addTelegramNumber(contactNumber.value)"></i>
                         </div>
                     </div>
                 </div>
@@ -92,7 +93,7 @@
                         <mat-form-field class="example-full-width" style="width: 90% !important;">
                             <mat-label><i class="bi bi-telegram mr-1"></i>Telegram Number</mat-label>
                             <input formControlName="telegramNumber" matInput placeholder="Enter Your Telegram Number"
-                                value="">
+                            value="studentInfoFormGroup.value.telegramNumber">
                         </mat-form-field>
                     </div>
                 </div>
