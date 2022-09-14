@@ -422,21 +422,24 @@
 <!--                        </tbody>-->
 <!--                    </table> -->
 
-                <p-table [value]="feesReceivedArray" dataKey="courseName" responsiveLayout="scroll">
+                <p-table [value]="feesReceivedArray" dataKey="courseName" responsiveLayout="scroll" >
                   <ng-template pTemplate="header">
                     <tr>
                       <th style="width: 3rem"></th>
+                      <th>SL</th>
                       <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
                       <th>Course</th>
-                      <th>Total Charged</th>
+                      <th pSortableColumn="feesTotal">Total Charged <p-sortIcon field="feesTotal"></p-sortIcon></th>
 
                     </tr>
                   </ng-template>
-                  <ng-template pTemplate="body" let-fees let-expanded="expanded">
+                  <ng-template pTemplate="body" let-fees let-expanded="expanded" let-rowIndex="rowIndex">
                     <tr>
                       <td>
                         <button type="button" pButton pRipple [pRowToggler]="fees" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                       </td>
+
+                      <td>{{rowIndex+1}}</td>
                       <td>{{fees.studentName}}</td>
                       <td>{{fees.courseName}}</td>
                       <td>{{fees.feesTotal | currency: 'INR'}}</td>
