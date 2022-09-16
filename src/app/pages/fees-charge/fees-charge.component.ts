@@ -202,7 +202,7 @@ export class FeesChargeComponent implements OnInit {
 
   editFeesReceived(feeDetails:any){
     this.hiddenPopup=false;
-    console.log("id:",feeDetails.id);
+    //console.log("id:",feeDetails);
     this.event=0;
     this.onTabChanged(this.event);
     this.isShown = true;

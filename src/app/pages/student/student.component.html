@@ -15,10 +15,10 @@
       <div class="card-header p-3 mt-2">
         <p style="color: #1e293b; font-size: 36px;">Student Entry Form</p>
       </div>
-      <div class="card-body">
+      <div class="card-body bg">
         <div>
           <!--          Start of stepper-->
-          <mat-stepper [linear]="isLinear" #stepper style="min-height: 50vh; background-color: grey;background-image: linear-gradient(to right, grey , white); border-radius: 25px 25px; -webkit-box-shadow: 0 10px 6px -6px #777;-moz-box-shadow: 0 10px 6px -6px #777;box-shadow: 0 10px 6px -6px #777;">
+          <mat-stepper [linear]="isLinear" #stepper style="min-height: 50vh; border-radius: 10px 10px; -webkit-box-shadow: 0 10px 6px -6px #777;-moz-box-shadow: 0 10px 6px -6px #777;box-shadow: 0 10px 6px -6px #777;">
             <mat-step [stepControl]="studentNameFormGroup" label="Name">
               <form [formGroup]="studentNameFormGroup">
 
@@ -26,6 +26,7 @@
 
                 <div class="form-group">
                   <mat-form-field class="col-12">
+                    <mat-label><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
                     <input matInput placeholder="Student Name"  (blur)="sameAsBillName()" formControlName="studentName">
                     <div *ngIf="studentNameFormGroup.controls['studentName'].errors && studentNameFormGroup.controls['studentName'].touched" >
                       <mat-error class="text-right" *ngIf="studentNameFormGroup.controls['studentName'].errors['required']">Student Name is required</mat-error>
@@ -34,6 +35,7 @@
                 </div>
                 <div class="form-group">
                   <mat-form-field class="col-12">
+                    <mat-label><i class="bi bi-person-circle mr-1"></i>Billing Name</mat-label>
                     <input matInput placeholder="Billing Name" formControlName="billingName" value={{billingName}}>
                   </mat-form-field>
 
@@ -63,6 +65,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-11 bd-highlight">
                       <mat-form-field class="col-12">
+                        <mat-label><i class="bi bi-person-circle mr-1"></i>Father Name</mat-label>
                         <input matInput placeholder="Father Name" formControlName="fatherName" #fatherName>
                       </mat-form-field>
                     </div>
@@ -76,6 +79,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-11 bd-highlight">
                       <mat-form-field class="col-12">
+                        <mat-label><i class="bi bi-person-circle mr-1"></i>Mother Name</mat-label>
                         <input matInput placeholder="Mother Name" formControlName="motherName" #mother>
                       </mat-form-field>
                     </div>
@@ -90,6 +94,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-8 bd-highlight">
                       <mat-form-field class="col-12">
+                        <mat-label><i class="bi bi-person-circle mr-1"></i>Guardian Name</mat-label>
                         <input matInput placeholder="Guardian" formControlName="guardianName">
                       </mat-form-field>
                     </div>
@@ -256,7 +261,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-8 bd-highlight">
                       <mat-form-field style = "width:100%">
-                        <mat-label>Guardian Contact</mat-label>
+                        <mat-label><i class="bi bi-telephone-fill mr-1"></i>Guardian Contact</mat-label>
                         <input matInput formControlName="guardianContactNumber" placeholder="Guardian Contact" required>
                       </mat-form-field>
                     </div>
@@ -265,7 +270,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
                       <mat-form-field style = "width:100%">
-                        <mat-label>WhatsApp Number</mat-label>
+                        <mat-label><i class="bi bi-whatsapp mr-1"></i>Whatsapp Number</mat-label>
                         <input matInput formControlName="whatsappNumber" placeholder="WhatsApp Number" required>
                       </mat-form-field>
                     </div>
@@ -274,7 +279,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
                       <mat-form-field style = "width:100%">
-                        <mat-label>E-Mail</mat-label>
+                        <mat-label><i class="bi bi-envelope-fill mr-1"></i>Email</mat-label>
                         <input matInput="email" formControlName="email" placeholder="Enter Your E-Mail" required>
                       </mat-form-field>
                     </div>
