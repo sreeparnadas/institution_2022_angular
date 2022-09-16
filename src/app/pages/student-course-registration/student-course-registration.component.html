@@ -1,4 +1,4 @@
-<div class="container-fluid page">
+<div class="container-fluid page" style="background-color:#121212;">
   <div class="page__box p-3 mt-2">Student To Course Entry Form</div>
     <div class="page__content shadow p-3 position-relative">
     <p-toast></p-toast>
@@ -6,14 +6,14 @@
     <p-toast position="top-center" key="tc"></p-toast>
     <p-toast position="bottom-center" key="bc"></p-toast>
      <!-- Tab -------------------------------------- -->
-     <div style="background-color:  rgb(6, 6, 6);">
-      <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [selectedIndex]="active" animationDuration="200ms">
+     <div style="background-color:  rgb(85,85,85);">
+      <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="active" animationDuration="200ms">
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">trending_up</mat-icon>
             Entry Tab
           </ng-template>
-          <div class="p-3 bg-info flex-fill" style="width:100% ;border: 2px dotted black; border-radius: 20px; ">
+          <div class="p-3 flex-fill" style="width:100% ; ">
             <div class="container">
               <form [formGroup]="studentToCourseFormGroup">
                   <div class="row">

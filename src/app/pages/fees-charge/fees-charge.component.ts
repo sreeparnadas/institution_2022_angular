@@ -141,6 +141,7 @@ export class FeesChargeComponent implements OnInit {
   getAllReceivedFees(){
     this.transactionServicesService.fetchAllFeesReceived().subscribe(response=>{
       this.feesReceivedArray=response.data;
+      console.log("feesReceivedArray:",this.feesReceivedArray);
     })
   }
 

@@ -35,6 +35,8 @@ export class StudentCourseRegistrationComponent implements OnInit {
   studentTocourses: StudentToCourse[] = [];
   ledger_id: any[] = [];
   course_id: any[]= [];
+  event:any;
+  labelName:any;
   studentToCourseFormGroup : FormGroup | any;
   tempItemValueObj!: object;
   studentTocourseData: {
@@ -116,7 +118,10 @@ export class StudentCourseRegistrationComponent implements OnInit {
   }
   active=0;
   onTabChanged(event:any){
-    console.log(event)
+    this.event=event;
+    console.log(this.event)
+    /* this.labelName = event.tab.textLabel;
+    console.log(this.labelName) */
   }
   
    
@@ -214,7 +219,9 @@ export class StudentCourseRegistrationComponent implements OnInit {
   }
   editStudentToCourse(courseTostudentData:any){
     this.isShown = true;
-    console.log(courseTostudentData);
+    this.event=0;
+    this.onTabChanged(this.event);
+    //console.log(courseTostudentData);
     this.studentToCourseFormGroup.patchValue({transactionMasterID: courseTostudentData.transaction_masters_id});
     this.studentToCourseFormGroup.patchValue({studentToCourseID: courseTostudentData.id});
     this.studentToCourseFormGroup.patchValue({ledger_id: courseTostudentData.ledger_id});
