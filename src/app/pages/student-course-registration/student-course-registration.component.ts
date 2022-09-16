@@ -34,15 +34,9 @@ export class StudentCourseRegistrationComponent implements OnInit {
   durationTypes: any[] = [];
   studentTocourses: StudentToCourse[] = [];
   ledger_id: any[] = [];
-<<<<<<< HEAD
-  course_id: any[]= [];
-  event:any;
-  labelName:any;
-  studentToCourseFormGroup : FormGroup | any;
-=======
+
   course_id: any[] = [];
   studentToCourseFormGroup: FormGroup | any;
->>>>>>> 1ed6df9ee953a1b91d1c905484e3d6dab8d8cb84
   tempItemValueObj!: object;
   studentTocourseData: {
     id?: number;
@@ -120,18 +114,11 @@ export class StudentCourseRegistrationComponent implements OnInit {
       { value: 2, name: 'DCA' }
     ];
   }
-<<<<<<< HEAD
-  active=0;
-  onTabChanged(event:any){
-    this.event=event;
-    console.log(this.event)
-    /* this.labelName = event.tab.textLabel;
-    console.log(this.labelName) */
-=======
+
   active = 0;
   onTabChanged(event: any) {
     console.log(event)
->>>>>>> 1ed6df9ee953a1b91d1c905484e3d6dab8d8cb84
+
   }
 
 
@@ -229,9 +216,6 @@ export class StudentCourseRegistrationComponent implements OnInit {
   }
   editStudentToCourse(courseTostudentData: any) {
     this.isShown = true;
-<<<<<<< HEAD
-    this.event=0;
-    this.onTabChanged(this.event);
     //console.log(courseTostudentData);
     this.studentToCourseFormGroup.patchValue({transactionMasterID: courseTostudentData.transaction_masters_id});
     this.studentToCourseFormGroup.patchValue({studentToCourseID: courseTostudentData.id});
@@ -243,19 +227,6 @@ export class StudentCourseRegistrationComponent implements OnInit {
     this.studentToCourseFormGroup.patchValue({effective_date: courseTostudentData.effective_date});
     this.studentToCourseFormGroup.patchValue({actual_course_duration: courseTostudentData.actual_course_duration});
     this.studentToCourseFormGroup.patchValue({duration_type_id: courseTostudentData.duration_type_id});
-=======
-    console.log(courseTostudentData);
-    this.studentToCourseFormGroup.patchValue({ transactionMasterID: courseTostudentData.transaction_masters_id });
-    this.studentToCourseFormGroup.patchValue({ studentToCourseID: courseTostudentData.id });
-    this.studentToCourseFormGroup.patchValue({ ledger_id: courseTostudentData.ledger_id });
-    this.studentToCourseFormGroup.patchValue({ course_id: courseTostudentData.course_id });
-    this.studentToCourseFormGroup.patchValue({ base_fee: courseTostudentData.base_fee });
-    this.studentToCourseFormGroup.patchValue({ discount_allowed: courseTostudentData.discount_allowed });
-    this.studentToCourseFormGroup.patchValue({ joining_date: courseTostudentData.joining_date });
-    this.studentToCourseFormGroup.patchValue({ effective_date: courseTostudentData.effective_date });
-    this.studentToCourseFormGroup.patchValue({ actual_course_duration: courseTostudentData.actual_course_duration });
-    this.studentToCourseFormGroup.patchValue({ duration_type_id: courseTostudentData.duration_type_id });
->>>>>>> 1ed6df9ee953a1b91d1c905484e3d6dab8d8cb84
 
   }
   deleteStudentToCourse(courseTostudentData: any) {

@@ -13,11 +13,7 @@
             <mat-icon class="example-tab-icon">trending_up</mat-icon>
             Entry Tab
           </ng-template>
-<<<<<<< HEAD
-          <div class="p-3 flex-fill" style="width:100% ; ">
-=======
           <div class="p-3 flex-fill" style="width:100% ; border-radius: 10px; background-color: #94a3b8;">
->>>>>>> 1ed6df9ee953a1b91d1c905484e3d6dab8d8cb84
             <div class="container">
               <form [formGroup]="studentToCourseFormGroup">
                   <div class="row">
@@ -75,7 +71,7 @@
                         </div>
                         <mat-datepicker-toggle matSuffix [for]="joining_date"></mat-datepicker-toggle>
                         <mat-datepicker #joining_date></mat-datepicker>
-  
+
                       </mat-form-field>
                     </div>
                     <div class="col-sm-4">
@@ -87,7 +83,7 @@
                         </div>
                         <mat-datepicker-toggle matSuffix [for]="effective_date"></mat-datepicker-toggle>
                         <mat-datepicker #effective_date></mat-datepicker>
-  
+
                       </mat-form-field>
                     </div>
                     <div class="col-sm-4">
@@ -116,17 +112,17 @@
                           placeholder="Duration Type">
                       </ng-select>
                     </div>
-                   
+
                   </div>
                   <div align="right">
                     <button pButton (click)="clearStudentToCourse()">
                       <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                     </button>&nbsp;&nbsp;&nbsp;
-  
+
                     <button pButton [disabled]="!isValidForm()" (click)="saveStudentToCourse()" *ngIf="!isShown">
                       <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                     </button>
-  
+
                     <button pButton [disabled]="!isValidForm()" (click)="updateStudentToCourse()" *ngIf="isShown">
                       <i class="bi bi-save" style="font-size: 1rem"> Update </i>
                     </button>
@@ -197,7 +193,7 @@
                  </ng-template>
               </p-table>
             </div>
-      
+
       </div>
         </mat-tab>
 
@@ -220,11 +216,11 @@
 <!-- start working -->
     <div class="d-flex">
         <!-- Start working with Left div (panel) -->
-        
+
         <!-- End working with Left div (panel) -->
 
          <!-- start working with Right div (panel) -->
-        
+
          <!-- End working with Right div (panel) -->
     </div>
 <!-- End working -->
@@ -240,7 +236,7 @@
   </pre>
   <pre>
     courses = {{courses | json}}
-  </pre> 
+  </pre>
   <pre>
     update code = {{studentTocourseData | json}}
   </pre>
