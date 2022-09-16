@@ -188,26 +188,6 @@
                   </div>
                 </form>
               </fieldset>
-              <!--  <legend class="float-none w-auto">Enter Account Details</legend>
-                    <form [formGroup]="BankReceivedFormGroup">
-                      <div class="d-flex flex-row bd-highlight mb-3" >
-                        <div class="p-2 col-4 bd-highlight" style="font-size: medium; margin-right: 5px;">
-
-
-
-                      </div>
-                      <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
-
-                        </div>
-                        <div class="p-2 col-3 bd-highlight" style="font-size: medium;margin-right: 5px; ">
-
-                        </div>
-
-                      </div>
-                    </form>
-
-                  </div>
-                </fieldset> -->
 
 
               <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle"
@@ -221,9 +201,9 @@
                 </ng-template>
               </p-confirmDialog>
             </div>
-            <!-- End working with Left div (panel) -->
 
           </mat-tab>
+
 
           <mat-tab>
             <ng-template mat-tab-label>
@@ -232,216 +212,79 @@
             </ng-template>
             <!-- start working with Right div (panel) -->
             <div class="p-3 flex-fill" style="width:100% ;">
-              <div class="container" *ngIf="!showBox" style="font-size:medium; background-color: white;">
-                <div style="border: 2px dotted rgb(1, 1, 19);">
-                  <div class="row">
-                    <div class="col-2 ">
-                      <img src="assets/img/baitLogo.png" width="100px" alt="AdminLTE Logo" style="opacity: .8">
-                    </div>
-                    <div class="col-10" align="center">
 
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: large; font-family: 'Cooper Black';">
-                        Barrackpore Academy Of Information Technology</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">Stalin Nagar, Barrackpore,
-                        Chiramore, Pin:700120</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">
-                        E-mail;barrackporeacademyofit2014@gmail.com | Contact: 7605887990</p>
+              <h1>Fees Charge List</h1>
 
-                      <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-                    </div>
 
-                  </div>
 
-                </div>
-                <div class="row">
-                  <div class="col-7 " style="font-size:medium;">
-                    <table>
+              <p-table [value]="feesReceivedArray" dataKey="courseName" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
                       <tr>
-                        <td>Student Name</td>
-                        <td>:</td>
-                        <th></th>
+                        <th style="width: 3rem"></th>
+                        <th>SL</th>
+                        <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon>
+                        </th>
+                        <th>Course</th>
+                        <th pSortableColumn="feesTotal">Total Charged <p-sortIcon field="feesTotal"></p-sortIcon>
+                        </th>
+
                       </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-fees let-expanded="expanded" let-rowIndex="rowIndex">
                       <tr>
-                        <td>Contact No</td>
-                        <td>:</td>
-                        <th></th>
+                        <td>
+                          <button type="button" pButton pRipple [pRowToggler]="fees"
+                                  class="p-button-text p-button-rounded p-button-plain"
+                                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                        </td>
+                        <td>{{rowIndex+1}}</td>
+                        <td>{{fees.studentName}}</td>
+                        <td>{{fees.courseName}}</td>
+                        <td>{{fees.feesTotal | currency: 'INR'}}</td>
                       </tr>
+                    </ng-template>
+                    <ng-template pTemplate="rowexpansion" let-fee class="col-12">
                       <tr>
-                        <td>Course Name</td>
-                        <td>:</td>
-                        <th></th>
+                        <td colspan="7">
+                          <div class="p-3">
+                            <!--Inner table-->
+                            <table class="table table-striped">
+                              <thead>
+                              <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Transaction Number</th>
+                                <th scope="col">Particulars</th>
+                                <th scope="col">Amount</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let feeDetail of fee.feesDetails">
+                                  <td>{{feeDetail.transaction_date | date:'dd/MM/yyyy'}}</td>
+                                  <td>{{feeDetail.transaction_number}}</td>
+                                  <td>{{feeDetail.ledger_name}}</td>
+                                  <td>{{feeDetail.amount | currency: 'INR'}}</td>
+                                  <td><button type="button" class="btn btn-success" (click)="editFeesReceived(feeDetail)"><i class="bi bi-pen"></i></button></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!--inner table end-->
+                          </div>
+                        </td>
                       </tr>
-                    </table>
-                  </div>
-                  <div class="col-5 " style="font-size:medium;">
-                    <table>
-                      <tr>
-                        <td>Bill No</td>
-                        <td>:</td>
-                        <th></th>
-                      </tr>
-                      <tr>
-                        <td>Bill Date</td>
-                        <td>:</td>
-                        <th></th>
-                      </tr>
-                      <tr>
-                        <td>Payment Date</td>
-                        <td>:</td>
-                        <th></th>
-                      </tr>
-                    </table>
-                  </div>
-                  <div class="row">
-                    <div class="col-md text-center">
-                      <table style="border-collapse: collapse; width: 100%; margin:0 auto; font-size:medium;">
-                        <thead>
-                          <tr
-                            style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
-                            <th>Sl No</th>
-                            <th>Fees Name</th>
-                            <th class="text-right">Amount</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right"></td>
-                          </tr>
-
-                        </tbody>
-                        <tfoot>
-                          <tr style="background-color: rgb(228, 227, 227);">
-                            <th></th>
-                            <th>Discount(-)</th>
-                            <th class="text-right"></th>
-                          </tr>
-                          <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
-                            <th>Total</th>
-                            <td></td>
-                            <th class="text-right"></th>
-                          </tr>
-                          <tr>
-                            <th>In Words:</th>
-                            <td>:</td>
-                            <th class="text-left"></th>
-                          </tr>
-                          <tr style="background-color: lightgrey; border: 1px solid rgb(1, 1, 19);">
-                            <td>Next Payment Date</td>
-                            <th></th>
-                            <th class="text-left">Current Due: &nbsp; </th>
-                          </tr>
-                        </tfoot>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="row" style="font-size: small;">
-                    <div class="col-7">
-                      Notice:<p style="margin-bottom: 0 ;margin-top: 0 ; font-style: oblique; font-size: small;">1) It
-                        is Computer Generated Bill</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ;font-style: oblique;">2) Advanced Fees Cannot be
-                        Refund.</p>
-
-                    </div>
-                    <div class="col-3 ">
-                      <p class="text-right">Signature</p>
-                      <p class="text-right">-----------------</p>
-                    </div>
-                  </div>
-                  <div mat-dialog-actions>
-                    <button class="btn btn-danger" (click)="onClickedOutside($event)">Close</button>
-                    <button class="btn btn-success" printSectionId="pdfTable" printTitle="Develop By Ronit"
-                      ngxPrint>Print</button>
-
-                  </div>
-                </div>
-              </div>
-              <!--End print DIV-->
-              <div class="container" *ngIf="showBox" style="font-size:medium; background-color: white;">
-
-                <h1>Fees Charge List</h1>
 
 
-                <p-table [value]="feesReceivedArray" dataKey="courseName" responsiveLayout="scroll">
-                  <ng-template pTemplate="header">
-                    <tr>
-                      <th style="width: 3rem"></th>
-                      <th>SL</th>
-                      <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon>
-                      </th>
-                      <th>Course</th>
-                      <th pSortableColumn="feesTotal">Total Charged <p-sortIcon field="feesTotal"></p-sortIcon>
-                      </th>
 
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-fees let-expanded="expanded" let-rowIndex="rowIndex">
-                    <tr>
-                      <td>
-                        <button type="button" pButton pRipple [pRowToggler]="fees"
-                          class="p-button-text p-button-rounded p-button-plain"
-                          [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                      </td>
 
-                      <td>{{rowIndex+1}}</td>
-                      <td>{{fees.studentName}}</td>
-                      <td>{{fees.courseName}}</td>
-                      <td>{{fees.feesTotal | currency: 'INR'}}</td>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="rowexpansion" let-fee>
-                    <tr>
-                      <td colspan="7">
-                        <div class="p-p-3">
-                          <p-table [value]="fee.feesDetails" dataKey="id">
-                            <ng-template pTemplate="header">
-                    <tr>
-<<<<<<< HEAD
-                      <th >{{fee.id}}</th>
 
-=======
-                      <th>Date </th>
-                      <th>Transaction Number </th>
-                      <th>Particulars </th>
-                      <th>Amount </th>
->>>>>>> 1ed6df9ee953a1b91d1c905484e3d6dab8d8cb84
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-feeDetail>
-                    <tr>
-                      <td>{{feeDetail.transaction_date | date:'dd/MM/yyyy'}}</td>
-                      <td>{{feeDetail.transaction_number}}</td>
-                      <td>{{feeDetail.ledger_name}}</td>
-                      <td>{{feeDetail.amount | currency: 'INR'}}</td>
-                      <td><button type="button" class="btn btn-success" (click)="editFeesReceived(feeDetail)"><i
-                            class="bi bi-pen"></i></button> &nbsp;
-                    </tr>
-                  </ng-template>
-                </p-table>
-              </div>
-              </td>
-              </tr>
-              </ng-template>
+
+                    </ng-template>
               </p-table>
 
 
+
             </div>
+          </mat-tab>
 
-            <!-- End working with Right div (panel) -->
-
-
-      </div>
-      </mat-tab>
-
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-          Upcoming Birthday
-        </ng-template>
-
-        Content 3
-      </mat-tab>
       </mat-tab-group>
     </div>
     <!-- end tab---------------------------------------------- -->
@@ -449,3 +292,15 @@
   </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
