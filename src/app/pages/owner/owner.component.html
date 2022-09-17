@@ -17,11 +17,10 @@
 
 
 
-<div class="d-flex m-2 flex-column">
-  <div [ngClass]="isDeviceXS? 'col-12 text-center': 'col-3 text-center'">
+<!-- <div class="d-flex m-2 flex-column">
     <h1>বিজয়া সম্মেলনী 2022 Regitration Form</h1>
-    <div>
-      <p-table [value]="registratedData">
+    <div class="">
+      <p-table [value]="registratedData" >
         <ng-template pTemplate="header">
             <tr>
                 <th>Student Name</th>
@@ -45,6 +44,31 @@
     </p-table>
     
     </div>
-  </div>
-</div>
+  </div> -->
 <!-- <pre>{{registratedData | json}}</pre> -->
+
+
+
+
+<table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Student Name</th>
+      <th scope="col">Email Id</th>
+      <th scope="col">Contact Numbe</th>
+      <th scope="col">Whatsapp Number</th>
+      <th scope="col">Telegram Number</th>
+      <th scope="col">Member Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of registratedData">
+      <th scope="row">{{data.student_name}}</th>
+      <td>{{data.email}}</td>
+      <td>{{data.contact_number}}</td>
+      <td>{{data.whatsapp_number}}</td>
+      <td>{{data.telegram_number}}</td>
+      <td>{{data.member_number}}</td>
+    </tr>
+  </tbody>
+</table>
