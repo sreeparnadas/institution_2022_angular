@@ -76,6 +76,10 @@ export class CourseComponent implements OnInit {
 
 
   }
+  active=0;
+  onTabChanged(event:any){
+    console.log(event)
+  }
   courseNameFormGroup = new UntypedFormGroup({
     feesModeTypeId : new UntypedFormControl(1, [Validators.required]),
     durationTypeId : new UntypedFormControl(2, [Validators.required]),

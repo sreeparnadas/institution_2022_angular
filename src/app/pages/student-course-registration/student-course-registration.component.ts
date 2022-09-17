@@ -34,7 +34,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
   durationTypes: any[] = [];
   studentTocourses: StudentToCourse[] = [];
   ledger_id: any[] = [];
-
+  event:any;
   course_id: any[] = [];
   studentToCourseFormGroup: FormGroup | any;
   tempItemValueObj!: object;
@@ -116,12 +116,17 @@ export class StudentCourseRegistrationComponent implements OnInit {
   }
 
   active = 0;
+  selectedIndex=0;
   onTabChanged(event: any) {
     console.log(event)
 
   }
-
-
+  clear(table: Table) {
+    table.clear();
+  } 
+  getEventValue($event:any) :string {
+    return $event.target.value;
+  }
   setEffectiveSQL(value: string) {
     this.studentToCourseFormGroup.patchValue({ effective_date: this.commonService.getSQLDate(value) });
   }
@@ -216,6 +221,9 @@ export class StudentCourseRegistrationComponent implements OnInit {
   }
   editStudentToCourse(courseTostudentData: any) {
     this.isShown = true;
+    this.selectedIndex=0;
+    this.event=0;
+    this.onTabChanged(this.event);
     //console.log(courseTostudentData);
     this.studentToCourseFormGroup.patchValue({transactionMasterID: courseTostudentData.transaction_masters_id});
     this.studentToCourseFormGroup.patchValue({studentToCourseID: courseTostudentData.id});
@@ -354,7 +362,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
   }
   clearStudentToCourse() {
     this.isShown = false;
-    this.studentToCourseFormGroup = new FormGroup({
+    /* this.studentToCourseFormGroup = new FormGroup({
       ledger_id: new FormControl(1, [Validators.required]),
       course_id: new FormControl(1, [Validators.required]),
       base_fee: new FormControl(null, [Validators.required]),
@@ -364,6 +372,21 @@ export class StudentCourseRegistrationComponent implements OnInit {
       actual_course_duration: new FormControl(null, [Validators.required]),
       duration_type_id: new FormControl(1, [Validators.required]),
       studentToCourseID: new FormControl(null, [Validators.required])
+    }) */
+    const now = new Date();
+    let val = formatDate(now, 'yyyy-MM-dd', 'en');
+    this.studentToCourseFormGroup = new FormGroup({
+
+      ledger_id: new FormControl(1, [Validators.required]),
+      course_id: new FormControl(1, [Validators.required]),
+      base_fee: new FormControl(null, [Validators.required]),
+      discount_allowed: new FormControl(0, [Validators.required]),
+      joining_date: new FormControl(val),
+      effective_date: new FormControl(val),
+      actual_course_duration: new FormControl(null, [Validators.required]),
+      duration_type_id: new FormControl(1, [Validators.required]),
+      studentToCourseID: new FormControl(0, [Validators.required]),
+      //transactionMasterID: new FormControl(0, [Validators.required])
     })
   }
 }

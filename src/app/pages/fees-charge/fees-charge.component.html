@@ -1,7 +1,7 @@
 
 
 <div class="d-flex flex-column" style="min-height: 100vh;">
-  <div class="p-2 text-center" style="background-color: rgb(77, 68, 68)">Fees Charge</div>
+  <div class="p-2 text-center" style="background-color: rgb(56, 56, 60)">Fees Charge</div>
 
   <div class="p-2 container-fluid rounded d-flex flex-xl-row justify-content-xl-between" [ngClass]="isDeviceXS? 'flex-column': ' flex-row'" >
     <div [ngClass]="isDeviceXS? 'col-12': 'col-7'" class="container-fluid rounded d-flex flex-xl-row justify-content-xl-between flex-row">
@@ -15,7 +15,7 @@
                 Entry
               </ng-template>
               <!-- start working with Left div (panel) -->
-              <div class="p-3 flex-fill" style="background-color: #94a3b8;">
+              <div class="p-3 flex-fill" style="background-color: #a09d9d;;">
                 <form [formGroup]="FeesChargeFormGroup">
                   <div class="row">
                     <div class="col-sm-4">
@@ -41,7 +41,8 @@
                       </ng-select>
                     </div>
                     <div [ngClass]="isDeviceXS? 'col-12': 'col-2'">
-                      <button type="button" class="btn btn-outline-success btn-space" (click)="getActiveCourse();">Go >></button>
+                      <a (click)="getActiveCourse()"><i class="bi bi-link"></i> &nbsp; Go</a>
+                      <!-- <button type="button" class="btn btn-outline-success btn-space" (click)="getActiveCourse();">Go >></button> -->
                     </div>
                   </div>
 
@@ -61,9 +62,10 @@
                       </mat-form-field>
                     </div>
                     <div class="col-sm-3">
-                      <button pButton>
+                      <button type="button" class="btn btn-outline-success btn-space" (click)="onAddFees();">Add</button>
+                     <!--  <button pButton>
                         <i class="bi bi-save" (click)="onAddFees();"> Add </i>
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                   <div class="row">
@@ -101,7 +103,7 @@
                     <td><button type="button" class="btn btn-success"
                                 (click)="onDelete(indexOfelement);">Remove</button></td>
                   </tr>
-                  <tr class="table-dark">
+                  <tr class="table table-striped" style="background-color:rgb(168, 160, 160) ;">
                     <th colspan="2">Grand Total</th>
 
                     <td align="right">{{totalAmount | currency:'INR'}}</td>
@@ -118,7 +120,7 @@
                           (click)="onUpdate();">Update</button>
                   <button type="button" class="btn btn-outline-success btn-space"
                           [disabled]="!FeesChargeFormGroup.valid || FeesChargeFormGroup.value.id" *ngIf="!isShown"
-                          (click)="onSave();">Submit</button>
+                          (click)="onSave();"><i class="fas fa-save"></i>&nbsp; Save</button>
                   <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived"
                           (click)="onCashReceived();">Received Cash</button>
 
@@ -255,8 +257,8 @@
 
       </div>
     </div>
-    <div class="col-5">
-      <div *ngIf="hiddenPopup">
+    <div class="col-5" >
+      <div *ngIf="hiddenPopup" style="background-color:white ;">
         <h1>Fees Charge Details</h1>
         <table class="table table-striped">
           <thead>

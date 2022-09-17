@@ -25,8 +25,14 @@ import {MatMenuModule} from "@angular/material/menu";
 
 import { StudentCourseRegistrationRoutingModule } from './student-course-registration-routing.module';
 import { StudentCourseRegistrationComponent } from './student-course-registration.component';
+import {InputTextModule} from 'primeng/inputtext';
 
+import {CalendarModule} from 'primeng/calendar';
+import {SliderModule} from 'primeng/slider';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ContextMenuModule} from 'primeng/contextmenu';
 
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -53,7 +59,13 @@ import { StudentCourseRegistrationComponent } from './student-course-registratio
     MatDividerModule,
     MatListModule,
     MatFormFieldModule,
-    MatMenuModule
+    MatMenuModule,
+    InputTextModule,
+    CalendarModule,
+    SliderModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    ProgressBarModule
   ]
 })
 export class StudentCourseRegistrationModule { }

@@ -26,6 +26,14 @@ import {TooltipModule} from "primeng/tooltip";
 import {SidebarModule} from "primeng/sidebar";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatIconModule} from "@angular/material/icon";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatListModule} from "@angular/material/list";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
 @NgModule({
   declarations: [
     CourseComponent
@@ -56,7 +64,12 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     TooltipModule,
     SidebarModule,
     NgbModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
+    MatTabsModule,
+    MatCardModule
   ]
 })
 export class CourseModule { }
