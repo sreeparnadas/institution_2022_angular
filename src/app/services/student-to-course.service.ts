@@ -60,6 +60,7 @@ export class StudentToCourseService {
       this.courseSubject.next([...this.courseList]);
     })));
   }
+  
   fetchAllStudentToCourses(){
     return this.http.get<any>(this.commonService.getAPI() + '/getStudentCourseRegistrations')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {

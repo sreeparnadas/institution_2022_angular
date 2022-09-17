@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <h1>Add Items</h1>
     <form class="col-3">
         <div class="form-group">
@@ -13,4 +13,38 @@
             <button data-toggle="tooltip" data-placement="top" title="add filled-up item" class="btn btn-primary">Add Item</button>
         </div>
       </form>
+</div> -->
+
+
+
+<div class="d-flex m-2 flex-column">
+  <div [ngClass]="isDeviceXS? 'col-12 text-center': 'col-3 text-center'">
+    <h1>বিজয়া সম্মেলনী 2022 Regitration Form</h1>
+    <div>
+      <p-table [value]="registratedData">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Student Name</th>
+                <th>Email Id</th>
+                <th>Contact Number</th>
+                <th>Whatsapp Number</th>
+                <th>Telegram Number</th>
+                <th>Member Number</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td>{{data.student_name}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.contact_number}}</td>
+                <td>{{data.whatsapp_number}}</td>
+                <td>{{data.telegram_number}}</td>
+                <td>{{data.member_number}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+    </div>
+  </div>
 </div>
+<!-- <pre>{{registratedData | json}}</pre> -->

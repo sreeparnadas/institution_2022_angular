@@ -61,11 +61,14 @@ export class BijoyaRegistrationComponent implements OnInit {
     private commonService: CommonService
   ) {
     this.isDeviceXS=commonService.getDeviceXs();
+    // this.bijoyaRegistrationService.fetchAllStudentInfo();
   }
 
   ngOnInit(): void {
 
     this.bijoyaRegistrationService.saveStudentInfo(this.studentData);
+    
+
 
   }
 
