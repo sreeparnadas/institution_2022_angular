@@ -3,8 +3,8 @@
 <div class="d-flex flex-column" style="min-height: 100vh;">
   <div class="p-2 text-center" style="background-color: rgb(77, 68, 68)">Fees Charge</div>
 
-  <div class="p-2">
-    <div [ngClass]="isDeviceXS? 'col-12': 'col-6'" class="container-fluid rounded d-flex flex-xl-row justify-content-xl-between flex-row">
+  <div class="p-2 container-fluid rounded d-flex flex-xl-row justify-content-xl-between" [ngClass]="isDeviceXS? 'flex-column': ' flex-row'" >
+    <div [ngClass]="isDeviceXS? 'col-12': 'col-7'" class="container-fluid rounded d-flex flex-xl-row justify-content-xl-between flex-row">
       <div class="container-fluid">
         <!-- Tab -------------------------------------- -->
         <div style="background-color:  rgb(85,85,85);">
@@ -28,59 +28,25 @@
                       </mat-form-field>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <ng-select [items]="studentNameList" fxFlex="100" bindLabel="studentName"
+                  <div  [ngClass]="isDeviceXS? 'column': 'row'">
+                    <div [ngClass]="isDeviceXS? 'col-12': 'col-5'">
+                      <ng-select [items]="studentNameList"  bindLabel="studentName"
                                  (change)="changeCourseId()" class="custom" bindValue="studentId" appendTo="body"
                                  formControlName="studentId" placeholder="Student Name">
                       </ng-select>
                     </div>
-                    <div class="col-sm-5">
-                      <ng-select [items]="courseNameList" fxFlex="100" bindLabel="full_name" class="custom" bindValue="id"
+                    <div [ngClass]="isDeviceXS? 'col-12': 'col-5'">
+                      <ng-select [items]="courseNameList"  bindLabel="full_name" class="custom" bindValue="id"
                                  appendTo="body" formControlName="studentToCourseId" placeholder="Course Name">
                       </ng-select>
                     </div>
-                    <div class="col-sm-2">
-                      <button type="button" class="btn btn-outline-success btn-space" (click)="getActiveCourse();">Go
-                        >></button>
+                    <div [ngClass]="isDeviceXS? 'col-12': 'col-2'">
+                      <button type="button" class="btn btn-outline-success btn-space" (click)="getActiveCourse();">Go >></button>
                     </div>
                   </div>
 
                   <!-- if div active table display -->
-                  <div *ngIf="hiddenPopup">
-                    <h1>Fees Charge Details</h1>
-                    <table class="table table-striped">
-                      <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col" style="display: none;">TransactionId</th>
-                        <th scope="col">Transaction No</th>
-                        <th scope="col">Charge Name</th>
-                        <th scope="col">Fees</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let item of feesChargeDetailsArray; let indexOfelement=index;">
-                        <th scope="row">{{indexOfelement+1}}</th>
-                        <th scope="row" style="display: none;">{{item.id}}</th>
-                        <td>{{item.transaction_number}}</td>
-                        <td>{{item.ledger_name}}</td>
-                        <td align="right">{{item.amount | currency:'INR'}}</td>
-                        <td><button type="button" class="btn btn-success" (click)="editFeesReceived(item)"><i
-                          class="bi bi-pen"></i></button> &nbsp;
-                        </td>
-                      </tr>
-                      <tr style="background-color:rgb(168, 160, 160) ;">
-                        <th align="right" colspan="3">Grand Total</th>
 
-                        <th style="text-align: right;">{{totalFees | currency:'INR'}}</th>
-                        <th>&nbsp;</th>
-                      </tr>
-                      </tbody>
-                    </table>
-                    <hr style="height:2px;border-width:0;color:rgb(65, 62, 62);background-color:gray">
-                  </div>
 
                   <div class="row">
                     <div class="col-sm-5">
@@ -287,6 +253,42 @@
         </div>
         <!-- end tab---------------------------------------------- -->
 
+      </div>
+    </div>
+    <div class="col-5">
+      <div *ngIf="hiddenPopup">
+        <h1>Fees Charge Details</h1>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" style="display: none;">TransactionId</th>
+            <th scope="col">Transaction No</th>
+            <th scope="col">Charge Name</th>
+            <th scope="col">Fees</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of feesChargeDetailsArray; let indexOfelement=index;">
+            <th scope="row">{{indexOfelement+1}}</th>
+            <th scope="row" style="display: none;">{{item.id}}</th>
+            <td>{{item.transaction_number}}</td>
+            <td>{{item.ledger_name}}</td>
+            <td align="right">{{item.amount | currency:'INR'}}</td>
+            <td><button type="button" class="btn btn-success" (click)="editFeesReceived(item)"><i
+              class="bi bi-pen"></i></button> &nbsp;
+            </td>
+          </tr>
+          <tr style="background-color:rgb(168, 160, 160) ;">
+            <th align="right" colspan="3">Grand Total</th>
+
+            <th style="text-align: right;">{{totalFees | currency:'INR'}}</th>
+            <th>&nbsp;</th>
+          </tr>
+          </tbody>
+        </table>
+        <hr style="height:2px;border-width:0;color:rgb(65, 62, 62);background-color:gray">
       </div>
     </div>
   </div>
