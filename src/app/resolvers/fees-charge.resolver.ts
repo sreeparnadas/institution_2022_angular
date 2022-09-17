@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
+  Resolve,
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
@@ -9,7 +9,7 @@ import {TransactionServicesService} from "../services/transaction-services.servi
 @Injectable({
   providedIn: 'root'
 })
-export class FeesChargeResolver implements Resolve<boolean> {
+export class FeesChargeResolver implements Resolve<any> {
   constructor(private transactionServicesService: TransactionServicesService ){
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
