@@ -40,15 +40,15 @@ export class TransactionServicesService {
   fetchAllFeesName(){
     return this.http.get<any>(this.commonService.getAPI() + '/students/feesName')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
-      this.feesNameList=response.data;
-      this.feesNameSubject.next([...this.feesNameList]);
+      // this.feesNameList=response.data;
+      // this.feesNameSubject.next([...this.feesNameList]);
     })));
   }
   fetchAllStudentName(){
     return this.http.get<any>(this.commonService.getAPI() + '/students')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
-      this.studentNameList=response.data;
-      this.studentNameSubject.next([...this.studentNameList]);
+      // this.studentNameList=response.data;
+      // this.studentNameSubject.next([...this.studentNameList]);
     })));
   }
   fetchAllCourseName(){
@@ -77,7 +77,7 @@ export class TransactionServicesService {
     return this.http.post<any>(this.commonService.getAPI() + '/getRegisterCourseByStudentId', data)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
-      console.log("Student to courseList:",this.studentToCourseList); 
+      console.log("Student to courseList:",this.studentToCourseList);
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
   }
@@ -85,7 +85,7 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/getCourseId/'+$id)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
-      console.log("Student to courseList:",this.studentToCourseList); 
+      console.log("Student to courseList:",this.studentToCourseList);
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
   }
@@ -123,7 +123,7 @@ export class TransactionServicesService {
     return this.http.get<any>(this.commonService.getAPI() + '/transactions/feesChargedDetailsMain/'+$id)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
-      console.log("Fees Course Details:",this.studentToCourseList); 
+      console.log("Fees Course Details:",this.studentToCourseList);
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
   }

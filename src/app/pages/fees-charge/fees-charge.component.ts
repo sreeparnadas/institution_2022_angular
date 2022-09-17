@@ -7,7 +7,6 @@ import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "prim
 import { CommonService } from 'src/app/services/common.service';
 import { TransactionServicesService } from 'src/app/services/transaction-services.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { LastTransactionPopupComponent } from '../last-transaction-popup/last-transaction-popup.component';
 
 @Component({
   selector: 'app-fees-charge',
@@ -16,13 +15,12 @@ import { LastTransactionPopupComponent } from '../last-transaction-popup/last-tr
   providers: [ConfirmationService, MessageService]
 })
 export class FeesChargeComponent implements OnInit {
+  isDeviceXS = false;
   checked = false;
   totalFees:number=0;
   studentName:any;
   courseName:any;
   showTableRow:boolean=false;
-  indeterminate = false;
-  labelPosition: 'before' | 'after' = 'after';
   disabled = false;
   hiddenPopup:boolean=false;
   hiddenInput: boolean = false ;
@@ -63,7 +61,7 @@ export class FeesChargeComponent implements OnInit {
   msgs: { severity: string; summary: string; detail: string; }[] | undefined;
   animal: any;
   datepipe!: DatePipe;
- 
+
   constructor(private transactionServicesService: TransactionServicesService,
     private confirmationService: ConfirmationService,
     private activatedRoute: ActivatedRoute,
@@ -74,13 +72,14 @@ export class FeesChargeComponent implements OnInit {
       this.studentNameList = response.feesChargeResolver.studentsCharge.data;
       this.feesNameList = response.feesChargeResolver.feesNames.data;
       });
+    this.isDeviceXS=commonService.getDeviceXs();
     }
 
     ngOnInit(): void {
       const now = new Date();
       let val = formatDate(now, 'yyyy-MM-dd', 'en');
       this.FeesChargeFormGroup = new FormGroup({
-  
+
         studentId : new FormControl(1, [Validators.required]),
         transactionId : new FormControl(0, [Validators.required]),
         comment : new FormControl(),
@@ -89,13 +88,13 @@ export class FeesChargeComponent implements OnInit {
         studentToCourseId:new FormControl(1, [Validators.required]),
         ledgerId : new FormControl(7, [Validators.required]),
       })
-  
+
       this.BankReceivedFormGroup = new FormGroup({
         accountNo : new FormControl(null, [Validators.required]),
         ifscNo : new FormControl(null, [Validators.required]),
         branch : new FormControl(null, [Validators.required])
       })
-  
+
        this.transactionServicesService.fetchAllFeesName().subscribe(response=>{
          this.feesNameList=response.data;
       })
@@ -103,13 +102,12 @@ export class FeesChargeComponent implements OnInit {
         this.studentNameList=response.data;
      })
       this.getAllReceivedFees();
-  
+
     }
-    active=0;
+  selectedIndex=0;
   onTabChanged(event:any){
     this.event=event;
-    //console.log("Tab id:",event.tab);
-    console.log("Tab id:",this.event)
+    console.log(this.event);
     //if(event===1)
   }
   onClickedOutside(e: Event) {
@@ -122,17 +120,12 @@ export class FeesChargeComponent implements OnInit {
     this.totalFees=0;
     this.studentName=data.studentName;
     this.courseName=data.courseName;
-   /*  console.log("studentCourseRegistrationId:",data.studentCourseRegistrationId);
-    console.log("studentName:",data.studentName);
-    console.log("courseName:",data.courseName); */
      this.transactionServicesService.fetchFeesChargeDetailsById(data.studentCourseRegistrationId).subscribe(response=>{
       this.feesChargeDetailsArray=response.data;
-      console.log("FeesChargeDetails:",this.feesChargeDetailsArray);
       for (let val of this.feesChargeDetailsArray) {
         this.totalFees+=val.amount;
       }
-      console.log(this.totalFees);
-    }) 
+    })
     if(this.showTableRow===false){
     this.showTableRow = !this.showTableRow;}
   else{
@@ -200,8 +193,8 @@ export class FeesChargeComponent implements OnInit {
   }
 
   editFeesReceived(feeDetails:any){
+    this.selectedIndex=0;
     this.hiddenPopup=false;
-    //console.log("id:",feeDetails);
     this.event=0;
     this.onTabChanged(this.event);
     this.isShown = true;
@@ -209,7 +202,6 @@ export class FeesChargeComponent implements OnInit {
     this.totalAmount=0;
     this.transactionServicesService.fetchAllTransaction(feeDetails.id).subscribe(response=>{
       this.transactionList=response.data;
-      console.log("array",this.transactionList);
       this.transactionServicesService.fetchAllStudentToCourses(response.data[0].student_id).subscribe(response=>{
         this.courseNameList=response.data;
       })
@@ -230,7 +222,7 @@ export class FeesChargeComponent implements OnInit {
         this.tempFeesArray.push(this.tempItemObj);
         this.totalAmount=Number(this.totalAmount)+Number(val.amount);
       }
-      
+
     })
   }
 
@@ -241,8 +233,8 @@ export class FeesChargeComponent implements OnInit {
      header: 'Delete Confirmation',
      icon: 'pi pi-info-circle',
      accept: () => {
-       
-      
+
+
        let transactionId=this.FeesChargeFormGroup.get('transactionId')?.value;
        let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
        let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
@@ -269,7 +261,6 @@ export class FeesChargeComponent implements OnInit {
          },
          transactionDetails: Object.values(this.tempFeesArray)
        }
-       console.log("tran:",transactionId);
        this.transactionServicesService.updateFeesCharge(transactionId,this.tempObj).subscribe(response => {
          if (response.success === 1){
            this.getAllReceivedFees();
@@ -296,25 +287,22 @@ export class FeesChargeComponent implements OnInit {
    });
 
  }
- 
+
 getActiveCourse(){
   this.hiddenPopup=true;
-   
+
   let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
   let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
 
   this.transactionServicesService.fetchFeesChargeDetailsById(studentToCourseId).subscribe(response=>{
     this.feesChargeDetailsArray=response.data;
-    console.log("FeesChargeDetails:",this.feesChargeDetailsArray);
     for (let val of this.feesChargeDetailsArray) {
       this.totalFees+=val.amount;
     }
-    console.log(this.totalFees);
   })
 this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(response=>{
   this.getCourseIdArray=response.data;
   this.CourseId=response.data[0].course_id;
-  console.log("Course data:", response.data[0].course_id);
     //end code
     this.tempGetActiveCourseObj={
       ledger_id: studentId,
@@ -322,14 +310,13 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
   };
   this.transactionServicesService.fetchAllActiveCourse(this.tempGetActiveCourseObj).subscribe(response=>{
     this.popUpRestultArray=response.data;
-    console.log("received data:", this.popUpRestultArray);
       //end code
-  
+
       })
 
     })
-    
-  
+
+
   }
   onBankReceived(){
     this.hiddenPopup=false;

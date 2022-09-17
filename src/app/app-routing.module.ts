@@ -6,6 +6,7 @@ import {AuthOwnerGuard} from "./services/auth-owner.guard";
 import {CourseResolver} from "./resolvers/course.resolver";
 import { StudentCourseRegistrationResolver } from './resolvers/student-course-registration.resolver';
 import {FeesReceivedResolver} from "./resolvers/fees-received.resolver";
+import {FeesChargeResolver} from "./resolvers/fees-charge.resolver";
 
 
 
@@ -122,7 +123,10 @@ const routes: Routes = [
 
   { path: 'TextCarouselNGX', loadChildren: () => import('./pages/birthday/text-carousel-ngx/text-carousel-ngx.module').then(m => m.TextCarouselNGXModule) },
 
-  { path: 'FeesCharge', loadChildren: () => import('./pages/fees-charge/fees-charge.module').then(m => m.FeesChargeModule) },
+  { path: 'FeesCharge'
+    , loadChildren: () => import('./pages/fees-charge/fees-charge.module').then(m => m.FeesChargeModule)
+    , resolve: {feesChargeResolver: FeesChargeResolver}
+  },
 
   { path: 'TestTable', loadChildren: () => import('./pages/test-table/test-table.module').then(m => m.TestTableModule) },
   { path: 'BijoyaRegistration', loadChildren: () => import('./pages/bijoya-registration/bijoya-registration.module').then(m => m.BijoyaRegistrationModule) },

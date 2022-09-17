@@ -1,4 +1,4 @@
-<div class="container-fluid page">
+<div class="container-fluid page" style="background-color:#121212;">
   <div class="page__box p-3 mt-2">Student To Course Entry Form</div>
     <div class="page__content shadow p-3 position-relative">
     <p-toast></p-toast>
@@ -6,8 +6,8 @@
     <p-toast position="top-center" key="tc"></p-toast>
     <p-toast position="bottom-center" key="bc"></p-toast>
      <!-- Tab -------------------------------------- -->
-     <div style="background-color:  rgb(6, 6, 6);">
-      <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [selectedIndex]="active" animationDuration="200ms">
+     <div style="background-color:  rgb(85,85,85);">
+      <mat-tab-group (selectedTabChange)="onTabChanged($event)" [selectedIndex]="active" animationDuration="200ms">
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">trending_up</mat-icon>
@@ -71,7 +71,7 @@
                         </div>
                         <mat-datepicker-toggle matSuffix [for]="joining_date"></mat-datepicker-toggle>
                         <mat-datepicker #joining_date></mat-datepicker>
-  
+
                       </mat-form-field>
                     </div>
                     <div class="col-sm-4">
@@ -83,7 +83,7 @@
                         </div>
                         <mat-datepicker-toggle matSuffix [for]="effective_date"></mat-datepicker-toggle>
                         <mat-datepicker #effective_date></mat-datepicker>
-  
+
                       </mat-form-field>
                     </div>
                     <div class="col-sm-4">
@@ -112,17 +112,17 @@
                           placeholder="Duration Type">
                       </ng-select>
                     </div>
-                   
+
                   </div>
                   <div align="right">
                     <button pButton (click)="clearStudentToCourse()">
                       <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                     </button>&nbsp;&nbsp;&nbsp;
-  
+
                     <button pButton [disabled]="!isValidForm()" (click)="saveStudentToCourse()" *ngIf="!isShown">
                       <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                     </button>
-  
+
                     <button pButton [disabled]="!isValidForm()" (click)="updateStudentToCourse()" *ngIf="isShown">
                       <i class="bi bi-save" style="font-size: 1rem"> Update </i>
                     </button>
@@ -193,7 +193,7 @@
                  </ng-template>
               </p-table>
             </div>
-      
+
       </div>
         </mat-tab>
 
@@ -216,11 +216,11 @@
 <!-- start working -->
     <div class="d-flex">
         <!-- Start working with Left div (panel) -->
-        
+
         <!-- End working with Left div (panel) -->
 
          <!-- start working with Right div (panel) -->
-        
+
          <!-- End working with Right div (panel) -->
     </div>
 <!-- End working -->
@@ -236,7 +236,7 @@
   </pre>
   <pre>
     courses = {{courses | json}}
-  </pre> 
+  </pre>
   <pre>
     update code = {{studentTocourseData | json}}
   </pre>
