@@ -2,7 +2,7 @@
     <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <!-- <div class="col-4 "></div> -->
     <div [ngClass]="isDeviceXS? 'col-12 text-center': 'col-3 text-center'">
-        <h1>Regitration Form</h1>
+        <h1>বিজয়া সম্মেলনী 2022 Regitration Form</h1>
         <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
             <div class="">
 
@@ -112,11 +112,13 @@
             </div>
         </form>
     </div>
+    
 
     <button type="submit" [ngClass]="isDeviceXS? 'col-11 text-center': 'col-2 text-center'" class="btn btn-primary m-1"
         (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid">Submit </button>
-
+    
 </div>
+
 <!-- <div>{{studentInfoFormGroup | json}}</div> -->
 
 <!-- <button type="submit" class="btn btn-primary m-1" (click)="saveStudent()" >Submit</button> -->
