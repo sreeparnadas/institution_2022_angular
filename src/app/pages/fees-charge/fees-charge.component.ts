@@ -15,13 +15,12 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   providers: [ConfirmationService, MessageService]
 })
 export class FeesChargeComponent implements OnInit {
+  isDeviceXS = false;
   checked = false;
   totalFees:number=0;
   studentName:any;
   courseName:any;
   showTableRow:boolean=false;
-  indeterminate = false;
-  labelPosition: 'before' | 'after' = 'after';
   disabled = false;
   hiddenPopup:boolean=false;
   hiddenInput: boolean = false ;
@@ -73,6 +72,7 @@ export class FeesChargeComponent implements OnInit {
       this.studentNameList = response.feesChargeResolver.studentsCharge.data;
       this.feesNameList = response.feesChargeResolver.feesNames.data;
       });
+    this.isDeviceXS=commonService.getDeviceXs();
     }
 
     ngOnInit(): void {
@@ -104,9 +104,10 @@ export class FeesChargeComponent implements OnInit {
       this.getAllReceivedFees();
 
     }
-    active=0;
+  selectedIndex=0;
   onTabChanged(event:any){
     this.event=event;
+    console.log(this.event);
     //if(event===1)
   }
   onClickedOutside(e: Event) {
@@ -192,6 +193,7 @@ export class FeesChargeComponent implements OnInit {
   }
 
   editFeesReceived(feeDetails:any){
+    this.selectedIndex=0;
     this.hiddenPopup=false;
     this.event=0;
     this.onTabChanged(this.event);
