@@ -2,18 +2,10 @@
     <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <!-- <div class="col-4 "></div> -->
     <div [ngClass]="isDeviceXS? 'col-12 text-center': 'col-3 text-center'">
-        <h1>Regitration Form</h1>
-        <div class="d-flex m-1" >
-            <img style="border:2px solid grey; border-radius: 5%;" class="p-2" src="assets/gallery/mams_day/mam_2.jpg" height="220px" alt="">
-        </div>
-        <div class="d-flex m-1">
-            <img style="border:2px solid grey; border-radius: 5%;" class="p-2" src="assets/gallery/mams_day/mam_2.jpg" height="220px" alt="">
-        </div>
-        <div class="d-flex m-1">
-            <img style="border:2px solid grey; border-radius: 5%;" class="p-2" src="assets/gallery/mams_day/mam_2.jpg" height="220px" alt="">
-        </div>
-        <div class="d-flex m-1">
-            <img style="border:2px solid grey; border-radius: 5%;" class="p-2" src="assets/gallery/mams_day/mam_2.jpg" height="220px" alt="">
+        <h1>বিজয়া সম্মেলনী 2022 Regitration Form</h1>
+        <div>
+            <img src="/assets/bijoya/bijoya_2.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_1.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1 mb-1" width="400px" alt="">
         </div>
         <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
             <div class="">
@@ -124,11 +116,28 @@
             </div>
         </form>
     </div>
+    
+    
 
     <button type="submit" [ngClass]="isDeviceXS? 'col-11 text-center': 'col-2 text-center'" class="btn btn-primary m-1"
         (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid">Submit </button>
 
+        <div>
+            <img src="/assets/bijoya/bijoya_3.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_4.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_5.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_6.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_7.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_8.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_9.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_10.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_11.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_12.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_13.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+        </div>
+    
 </div>
+
 <!-- <div>{{studentInfoFormGroup | json}}</div> -->
 
 <!-- <button type="submit" class="btn btn-primary m-1" (click)="saveStudent()" >Submit</button> -->
