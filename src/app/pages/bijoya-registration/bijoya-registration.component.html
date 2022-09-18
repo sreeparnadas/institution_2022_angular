@@ -127,7 +127,7 @@
     
     <div class="form-check">
         <input class="form-check-input" type="checkbox" #check1 name="option1" value="something" unchecked>
-        <label class="form-check-label">Yes, I promise that I'll be attend that day</label>
+        <label class="form-check-label">Yes, I promise that I'll attend that day</label>
     </div>
     <button type="submit" [ngClass]="isDeviceXS? 'col-11 text-center': 'col-2 text-center'" class="btn btn-primary m-1"
         (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid || check1.checked==false">Submit </button>
