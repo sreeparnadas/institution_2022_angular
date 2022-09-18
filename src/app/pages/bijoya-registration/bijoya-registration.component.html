@@ -3,10 +3,16 @@
     <!-- <div class="col-4 "></div> -->
     <div [ngClass]="isDeviceXS? 'col-12 text-center': 'col-3 text-center'">
         <h1>বিজয়া সম্মেলনী 2022 Regitration Form</h1>
-        <h3 style="font-weight: bolder; color: yellow;">Held On 16th October, 2022</h3>
-        <div>
-            <img src="/assets/bijoya/bijoya_2.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_1.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1 mb-1" width="400px" alt="">
+        <h3 style="font-weight: bolder; color: yellow;">Will be held On 16th October, 2022</h3>
+        <div class="m-3" style="color: #f9d7f0; border: 1px dotted; border-radius: 7px; background-color: #1012a80d;">
+            বছর দুয়েক আগে<br>
+            ভেবে ছিলাম আর কভু পারবো না ফুচকা খেতে, <br>
+
+            আমাদের এই বিজয়া সম্মিলনী থেকে যাবে কেবল অতীতে, <br>
+            অতই সহজ নাকি????<br>
+            চলো !!!!<br>
+            করোনা কে বলি গুড বাই।<br>
+            সবাই মিলে আবার ফুচকা খাই।<br>
         </div>
         <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
             <div class="">
@@ -119,11 +125,20 @@
     </div>
     
     
-
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" #check1 name="option1" value="something" unchecked>
+        <label class="form-check-label">Yes, I promise that I'll be attend that day</label>
+    </div>
     <button type="submit" [ngClass]="isDeviceXS? 'col-11 text-center': 'col-2 text-center'" class="btn btn-primary m-1"
-        (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid">Submit </button>
+        (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid || check1.checked==false">Submit </button>
+        
+        
+        
+        
 
         <div>
+            <img src="/assets/bijoya/bijoya_2.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+            <img src="/assets/bijoya/bijoya_1.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1 mb-1" width="400px" alt="">
             <img src="/assets/bijoya/bijoya_3.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
             <img src="/assets/bijoya/bijoya_4.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
             <img src="/assets/bijoya/bijoya_5.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
