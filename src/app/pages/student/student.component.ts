@@ -46,8 +46,8 @@ export class StudentComponent implements OnInit, OnChanges{
   value3: any;
   data: any;
   displayDialog: boolean = false;
-
-
+  isDeviceXS = false;
+  event:any;
   items: MenuItem[]=[];
 
   activeIndex: number = 0;
@@ -202,7 +202,17 @@ export class StudentComponent implements OnInit, OnChanges{
     });
 
   }
-
+  active=0;
+  selectedIndex=0;
+  onTabChanged(event:any){
+    console.log(event)
+  }
+  clear(table: Table) {
+    table.clear();
+  } 
+  /* getEventValue($event:any) :string {
+    return $event.target.value;
+  } */
   isValidForm(){
     if(this.studentNameFormGroup.valid && this.studentGuardianFormGroup.valid && this.studentBasicFormGroup.valid && this.studentAddressFormGroup.valid && this.studentContactFormGroup.valid){
       return true;
@@ -232,7 +242,9 @@ export class StudentComponent implements OnInit, OnChanges{
     this.optionSelected='Mother';
   }
   editStudent(studentData:any){
-
+    this.selectedIndex=0;
+    this.event=0;
+    this.onTabChanged(this.event);
     this.date=new Date();
     //const latest_date =this.datepipe.transform(this.date, 'yyyy-MM-dd');
     const latest_date1 =this.datepipe.transform(this.date, 'dd-MM-yyyy');

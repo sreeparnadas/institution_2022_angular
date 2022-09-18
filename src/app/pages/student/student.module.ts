@@ -38,8 +38,15 @@ import {SidebarModule} from "primeng/sidebar";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {StorageModule} from "@ngx-pwa/local-storage";
-
-
+import {MatIconModule} from "@angular/material/icon";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatListModule} from "@angular/material/list";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -77,7 +84,15 @@ import {StorageModule} from "@ngx-pwa/local-storage";
     NgbModule,
     MatAutocompleteModule,
     StorageModule,
-    
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatCardModule,
+    InputTextModule
 
   ]
 })

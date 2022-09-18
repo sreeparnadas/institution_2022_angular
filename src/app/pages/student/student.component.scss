@@ -1,4 +1,36 @@
+.page{
+  color: white;
+  padding: 0 1rem;
+  background: #121212;
+  &__box{
+    min-height: 100px;
+    background: #121212;
+    margin: 0 -1rem;
+    font-size: 24px;
+  }
+  &__content{
+    min-height: calc(100vh - 160px);
+    border-radius: 10px;
+    margin-top: -3rem;
+    background:  rgb(56,56,60);
+    border:2px solid white;
+    color: black;
+    font-size: 20px;
+    &-data{
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+}
 
+.p-input-icon-left,
+.p-input-icon-right{
+  float: right;
+}
+span .p-input-icon-left input[type="text"]{
+  padding:0px 25px;
+}
 :host{
   color: #1e293b;
 }

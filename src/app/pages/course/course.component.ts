@@ -31,6 +31,7 @@ export class CourseComponent implements OnInit {
   showErrorMessage: boolean = false;
   displayDialog: boolean = false;
   isLinear: boolean = false;
+  event:any;
   visibleSidebar2: boolean = false;
   courses: Course[] = [];
   durationTypes: any[]=[];
@@ -77,6 +78,7 @@ export class CourseComponent implements OnInit {
 
   }
   active=0;
+  selectedIndex=0
   onTabChanged(event:any){
     console.log(event)
   }
@@ -233,6 +235,9 @@ export class CourseComponent implements OnInit {
   }
   editCourse(courseData:any){
     //this.isShown = true;
+    this.selectedIndex=0
+    this.event=0;
+    this.onTabChanged(this.event);
     console.log(courseData);
     this.isShown = true;
     this.courseNameFormGroup.patchValue({courseId: courseData.courseId});
@@ -268,6 +273,7 @@ export class CourseComponent implements OnInit {
   getEventValue($event:any) :string {
     return $event.target.value;
   }
+
   applyFilterGlobal($event: any, stringVal: any, dt: any) {
     dt!.filterGlobal(($event.target as HTMLInputElement).value, 'contains');
   }
