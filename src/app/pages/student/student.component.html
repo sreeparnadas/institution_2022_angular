@@ -1,5 +1,8 @@
+<style>
+
+</style>
 <div class="container-fluid page">
-  <div class="page__box p-3 mt-2">Student Entry</div>
+  <div class="page__box p-3 mt-1 ml-1">Student Entry</div>
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-relative">
       <p-dialog header="Title" position="top" [transitionOptions]="'600ms'" [(visible)]="displayDialog"
@@ -13,8 +16,9 @@
       <p-toast position="bottom-center" key="bc"></p-toast>
     </div>
     <!-- Tab -------------------------------------- -->
-    <div style="background-color:  rgb(56, 56, 60);">
-      <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex" animationDuration="200ms">
+    <div style="background-color:  rgb(108, 108, 111);">
+      <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
+        animationDuration="200ms">
         <mat-tab>
           <div [ngClass]="isDeviceXS? 'col-12': 'col-10'">
             <ng-template mat-tab-label>
@@ -25,50 +29,67 @@
 
             <!--  <div class="container" style="width:100% ; border-radius: 10px; background-color: #a09d9d; color:rgb(49, 47, 52)"> -->
             <!--          Start of stepper-->
-            <mat-stepper [linear]="isLinear" #stepper
-              style="width:100% ; border-radius: 10px; background-color: #a09d9d; color:rgb(49, 47, 52); font-size: medium;">
-              <mat-step [stepControl]="studentNameFormGroup" label="Name">
-                <form [formGroup]="studentNameFormGroup">
-
-
-
-                  <div class="form-group">
-                    <mat-form-field class="col-12">
-                      <mat-label><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
-                      <input matInput placeholder="Student Name" (blur)="sameAsBillName()"
-                        formControlName="studentName">
-                      <div
-                        *ngIf="studentNameFormGroup.controls['studentName'].errors && studentNameFormGroup.controls['studentName'].touched">
-                        <mat-error class="text-right"
-                          *ngIf="studentNameFormGroup.controls['studentName'].errors['required']">Student Name is
-                          required</mat-error>
-                      </div>
-                    </mat-form-field>
+            <mat-stepper [linear]="isLinear" #stepper style="background-color:white;">
+              <div class="container">
+                <!-- ----------------------------------------------------- -->
+                <div class="row">
+                  <div class="col">
+                    1 of 3
                   </div>
-                  <div class="form-group">
-                    <mat-form-field class="col-12">
-                      <mat-label><i class="bi bi-person-circle mr-1"></i>Billing Name</mat-label>
-                      <input matInput placeholder="Billing Name" formControlName="billingName" value={{billingName}}>
-                    </mat-form-field>
-
+                </div>
+                <div class="row">
+                  <div class="col">
+                    1 of 3
                   </div>
-                  <div class="form-group" *ngIf="hiddenInput">
-                    <mat-form-field class="col-12">
-                      <input matInput placeholder="studentId" formControlName="studentId">
-                    </mat-form-field>
-
+                  <div class="col-5">
+                    2 of 3 (wider)
                   </div>
-                  <div class="form-group" *ngIf="hiddenInput">
-                    <mat-form-field class="col-12">
-                      <input matInput placeholder="episodeId" formControlName="episodeId">
-                    </mat-form-field>
-
+                  <div class="col">
+                    3 of 3
                   </div>
-                  <button pButton matStepperNext [disabled]="!studentNameFormGroup.valid" class="p-button-warning">
-                    Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
-                  </button>
-                </form>
-              </mat-step>
+                </div>
+                <!-- -------------------------------------- -->
+                <mat-step [stepControl]="studentNameFormGroup" label="Name">
+                  <form [formGroup]="studentNameFormGroup">
+                    <div class="form-group">
+                      <mat-form-field class="col-12">
+                        <mat-label style="color: black;"><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
+                        <input matInput placeholder="Student Name" (blur)="sameAsBillName()"
+                          formControlName="studentName">
+                        <div
+                          *ngIf="studentNameFormGroup.controls['studentName'].errors && studentNameFormGroup.controls['studentName'].touched">
+                          <mat-error class="text-right"
+                            *ngIf="studentNameFormGroup.controls['studentName'].errors['required']">Student Name is
+                            required</mat-error>
+                        </div>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                      <mat-form-field class="col-12">
+                        <mat-label style="color: black;"><i class="bi bi-person-circle mr-1"></i>Billing Name
+                        </mat-label>
+                        <input style="color: black;" matInput placeholder="Billing Name" formControlName="billingName"
+                          value={{billingName}}>
+                      </mat-form-field>
+
+                    </div>
+                    <div class="form-group" *ngIf="hiddenInput">
+                      <mat-form-field class="col-12">
+                        <input matInput placeholder="studentId" formControlName="studentId">
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group" *ngIf="hiddenInput">
+                      <mat-form-field class="col-12">
+                        <input matInput placeholder="episodeId" formControlName="episodeId">
+                      </mat-form-field>
+                    </div>
+                    <button pButton pRipple matStepperNext [disabled]="!studentNameFormGroup.valid"
+                      class="p-button-rounded p-button-info p-button-outlined">
+                      <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                    </button>
+                  </form>
+                </mat-step>
+              </div>
 
               <mat-step [stepControl]="studentGuardianFormGroup" label="Guardian">
                 <form [formGroup]="studentGuardianFormGroup">
@@ -124,11 +145,11 @@
 
                   </div>
                   <div style="vertical-align:bottom;">
-                    <button pButton matStepperPrevious class="p-button-success">
-                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
+                    <button pButton matStepperPrevious class="p-button-rounded p-button-warning p-button-outlined">
+                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i>
                     </button>
-                    <button pButton matStepperNext class="p-button-warning">
-                      Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                    <button pButton pRipple matStepperNext class="p-button-rounded p-button-info p-button-outlined">
+                      <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                     </button>
                   </div>
                 </form>
@@ -203,11 +224,12 @@
 
                   </div>
                   <div style="vertical-align:bottom;">
-                    <button pButton matStepperPrevious class="p-button-success">
-                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
+                    <button pButton pRipple matStepperPrevious
+                      class="p-button-rounded p-button-warning p-button-outlined">
+                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i>
                     </button>
-                    <button pButton matStepperNext class="p-button-warning">
-                      Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                    <button pButton pRipple matStepperNext class="p-button-rounded p-button-info p-button-outlined">
+                      <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                     </button>
                   </div>
                 </form>
@@ -252,11 +274,12 @@
                     </div>
                   </div>
                   <div style="vertical-align:bottom;">
-                    <button pButton matStepperPrevious class="p-button-success">
-                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
+                    <button pButton pRipple matStepperPrevious
+                      class="p-button-rounded p-button-warning p-button-outlined">
+                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i>
                     </button>
-                    <button pButton matStepperNext class="p-button-warning">
-                      Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                    <button pButton pRipple matStepperNext class="p-button-rounded p-button-info p-button-outlined">
+                      <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                     </button>
                   </div>
                 </form>
@@ -309,11 +332,12 @@
                   </div>
 
                   <div style="vertical-align:bottom;">
-                    <button pButton matStepperPrevious class="p-button-success">
-                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
+                    <button pButton pRipple matStepperPrevious
+                      class="p-button-rounded p-button-warning p-button-outlined">
+                      <i class="pi pi-chevron-left" style="font-size: 1rem"></i>
                     </button>
-                    <button pButton matStepperNext class="p-button-warning">
-                      Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                    <button pButton pRipple matStepperNext class="p-button-rounded p-button-info p-button-outlined">
+                      <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                     </button>
                   </div>
                 </form>
@@ -330,15 +354,16 @@
                     <i class="bi bi-arrow-clockwise" style="font-size: 1rem"></i>
                   </button>
 
+
+                </div>
+                <div>
                   <button pButton [disabled]="!isValidForm()" (click)="saveStudent()" *ngIf="!isShown">
                     <i class="bi bi-save" style="font-size: 1rem"> Save </i>
-                  </button>
+                  </button>&nbsp;
 
                   <button pButton [disabled]="!isValidForm()" (click)="updateStudent()" *ngIf="isShown">
                     <i class="bi bi-save" style="font-size: 1rem"> Update </i>
-                  </button>
-                </div>
-                <div>
+                  </button>&nbsp;
                   <button pButton (click)="clearStudent()">
                     <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                   </button>
@@ -422,33 +447,40 @@
             <mat-icon class="example-tab-icon">list</mat-icon>
             View List
           </ng-template>
-          <p-table #student [value]="students" dataKey="studentId" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
-                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,25,50]"
-                   styleClass="p-datatable-gridlines"
-                   [globalFilterFields]="['studentId','episodeId','studentName','motherName']">
+          <p-table #student [value]="students" dataKey="studentId" [paginator]="true" [rows]="5"
+            [showCurrentPageReport]="true" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5,10,25,50]" styleClass="p-datatable-gridlines"
+            [globalFilterFields]="['studentId','episodeId','studentName','motherName']">
             <ng-template pTemplate="caption">
               <div class="flex">
                 <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
                   (click)="clear(student)"></button>
-                  <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="student.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
+                <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="student.filterGlobal(getEventValue($event), 'contains')"
+                    placeholder="Search keyword" />
                 </span>
-               
+
               </div>
-  
-              
-  
-  
+
+
+
+
             </ng-template>
             <ng-template pTemplate="header">
               <tr>
                 <th>ID</th>
-                <th pSortableColumn="episodeId">Ep. ID <p-sortIcon field="episodeId"></p-sortIcon></th>
-                <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
-                <th pSortableColumn="motherName">Mother <p-sortIcon field="motherName"></p-sortIcon></th>
-                <th pSortableColumn="edit">Edit <p-sortIcon field="edit"></p-sortIcon></th>
-                <th pSortableColumn="delete">Delete <p-sortIcon field="delete"></p-sortIcon></th>
+                <th pSortableColumn="episodeId">Ep. ID <p-sortIcon field="episodeId"></p-sortIcon>
+                </th>
+                <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="motherName">Mother <p-sortIcon field="motherName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="edit">Edit <p-sortIcon field="edit"></p-sortIcon>
+                </th>
+                <th pSortableColumn="delete">Delete <p-sortIcon field="delete"></p-sortIcon>
+                </th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-student>
@@ -458,25 +490,29 @@
                 <td>{{student.studentName}}</td>
                 <td>{{student.motherName}}</td>
                 <td>
-                  <p-button type="button" (click)="editStudent(student)" icon="pi pi-pencil" styleClass="p-button-text"></p-button>
+                  <p-button type="button" (click)="editStudent(student)" icon="pi pi-pencil" styleClass="p-button-text">
+                  </p-button>
                 </td>
                 <td>
-                  <p-button type="button" (click)="deleteStudent(student)" icon="pi pi-trash" styleClass="p-button-text"></p-button>
+                  <p-button type="button" (click)="deleteStudent(student)" icon="pi pi-trash"
+                    styleClass="p-button-text"></p-button>
                 </td>
               </tr>
             </ng-template>
             <ng-template pTemplate="paginatorleft">
-              <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" ></p-button>
+              <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
             </ng-template>
           </p-table>
 
           <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="20000">
             <h1 style="font-weight:normal">Right Sidebar</h1>
-            <p-button type="button" (click)="visibleSidebar2 = false" label="Save" styleClass="p-button-success"></p-button>
-            <p-button type="button" (click)="visibleSidebar2 = false" label="Cancel" styleClass="p-button-secondary"></p-button>
-      
-      
-      
+            <p-button type="button" (click)="visibleSidebar2 = false" label="Save" styleClass="p-button-success">
+            </p-button>
+            <p-button type="button" (click)="visibleSidebar2 = false" label="Cancel" styleClass="p-button-secondary">
+            </p-button>
+
+
+
           </p-sidebar>
         </mat-tab>
 
@@ -486,69 +522,70 @@
             Developer Area
           </ng-template>
 
-           <!--To enable developer div in development-->
-  <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between stretch"  *ngIf="!isProduction">
-    <!-- <p-toggleButton [(ngModel)]="showDeveloperDiv" onLabel="Dont Show Developer Area" offLabel="Show Developer Area" onIcon="pi pi-times" offIcon="pi pi-check" [style]="{'width': '30em'}"></p-toggleButton> -->
- </div>
- 
- <!--This is developer div-->
- <div class="d-flex flex-row bd-highlight mb-3" *ngIf="showDeveloperDiv && !isProduction">
-   <div class="p-2 bd-highlight col-3" style="background-color: #555555;">
-     <pre>
+          <!--To enable developer div in development-->
+          <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between stretch" *ngIf="!isProduction">
+            <!-- <p-toggleButton [(ngModel)]="showDeveloperDiv" onLabel="Dont Show Developer Area" offLabel="Show Developer Area" onIcon="pi pi-times" offIcon="pi pi-check" [style]="{'width': '30em'}"></p-toggleButton> -->
+          </div>
+
+          <!--This is developer div-->
+          <div class="d-flex flex-row bd-highlight mb-3" *ngIf="showDeveloperDiv && !isProduction">
+            <div class="p-2 bd-highlight col-3" style="background-color: #555555;">
+              <pre>
        studentNameFormGroup = {{this.studentNameFormGroup.value | json}}
        studentData={{studentData | json}}
  
  <!--      test={{studentNameFormGroup.controls['studentName'].errors['required'] | json}}-->
      </pre>
-     <hr>
-     <pre>
+              <hr>
+              <pre>
  <!--      stateList={{stateList |json}}-->
      </pre>
-     <hr>
-     <pre>
+              <hr>
+              <pre>
        this.studentNameFormGroup.valid = {{this.studentNameFormGroup.valid }}
        this.studentGuardianFormGroup.valid ={{this.studentGuardianFormGroup.valid}}
        this.studentBasicFormGroup.valid ={{this.studentBasicFormGroup.valid}}
        this.studentAddressFormGroup.valid ={{this.studentAddressFormGroup.valid}}
        this.studentContactFormGroup.valid={{this.studentContactFormGroup.valid}}
      </pre>
-     <hr>
-     <div *ngIf="studentNameFormGroup.controls['studentName'].errors && studentNameFormGroup.controls['studentName'].errors['required']">
-       <pre >
+              <hr>
+              <div
+                *ngIf="studentNameFormGroup.controls['studentName'].errors && studentNameFormGroup.controls['studentName'].errors['required']">
+                <pre>
          test={{studentNameFormGroup.controls['studentName'].errors | json}}
        </pre>
-     </div>
-   </div>
-   <div class="p-2 bd-highlight col-3" style="background-color: #6d6c6c;">
-     <pre>
+              </div>
+            </div>
+            <div class="p-2 bd-highlight col-3" style="background-color: #6d6c6c;">
+              <pre>
        students={{students | json}}
      </pre>
-     <pre>
+              <pre>
        studentGuardianFormGroup = {{studentGuardianFormGroup.value | json}};
      </pre>
-   </div>
-   <div class="p-2 bd-highlight col-3" style="background-color: #848383;">
-     <pre>
+            </div>
+            <div class="p-2 bd-highlight col-3" style="background-color: #848383;">
+              <pre>
        studentBasicFormGroup = {{studentBasicFormGroup.value | json}}
      </pre>
-   </div>
- 
-   <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
-     <pre>
+            </div>
+
+            <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
+              <pre>
        studentAddressFormGroup = {{studentAddressFormGroup.value | json}}
      </pre>
-   </div>
-   <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
-     <pre>
+            </div>
+            <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
+              <pre>
        studentContactFormGroup = {{studentContactFormGroup.value | json}}
      </pre>
-   </div>
-   <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
-     <pre>
+            </div>
+            <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
+              <pre>
        Error Message = {{errorMessage | json}}
      </pre>
-   </div>
- </div>
+            </div>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </div>
