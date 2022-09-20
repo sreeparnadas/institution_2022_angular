@@ -26,6 +26,9 @@ export class BijoyaRegistrationComponent implements OnInit {
   errorMessage: any;
   errors: any={};
 
+  bijoyaFormShow= true;
+  saveStudentInfo : BijoyaRegistration={};
+
 
 
 
@@ -87,8 +90,6 @@ export class BijoyaRegistrationComponent implements OnInit {
       accept: () => {
         this.bijoyaRegistrationService.saveStudentInfo(this.studentInfoFormGroup.value).subscribe(response => {
           if (response.success==1){
-            // this.showSuccess("Record added successfully");
-            // console.log(response.data);
 
             Swal.fire({
               position: 'top-end',
@@ -97,10 +98,11 @@ export class BijoyaRegistrationComponent implements OnInit {
               // showConfirmButton: false,
               timer: 1000
             });
+            this.saveStudentInfo=response.data;
             this.studentInfoFormGroup.reset();
+            this.bijoyaFormShow=false;
           }
         },error=>{
-          console.log("test save");
           this.showErrorMessage = true;
           this.errorMessage = error.message;
           const alerts: Alert[] = [{

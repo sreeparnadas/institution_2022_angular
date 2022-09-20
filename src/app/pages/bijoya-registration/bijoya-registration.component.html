@@ -14,144 +14,189 @@
             করোনা কে বলি গুড বাই।<br>
             সবাই মিলে আবার ফুচকা খাই।<br>
         </div>
-        <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
-            <div class="">
-
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <mat-form-field class="example-full-width"
-                            hintLabel="Max {{studentNameLocal.maxLength}} characters" style="width: 90% !important;">
-                            <mat-label><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
-                            <input formControlName="studentName" #studentNameLocal maxlength="50" matInput
-                                placeholder="Enter Your Name" value="">
-                            <mat-hint align="end">
-                                {{studentNameLocal.value.length || 0}}/{{studentNameLocal.maxLength}}
-                            </mat-hint>
-                            <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors">
-                                <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors['required']">
-                                    Student Name is required!
+        <div *ngIf="bijoyaFormShow">
+            <form action="" class="bg p-3" [formGroup]="studentInfoFormGroup">
+                <div class="">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <mat-form-field class="example-full-width"
+                                hintLabel="Max {{studentNameLocal.maxLength}} characters"
+                                style="width: 90% !important;">
+                                <mat-label><i class="bi bi-person-circle mr-1"></i>Name</mat-label>
+                                <input formControlName="studentName" #studentNameLocal maxlength="50" matInput
+                                    placeholder="Enter Your Name" value="">
+                                <mat-hint align="end">
+                                    {{studentNameLocal.value.length || 0}}/{{studentNameLocal.maxLength}}
+                                </mat-hint>
+                                <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors">
+                                    <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors['required']">
+                                        Student Name is required!
+                                    </mat-error>
+                                    <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors['minlength']">
+                                        Required at least 5 character!
+                                    </mat-error>
                                 </mat-error>
-                                <mat-error *ngIf="studentInfoFormGroup.controls['studentName'].errors['minlength']">
-                                    Required at least 5 character!
-                                </mat-error>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class=" ">
-                <div class="form-group">
-                    <div class="input-group">
-                        <mat-form-field class="example-full-width" style="width: 90% !important;"  hintLabel="Mail should be in proper mail form">
-                            <mat-label><i class="bi bi-envelope-fill mr-1"></i>Email</mat-label>
-                            <input formControlName="email" matInput #studentEmail placeholder="Enter Your valid Email" value="">
-                            <mat-hint align="end">
-                                {{studentEmail.value.length || 0}}
-                            </mat-hint>
-                            <mat-error *ngIf="studentInfoFormGroup.controls['email'].errors">
-                                <mat-error *ngIf="studentInfoFormGroup.controls['email'].errors['email']">
-                                    Mail should be in propoer form!
-                                </mat-error>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class=" ">
-                <div class="form-group ">
-                    <div class="input-group">
-                        
-                        <mat-form-field class="example-full-width" style="width: 90% !important;" hintLabel="Contact number is required.">
-                            <mat-label><i class="bi bi-telephone-fill mr-1"></i>Contact Number</mat-label>
-                            <input formControlName="contactNumber" #contactNumber matInput placeholder="Enter Your Contact Number" value="">
-                            <mat-error *ngIf="studentInfoFormGroup.controls['contactNumber'].errors">
-                                <mat-error *ngIf="studentInfoFormGroup.controls['contactNumber'].errors['required']">
-                                    Contact Number Required.
-                                </mat-error>
-                            </mat-error>
-
-                        </mat-form-field>
-                        <div align="end">
-                            add numbers to
-                            <i class="bi bi-whatsapp m-2" (click)="addWhatsappNumber(contactNumber.value)"></i>
-                            <i class="bi bi-telegram" (click)="addTelegramNumber(contactNumber.value)"></i>
+                            </mat-form-field>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="">
-                <div class="form-group ">
-                    <div class="input-group">
-                        <mat-form-field class="example-full-width" style="width: 90% !important;">
-                            <mat-label><i class="bi bi-whatsapp mr-1"></i>Whatsapp Number</mat-label>
-                            <input formControlName="whatsappNumber" matInput placeholder="Enter Your Whatsapp Number"
-                                value="studentInfoFormGroup.value.whatsappNumber">
-                        </mat-form-field>
+
+                <div class=" ">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <mat-form-field class="example-full-width" style="width: 90% !important;"
+                                hintLabel="Mail should be in proper mail form">
+                                <mat-label><i class="bi bi-envelope-fill mr-1"></i>Email</mat-label>
+                                <input formControlName="email" matInput #studentEmail
+                                    placeholder="Enter Your valid Email" value="">
+                                <mat-hint align="end">
+                                    {{studentEmail.value.length || 0}}
+                                </mat-hint>
+                                <mat-error *ngIf="studentInfoFormGroup.controls['email'].errors">
+                                    <mat-error *ngIf="studentInfoFormGroup.controls['email'].errors['email']">
+                                        Mail should be in propoer form!
+                                    </mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="">
-                <div class="form-group ">
-                    <div class="input-group">
-                        <mat-form-field class="example-full-width" style="width: 90% !important;">
-                            <mat-label><i class="bi bi-telegram mr-1"></i>Telegram Number</mat-label>
-                            <input formControlName="telegramNumber" matInput placeholder="Enter Your Telegram Number"
-                            value="studentInfoFormGroup.value.telegramNumber">
-                        </mat-form-field>
+                <div class=" ">
+                    <div class="form-group ">
+                        <div class="input-group">
+
+                            <mat-form-field class="example-full-width" style="width: 90% !important;"
+                                hintLabel="Contact number is required.">
+                                <mat-label><i class="bi bi-telephone-fill mr-1"></i>Contact Number</mat-label>
+                                <input formControlName="contactNumber" #contactNumber matInput
+                                    placeholder="Enter Your Contact Number" value="">
+                                <mat-error *ngIf="studentInfoFormGroup.controls['contactNumber'].errors">
+                                    <mat-error
+                                        *ngIf="studentInfoFormGroup.controls['contactNumber'].errors['required']">
+                                        Contact Number Required.
+                                    </mat-error>
+                                </mat-error>
+
+                            </mat-form-field>
+                            <div align="end">
+                                add numbers to
+                                <i class="bi bi-whatsapp m-2" (click)="addWhatsappNumber(contactNumber.value)"></i>
+                                <i class="bi bi-telegram" (click)="addTelegramNumber(contactNumber.value)"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="">
-                <div class="form-group ">
-                    <div class="input-group">
-                        <mat-form-field class="example-full-width" style="width: 90% !important;">
-                            <mat-label><i class="bi bi-award-fill mr-1"></i>Member Number</mat-label>
-                            <input formControlName="memberNumber" matInput placeholder="Enter Your Member Number"
-                                min="1" type="number" value="1">
-                        </mat-form-field>
+                <div class="">
+                    <div class="form-group ">
+                        <div class="input-group">
+                            <mat-form-field class="example-full-width" style="width: 90% !important;">
+                                <mat-label><i class="bi bi-whatsapp mr-1"></i>Whatsapp Number</mat-label>
+                                <input formControlName="whatsappNumber" matInput
+                                    placeholder="Enter Your Whatsapp Number"
+                                    value="studentInfoFormGroup.value.whatsappNumber">
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
-    
-    
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" #check1 name="option1" value="something" unchecked>
-        <label class="form-check-label">Yes, I promise that I'll attend that day</label>
-    </div>
-    <button type="submit" [ngClass]="isDeviceXS? 'col-11 text-center': 'col-2 text-center'" class="btn btn-primary m-1"
-        (click)="saveStudent()" [disabled]="!studentInfoFormGroup.valid || check1.checked==false">Submit </button>
-        
-        
-        
-        
 
-        <div>
-            <img src="/assets/bijoya/bijoya_2.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_1.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1 mb-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_3.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_4.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_5.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_6.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_7.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_8.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_9.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_10.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_11.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_12.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
-            <img src="/assets/bijoya/bijoya_13.jpg" style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1" width="400px" alt="">
+
+                <div class="">
+                    <div class="form-group ">
+                        <div class="input-group">
+                            <mat-form-field class="example-full-width" style="width: 90% !important;">
+                                <mat-label><i class="bi bi-telegram mr-1"></i>Telegram Number</mat-label>
+                                <input formControlName="telegramNumber" matInput
+                                    placeholder="Enter Your Telegram Number"
+                                    value="studentInfoFormGroup.value.telegramNumber">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="form-group ">
+                        <div class="input-group">
+                            <mat-form-field class="example-full-width" style="width: 90% !important;">
+                                <mat-label><i class="bi bi-award-fill mr-1"></i>Member Number</mat-label>
+                                <input formControlName="memberNumber" matInput placeholder="Enter Your Member Number"
+                                    min="1" type="number" value="1">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" #check1 name="option1" value="something" unchecked>
+                <label class="form-check-label">Yes, I promise that I'll attend that day</label>
+            </div>
+            <button  [ngClass]="isDeviceXS? 'col-11 text-center': 'col-4 text-center'"                class="btn btn-primary " (click)="saveStudent()"
+                [disabled]="!studentInfoFormGroup.valid || check1.checked==false">Submit </button>
         </div>
+        <div *ngIf="!bijoyaFormShow" class="container">
+            <img loading="lazy" decoding="async" src="/assets/bijoya/5428.jpg" height="300vh" alt="">
+            <div class="text-block">
+                <h2>Token Number :</h2>
+                <p>BIJOYA@CODER2022-P{{saveStudentInfo.id}}</p>
+            </div>
+                
+        </div>
+
+    </div>
     
+
+
+
+
+
+
+
+
+    <div>
+        <img src="/assets/bijoya/bijoya_2.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_1.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1 mb-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_3.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_4.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_5.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_6.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_7.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_8.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_9.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_10.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_11.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_12.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+        <img src="/assets/bijoya/bijoya_13.jpg" loading="lazy" decoding="async"
+            style="border: 2px solid rgb(206, 201, 201); padding: 2px; border-radius: 5px;" class="img-fluid mt-1"
+            width="400px" alt="">
+    </div>
+
 </div>
 
 <!-- <div>{{studentInfoFormGroup | json}}</div> -->

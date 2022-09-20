@@ -1,5 +1,5 @@
 export class BijoyaRegistration {
-
+  id?: number;
   student_name?: string;
   email?: string;
   contact_number?: string;
