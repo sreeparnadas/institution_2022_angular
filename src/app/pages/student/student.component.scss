@@ -1,3 +1,4 @@
+
 .page{
   color: white;
   background: #121212;
@@ -29,7 +30,7 @@
   }
   .mat-form-field-label {
       color: rgb(10, 10, 10);
-      font-family: "Lucida Console", "Courier New", monospace;
+      
       font-size: medium;
   }
   .mat-form-field-underline {
@@ -45,7 +46,9 @@
   
 }
 
-
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #fec61f !important;
+}
 ::ng-deep .mat-step-header  {
   border-radius: 32px;
   width: 20%;
@@ -54,9 +57,21 @@
   height: 50px;
   & div.mat-step-label.mat-step-label-active.mat-step-label {
       color: rgb(3, 3, 3);
+     
   }
   
 } 
+::ng-deep .mat-step-header  {
+  border-radius: 32px;
+  width: 20%;
+  font-weight: 10px;
+  opacity: 1.0;
+  height: 50px;
+  & div.mat-step-label.mat-step-label-active.mat-step-label:hover {
+      color: rgb(3, 3, 3);
+     
+  }
+}
 ::ng-deep .mat-step-header[aria-selected="true"]  {
   background-color: #43b2ee;
   border-radius: 32px;
@@ -65,35 +80,31 @@
   opacity: 1.0;
   height: 50px;
   & div.mat-step-label.mat-step-label-active.mat-step-label-selected {
-      color: rgb(3, 3, 3);
+      color: rgb(254, 253, 253);
+      
   }
   
 } 
 ::ng-deep .mat-step-header .mat-step-icon {
-  background-color: rgb(245, 32, 9); 
+  background-color: #43b2ee; 
+ 
   
 }
 
 ::ng-deep .mat-step-header .mat-step-icon-selected {
-  background-color: rgb(8, 170, 30); 
+  background-color: #43b2ee; 
 }
 mat-form-field{
-  margin-bottom: -1.50em
+  margin-bottom: -1em
 }
-/* ::ng-deep .mat-horizontal-stepper-header {
-  box-sizing: border-box;
-  color: #555555;
-  flex-direction: column-reverse !important;
-  height: auto;
-  padding: 24px;
-} */
-/* ::ng-deep .mat-step-header  {
-  background-color: #00A9CE;;
-  border-radius: 20px;
-  width: 50%;
-  font-weight: 5px;
-  color: #040404;
-} */
+.mat-stepper-label-position-bottom .mat-stepper-horizontal-line {
+  top: 20px !important;
+  background-color: brown;
+}
+.mat-stepper-horizontal-line {
+  margin-top: 8px;
+  background-color: rebeccapurple;
+}
 .p-input-icon-left,
 .p-input-icon-right{
   float: right;
