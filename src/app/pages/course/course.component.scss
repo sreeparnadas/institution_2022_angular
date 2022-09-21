@@ -1,18 +1,17 @@
 .page{
   color: white;
-  padding: 0 1rem;
   background: #121212;
   &__box{
     min-height: 100px;
     background: #121212;
-    margin: 0 -1rem;
+    margin: 0 -3rem;
     font-size: 24px;
   }
   &__content{
     min-height: calc(100vh - 160px);
     border-radius: 10px;
     margin-top: -3rem;
-    background:  rgb(56,56,60);
+    background:  rgb(118, 118, 121);
     border:2px solid white;
     color: black;
     font-size: 20px;
@@ -23,7 +22,30 @@
     }
   }
 }
-
+::ng-deep .mat-form-field {
+  .mat-input-element {
+      color: rgb(8, 8, 8);
+      font-size: medium;
+      font-family: 'Roboto', sans-serif;
+  }
+  .mat-form-field-label {
+      color: rgb(10, 10, 10);
+      font-family: 'Roboto', sans-serif;
+      font-size: medium;
+  }
+  .mat-form-field-underline {
+      background-color: rgb(4, 32, 59);
+  }
+  .mat-form-field-ripple {
+      background-color: slategray;
+  }
+  .mat-form-field-required-marker {
+      color: rgb(190, 21, 9);
+  } 
+}
+mat-form-field{
+  margin-bottom: -1em
+}
 .p-input-icon-left,
 .p-input-icon-right{
   float: right;
