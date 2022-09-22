@@ -115,7 +115,15 @@ export class CourseContentComponent implements OnInit {
         },
         {
           label: 'JAVA',
-          icon:'pi pi-fw pi-star-fill'
+          items: [
+            {
+              label: 'Java Tokens',
+              icon:'pi pi-fw  pi-circle-fill',
+              routerLink: "./JavaTokens",
+
+            }
+          ]
+
         },
         {
           label: 'Python',

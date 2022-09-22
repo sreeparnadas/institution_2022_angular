@@ -14,7 +14,12 @@ import {catchError} from 'rxjs/operators';
 @Injectable()
 // @ts-ignore
 export class AuthInterceptor implements HttpInterceptor {
-  userData: { id: number; personName: string; _authKey: string; personTypeId: number; } | undefined;
+  userData: { id?: number; personName?: string; _authKey?: string; personTypeId?: number; } = {
+    id: 0,
+    personName: '',
+    _authKey: '',
+    personTypeId: 0
+  };
   constructor(private authService: AuthService, private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -24,8 +29,15 @@ export class AuthInterceptor implements HttpInterceptor {
       this.userData = {id: 0, personName: 'No Person', _authKey: 'no key', personTypeId: 0};
     }
     // Clone the request to add the new header.
-    // @ts-ignore
-    const authReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.userData._authKey) });
+
+
+    let headers = req.headers
+      .set('Access-Control-Allow-Headers', 'Content-Type, x-auth-token')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Referrer-Policy', '')
+      .set('Authorization', 'Bearer ' + this.userData._authKey);
+    // const authReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.userData._authKey) });
+    const authReq = req.clone({ headers });
     // send the newly created request
     return next.handle(authReq).pipe(catchError(x => this.handleAuthError(x)));
   }

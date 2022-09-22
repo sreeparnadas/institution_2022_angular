@@ -105,7 +105,7 @@ const routes: Routes = [
 
 
 
-  { path: 'ExcelDatabase', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-database/excel-database.module').then(m => m.ExcelDatabaseModule) },
+  // { path: 'ExcelDatabase', loadChildren: () => import('./pages/course-content/ExcelBasic/excel-database/excel-database.module').then(m => m.ExcelDatabaseModule) },
 
   { path: 'FeesReceived'
     , loadChildren: () => import('./pages/fees-received/fees-received.module').then(m => m.FeesReceivedModule)
@@ -130,6 +130,12 @@ const routes: Routes = [
 
   { path: 'TestTable', loadChildren: () => import('./pages/test-table/test-table.module').then(m => m.TestTableModule) },
   { path: 'BijoyaRegistration', loadChildren: () => import('./pages/bijoya-registration/bijoya-registration.module').then(m => m.BijoyaRegistrationModule) },
+
+  { path: 'CourseContentProgrammingLanguage', loadChildren: () => import('./pages/course-content/course-content-programming-language/course-content-programming-language.module').then(m => m.CourseContentProgrammingLanguageModule) },
+
+  // { path: 'JavaProgramming', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-programming.module').then(m => m.JavaProgrammingModule) },
+
+  // { path: 'JavaTokens', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-tokens/java-tokens.module').then(m => m.JavaTokensModule) },
 
 
 

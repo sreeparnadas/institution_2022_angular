@@ -21,7 +21,12 @@ const routes: Routes = [
 
                             { path: 'MSExcelDateFunction', loadChildren: () => import('./ExcelBasic/excel-date-function/excel-date-function.module').then(m =>m.ExcelDateFunctionModule) },
 
-                            { path: 'MSExcelDatabaseFunction', loadChildren: () => import('./ExcelBasic/excel-database/excel-database.module').then(m =>m.ExcelDatabaseModule) }
+                            { path: 'MSExcelDatabaseFunction', loadChildren: () => import('./ExcelBasic/excel-database/excel-database.module').then(m =>m.ExcelDatabaseModule) },
+
+                            { path: 'JavaProgramming', loadChildren: () => import('./course-content-programming-language/java-programming/java-programming.module').then(m => m.JavaProgrammingModule) },
+
+                            { path: 'JavaTokens', loadChildren: () => import('./course-content-programming-language/java-programming/java-tokens/java-tokens.module').then(m => m.JavaTokensModule) },
+
                           ]
                         }
                        ];
