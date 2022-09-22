@@ -1,12 +1,12 @@
 <div class="container-fluid page" style="background-color:#121212;">
-  <div class="page__box p-3 mt-2">Student To Course Entry Form</div>
+  <div class="page__box p-3 mt-1 ml-1">Student To Course Entry Form</div>
   <div class="page__content shadow p-3 position-relative">
     <p-toast></p-toast>
     <p-toast position="top-left" key="tl"></p-toast>
     <p-toast position="top-center" key="tc"></p-toast>
     <p-toast position="bottom-center" key="bc"></p-toast>
     <!-- Tab -------------------------------------- -->
-    <div style="background-color:  rgb(56, 56, 60);">
+    <div style="background-color:  rgb(90, 90, 94);">
       <mat-tab-group (selectedTabChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
         animationDuration="200ms">
         <mat-tab>
@@ -14,7 +14,7 @@
             <mat-icon class="example-tab-icon">trending_up</mat-icon>
             Entry Tab
           </ng-template>
-          <div class="p-3 flex-fill" style="width:100% ; border-radius: 10px; background-color: #a09d9d; color:rgb(49, 47, 52)">
+          <div class="p-3 flex-fill" style="width:100% ; background-color: white;">
             <div class="container">
               <form [formGroup]="studentToCourseFormGroup">
                 <div class="row">
@@ -107,15 +107,15 @@
 
                 </div>
                 <div align="right">
-                  <button pButton (click)="clearStudentToCourse()">
+                  <button pButton (click)="clearStudentToCourse()" class="p-button-rounded p-button-info p-button-outlined">
                     <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                   </button>&nbsp;&nbsp;&nbsp;
 
-                  <button pButton [disabled]="!isValidForm()" (click)="saveStudentToCourse()" *ngIf="!isShown">
+                  <button pButton [disabled]="!isValidForm()" (click)="saveStudentToCourse()" *ngIf="!isShown" class="p-button-rounded p-button-info">
                     <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                   </button>
 
-                  <button pButton [disabled]="!isValidForm()" (click)="updateStudentToCourse()" *ngIf="isShown">
+                  <button pButton [disabled]="!isValidForm()" (click)="updateStudentToCourse()" *ngIf="isShown" class="p-button-rounded p-button-info">
                     <i class="bi bi-save" style="font-size: 1rem"> Update </i>
                   </button>
                 </div>
