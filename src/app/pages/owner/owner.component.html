@@ -53,6 +53,7 @@
 <table class="table table-bordered table-dark" style="max-width: 100vw; overflow-x: scroll !important;">
   <thead>
     <tr>
+      <th scope="col">Sl No.</th>
       <th scope="col">Student Name</th>
       <th scope="col">Email Id</th>
       <th scope="col">Contact Numbe</th>
@@ -62,7 +63,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of registratedData">
+    <tr *ngFor="let data of registratedData;let i=index">
+      <th>{{i+1}}</th>
       <th>{{data.student_name}}</th>
       <td>{{data.email}}</td>
       <td>{{data.contact_number}}</td>
