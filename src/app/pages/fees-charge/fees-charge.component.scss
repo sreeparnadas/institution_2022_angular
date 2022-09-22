@@ -1,27 +1,57 @@
 .page{
-    color: white;
-    padding: 0 1rem;
-    background: #f1f5f9;
-    &__box{
-      min-height: 100px;
-      background: #1e293b;
-      margin: 0 -1rem;
-      font-size: 36px;
-    }
-    &__content{
-      min-height: calc(100vh - 160px);
-      border-radius: 10px;
-      margin-top: -3rem;
-      background: white;
-      color: black;
-      font-size: 20px;
-      &-data{
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-      }
+  color: white;
+  background: #121212;
+  &__box{
+    min-height: 100px;
+    background: #121212;
+    margin: 0 -3rem;
+    font-size: 24px;
+  }
+  &__content{
+    min-height: calc(100vh - 160px);
+    border-radius: 10px;
+    margin-top: -3rem;
+    background:  rgb(118, 118, 121);
+    border:2px solid white;
+    color: black;
+    font-size: 20px;
+    &-data{
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
     }
   }
+}
+
+::ng-deep .mat-form-field {
+  .mat-input-element {
+      color: rgb(8, 8, 8);
+      font-size: medium;
+      font-family: "Roboto", sans-serif;
+  }
+  .mat-form-field-label {
+      color: rgb(10, 10, 10);
+      font-family: "Roboto", sans-serif;
+      font-size: medium;
+  }
+  .mat-form-field-underline {
+      background-color: rgb(4, 32, 59);
+  }
+  .mat-form-field-ripple {
+      background-color: slategray;
+  }
+  .mat-form-field-required-marker {
+      color: rgb(190, 21, 9);
+  }
+
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #fec61f !important;
+}
+mat-form-field{
+  margin-bottom: -1em
+}
   .text-on-pannel {
     background: #fff none repeat scroll 0 0;
     height: auto;

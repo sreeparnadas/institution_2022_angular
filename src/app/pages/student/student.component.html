@@ -131,13 +131,13 @@
                     </div>
 
                     <div class="row">
-                      <div class="col-6">
+                      <div class="col-sm-6">
                         <mat-form-field class="col-12" style="width:100%">
                           <mat-label><i class="bi bi-person-circle mr-1"></i>Guardian Name</mat-label>
                           <input matInput placeholder="Guardian" formControlName="guardianName">
                         </mat-form-field>
                       </div>
-                      <div class="col-6">
+                      <div class="col-sm-6">
                         <ng-select [items]="relations" fxFlex="100" bindLabel="name" class="custom" bindValue="name"
                           appendTo="body" formControlName="relationToGuardian" placeholder="Relation"
                           style="height: 200 !important; width:100%">
