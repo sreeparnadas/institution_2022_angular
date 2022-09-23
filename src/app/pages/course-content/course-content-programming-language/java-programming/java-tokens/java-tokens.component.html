@@ -38,57 +38,38 @@
               <li>Literal </li>
               <li>Comment</li>
             </ol>
-
-
-          <p-divider align="left">
-            <div class="inline-flex align-items-center">
-              <h2>Purpose</h2>
-            </div>
-          </p-divider>
-          <p>Get value from matching record</p>
-          <p-divider align="left">
-            <div class="inline-flex align-items-center">
-              <h2>Return value </h2>
-            </div>
-          </p-divider>
-          <p>The value in a given field</p>
-          <p-divider align="left">
-            <div class="inline-flex align-items-center">
-              <h2>Syntax</h2>
-            </div>
-          </p-divider>
-
-          <h3 class="function-prototype">
-            =
-            <span class="function-name">DGET</span>
-            <span class="bracket">(</span>
-            <span class="required-parameter" pTooltip="Put a date you want" tooltipPosition="bottom">database</span>,
-            <span class="required-parameter" pTooltip="Put a date you want" tooltipPosition="bottom">field</span>,
-            <span class="required-parameter" pTooltip="Put a date you want" tooltipPosition="bottom">criteria</span>
-
-            <span class="bracket">)</span>
-          </h3>
-          <p-divider align="left">
-            <div class="inline-flex align-items-center">
-              <h2>Arguments</h2>
-            </div>
-          </p-divider>
-          <dl>
-            <dt>database  </dt>
-            <dd>- Database range including headers.</dd>
-            <dt>field  </dt>
-            <dd>- Field name or index to count.</dd>
-            <dt>criteria   </dt>
-            <dd>- Criteria range including headers.</dd>
-
-          </dl>
+            <pre>
+              <b>import</b> java.util.Scanner;
+              public class ReverseNumber {{"{"}}
+                  public static void main(String[] args) {{"{"}}
+                      Scanner sn;
+                      sn=new Scanner(System.in);
+                      System.out.print("Enter a number: ");
+                      int x=sn.nextInt();        
+                      int ans=0;        
+                      do{{"{"}}
+                          int r=x%10;
+                          x=x/10;
+                          ans=ans*10+r;
+                      }while(x>0);
+                      System.out.print("Reverse number is: "+ans);
+                      sn.close();
+                  }
+              }
+              
+            </pre>  
+            <pre>{{programCode1}}</pre>
 
           <p-divider align="">
             <div class="inline-flex align-items-center">
               <h2>Examples</h2>
             </div>
           </p-divider>
-          <p><a target="_blank" href="https://github.com/sukantahui/java_for_students/blob/6acac32c3f24902ac243b0609543a7c04e79f890/fibonacciseries/FibonacciSeries.java">example</a></p>
+          <p>
+            For example, consider the following code.
+          </p>
+          <pre>
+          </pre>
           <p><a target="_blank" href="https://github.com/sukantahui/java_for_students/blob/6acac32c3f24902ac243b0609543a7c04e79f890/fibonacciseries/FibonacciSeries.java">example</a></p>
 
 

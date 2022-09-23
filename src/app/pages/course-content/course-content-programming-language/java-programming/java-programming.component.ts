@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./java-programming.component.scss']
 })
 export class JavaProgrammingComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {
