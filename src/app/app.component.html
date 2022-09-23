@@ -6,7 +6,7 @@
       <app-sidenav-student *ngIf="authService.isStudent()"></app-sidenav-student>
     </mat-drawer>
 
-    <mat-drawer-content>
+    <mat-drawer-content style="background-color:white ;color:black;">
         <app-header (toggleSidebarForMe)="sideBarToggler($event)"></app-header>
       <div *ngIf="isNavigating"  id="loading-screen" class="text-center">
         <mat-spinner></mat-spinner>

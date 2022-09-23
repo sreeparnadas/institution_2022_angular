@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(56, 56, 57, 0.975);" *ngIf="commonService.isHeaderVisible()">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(110, 108, 108, 0.975);" *ngIf="commonService.isHeaderVisible()">
   <div class="container-fluid">
     <button (click)="toggleSlidebar()" mat-icon-button ><mat-icon>menu</mat-icon></button>
     <!-- <button *ngIf="authService.isAuthenticated()" mat-button class="rounded-circle" [matMenuTriggerFor]="test1">
@@ -38,6 +38,50 @@
       </ul>
     </div>
     <!--    for login-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div *ngIf="authService.isNotAuthenticated()" class="mr-10">
+        <a class="dropdown-item" [routerLink]="['/login']" style="color: dodgerblue;">
+          <mat-icon>power_settings_new</mat-icon>
+        </a>
+  
+  <!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+  <!--        <li class="nav-item dropdown">-->
+  <!--          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+  <!--            <mat-icon>power_settings_new</mat-icon>-->
+  <!--          </a>-->
+  <!--          <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">-->
+  <!--            <li><a class="dropdown-item" [routerLink]="['/login']">-->
+  <!--              <mat-icon aria-hidden="false">login</mat-icon> Login-->
+  <!--            </a></li>-->
+  
+  <!--          </ul>-->
+  <!--        </li>-->
+  <!--      </ul>-->
+      </div>
+  
+      <!--    for logout-->
+      <div *ngIf="authService.isAuthenticated()">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-10">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <mat-icon>power_settings_new</mat-icon>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+              <li>
+                <a class="dropdown-item" [routerLink]="" (click)="logOutCurrentUser()">
+                  <fa-icon [icon]="faSignOutAlt"></fa-icon> Logout
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" [routerLink]="" (click)="logOutFromAll()">
+                Logout All
+              </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>&nbsp;
     <button *ngIf="authService.isAuthenticated()" mat-button class="rounded-circle" [matMenuTriggerFor]="test1">
       <div class="rounded-circle" style="width: 56px; height: 55px; border: #e8c50e solid">
         <img  class="rounded-circle" style="width: 50px; height: 50px" [src]="imageSrc" (error)="imageSrc = defaultPicture">
@@ -47,50 +91,7 @@
     <input type="file" (change)="onChange($event)" name="filename">
   </mat-menu>
   <div>{{authService.getUserName()}}</div>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <div *ngIf="authService.isNotAuthenticated()" class="mr-10">
-      <a class="dropdown-item" [routerLink]="['/login']" style="color: dodgerblue;">
-        <mat-icon>power_settings_new</mat-icon>
-      </a>
-
-<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--        <li class="nav-item dropdown">-->
-<!--          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--            <mat-icon>power_settings_new</mat-icon>-->
-<!--          </a>-->
-<!--          <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">-->
-<!--            <li><a class="dropdown-item" [routerLink]="['/login']">-->
-<!--              <mat-icon aria-hidden="false">login</mat-icon> Login-->
-<!--            </a></li>-->
-
-<!--          </ul>-->
-<!--        </li>-->
-<!--      </ul>-->
-    </div>
-
-    <!--    for logout-->
-    <div *ngIf="authService.isAuthenticated()">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-10">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <mat-icon>power_settings_new</mat-icon>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
-            <li>
-              <a class="dropdown-item" [routerLink]="" (click)="logOutCurrentUser()">
-                <fa-icon [icon]="faSignOutAlt"></fa-icon> Logout
-              </a>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" [routerLink]="" (click)="logOutFromAll()">
-              Logout All
-            </a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+ 
 
 <!--    <div>-->
 <!--      <form class="d-flex">-->
