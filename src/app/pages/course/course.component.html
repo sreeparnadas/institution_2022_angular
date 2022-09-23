@@ -1,12 +1,12 @@
-<div class="container-fluid page" style="background-color:#121212;">
+<div class="container-fluid page">
   <div class="page__box p-3 mt-1 ml-1">Course Entry Form</div>
   <div class="page__content shadow p-3 position-relative">
     <!-- <div class="container-fluid"> -->
-    <div class="card-deck row">
+    <div class="card-deck row" >
       <!-- Tab -------------------------------------- -->
-      <div style="background-color: rgb(90, 90, 94);">
+      <div >
         <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
-          animationDuration="200ms">
+          animationDuration="200ms" style="background-color:  rgb(90, 90, 94);">
           <mat-tab>
             <ng-template mat-tab-label>
               <mat-icon class="example-tab-icon">trending_up</mat-icon>

@@ -1,35 +1,35 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="commonService.isHeaderVisible()">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(56, 56, 57, 0.975);" *ngIf="commonService.isHeaderVisible()">
   <div class="container-fluid">
     <button (click)="toggleSlidebar()" mat-icon-button ><mat-icon>menu</mat-icon></button>
-    <button *ngIf="authService.isAuthenticated()" mat-button class="rounded-circle" [matMenuTriggerFor]="test1">
+    <!-- <button *ngIf="authService.isAuthenticated()" mat-button class="rounded-circle" [matMenuTriggerFor]="test1">
                 <div class="rounded-circle" style="width: 56px; height: 55px; border: #e8c50e solid">
                   <img  class="rounded-circle" style="width: 50px; height: 50px" [src]="imageSrc" (error)="imageSrc = defaultPicture">
                 </div>
-    </button>
-    <mat-menu #test1="matMenu">
+    </button> -->
+    <!-- <mat-menu #test1="matMenu">
       <input type="file" (change)="onChange($event)" name="filename">
     </mat-menu>
     <div>{{authService.getUserName()}}</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="#"><mat-icon>home</mat-icon> &nbsp; Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#"><mat-icon>cached</mat-icon> &nbsp; About Us</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Special
+            <mat-icon>label_important</mat-icon> &nbsp; Special
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" routerLink="/BijoyaRegistration" >বিজুরসভা</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#"><mat-icon>list</mat-icon> &nbsp; Something else here</a></li>
           </ul>
         </li>
 <!--        <li class="nav-item">-->
@@ -38,7 +38,19 @@
       </ul>
     </div>
     <!--    for login-->
-    <div *ngIf="authService.isNotAuthenticated()">
+    <button *ngIf="authService.isAuthenticated()" mat-button class="rounded-circle" [matMenuTriggerFor]="test1">
+      <div class="rounded-circle" style="width: 56px; height: 55px; border: #e8c50e solid">
+        <img  class="rounded-circle" style="width: 50px; height: 50px" [src]="imageSrc" (error)="imageSrc = defaultPicture">
+      </div>
+  </button>
+  <mat-menu #test1="matMenu">
+    <input type="file" (change)="onChange($event)" name="filename">
+  </mat-menu>
+  <div>{{authService.getUserName()}}</div>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div *ngIf="authService.isNotAuthenticated()" class="mr-10">
       <a class="dropdown-item" [routerLink]="['/login']" style="color: dodgerblue;">
         <mat-icon>power_settings_new</mat-icon>
       </a>
@@ -60,7 +72,7 @@
 
     <!--    for logout-->
     <div *ngIf="authService.isAuthenticated()">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-10">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <mat-icon>power_settings_new</mat-icon>

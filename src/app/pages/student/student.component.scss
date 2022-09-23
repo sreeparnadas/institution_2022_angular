@@ -1,10 +1,10 @@
 
 .page{
-  color: white;
-  background: #121212;
+  color: rgb(12, 12, 12);
+  background: whitesmoke;
   &__box{
     min-height: 100px;
-    background: #121212;
+    background: whitesmoke;
     margin: 0 -3rem;
     font-size: 24px;
   }
@@ -12,8 +12,8 @@
     min-height: calc(100vh - 160px);
     border-radius: 10px;
     margin-top: -3rem;
-    background:  rgb(118, 118, 121);
-    border:2px solid white;
+    background:  rgb(159, 159, 162);
+    border:2px solid black;
     color: black;
     font-size: 20px;
     &-data{
@@ -96,6 +96,17 @@
 }
 mat-form-field{
   margin-bottom: -1em
+}
+
+::ng-deep datepicker-value-example .mat-form-field-label{
+  color:#43b2ee;
+}
+
+::ng-deep .mat-datepicker-toggle{
+  color:#43b2ee;
+}
+::ng-deep .mat-form-field-underline{
+background: #43b2ee;
 }
 .mat-stepper-label-position-bottom .mat-stepper-horizontal-line {
   top: 20px !important;
