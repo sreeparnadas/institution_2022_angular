@@ -17,6 +17,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 export class FeesChargeComponent implements OnInit {
   isDeviceXS = false;
   checked = false;
+  isSave=false;
   totalFees:number=0;
   studentName:any;
   courseName:any;
@@ -151,6 +152,11 @@ export class FeesChargeComponent implements OnInit {
     }
     this.tempFeesArray.push(this.tempItemObj);
     this.tempTotalAmount= this.totalAmount;
+    this.isSave=true;
+    this.FeesChargeFormGroup = new FormGroup({
+      amount : new FormControl(null, [Validators.required]),
+      ledgerId : new FormControl(null, [Validators.required])
+    })
   }
 
   onDelete(index: any){
