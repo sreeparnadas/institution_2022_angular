@@ -1,7 +1,7 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(110, 108, 108, 0.975);" *ngIf="commonService.isHeaderVisible()">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(213, 208, 208, 0.975); color: black;" *ngIf="commonService.isHeaderVisible()">
   <div class="container-fluid">
-    <button (click)="toggleSlidebar()" mat-icon-button ><mat-icon>menu</mat-icon></button>
+    <button (click)="toggleSlidebar()" mat-icon-button style="color:black ;"><mat-icon>menu</mat-icon></button>
     <!-- <button *ngIf="authService.isAuthenticated()" mat-button class="rounded-circle" [matMenuTriggerFor]="test1">
                 <div class="rounded-circle" style="width: 56px; height: 55px; border: #e8c50e solid">
                   <img  class="rounded-circle" style="width: 50px; height: 50px" [src]="imageSrc" (error)="imageSrc = defaultPicture">
@@ -17,13 +17,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><mat-icon>home</mat-icon> &nbsp; Home</a>
+          <a class="nav-link active" aria-current="page" href="#" style="color:black ;" ><mat-icon>home</mat-icon> &nbsp; Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><mat-icon>cached</mat-icon> &nbsp; About Us</a>
+          <a class="nav-link" href="#" style="color:black ;"><mat-icon>cached</mat-icon> &nbsp; About Us</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black ;">
             <mat-icon>label_important</mat-icon> &nbsp; Special
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -65,7 +65,7 @@
       <div *ngIf="authService.isAuthenticated()">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-10">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black ;">
               <mat-icon>power_settings_new</mat-icon>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">

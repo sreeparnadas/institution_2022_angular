@@ -66,8 +66,8 @@
                       </mat-form-field>
                     </div>
                     <div class="col-sm-3">
-                      <button type="button" class="btn btn-outline-success btn-space"
-                        (click)="onAddFees();">Add</button>
+                      <button pButton class="p-button-rounded p-button-info" [disabled]="!FeesChargeFormGroup.valid || FeesChargeFormGroup.value.id"
+                        (click)="onAddFees();"><i class="bi bi-arrows-move"></i>&nbsp; Add</button>
                       <!--  <button pButton>
                     <i class="bi bi-save" (click)="onAddFees();"> Add </i>
                   </button> -->
@@ -125,7 +125,7 @@
                     <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                   </button>&nbsp;&nbsp;&nbsp;
 
-                  <button pButton [disabled]="!FeesChargeFormGroup.valid || FeesChargeFormGroup.value.id"
+                  <button pButton [disabled]="!isSave"
                   (click)="onSave();" *ngIf="!isShown" class="p-button-rounded p-button-info">
                     <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                   </button>
@@ -278,8 +278,8 @@
         </div>
       </div>
 
-      <div class="col-md-5" >
-        <div *ngIf="hiddenPopup" style="background-color:white ; font-size: small;padding:10px; margin-top: -7px; ">
+      <div class="col-md-5" *ngIf="hiddenPopup" style="background-color:white ;">
+        <div style="background-color:white ; font-size: small;padding:10px; margin-top: -7px; ">
           <h1 style="background-color: rgb(90, 90, 94); color: white;">Fees Charge Details</h1>
           <table class="table table-striped">
             <thead>
