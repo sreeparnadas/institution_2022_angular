@@ -1,8 +1,8 @@
-<div class="d-flex m-2 flex-column">
+<div class="d-flex m-2 flex-column bg-dark">
     <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <!-- <div class="col-4 "></div> -->
     <div [ngClass]="isDeviceXS? 'col-12 text-center': 'col-3 text-center'">
-        <h1>বিজয়া সম্মেলনী 2022 Regitration Form</h1>
+        <h1 style="color: white;">বিজয়া সম্মেলনী 2022 Regitration Form</h1>
         <h3 style="font-weight: bolder; color: yellow;">Will be held On 16th October, 2022</h3>
         <div class="m-3" style="color: #f9d7f0; border: 1px dotted; border-radius: 7px; background-color: #1012a80d;">
             বছর দুয়েক আগে<br>
@@ -81,7 +81,7 @@
                                 </mat-error>
 
                             </mat-form-field>
-                            <div align="end">
+                            <div align="end" style="color: white;">
                                 add numbers to
                                 <i class="bi bi-whatsapp m-2" (click)="addWhatsappNumber(contactNumber.value)"></i>
                                 <i class="bi bi-telegram" (click)="addTelegramNumber(contactNumber.value)"></i>
@@ -129,7 +129,7 @@
                     </div>
                 </div>
             </form>
-            <div class="form-check">
+            <div class="form-check" style="color: white;">
                 <input class="form-check-input" type="checkbox" #check1 name="option1" value="something" unchecked>
                 <label class="form-check-label">Yes, I promise that I'll attend that day</label>
             </div>

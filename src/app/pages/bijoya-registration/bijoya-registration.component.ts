@@ -47,7 +47,7 @@ export class BijoyaRegistrationComponent implements OnInit {
   studentInfo: BijoyaRegistration[] = [];
   studentInfoFormGroup = new FormGroup({
     studentName: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-    email: new FormControl(null, [Validators.email]),
+    email: new FormControl(null),
     contactNumber: new FormControl(null, [Validators.required]),
     whatsappNumber: new FormControl(null),
     telegramNumber: new FormControl(null),
