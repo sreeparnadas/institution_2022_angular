@@ -18,9 +18,13 @@ export class FeesChargeComponent implements OnInit {
   isDeviceXS = false;
   checked = false;
   isSave=false;
+  studentId:any;
+  transactionDate:any;
   totalFees:number=0;
   studentName:any;
   courseName:any;
+  comment:any;
+  transactionId:any;
   showTableRow:boolean=false;
   disabled = false;
   hiddenPopup:boolean=false;
@@ -79,6 +83,9 @@ export class FeesChargeComponent implements OnInit {
     ngOnInit(): void {
       const now = new Date();
       let val = formatDate(now, 'yyyy-MM-dd', 'en');
+
+      //this.date=new Date();
+      //transactionDate :this.datepipe.transform(this.date, 'yyyy-MM-dd');
       this.FeesChargeFormGroup = new FormGroup({
 
         studentId : new FormControl(1, [Validators.required]),
@@ -139,6 +146,16 @@ export class FeesChargeComponent implements OnInit {
   }
 
   onAddFees(){
+    this.studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+    //this.transactionDate =this.FeesChargeFormGroup.get('transactionDate')?.value;
+    let tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
+    this.transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
+    this.studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
+    this.comment=this.FeesChargeFormGroup.get('comment')?.value;
+       let feesYear=new Date().getFullYear();
+       let feesMonth=new Date().getMonth().toString();
+       console.log("studentId:",this.studentId);
+       console.log("transactionDate:",this.transactionDate);
     this.ledgerId=this.FeesChargeFormGroup.get('ledgerId')?.value;
     this.amount=this.FeesChargeFormGroup.get('amount')?.value;
     this.totalAmount=Number(this.totalAmount)+Number(this.amount);
@@ -216,6 +233,12 @@ export class FeesChargeComponent implements OnInit {
       this.FeesChargeFormGroup.patchValue({studentToCourseId: response.data[0].student_course_registration_id});
       this.FeesChargeFormGroup.patchValue({comment: response.data[0].comment});
       this.FeesChargeFormGroup.patchValue({transactionDate: response.data[0].transaction_date});
+      this.studentId=response.data[0].student_id;
+      this.studentToCourseId=response.data[0].student_course_registration_id;
+      this.transactionId=response.data[0].id;
+      let tr_date=response.data[0].transaction_date;
+       this.transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
+      this.comment=response.data[0].comment;
 
       for(let val of this.transactionList){
         this.tempItemObj={
@@ -241,16 +264,16 @@ export class FeesChargeComponent implements OnInit {
      accept: () => {
 
 
-       let transactionId=this.FeesChargeFormGroup.get('transactionId')?.value;
-       let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
-       let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
-       let tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
-       let transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
-       let comment=this.FeesChargeFormGroup.get('comment')?.value;
+       //let transactionId=this.FeesChargeFormGroup.get('transactionId')?.value;
+       //let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+       //let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
+       //let tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
+       //let transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
+       //let comment=this.FeesChargeFormGroup.get('comment')?.value;
        let feesYear=new Date().getFullYear();
        let feesMonth=new Date().getMonth().toString();
        this.tempChargeObj={
-         ledgerId:studentId,
+         ledgerId:this.studentId,
          transactionTypeId:1,
          amount:this.totalAmount
        }
@@ -259,15 +282,15 @@ export class FeesChargeComponent implements OnInit {
        this.tempObj={
            transactionMaster:{
            userId:1,
-           studentCourseRegistrationId:studentToCourseId,
-           transactionDate:transactionDate,
-           comment:comment,
+           studentCourseRegistrationId:this.studentToCourseId,
+           transactionDate:this.transactionDate,
+           comment:this.comment,
            feesYear:feesYear,
            feesMonth:feesMonth
          },
          transactionDetails: Object.values(this.tempFeesArray)
        }
-       this.transactionServicesService.updateFeesCharge(transactionId,this.tempObj).subscribe(response => {
+       this.transactionServicesService.updateFeesCharge(this.transactionId,this.tempObj).subscribe(response => {
          if (response.success === 1){
            this.getAllReceivedFees();
            this.tempFeesArray=[];
@@ -296,7 +319,7 @@ export class FeesChargeComponent implements OnInit {
 
 getActiveCourse(){
   this.hiddenPopup=true;
-
+  this.totalFees=0;
   let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
   let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
 
@@ -390,8 +413,8 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
-        let transactionDate=this.FeesChargeFormGroup.get('transactionDate')?.value;
+       /*  let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+        let transactionDate=this.FeesChargeFormGroup.get('transactionDate')?.value; */
         let comment=this.FeesChargeFormGroup.get('comment')?.value;
         this.tempChargeObj=[{
           ledgerId:1,
@@ -399,7 +422,7 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
           amount:this.tempTotalAmount
         },
         {
-          ledgerId:studentId,
+          ledgerId:this.studentId,
           transactionTypeId:2,
           amount:this.tempTotalAmount
         }];
@@ -409,8 +432,8 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
           transactionMaster:{
           userId:1,
           referenceTransactionMasterId: this.referenceTransactionMasterId,
-          transactionDate:transactionDate,
-          comment:comment
+          transactionDate:this.transactionDate,
+          comment:this.comment
             },
           transactionDetails: Object.values(this.tempChargeObj)
         }
@@ -445,20 +468,29 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
   }
 
   onSave(){
+   /*  let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+    let transactionDate =this.FeesChargeFormGroup.get('transactionDate')?.value;
+       let comment=this.FeesChargeFormGroup.get('comment')?.value;
+       let feesYear=new Date().getFullYear();
+       let feesMonth=new Date().getMonth().toString();
+       console.log("studentId:",studentId);
+       console.log("transactionDate:",transactionDate); */
     this.hiddenPopup=false;
     this.confirmationService.confirm({
      message: 'Do you want to Save this record?',
      header: 'Delete Confirmation',
      icon: 'pi pi-info-circle',
      accept: () => {
-       let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
-       let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
-       let transactionDate=this.FeesChargeFormGroup.get('transactionDate')?.value;
-       let comment=this.FeesChargeFormGroup.get('comment')?.value;
+       /* let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+       let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value; 
+       //let tempDate=this.FeesChargeFormGroup.get('transactionDate')?.value;
+       let transactionDate =this.FeesChargeFormGroup.get('transactionDate')?.value;
+       let comment=this.FeesChargeFormGroup.get('comment')?.value;*/
        let feesYear=new Date().getFullYear();
        let feesMonth=new Date().getMonth().toString();
+       
        this.tempChargeObj={
-         ledgerId:studentId,
+         ledgerId:this.studentId,
          transactionTypeId:1,
          amount:this.totalAmount
        }
@@ -467,9 +499,9 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
        this.tempObj={
          transactionMaster:{
          userId:1,
-         studentCourseRegistrationId:studentToCourseId,
-         transactionDate:transactionDate,
-         comment:comment,
+         studentCourseRegistrationId:this.studentToCourseId,
+         transactionDate:this.transactionDate,
+         comment:this.comment,
          feesYear:feesYear,
          feesMonth:feesMonth
        },

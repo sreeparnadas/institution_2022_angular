@@ -25,7 +25,7 @@
                     <div class="col-sm-4">
                       <mat-form-field>
                         <mat-label>Transaction Date</mat-label>
-                        <input class="col-9" matInput #ref [matDatepicker]="transactionDate"
+                        <input matInput #ref [matDatepicker]="transactionDate"
                           formControlName="transactionDate">
                         <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
                         <mat-datepicker #transactionDate></mat-datepicker>
@@ -88,7 +88,7 @@
                     </div>
 
                   </div>
-                </form>
+                
                 <table class="table table-striped" style="font-size: medium;">
                   <thead>
                     <tr>
@@ -117,7 +117,7 @@
                     </tr>
                   </tbody>
                 </table>
-
+              
                 <p class="text-right">
 
                   <button pButton (click)="clearFeesReceived();"
@@ -130,7 +130,7 @@
                     <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                   </button>
 
-                  <button pButton [disabled]="!FeesChargeFormGroup.valid || FeesChargeFormGroup.value.id"
+                  <button pButton [disabled]="!isSave"
                       (click)="onUpdate();" *ngIf="isShown" class="p-button-rounded p-button-info">
                     <i class="bi bi-save" style="font-size: 1rem"> Update </i>
                   </button>
@@ -142,11 +142,12 @@
                 (click)="onUpdate();">Update</button>
               <button type="button" class="btn btn-outline-success btn-space"
                 [disabled]="!FeesChargeFormGroup.valid || FeesChargeFormGroup.value.id" *ngIf="!isShown"
-                (click)="onSave();"><i class="fas fa-save"></i>&nbsp; Save</button>
+                (click)="onSave();"><i class="fas fa-save"></i>&nbsp; Save</button>-->
               <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived"
-                (click)="onCashReceived();">Received Cash</button> -->
+                (click)="onCashReceived();">Received Cash</button> 
 
                 </p>
+              </form>
                 <!--  <fieldset class="border p-2"> -->
                 <fieldset class="border p-2" *ngIf="isCashReceived">
                   <legend>Bank Details</legend>
@@ -271,6 +272,22 @@
 
 
 
+              </div>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                Developer Area
+              </ng-template>
+        
+              <div style="background-color:yellow ;">
+                <pre>
+                  update code = {{tempItemObj | json}}
+                </pre>
+                <hr>
+                <pre>
+                  save code = {{tempObj | json}}
+                </pre>
               </div>
             </mat-tab>
 
