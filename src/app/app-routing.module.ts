@@ -133,6 +133,8 @@ const routes: Routes = [
 
   { path: 'CourseContentProgrammingLanguage', loadChildren: () => import('./pages/course-content/course-content-programming-language/course-content-programming-language.module').then(m => m.CourseContentProgrammingLanguageModule) },
 
+  { path: 'JavaInitialCoding', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-initial-coding/java-initial-coding.module').then(m => m.JavaInitialCodingModule) },
+
   // { path: 'JavaProgramming', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-programming.module').then(m => m.JavaProgrammingModule) },
 
   // { path: 'JavaTokens', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-tokens/java-tokens.module').then(m => m.JavaTokensModule) },

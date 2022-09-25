@@ -27,6 +27,8 @@ const routes: Routes = [
 
                             { path: 'JavaTokens', loadChildren: () => import('./course-content-programming-language/java-programming/java-tokens/java-tokens.module').then(m => m.JavaTokensModule) },
 
+                            { path: 'JavaInitialCoding', loadChildren: () => import('./course-content-programming-language/java-programming/java-initial-coding/java-initial-coding.module').then(m => m.JavaInitialCodingModule) },
+
                           ]
                         }
                        ];

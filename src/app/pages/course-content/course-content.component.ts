@@ -121,6 +121,12 @@ export class CourseContentComponent implements OnInit {
               icon:'pi pi-fw  pi-circle-fill',
               routerLink: "./JavaTokens",
 
+            },
+            {
+              label: 'Java Initial Coding',
+              icon:'pi pi-fw  pi-circle-fill',
+              routerLink: "./JavaInitialCoding",
+
             }
           ]
 
