@@ -127,4 +127,14 @@ export class TransactionServicesService {
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
   }
+
+  //----------------- Fees Received Function start -----------------------
+  fetchFeesDueListId($id:any){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/feesDueList/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
+      this.studentToCourseList=response.data;
+      //console.log("Fees Due List:",this.studentToCourseList);
+      this.studentToCourseSubject.next([...this.studentToCourseList]);
+    })));
+  }
 }

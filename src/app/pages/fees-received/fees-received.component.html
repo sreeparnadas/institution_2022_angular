@@ -24,7 +24,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                       <ng-select [items]="studentNameList"
                           fxFlex="100"
                           bindLabel="studentName"
@@ -36,7 +36,7 @@
                           placeholder="Student Name" >
                       </ng-select>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                       <ng-select [items]="courseNameList"
                           fxFlex="100"
                           bindLabel="full_name"
@@ -47,45 +47,49 @@
                           placeholder="Course Name">
                       </ng-select>
                     </div>
+                    <div class="col-2">
+                      <a (click)="getActiveCourse()"><i class="bi bi-link"></i> &nbsp; Go</a>
+                      <!-- <button type="button" class="btn btn-outline-success btn-space" (click)="getActiveCourse();">Go >></button> -->
+                    </div>
                   </div>
                   
                  
                  
               </form>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" >Ledger id</th>
-                    <th scope="col">Fees Name</th>
-                    <th scope="col">Total Billed</th>
-                    <th scope="col">Total Received</th>
-                    <th scope="col">Net Due</th>
-                    <th scope="col">Payment</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of tempFeesArray; let indexOfelement=index;">
-                      <th scope="row">{{indexOfelement+1}}</th>
-                      <th scope="row">{{item.ledgerId}}</th>
-                      <td>{{item.feesName}}</td>
-                      <td>{{item.feesName}}</td>
-                      <td>{{item.feesName}}</td>
-                      <td align="right">{{item.amount | currency:'INR'}}</td>
-                      <td><mat-form-field appearance="fill">
-                        <mat-label>Input</mat-label>
-                        <input matInput>
-                      </mat-form-field></td>
+              <div class="container mt-3" style="background-color:white; margin-left: 0px;">
+                <table class="table table-striped" >
+                  <thead>
+                    <tr>
+                    
+                      <th scope="col" style="display: none;">Ledger id</th>
+                      <th scope="col">Fees Name</th>
+                      <th scope="col">Total Billed</th>
+                      <th scope="col">Total Received</th>
+                      <th scope="col">Net Due</th>
+                      <th scope="col">Payment</th>
                     </tr>
-                    <tr class="table-dark">
-                      <th colspan="6">Grand Total</th>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of feesDueListArray;">
+                        <th scope="row" style="display: none;">{{item.ledger_id}}</th>
+                        <td>{{item.ledger_name}}</td>
+                        <td>{{item.total_billed | currency:'INR'}}</td>
+                        <td>{{item.total_received | currency:'INR'}}</td>
+                        <td align="right">{{item.total_billed-item.total_received | currency:'INR'}}</td>
+                        <td><mat-form-field >
+                          <mat-label>Enter Amount</mat-label>
+                          <input matInput>
+                        </mat-form-field></td>
+                      </tr>
+                      <tr class="table-dark">
+                        <th colspan="6">Grand Total</th>
 
-                      <td align="right">{{totalAmount | currency:'INR'}}</td>
-                      <td>&nbsp;</td>
-                    </tr>
-                  </tbody>
-              </table>
-
+                        <td align="right">{{totalAmount | currency:'INR'}}</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </tbody>
+                </table>
+             </div>
                 <p class="text-right">
                   <button type="button" class="btn btn-outline-warning btn-space" (click)="clearFeesReceived();">Clear</button>
                   <button type="button" class="btn btn-outline-danger btn-space" *ngIf="isShown" [disabled]="!FeesReceivedFormGroup.valid || FeesReceivedFormGroup.value.id" (click)="onUpdate();">Update</button>

@@ -32,7 +32,31 @@
     border: 1px solid #337ab7;
     border-radius: 8px;
   }
+  mat-form-field{
+    margin-bottom: -1em
+  }
+  ::ng-deep .mat-form-field {
+    .mat-input-element {
+        color: rgb(8, 8, 8);
+        font-size: medium;
+    }
+    .mat-form-field-label {
+        color: rgb(10, 10, 10);
+        
+        font-size: medium;
+    }
+    .mat-form-field-underline {
+        background-color: rgb(4, 32, 59);
+    }
+    .mat-form-field-ripple {
+        background-color: slategray;
+    }
+    .mat-form-field-required-marker {
+        color: rgb(190, 21, 9);
+    }
   
+    
+  }
   .panel {
     /* for text on pannel */
     margin-top: 27px !important;
