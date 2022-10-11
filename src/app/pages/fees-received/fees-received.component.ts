@@ -79,8 +79,8 @@ export class FeesReceivedComponent implements OnInit {
     this.FeesReceivedFormGroup = new FormGroup({
 
       studentId: new FormControl(1, [Validators.required]),
-      transactionId: new FormControl(0, [Validators.required]),
-      comment: new FormControl(),
+      //transactionId: new FormControl(0, [Validators.required]),
+      //comment: new FormControl(),
       amount: new FormControl(null, [Validators.required]),
       transactionDate: new FormControl(val),
       studentToCourseId: new FormControl(1, [Validators.required]),
@@ -393,62 +393,7 @@ export class FeesReceivedComponent implements OnInit {
   }
   onSave() {
 
-    this.confirmationService.confirm({
-      message: 'Do you want to Save this record?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        let studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
-        let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
-        let transactionDate = this.FeesReceivedFormGroup.get('transactionDate')?.value;
-        let comment = this.FeesReceivedFormGroup.get('comment')?.value;
-        let feesYear = new Date().getFullYear();
-        let feesMonth = new Date().getMonth().toString();
-        this.tempChargeObj = {
-          ledgerId: studentId,
-          transactionTypeId: 1,
-          amount: this.totalAmount
-        }
-        this.tempFeesArray.push(this.tempChargeObj);
-
-        this.tempObj = {
-          transactionMaster: {
-            userId: 1,
-            studentCourseRegistrationId: studentToCourseId,
-            transactionDate: transactionDate,
-            comment: comment,
-            feesYear: feesYear,
-            feesMonth: feesMonth
-          },
-          transactionDetails: Object.values(this.tempFeesArray)
-        }
-        this.transactionServicesService.feesCharge(this.tempObj).subscribe(response => {
-          this.referenceTransactionMasterId = response.data.transactionMasterId;
-          if (response.success === 1) {
-
-            this.isCashReceived = true;
-            this.getAllReceivedFees();
-            this.tempFeesArray = [];
-            this.totalAmount = 0;
-            this.clearFeesReceived();
-            this.showSuccess("Record added successfully");
-          }
-
-        }, error => {
-          this.showErrorMessage = true;
-          this.errorMessage = error.message;
-
-          setTimeout(() => {
-            this.showErrorMessage = false;
-          }, 20000);
-
-        })
-
-      },
-      reject: () => {
-        this.msgs = [{ severity: 'info', summary: 'Rejected', detail: 'You have rejected' }];
-      }
-    });
+    console.log("it is working..",this.feesDueListArray);
 
   }
   showSuccess(arg0: string) {

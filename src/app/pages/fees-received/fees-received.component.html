@@ -52,10 +52,7 @@
                       <!-- <button type="button" class="btn btn-outline-success btn-space" (click)="getActiveCourse();">Go >></button> -->
                     </div>
                   </div>
-                  
-                 
-                 
-              </form>
+
               <div class="container mt-3" style="background-color:white; margin-left: 0px;">
                 <table class="table table-striped" >
                   <thead>
@@ -78,7 +75,7 @@
                         <td align="right">{{item.total_billed-item.total_received | currency:'INR'}}</td>
                         <td><mat-form-field >
                           <mat-label>Enter Amount</mat-label>
-                          <input matInput>
+                          <input matInput formControlName="amount">
                         </mat-form-field></td>
                       </tr>
                       <tr class="table-dark">
@@ -90,10 +87,11 @@
                     </tbody>
                 </table>
              </div>
+            </form>
                 <p class="text-right">
                   <button type="button" class="btn btn-outline-warning btn-space" (click)="clearFeesReceived();">Clear</button>
                   <button type="button" class="btn btn-outline-danger btn-space" *ngIf="isShown" [disabled]="!FeesReceivedFormGroup.valid || FeesReceivedFormGroup.value.id" (click)="onUpdate();">Update</button>
-                  <button type="button" class="btn btn-outline-success btn-space" [disabled]="!FeesReceivedFormGroup.valid || FeesReceivedFormGroup.value.id" *ngIf="!isShown" (click)="onSave();">Submit</button>
+                  <button type="button" class="btn btn-outline-success btn-space" (click)="onSave();">Submit</button>
                   <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived" (click)="onCashReceived();">Received Cash</button>
 
                 </p>
@@ -342,10 +340,18 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-                Upcoming Birthday
+                Developer Area
               </ng-template>
-
-              Content 3
+        
+              <div style="background-color:yellow ;">
+                <pre>
+                  update code = {{FeesReceivedFormGroup.value | json}}
+                </pre>
+                <hr>
+                <pre>
+                  save code = {{tempObj | json}}
+                </pre>
+              </div>
             </mat-tab>
           </mat-tab-group>
         </div>
