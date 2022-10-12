@@ -57,17 +57,22 @@
                 <table class="table table-striped" >
                   <thead>
                     <tr>
-                    
+                      <th scope="col" style="display: none;">index</th>
+                      <th scope="col" style="display: none;">Tr id</th>
                       <th scope="col" style="display: none;">Ledger id</th>
                       <th scope="col">Fees Name</th>
                       <th scope="col">Total Billed</th>
                       <th scope="col">Total Received</th>
                       <th scope="col">Net Due</th>
                       <th scope="col">Payment</th>
+                      <th scope="col">Comments</th>
+                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let item of feesDueListArray;">
+                      <tr *ngFor="let item of feesDueListArray; index as i">
+                        <th scope="row" style="display: none;">{{i}}</th>
+                        <th scope="row" style="display: none;">{{item.id}}</th>
                         <th scope="row" style="display: none;">{{item.ledger_id}}</th>
                         <td>{{item.ledger_name}}</td>
                         <td>{{item.total_billed | currency:'INR'}}</td>
@@ -75,8 +80,13 @@
                         <td align="right">{{item.total_billed-item.total_received | currency:'INR'}}</td>
                         <td><mat-form-field >
                           <mat-label>Enter Amount</mat-label>
-                          <input matInput formControlName="amount">
+                          <input matInput formControlName="pay_amount" [(ngModel)]="item.pay_amount">
                         </mat-form-field></td>
+                        <td><mat-form-field >
+                          <mat-label>Enter Comments</mat-label>
+                          <input matInput formControlName="comment" [(ngModel)]="item.comment">
+                        </mat-form-field></td>
+                        <td><button type="button" class="btn btn-outline-success btn-space" (click)="onSave(i);">Submit</button></td>
                       </tr>
                       <tr class="table-dark">
                         <th colspan="6">Grand Total</th>
@@ -91,7 +101,7 @@
                 <p class="text-right">
                   <button type="button" class="btn btn-outline-warning btn-space" (click)="clearFeesReceived();">Clear</button>
                   <button type="button" class="btn btn-outline-danger btn-space" *ngIf="isShown" [disabled]="!FeesReceivedFormGroup.valid || FeesReceivedFormGroup.value.id" (click)="onUpdate();">Update</button>
-                  <button type="button" class="btn btn-outline-success btn-space" (click)="onSave();">Submit</button>
+                  <button type="button" class="btn btn-outline-success btn-space" >Submit</button>
                   <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived" (click)="onCashReceived();">Received Cash</button>
 
                 </p>
@@ -345,7 +355,7 @@
         
               <div style="background-color:yellow ;">
                 <pre>
-                  update code = {{FeesReceivedFormGroup.value | json}}
+                  feesDueListArray = {{feesDueListArray| json}}
                 </pre>
                 <hr>
                 <pre>

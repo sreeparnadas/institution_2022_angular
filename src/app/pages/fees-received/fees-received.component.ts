@@ -32,18 +32,25 @@ export class FeesReceivedComponent implements OnInit {
   referenceTransactionMasterId: number = 0;
   students: any[] = [];
   studentToCourseId: any;
+  pay_amount:number=0;
   studentNameList: any[] = [];
   FeesReceivedFormGroup: FormGroup | any;
   BankReceivedFormGroup: FormGroup | any;
   feesNameList: any[] = [];
   courseNameList: any = [];
   transactionList: any = [];
-  tempFeesArray: any = [];
+  tempFeesReceivedArray: any = [];
   feesReceivedArray: any = [];
+
+  tempFeesArray: any[] = [];
+  comment:any;
+  studentId:any;
+  transactionDate:any;
   tempItemObj!: object;
   tempSaveItemObj!: object;
   tempObj!: object;
   tempChargeObj!: object;
+  tempReceicedObj!:object;
   tempCashChargeObj!: object;
   courses: any[] = [];
   popUpRestultArray: any[] = [];
@@ -77,10 +84,9 @@ export class FeesReceivedComponent implements OnInit {
     const now = new Date();
     let val = formatDate(now, 'yyyy-MM-dd', 'en');
     this.FeesReceivedFormGroup = new FormGroup({
-
+      pay_amount:new FormControl(0, [Validators.required]),
+      comment:new FormControl(0, [Validators.required]),
       studentId: new FormControl(1, [Validators.required]),
-      //transactionId: new FormControl(0, [Validators.required]),
-      //comment: new FormControl(),
       amount: new FormControl(null, [Validators.required]),
       transactionDate: new FormControl(val),
       studentToCourseId: new FormControl(1, [Validators.required]),
@@ -93,9 +99,7 @@ export class FeesReceivedComponent implements OnInit {
       branch: new FormControl(null, [Validators.required])
     })
 
-    // this.transactionServicesService.fetchAllFeesName().subscribe(response=>{
-    //   this.feesNameList=response.data;
-    // })
+    
 
     this.getAllReceivedFees();
 
@@ -391,9 +395,73 @@ export class FeesReceivedComponent implements OnInit {
 
 
   }
-  onSave() {
-
-    console.log("it is working..",this.feesDueListArray);
+  onSave(index:any) {
+    console.log("it is working..",this.feesDueListArray[index].id);
+    
+    
+     this.confirmationService.confirm({
+      message: 'Do you want to Save this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+ 
+ 
+         //let transactionId=this.FeesChargeFormGroup.get('transactionId')?.value;
+     this.studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
+     //let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
+     let tr_date=this.FeesReceivedFormGroup.get('transactionDate')?.value;
+     this.transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
+     this.comment=this.FeesReceivedFormGroup.get('comment')?.value;
+     let feesYear=new Date().getFullYear();
+     let feesMonth=new Date().getMonth().toString();
+     this.tempChargeObj={
+       ledgerId:this.studentId,
+       transactionTypeId:2,
+       amount:this.feesDueListArray[index].pay_amount
+     }
+     this.tempReceicedObj={
+        ledgerId: this.feesDueListArray[index].ledger_id,
+        transactionTypeId: 1,
+        amount: this.feesDueListArray[index].pay_amount
+     }
+     this.tempFeesReceivedArray.push(this.tempReceicedObj);
+     this.tempFeesReceivedArray.push(this.tempChargeObj);
+     this.tempObj={
+         transactionMaster:{
+         userId:1,
+         referenceTransactionMasterId:this.feesDueListArray[index].id,
+         transactionDate:this.transactionDate,
+         comment:this.comment,
+         feesYear:feesYear,
+         feesMonth:feesMonth
+       },
+       transactionDetails: Object.values(this.tempFeesReceivedArray)
+      } 
+        this.transactionServicesService.saveFeesReceive(this.tempObj).subscribe(response => {
+          if (response.success === 1){
+            //this.getAllReceivedFees();
+            this.feesDueListArray=[];
+            //this.totalAmount=0;
+            this.clearFeesReceived();
+            this.showSuccess("Record Updated successfully");
+          }
+ 
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+ 
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+ 
+        })
+ 
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    }); 
+    
 
   }
   showSuccess(arg0: string) {
@@ -405,13 +473,13 @@ export class FeesReceivedComponent implements OnInit {
     this.totalFees = 0;
     //let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
     let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
-
+    //console.log("studentToCourseId:",studentToCourseId);
     this.transactionServicesService.fetchFeesDueListId(studentToCourseId).subscribe(response => {
       this.feesDueListArray = response.data;
       console.log("fees Due list:",this.feesDueListArray);
        for (let val of this.feesDueListArray) {
-        console.log("total_billed:",val.total_billed);
-        console.log("total_received:",val.total_received);
+        //console.log("total_billed:",val.total_billed);
+        //console.log("total_received:",val.total_received);
       } 
     })
 
