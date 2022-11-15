@@ -27,7 +27,20 @@ export class TransactionServicesService {
 
   }
 
-
+  fetchAllReceipt($id: any){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/getAllReceiptId/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.feesReceivedList=response.data;
+      this.feesReceivedSubject.next([...this.feesReceivedList]);
+    })));
+  }
+  fetchSingleReceipt($id: any){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/getReceiptId/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.feesReceivedList=response.data;
+      this.feesReceivedSubject.next([...this.feesReceivedList]);
+    })));
+  }
   fetchAllStudentToCourses($id: any){
     //return this.http.get<any>(this.commonService.getAPI() + '/students/studentId/'+$id+'/courses')
     return this.http.get<any>(this.commonService.getAPI() + '/students/studentToCourses/'+$id)
@@ -39,6 +52,13 @@ export class TransactionServicesService {
 
   fetchAllFeesName(){
     return this.http.get<any>(this.commonService.getAPI() + '/students/feesName')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      // this.feesNameList=response.data;
+      // this.feesNameSubject.next([...this.feesNameList]);
+    })));
+  }
+  fetchDiscountFeesName(){
+    return this.http.get<any>(this.commonService.getAPI() + '/students/feesNameDiscount')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       // this.feesNameList=response.data;
       // this.feesNameSubject.next([...this.feesNameList]);
@@ -59,8 +79,22 @@ export class TransactionServicesService {
     })));
   }
 
-  fetchAllFeesReceived(){
+  fetchAllFeesCharged(){
     return this.http.get<any>(this.commonService.getAPI() + '/transactions/allFeesCharged')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.feesReceivedList=response.data;
+      this.feesReceivedSubject.next([...this.feesReceivedList]);
+    })));
+  }
+  fetchAllFeesDiscount(){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/allFeesDiscount')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.feesReceivedList=response.data;
+      this.feesReceivedSubject.next([...this.feesReceivedList]);
+    })));
+  }
+  fetchAllFeesReceived(){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/allFeesReceived')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       this.feesReceivedList=response.data;
       this.feesReceivedSubject.next([...this.feesReceivedList]);
@@ -99,6 +133,15 @@ export class TransactionServicesService {
     }))
   }
 
+  feesDiscountCharge(feeChargeData:any){
+    return this.http.post<any>(this.commonService.getAPI() + '/transactions/feesDiscountCharged', feeChargeData)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      if (response.status === true){
+        this.studentToCourseList.unshift(response.data);
+        this.studentToCourseSubject.next([...this.studentToCourseList]);
+      }
+    }))
+  }
   saveFeesReceive(feeReceivedData:any){
     return this.http.post<any>(this.commonService.getAPI() + '/transactions/feesReceived', feeReceivedData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
@@ -130,10 +173,38 @@ export class TransactionServicesService {
 
   //----------------- Fees Received Function start -----------------------
   fetchFeesDueListId($id:any){
-    return this.http.get<any>(this.commonService.getAPI() + '/transactions/feesDueList/'+$id)
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/feesDueListByTranId/'+$id)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
       this.studentToCourseList=response.data;
       //console.log("Fees Due List:",this.studentToCourseList);
+      this.studentToCourseSubject.next([...this.studentToCourseList]);
+    })));
+  }
+ 
+  fetchAllTranMasterId($id:any){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/getTranMasterId/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
+      this.studentToCourseList=response.data;
+      //console.log("Fees Due List:",this.studentToCourseList);
+      this.studentToCourseSubject.next([...this.studentToCourseList]);
+    })));
+  }
+
+  fetchDiscountByTranId($id:any){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/allTotalDiscountByTranId/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      if (response.status === true){
+        this.studentToCourseList.unshift(response.data);
+        this.studentToCourseSubject.next([...this.studentToCourseList]);
+      }
+    }))
+  }
+
+  fetchFeesDueLedgerId(data:any){
+     return this.http.post<any>(this.commonService.getAPI() + '/transactions/getFeesByLedgerId', data)
+     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: StudentToCourse[]}) => {
+      this.studentToCourseList=response.data;
+      console.log("Due list By Ledger:",this.studentToCourseList);
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
   }

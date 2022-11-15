@@ -3,7 +3,7 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {Student} from "../../models/student.model";
 import {StudentService} from "../../services/student.service";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
-import {AbstractControl, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl,  FormGroup,  Validators} from "@angular/forms";
 import {Table} from "primeng/table";
 import {environment} from "../../../environments/environment";
 import {WebcamImage, WebcamInitError} from "ngx-webcam";
@@ -32,7 +32,7 @@ interface Alert {
 
 export class StudentComponent implements OnInit, OnChanges{
 
-  myControl = new UntypedFormControl();
+  myControl = new FormControl();
   qualifications: string[] =['Graduate','Class V', 'Class VI','Class VII', 'Class VIII'] ;
   filteredQualifications: Observable<string[]> | undefined;
 
@@ -53,11 +53,11 @@ export class StudentComponent implements OnInit, OnChanges{
   activeIndex: number = 0;
 
 
-  studentNameFormGroup: UntypedFormGroup;
-  studentGuardianFormGroup: UntypedFormGroup;
-  studentBasicFormGroup: UntypedFormGroup;
-  studentAddressFormGroup: UntypedFormGroup;
-  studentContactFormGroup: UntypedFormGroup;
+  studentNameFormGroup: FormGroup;
+  studentGuardianFormGroup: FormGroup;
+  studentBasicFormGroup: FormGroup;
+  studentAddressFormGroup: FormGroup;
+  studentContactFormGroup: FormGroup;
   isLinear: boolean = false;
   relations: any[];
   sex: any[];
@@ -166,39 +166,39 @@ export class StudentComponent implements OnInit, OnChanges{
       {name: 'Others'},
 
     ];
-    this.studentNameFormGroup = new UntypedFormGroup({
-      studentId : new UntypedFormControl(null),
-      episodeId : new UntypedFormControl(null),
-      studentName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
-      billingName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)])
+    this.studentNameFormGroup = new FormGroup({
+      studentId : new FormControl(null),
+      episodeId : new FormControl(null),
+      studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
+      billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)])
     });
-    this.studentGuardianFormGroup = new UntypedFormGroup({
-      fatherName : new UntypedFormControl(null),
-      motherName : new UntypedFormControl(null),
-      guardianName : new UntypedFormControl(null),
-      relationToGuardian : new UntypedFormControl(null,[Validators.required])
-    });
-
-    this.studentBasicFormGroup = new UntypedFormGroup({
-      dob : new UntypedFormControl(null,[Validators.required, ageGTE(4)]),
-      dobSQL: new UntypedFormControl(null),
-      sex : new UntypedFormControl(null,Validators.required),
-      qualification : new UntypedFormControl(null,Validators.required)
-    });
-    this.studentAddressFormGroup = new UntypedFormGroup({
-      address : new UntypedFormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
-      city : new UntypedFormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
-      district : new UntypedFormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
-      stateId : new UntypedFormControl(20),
-      pin : new UntypedFormControl(null)
-
+    this.studentGuardianFormGroup = new FormGroup({
+      fatherName : new FormControl(null),
+      motherName : new FormControl(null),
+      guardianName : new FormControl(null),
+      relationToGuardian : new FormControl(null,[Validators.required])
     });
 
-    this.studentContactFormGroup = new UntypedFormGroup({
-      guardianContactNumber : new UntypedFormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
-      whatsappNumber : new UntypedFormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
-      email : new UntypedFormControl(null,[Validators.required, Validators.email]),
-      description : new UntypedFormControl(null)
+    this.studentBasicFormGroup = new FormGroup({
+      dob : new FormControl(null,[Validators.required, ageGTE(4)]),
+      dobSQL: new FormControl(null),
+      sex : new FormControl(null,Validators.required),
+      qualification : new FormControl(null,Validators.required)
+    });
+    this.studentAddressFormGroup = new FormGroup({
+      address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
+      city : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
+      district : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
+      stateId : new FormControl(20),
+      pin : new FormControl(null)
+
+    });
+
+    this.studentContactFormGroup = new FormGroup({
+      guardianContactNumber : new FormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
+      whatsappNumber : new FormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
+      email : new FormControl(null,[Validators.required, Validators.email]),
+      description : new FormControl(null)
     });
 
   }
@@ -232,14 +232,20 @@ export class StudentComponent implements OnInit, OnChanges{
 
   }
   guardianAsFather(father:any){
+    this.guardianName='';
     this.guardianName=father;
-    console.log(this.guradainName);
+    console.log(this.guardianName);
     this.optionSelected='Father';
+    this.studentGuardianFormGroup.patchValue({guardianName: this.guardianName});
+    this.studentGuardianFormGroup.patchValue({relationToGuardian: this.optionSelected});
   }
   guardianAsMother(mother:any){
+    this.guardianName='';
     this.guardianName=mother;
-    console.log(this.guradainName);
+    console.log(this.guardianName);
     this.optionSelected='Mother';
+    this.studentGuardianFormGroup.patchValue({guardianName: this.guardianName});
+    this.studentGuardianFormGroup.patchValue({relationToGuardian: this.optionSelected});
   }
   editStudent(studentData:any){
     this.selectedIndex=0;

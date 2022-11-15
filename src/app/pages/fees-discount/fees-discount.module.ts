@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {TableModule} from "primeng/table";
 import { ButtonModule } from 'primeng/button';
 import {ToastModule} from "primeng/toast";
 import {NgSelectModule} from "@ng-select/ng-select";
 
-import { FeesReceivedRoutingModule } from './fees-received-routing.module';
-import { FeesReceivedComponent } from './fees-received.component';
+
 
 import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
@@ -24,17 +24,18 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {NgxPrintModule} from 'ngx-print';
-import {MatButtonModule} from '@angular/material/button';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FeesDiscountRoutingModule } from './fees-discount-routing.module';
+import { FeesDiscountComponent } from './fees-discount.component';
+
+
 @NgModule({
   declarations: [
-    FeesReceivedComponent
+    FeesDiscountComponent
   ],
   imports: [
     CommonModule,
-    FeesReceivedRoutingModule,
+    FeesDiscountRoutingModule,
     MatIconModule,
     MatDividerModule,
     MatListModule,
@@ -51,13 +52,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DialogModule,
     MatInputModule,
     MatDatepickerModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatNativeDateModule,
     MatDialogModule,
     MatCheckboxModule,
-    NgxPrintModule,
-    MatButtonModule
+    ReactiveFormsModule
   ]
 })
-export class FeesReceivedModule { }
+export class FeesDiscountModule { }

@@ -18,6 +18,7 @@ export class FeesChargeComponent implements OnInit {
   isDeviceXS = false;
   checked = false;
   isSave=false;
+  tr_date : Date = new Date();
   studentId:any;
   transactionDate:any;
   totalFees:number=0;
@@ -90,7 +91,7 @@ export class FeesChargeComponent implements OnInit {
 
         studentId : new FormControl(1, [Validators.required]),
         transactionId : new FormControl(0, [Validators.required]),
-        comment : new FormControl(),
+        comment : new FormControl(null),
         amount : new FormControl(null, [Validators.required]),
         transactionDate : new FormControl(val),
         studentToCourseId:new FormControl(1, [Validators.required]),
@@ -140,22 +141,23 @@ export class FeesChargeComponent implements OnInit {
     this.showTableRow = false;}
   }
   getAllReceivedFees(){
-    this.transactionServicesService.fetchAllFeesReceived().subscribe(response=>{
+    this.transactionServicesService.fetchAllFeesCharged().subscribe(response=>{
       this.feesReceivedArray=response.data;
     })
   }
 
   onAddFees(){
-    this.studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+    //const now = new Date();
+      //let val = formatDate(now, 'yyyy-MM-dd', 'en');
+    //this.tr_date= new Date();
+    //this.studentId = this.FeesChargeFormGroup.get('studentId')?.value;
     //this.transactionDate =this.FeesChargeFormGroup.get('transactionDate')?.value;
-    let tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
-    this.transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
+   /*  this.tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
+    this.transactionDate = formatDate(this.tr_date, 'yyyy-MM-dd', 'en');
     this.studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
-    this.comment=this.FeesChargeFormGroup.get('comment')?.value;
-       let feesYear=new Date().getFullYear();
-       let feesMonth=new Date().getMonth().toString();
-       console.log("studentId:",this.studentId);
-       console.log("transactionDate:",this.transactionDate);
+    this.comment=this.FeesChargeFormGroup.get('comment')?.value; */
+      
+       //console.log("transactionDate:",this.transactionDate);
     this.ledgerId=this.FeesChargeFormGroup.get('ledgerId')?.value;
     this.amount=this.FeesChargeFormGroup.get('amount')?.value;
     this.totalAmount=Number(this.totalAmount)+Number(this.amount);
@@ -208,9 +210,14 @@ export class FeesChargeComponent implements OnInit {
     this.totalAmount=0;
   }
   changeCourseId(){
-    let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+    this.studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+   this.transactionDate = this.FeesChargeFormGroup.get('transactionDate')?.value;
+  let comment = this.FeesChargeFormGroup.get('comment')?.value;
+  console.log("studentId:",this.studentId);
+  console.log("transactionDate:",this.transactionDate);
+  console.log("comment:",comment);
     this.courseNameList=[];
-    this.transactionServicesService.fetchAllStudentToCourses(studentId).subscribe(response=>{
+    this.transactionServicesService.fetchAllStudentToCourses(this.studentId).subscribe(response=>{
       this.courseNameList=response.data;
     })
   }
@@ -296,6 +303,7 @@ export class FeesChargeComponent implements OnInit {
            this.tempFeesArray=[];
            this.totalAmount=0;
            this.clearFeesReceived();
+           this.FeesChargeFormGroup.reset();
            this.showSuccess("Record Updated successfully");
          }
 
@@ -321,15 +329,19 @@ getActiveCourse(){
   this.hiddenPopup=true;
   this.totalFees=0;
   let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
-  let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
+  this.studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
 
-  this.transactionServicesService.fetchFeesChargeDetailsById(studentToCourseId).subscribe(response=>{
+
+  console.log("studentId:",studentId);
+  
+
+  this.transactionServicesService.fetchFeesChargeDetailsById(this.studentToCourseId).subscribe(response=>{
     this.feesChargeDetailsArray=response.data;
     for (let val of this.feesChargeDetailsArray) {
       this.totalFees+=val.amount;
     }
   })
-this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(response=>{
+this.transactionServicesService.fetchCourseId(this.studentToCourseId).subscribe(response=>{
   this.getCourseIdArray=response.data;
   this.CourseId=response.data[0].course_id;
     //end code
@@ -348,8 +360,14 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
 
   }
   onBankReceived(){
-    this.hiddenPopup=false;
-    this.confirmationService.confirm({
+    let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
+    let transactionDate = this.FeesChargeFormGroup.get('transactionDate')?.value;
+    let comment = this.FeesChargeFormGroup.get('comment')?.value;
+    console.log("studentId:",studentId);
+    console.log("transactionDate:",transactionDate);
+    console.log("comment:",comment);
+    //this.hiddenPopup=false;
+    /* this.confirmationService.confirm({
       message: 'Do you want to Save this record?',
       header: 'Save Confirmation',
       icon: 'pi pi-info-circle',
@@ -403,7 +421,7 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
       reject: () => {
         this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
       }
-    });
+    }); */
 
 
   }
@@ -468,40 +486,26 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
   }
 
   onSave(){
-   /*  let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
-    let transactionDate =this.FeesChargeFormGroup.get('transactionDate')?.value;
-       let comment=this.FeesChargeFormGroup.get('comment')?.value;
-       let feesYear=new Date().getFullYear();
-       let feesMonth=new Date().getMonth().toString();
-       console.log("studentId:",studentId);
-       console.log("transactionDate:",transactionDate); */
-    this.hiddenPopup=false;
-    this.confirmationService.confirm({
+   
+     this.confirmationService.confirm({
      message: 'Do you want to Save this record?',
      header: 'Delete Confirmation',
      icon: 'pi pi-info-circle',
      accept: () => {
-       /* let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
-       let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value; 
-       //let tempDate=this.FeesChargeFormGroup.get('transactionDate')?.value;
-       let transactionDate =this.FeesChargeFormGroup.get('transactionDate')?.value;
-       let comment=this.FeesChargeFormGroup.get('comment')?.value;*/
-       let feesYear=new Date().getFullYear();
-       let feesMonth=new Date().getMonth().toString();
-       
+        
+      let feesYear=new Date().getFullYear();
+      let feesMonth=new Date().getMonth().toString();
        this.tempChargeObj={
          ledgerId:this.studentId,
          transactionTypeId:1,
          amount:this.totalAmount
        }
        this.tempFeesArray.push(this.tempChargeObj);
-
        this.tempObj={
          transactionMaster:{
          userId:1,
          studentCourseRegistrationId:this.studentToCourseId,
          transactionDate:this.transactionDate,
-         comment:this.comment,
          feesYear:feesYear,
          feesMonth:feesMonth
        },
@@ -510,12 +514,12 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
        this.transactionServicesService.feesCharge(this.tempObj).subscribe(response => {
         this.referenceTransactionMasterId=response.data.transactionMasterId;
            if (response.success === 1){
-
              this.isCashReceived=true;
              this.getAllReceivedFees();
              this.tempFeesArray=[];
              this.totalAmount=0;
              this.clearFeesReceived();
+             this.FeesChargeFormGroup.reset();
              this.showSuccess("Record added successfully");
            }
 
@@ -533,7 +537,7 @@ this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(respo
      reject: () => {
        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
      }
-   });
+   }); 
 
  }
  showSuccess(arg0: string) {

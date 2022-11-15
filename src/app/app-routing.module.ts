@@ -135,6 +135,8 @@ const routes: Routes = [
 
   { path: 'JavaInitialCoding', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-initial-coding/java-initial-coding.module').then(m => m.JavaInitialCodingModule) },
 
+   { path: 'FeesDiscount', loadChildren: () => import('./pages/fees-discount/fees-discount.module').then(m => m.FeesDiscountModule) },
+
   // { path: 'JavaProgramming', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-programming.module').then(m => m.JavaProgrammingModule) },
 
   // { path: 'JavaTokens', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-tokens/java-tokens.module').then(m => m.JavaTokensModule) },

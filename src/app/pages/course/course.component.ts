@@ -195,8 +195,9 @@ export class CourseComponent implements OnInit {
 
         this.courseService.saveCourse(this.courseData).subscribe(response => {
           
-          if (response.success != ""){
+          if (response.success === 1){
             this.showSuccess("Record added successfully");
+            this.clearCourse();
             console.log("success:",response.success);
           }
 

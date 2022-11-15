@@ -32,6 +32,30 @@
             <li><a class="dropdown-item" href="#"><mat-icon>list</mat-icon> &nbsp; Something else here</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black ;">
+            <mat-icon>spa</mat-icon> &nbsp; Master
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/student']" ><mat-icon>list</mat-icon>Student</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['/course']"><mat-icon>list</mat-icon> Course</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['/StudentCourseRegistration']"><mat-icon>list</mat-icon> Student To Course</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black ;">
+            <mat-icon>spa</mat-icon> &nbsp; Transaction
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/FeesCharge']" ><mat-icon>list</mat-icon>Fees Charge</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['/FeesDiscount']"><mat-icon>list</mat-icon> Fees Discount</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['/FeesReceived']"><mat-icon>list</mat-icon> Fees Received</a></li>
+          </ul>
+        </li>
 <!--        <li class="nav-item">-->
 <!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
 <!--        </li>-->

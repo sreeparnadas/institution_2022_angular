@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FeesChargeRoutingModule } from './fees-charge-routing.module';
 import { FeesChargeComponent } from './fees-charge.component';
 import {TableModule} from "primeng/table";
@@ -24,6 +23,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     FeesChargeComponent
@@ -52,7 +52,8 @@ import {MatTableModule} from '@angular/material/table';
     MatNativeDateModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule
   ]
 })
 export class FeesChargeModule { }

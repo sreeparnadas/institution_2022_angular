@@ -48,6 +48,16 @@
 ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
   background-color: #fec61f !important;
 }
+::ng-deep datepicker-value-example .mat-form-field-label{
+  color:#43b2ee;
+}
+
+::ng-deep .mat-datepicker-toggle{
+  color:#43b2ee;
+}
+::ng-deep .mat-form-field-underline{
+background: #43b2ee;
+}
 mat-form-field{
   margin-bottom: -1em
 }

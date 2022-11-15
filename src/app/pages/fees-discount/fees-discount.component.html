@@ -1,0 +1,261 @@
+<div class="container-fluid page">
+  <div class="page__box p-3 mt-1 ml-1">Fees Discount</div>
+  <div class="page__content shadow p-3 position-relative">
+    <p-toast></p-toast>
+    <p-toast position="top-left" key="tl"></p-toast>
+    <p-toast position="top-center" key="tc"></p-toast>
+    <p-toast position="bottom-center" key="bc"></p-toast>
+    <!-- Tab -------------------------------------- -->
+    <div class="p-2 container-fluid rounded d-flex flex-xl-row justify-content-xl-between"
+      [ngClass]="isDeviceXS? 'flex-column': ' flex-row'">
+      <div [ngClass]="isDeviceXS? 'col-12': 'col-7'"
+        class="container-fluid rounded d-flex flex-xl-row justify-content-xl-between flex-row">
+        <div style="background-color:  rgb(90, 90, 94); margin-top: -15px; margin-left: -15px;">
+          <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
+            animationDuration="200ms">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">trending_up</mat-icon>
+                Entry
+              </ng-template>
+              <!-- start working with Left div (panel) -->
+              <div class="p-3 flex-fill" style="background-color: white">
+                <form [formGroup]="FeesChargeFormGroup">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <mat-form-field>
+                        <mat-label>Transaction Date</mat-label>
+                        <input matInput #ref [matDatepicker]="transactionDate" formControlName="transactionDate">
+                        <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
+                        <mat-datepicker #transactionDate></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div [ngClass]="isDeviceXS? 'column': 'row'">
+                    <div [ngClass]="isDeviceXS? 'col-12': 'col-5'">
+                      <ng-select [items]="studentNameList" bindLabel="studentName" (change)="changeCourseId()"
+                        class="custom" bindValue="studentId" appendTo="body" formControlName="studentId"
+                        placeholder="Student Name">
+                      </ng-select>
+                    </div>
+                    <div [ngClass]="isDeviceXS? 'col-12': 'col-5'">
+                      <ng-select [items]="courseNameList" bindLabel="full_name" class="custom" bindValue="id" *ngIf="courseNameBoolean"
+                        (change)="getTranMasterId()" appendTo="body" formControlName="studentToCourseId"
+                        placeholder="Course Name">
+                      </ng-select>
+                    </div>
+
+                  </div>
+                  <div [ngClass]="isDeviceXS? 'column': 'row'">
+                    <div [ngClass]="isDeviceXS? 'col-12': 'col-7'">
+                      <ng-select [items]="tranMasterIdArray" bindLabel="transaction_number" (change)="getActiveCourse()" *ngIf="transactionNoBoolean"
+                        class="custom" bindValue="id" appendTo="body" formControlName="transactionMasterId"
+                        placeholder="Transaction No">
+                      </ng-select>
+                    </div>
+                    <div [ngClass]="isDeviceXS? 'col-12': 'col-2'">
+                      <mat-form-field *ngIf="feeAmountBoolean">
+                        <mat-label>Enter Amount</mat-label>
+                        <input matInput formControlName="amount" [(ngModel)]="discountAmountNgModel" >
+                      </mat-form-field>
+                    </div>
+                   
+                    
+                  
+                  <!-- <button type="button" class="btn btn-outline-danger" (click)="onSave();">Received Bank</button> -->
+              </div>
+              <!--Div display all Fees Transaction-->
+
+              <div class="container mt-3" *ngIf="hiddenPopup;"
+                style="background-color:white; margin-left: 0px; font-size: medium;">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="display: none;">index</th>
+                      <th scope="col" style="display: none;">Tr id</th>
+                      <th scope="col" style="display: none;">Ledger id</th>
+                      <th scope="col">Fees Name</th>
+                      <th scope="col">Total Billed</th>
+                      <th scope="col">Total Received</th>
+                      <th scope="col">Net Due</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of feesDueListArray; index as i">
+                      <th scope="row" style="display: none;">{{i}}</th>
+                      <th scope="row" style="display: none;">{{item.id}}</th>
+                      <th scope="row" style="display: none;">{{item.ledger_id}}</th>
+                      <td>{{item.ledger_name}}</td>
+                      <td class="text-right">{{item.total_billed | currency:'INR'}}</td>
+                      <td class="text-right">{{item.total_received | currency:'INR'}}</td>
+                      <td class="text-right">{{item.total_billed-item.total_received | currency:'INR'}}</td>
+
+                    </tr>
+                    <tr style="background-color:gray ; color: blanchedalmond;">
+                      <th colspan="1" style="color: blanchedalmond;">Total Due</th>
+                      <th class="text-right" style="color: blanchedalmond;">{{totalBilledAmount | currency:'INR'}}
+                      </th>
+                      <th class="text-right" style="color: blanchedalmond;">{{totalReceivedAmount | currency:'INR'}}
+                      </th>
+                      <th class="text-right" style="color: blanchedalmond;">{{totalDuedAmount | currency:'INR'}}
+                      </th>
+                    </tr>
+                    <tr style="background-color:rgb(165, 159, 159) ; color: rgb(43, 42, 42);">
+                      <th colspan="3" style="color: blanchedalmond;">Total Discount</th>
+                    
+                      <th class="text-right" style="color: blanchedalmond;">- &nbsp; {{totalDiscount | currency:'INR'}}
+                      </th>
+                    </tr>
+                    <tr style="background-color:rgb(10, 228, 65) ; color: rgb(43, 42, 42);">
+                      <th colspan="3" style="color: blanchedalmond;">Net Due</th>
+                    
+                      <th class="text-right" style="color: blanchedalmond;">{{netDueAmount | currency:'INR'}}
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- if div active table display -->
+              <p class="text-right">
+
+                <button pButton (click)="clearFeesDiscount();" class="p-button-rounded p-button-info p-button-outlined">
+                  <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
+                </button>&nbsp;&nbsp;&nbsp;
+
+                <button pButton (click)="onSave();"  *ngIf="(netDueAmount > discountAmountNgModel && discountAmountNgModel>0)||(discountAmountNgModel>0 && netDueAmount===discountAmountNgModel)||(saveButtonBoolean)" class="p-button-rounded p-button-info p-button-outlined">
+                  <i class="bi bi-save" style="font-size: 1rem"> Save </i>
+                </button>
+
+                <button pButton [disabled]="!isSave" (click)="onUpdate();" *ngIf="isShown"
+                  class="p-button-rounded p-button-info">
+                  <i class="bi bi-save" style="font-size: 1rem"> Update </i>
+                </button>
+
+                <!--  <button type="button" class="btn btn-outline-warning btn-space"
+                  (click)="clearFeesReceived();">Clear</button>
+                <button type="button" class="btn btn-outline-danger btn-space" *ngIf="isShown"
+                  [disabled]="!FeesChargeFormGroup.valid || FeesChargeFormGroup.value.id"
+                  (click)="onUpdate();">Update</button>
+                <button type="button" class="btn btn-outline-success btn-space"
+                  [disabled]="!FeesChargeFormGroup.valid || FeesChargeFormGroup.value.id" *ngIf="!isShown"
+                  (click)="onSave();"><i class="fas fa-save"></i>&nbsp; Save</button>-->
+                <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived"
+                  (click)="onCashReceived();">Received Cash</button>
+
+              </p>
+              </form>
+
+
+
+              <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle"
+                [transitionOptions]="'0.8ms'">
+                <ng-template pTemplate="header">
+                  <h3>Header Content</h3>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                  <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+                  <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+                </ng-template>
+              </p-confirmDialog>
+        </div>
+
+        </mat-tab>
+
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">list</mat-icon>
+            View List
+          </ng-template>
+          <!-- start working with Right div (panel) -->
+          <div class="p-3 flex-fill" style="width:100% ;">
+
+            <h1>Fees Discount List</h1>
+
+
+
+            <p-table [value]="feesDiscountArray" dataKey="id" responsiveLayout="scroll">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 3rem"></th>
+                  <th>SL</th>
+                  <th pSortableColumn="ledger_name">Name <p-sortIcon field="ledger_name"></p-sortIcon>
+                  </th>
+                  <th>Course</th>
+                  <th pSortableColumn="total_discount">Total Discount <p-sortIcon field="total_discount">
+                    </p-sortIcon>
+                  </th>
+
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-fees let-expanded="expanded" let-rowIndex="rowIndex">
+                <tr>
+                  <td>
+                    <button type="button" pButton pRipple [pRowToggler]="fees"
+                      class="p-button-text p-button-rounded p-button-plain"
+                      [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                  </td>
+                  <td>{{rowIndex+1}}</td>
+                  <td>{{fees.ledger_name}}</td>
+                  <td>{{fees.full_name}}</td>
+                  <td>{{fees.total_discount | currency: 'INR'}}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="rowexpansion" let-fee class="col-12">
+                <tr>
+                  <td colspan="7">
+                    <div class="p-3">
+                      <!--Inner table-->
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Transaction Number</th>
+                            <th scope="col">Particulars</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let feeDetail of fee.fees_discounts">
+                            <td>{{feeDetail.transaction_date | date:'dd/MM/yyyy'}}</td>
+                            <td>{{feeDetail.transaction_number}}</td>
+                            <td>{{feeDetail.ledger_name}}</td>
+                        </tbody>
+                      </table>
+                      <!--inner table end-->
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+
+
+
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+            Developer Area
+          </ng-template>
+
+          <div style="background-color:yellow ;">
+            <pre>
+                    update code = {{tempItemObj | json}}
+                  </pre>
+            <hr>
+            <pre>
+                    save code = {{tempObj | json}}
+                  </pre>
+          </div>
+        </mat-tab>
+
+        </mat-tab-group>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>

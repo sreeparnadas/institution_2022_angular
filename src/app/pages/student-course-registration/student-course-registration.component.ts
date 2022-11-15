@@ -12,6 +12,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { StudentToCourse } from 'src/app/models/studenttocourse.model';
 import { Table } from 'primeng/table/table';
 import { formatDate } from '@angular/common';
+import { ThisReceiver } from '@angular/compiler';
 
 interface Alert {
   type: string;
@@ -196,7 +197,8 @@ export class StudentCourseRegistrationComponent implements OnInit {
 
         this.studentToCourseService.saveStudentToCourse(this.tempItemValueObj).subscribe(response => {
           console.log("Save data:", this.studentTocourseData);
-          if (response.status === true) {
+          if (response.success === 1) {
+            this.clearStudentToCourse();
             this.showSuccess("Record added successfully");
           }
 
@@ -336,7 +338,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
 
         this.studentToCourseService.updateStudentToCourse(this.tempItemValueObj).subscribe(response => {
 
-          if (response.status === true) {
+          if (response.success === 1) {
             this.showSuccess("Record Updated successfully");
           }
 
