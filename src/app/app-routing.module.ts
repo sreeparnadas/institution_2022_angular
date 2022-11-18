@@ -36,7 +36,7 @@ const routes: Routes = [
 
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
 
-  { path: 'Owner', loadChildren: () => import('./pages/owner/owner.module').then(m => m.OwnerModule) },
+  // { path: 'Owner', loadChildren: () => import('./pages/owner/owner.module').then(m => m.OwnerModule) },
 
   { path: 'SidenavOwner', loadChildren: () => import('./sidenavs/sidenav-owner/sidenav-owner.module').then(m => m.SidenavOwnerModule) },
 
@@ -136,6 +136,13 @@ const routes: Routes = [
   { path: 'JavaInitialCoding', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-initial-coding/java-initial-coding.module').then(m => m.JavaInitialCodingModule) },
 
    { path: 'FeesDiscount', loadChildren: () => import('./pages/fees-discount/fees-discount.module').then(m => m.FeesDiscountModule) },
+
+  { path: 'java', loadChildren: () => import('./pages/course-content/java/java.module').then(m => m.JavaModule) },
+
+
+
+  // { path: 'JavaHome', loadChildren: () => import('./pages/course-content/java/java-home/java-home.module').then(m => m.JavaHomeModule) },
+
 
   // { path: 'JavaProgramming', loadChildren: () => import('./pages/course-content/course-content-programming-language/java-programming/java-programming.module').then(m => m.JavaProgrammingModule) },
 

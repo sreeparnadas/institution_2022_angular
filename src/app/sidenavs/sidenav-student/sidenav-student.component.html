@@ -14,4 +14,14 @@
       <i class="bi bi-vector-pen"></i> &nbsp; Flip Flop
     </a>
   </div>
+
+  <a mat-list-item (click)="toggleJava()">
+    <i class="bi bi-mortarboard-fill"></i> &nbsp; Java Tutorial
+    <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+  </a>
+  <div *ngIf="displayJava">
+    <a mat-list-item [routerLink]="['/java']"  routerLinkActive="list-item-active">
+      <i class="bi bi-vector-pen"></i> &nbsp; Java
+    </a>
+  </div>
 </mat-nav-list>

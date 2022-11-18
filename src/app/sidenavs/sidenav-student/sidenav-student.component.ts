@@ -9,12 +9,16 @@ export class SidenavStudentComponent implements OnInit {
 
   faAddressBook = faAddressBook;
   displayDigitalElectronic=false;
+  displayJava=false;
   constructor() { }
 
   ngOnInit(): void {
   }
   toggleDigitalElectronics(){
     this.displayDigitalElectronic=!this.displayDigitalElectronic;
+  }
+  toggleJava(){
+    this.displayJava=!this.displayJava;
   }
 
 }
