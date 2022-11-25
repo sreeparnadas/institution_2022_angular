@@ -84,4 +84,13 @@ export class StudentToCourseService {
     }))
 
   }
+  fetchFeesModeType($id:any){
+    return this.http.get<any>(this.commonService.getAPI() + '/FeesModeTypeById/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.studentToCourseList=response.data;
+      console.log("Fees Mode Type ID:",this.studentToCourseList);
+      this.studentToCourseSubject.next([...this.studentToCourseList]);
+    })));
+  }
+
 }

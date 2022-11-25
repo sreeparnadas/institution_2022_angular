@@ -27,12 +27,15 @@ interface Alert {
 
 export class StudentCourseRegistrationComponent implements OnInit {
   //studentList: Student[] =[];
-
+  effective_Date:any;
   hiddenInput: boolean = false;
   isShown: boolean = false; // hidden by default
   students: any[] = [];
   courses: Course[] = [];
   durationTypes: any[] = [];
+  feeModeTypeArray:any[]=[];
+  feeModeTypeId:number=0;
+  globelLedgerId:number=8;
   studentTocourses: StudentToCourse[] = [];
   ledger_id: any[] = [];
   event:any;
@@ -125,6 +128,22 @@ export class StudentCourseRegistrationComponent implements OnInit {
   clear(table: Table) {
     table.clear();
   } 
+  changeFeesModeType($event:any){
+   
+    this.studentToCourseService.fetchFeesModeType($event.courseId).subscribe(response => {
+      this.feeModeTypeArray = response.data;
+      console.log(this.feeModeTypeArray);
+      this.feeModeTypeId=this.feeModeTypeArray[0].fees_mode_type_id;
+     
+      if( this.feeModeTypeId===1){
+        this.globelLedgerId=9;
+        console.log("globelLedgerId:",this.globelLedgerId);
+      }else{
+        this.globelLedgerId=8;
+        console.log("globelLedgerId:",this.globelLedgerId);
+      }
+    })
+  }
   getEventValue($event:any) :string {
     return $event.target.value;
   }
@@ -152,22 +171,16 @@ export class StudentCourseRegistrationComponent implements OnInit {
   }
   saveStudentToCourse() {
     //alert("Testing");
-
+   
     this.confirmationService.confirm({
       message: 'Do you want to Save this record?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
-      accept: () => {
-        /*  this.studentTocourseData.studentId=this.studentToCourseFormGroup.value.ledger_id;
-         this.studentTocourseData.courseId=this.studentToCourseFormGroup.value.course_id;
-         this.studentTocourseData.baseFee=this.studentToCourseFormGroup.value.base_fee;
-         this.studentTocourseData.discountAllowed=this.studentToCourseFormGroup.value.discount_allowed;
-         this.studentTocourseData.joiningDate=this.studentToCourseFormGroup.value.joining_date;
-         this.studentTocourseData.effectiveDate=this.studentToCourseFormGroup.value.effective_date;
-         this.studentTocourseData.actual_course_duration=this.studentToCourseFormGroup.value.actual_course_duration;
-         this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
-         this.studentTocourseData.isStarted=1; */
-
+       accept: () => {
+        this.effective_Date=this.studentToCourseFormGroup.value.effective_date;
+        var DateObj = new Date(this.effective_Date);
+        console.log("Month No:",DateObj.getMonth()+1);
+        console.log("Year No:",DateObj.getFullYear());
         this.tempItemValueObj = {
           studentId: this.studentToCourseFormGroup.value.ledger_id,
           courseId: this.studentToCourseFormGroup.value.course_id,
@@ -179,12 +192,12 @@ export class StudentCourseRegistrationComponent implements OnInit {
           duration_type_id: this.studentToCourseFormGroup.value.duration_type_id,
           isStarted: 1,
           userId: 1,
-          feesYear: new Date().getFullYear(),
-          feesMonth: new Date().getMonth().toString(),
+          feesYear:DateObj.getFullYear(),
+          feesMonth:DateObj.getMonth()+1,
           transactionDetails: [
             {
               transactionTypeId: 2,
-              ledgerId: 8,
+              ledgerId: this.globelLedgerId,
               amount: this.studentToCourseFormGroup.value.base_fee
             },
             {
@@ -218,7 +231,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
       },
       reject: () => {
         this.msgs = [{ severity: 'info', summary: 'Rejected', detail: 'You have rejected' }];
-      }
+      } 
     });
   }
   editStudentToCourse(courseTostudentData: any) {
@@ -306,6 +319,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
          this.studentTocourseData.actual_course_duration=this.studentToCourseFormGroup.value.actual_course_duration;
          this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
          this.studentTocourseData.is_started=1; */
+        
 
         this.tempItemValueObj = {
           studentToCourseID: this.studentToCourseFormGroup.value.studentToCourseID,

@@ -25,7 +25,7 @@
                   </div>
                   <div class="col-sm-6">
                     <ng-select [items]="courses" fxFlex="100" bindLabel="fullName" class="custom" bindValue="courseId"
-                      appendTo="body" formControlName="course_id" placeholder="Course Name">
+                    (change)="changeFeesModeType($event)" appendTo="body" formControlName="course_id" placeholder="Course Name">
                     </ng-select>
                   </div>
                 </div>
