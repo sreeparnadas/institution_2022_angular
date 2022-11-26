@@ -36,6 +36,7 @@ export class FeesChargeComponent implements OnInit {
   isCashReceived:boolean=false;
   referenceTransactionMasterId:number=0;
   studentsCharge: any[] = [];
+  monthlyStudentArray:any[]=[];
   studentToCourseId:any;
   studentNameList: any[] = [];
   FeesChargeFormGroup : FormGroup | any;
@@ -111,7 +112,7 @@ export class FeesChargeComponent implements OnInit {
         this.studentNameList=response.data;
      })
       this.getAllReceivedFees();
-
+      this.getAllMonthlyStudent();
     }
   selectedIndex=0;
   onTabChanged(event:any){
@@ -145,7 +146,15 @@ export class FeesChargeComponent implements OnInit {
       this.feesReceivedArray=response.data;
     })
   }
-
+  getAllMonthlyStudent() {
+    this.transactionServicesService.fetchMonthlyStudentList().subscribe(response => {
+      this.monthlyStudentArray = response.data;
+      console.log("Monthly Student:",this.monthlyStudentArray);
+    })
+  }
+  getEachMonthly(data:any){
+    console.log("data:",data);
+  }
   onAddFees(){
     //const now = new Date();
       //let val = formatDate(now, 'yyyy-MM-dd', 'en');

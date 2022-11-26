@@ -291,7 +291,40 @@
                 </pre>
               </div>
             </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                Generate Monthly Fees Charge
+              </ng-template>
 
+              <div style="background-color:whitesmoke ; font-size: medium;">
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col" style="display: none;">id</th>
+                      <th scope="col">Student Name</th>
+                      <th scope="col">Course Name</th>
+                      <th scope="col">Transaction Date</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of monthlyStudentArray; let indexOfelement=index;">
+                      <th scope="row" >{{indexOfelement+1}}</th>
+                      <th scope="row" style="display: none;">{{item.student_course_registration_id}}</th>
+                      <td>{{item.ledger_name}}</td>
+                      <td>{{item.full_name}}</td>
+                      <td>{{item.transaction_date | date: 'dd/MM/yyyy' }}</td>
+                      <td>{{item.amount}}</td>
+                      <td><button type="button" class="btn btn-info" (click)="getEachMonthly(item)">Submit</button></td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </mat-tab>
           </mat-tab-group>
         </div>
       </div>

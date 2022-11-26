@@ -58,6 +58,7 @@ export class FeesReceivedComponent implements OnInit {
   isCashReceived: boolean = false;
   referenceTransactionMasterId: number = 0;
   students: any[] = [];
+  
   studentToCourseId: any;
   pay_amount: number = 0;
 
@@ -146,7 +147,7 @@ export class FeesReceivedComponent implements OnInit {
 
 
     this.getAllReceivedFees();
-
+ 
   }
   receivedAmount: number = 0;
   receivedComment:string='Fees Received';
@@ -197,6 +198,7 @@ export class FeesReceivedComponent implements OnInit {
       this.feesReceivedArray = response.data;
     })
   }
+  
   getAllStudent() {
     this.transactionServicesService.fetchAllStudentName().subscribe(response => {
       this.studentNameList = response.data;

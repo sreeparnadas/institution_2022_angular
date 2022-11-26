@@ -65,7 +65,7 @@ export class TransactionServicesService {
     })));
   }
   fetchAllStudentName(){
-    return this.http.get<any>(this.commonService.getAPI() + '/students')
+    return this.http.get<any>(this.commonService.getAPI() + '/registerStudent')
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
       // this.studentNameList=response.data;
       // this.studentNameSubject.next([...this.studentNameList]);
@@ -207,5 +207,15 @@ export class TransactionServicesService {
       console.log("Due list By Ledger:",this.studentToCourseList);
       this.studentToCourseSubject.next([...this.studentToCourseList]);
     })));
+  }
+
+  fetchMonthlyStudentList(){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/getMonthlyStudent')
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      if (response.status === true){
+        this.studentToCourseList.unshift(response.data);
+        this.studentToCourseSubject.next([...this.studentToCourseList]);
+      }
+    }))
   }
 }
