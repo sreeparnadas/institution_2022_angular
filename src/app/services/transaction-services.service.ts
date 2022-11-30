@@ -218,4 +218,14 @@ export class TransactionServicesService {
       }
     }))
   }
+
+  monthlyFeesCharge(feeChargeData:any){
+    return this.http.post<any>(this.commonService.getAPI() + '/transactions/monthlyFeesCharged', feeChargeData)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      if (response.status === true){
+        this.studentToCourseList.unshift(response.data);
+        this.studentToCourseSubject.next([...this.studentToCourseList]);
+      }
+    }))
+  }
 }

@@ -2,9 +2,9 @@
   <div class="page__box p-3 mt-1 ml-1">Course Entry Form</div>
   <div class="page__content shadow p-3 position-relative">
     <!-- <div class="container-fluid"> -->
-    <div class="card-deck row" >
+    <div class="card-deck row">
       <!-- Tab -------------------------------------- -->
-      <div >
+      <div style="width:70% ; background-color: white; float: left;">
         <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
           animationDuration="200ms" style="background-color:  rgb(90, 90, 94);">
           <mat-tab>
@@ -15,7 +15,7 @@
 
             <!--  ---- 1st Tab setting start---- -->
             <!-- Card 1 start-->
-            <div class="col-xs-12 col-sm-12 col-md-12" style="width:100% ; background-color: white;">
+            <div class="col-xs-8 col-sm-8 col-md-8" style="width:100% ; background-color: white; float: left;">
 
               <div class="card" style="width:100% ; background-color: white; font-size: medium;">
                 <!--Card content-->
@@ -33,11 +33,11 @@
                             <mat-label>Course Code</mat-label>
                             <input matInput formControlName="courseCode" placeholder="C0001" required>
                             <div
-                            *ngIf="courseNameFormGroup.controls['courseCode'].errors && courseNameFormGroup.controls['courseCode'].touched">
-                            <mat-error class="text-right"
-                              *ngIf="courseNameFormGroup.controls['courseCode'].errors['required']">
-                             Course Code is required</mat-error>
-                          </div>
+                              *ngIf="courseNameFormGroup.controls['courseCode'].errors && courseNameFormGroup.controls['courseCode'].touched">
+                              <mat-error class="text-right"
+                                *ngIf="courseNameFormGroup.controls['courseCode'].errors['required']">
+                                Course Code is required</mat-error>
+                            </div>
                           </mat-form-field>
                         </div>
                       </div>
@@ -94,7 +94,7 @@
                           <textarea class="col-12" formControlName="description" [style]="{'height':'120px'}">
                           </textarea>
                         </div>
-                       
+
                       </div>
                       <div align="right">
                         <button pButton (click)="clearCourse()"
@@ -102,7 +102,8 @@
                           <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                         </button>&nbsp;&nbsp;&nbsp;
 
-                        <button pButton (click)="saveCourse()" *ngIf="!isShown" class="p-button-rounded p-button-info">
+                        <button pButton (click)="saveCourse()" [disabled]="!courseNameFormGroup.valid" *ngIf="!isShown"
+                          class="p-button-rounded p-button-info">
                           <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                         </button>
 
@@ -133,8 +134,11 @@
               </div>
               <!-- ---- End PMessage for Confirmation ----  -->
               <!-- Card 1 end-->
+
               <!--  ---- 1st Tab setting End---- -->
+
             </div>
+
           </mat-tab>
 
           <mat-tab>
@@ -143,7 +147,7 @@
               View Course
             </ng-template>
             <!--  ---- 2nd Tab setting Start---- -->
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-6"  style="width:100% ;">
               <!-- Card 2 start-->
               <div class="card mb-6">
 
@@ -243,7 +247,37 @@
       <!-- Card deck -->
 
 
-
+       <div class="col-xs-4 col-sm-4 col-md-4" style="width:30% ; float: right;">
+              <div class="card" style="background-color:aqua ;">
+                <div class="card-body">
+                  <h1 class="card-title">Dash Board</h1>
+                  <hr/>
+                  <div class="container">
+                    <table class="table">
+                      <thead>
+                        <tr class="table-secondary">
+                          <th scope="col">Total Course</th>
+                          <th scope="col">:</th>
+                          <th scope="col" class="text-right">{{totalNoCourse}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="col">Monthly Course</th>
+                          <th scope="col">:</th>
+                          <th scope="col" class="text-right">{{totalMonthlyCourse}}</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Full Course</th>
+                          <th scope="col">:</th>
+                          <th scope="col" class="text-right">{{totalFullCourse}}</th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 

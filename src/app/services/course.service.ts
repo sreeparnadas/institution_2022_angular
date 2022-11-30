@@ -68,4 +68,25 @@ export class CourseService {
       }
     }))
   }
+  fetchAllTotalCourse(){
+    return this.http.get<any>(this.commonService.getAPI() + '/coursesTotal')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any}) => {
+      this.courseList=response.data;
+      this.durationTypeSubject.next([...this.courseList]);
+    })));
+  }
+  fetchMonthlyTotalCourse(){
+    return this.http.get<any>(this.commonService.getAPI() + '/coursesMonthly')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any}) => {
+      this.courseList=response.data;
+      this.durationTypeSubject.next([...this.courseList]);
+    })));
+  }
+  fetchFullTotalCourse(){
+    return this.http.get<any>(this.commonService.getAPI() + '/coursesFull')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any}) => {
+      this.courseList=response.data;
+      this.durationTypeSubject.next([...this.courseList]);
+    })));
+  }
 }

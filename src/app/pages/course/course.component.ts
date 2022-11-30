@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl,UntypedFormControl, FormGroup,UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {StorageMap} from "@ngx-pwa/local-storage";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
@@ -26,18 +26,24 @@ interface Alert {
 export class CourseComponent implements OnInit {
   dialogContent: string = "";
   errorMessage: any;
+  totalNoCourse:number=0;
+  totalMonthlyCourse:number=0;
+  totalFullCourse:number=0;
   isShown: boolean = false ; // hidden by default
   hiddenInput: boolean = false ;
   showErrorMessage: boolean = false;
   displayDialog: boolean = false;
   isLinear: boolean = false;
   event:any;
+  feesModeTypeId:any;
   visibleSidebar2: boolean = false;
   courses: Course[] = [];
   durationTypes: any[]=[];
   feeModeType: any[] = [];
+  courseData!:object ;
+
   msgs: { severity: string; summary: string; detail: string }[] = [];
-  courseData: {
+  /* courseData: {
     courseId?:number;
     feesModeTypeId?:number;
     durationTypeId?: number;
@@ -46,7 +52,7 @@ export class CourseComponent implements OnInit {
     shortName?: string;
     courseDuration?: string;
     description?: string;
-  }={};
+  }={}; */
 
   constructor(public authService: AuthService
     , private messageService: MessageService
@@ -75,22 +81,42 @@ export class CourseComponent implements OnInit {
       {value:2, name: 'Single'}
     ];
 
-
+  this.getTotalCourse();
+  this.getMonthlyTotalCourse();
+  this.getFullTotalCourse();
   }
   active=0;
   selectedIndex=0
   onTabChanged(event:any){
     console.log(event)
   }
-  courseNameFormGroup = new UntypedFormGroup({
-    feesModeTypeId : new UntypedFormControl(1, [Validators.required]),
-    durationTypeId : new UntypedFormControl(2, [Validators.required]),
-    fullName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
-    courseCode : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
-    shortName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
-    courseDuration : new UntypedFormControl(),
-    description : new UntypedFormControl(),
-    courseId : new UntypedFormControl()
+  getTotalCourse(){
+    this.courseService.fetchAllTotalCourse().subscribe(response => {
+      this.totalNoCourse = response.data[0].totalCourse;
+      console.log("Monthly totalNoCourse:",this.totalNoCourse);
+    })
+  }
+  getMonthlyTotalCourse(){
+    this.courseService.fetchMonthlyTotalCourse().subscribe(response => {
+      this.totalMonthlyCourse = response.data[0].totalMonthlyCourse;
+      console.log("Monthly totalMonthlyCourse:",this.totalMonthlyCourse);
+    })
+  }
+  getFullTotalCourse(){
+    this.courseService.fetchFullTotalCourse().subscribe(response => {
+      this.totalFullCourse = response.data[0].totalFullCourse;
+      console.log("Monthly totalFullCourse:",this.totalFullCourse);
+    })
+  }
+  courseNameFormGroup = new FormGroup({
+    feesModeTypeId : new FormControl(1, [Validators.required]),
+    durationTypeId : new FormControl(2, [Validators.required]),
+    fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
+    courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
+    shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
+    courseDuration : new FormControl(),
+    description : new FormControl(),
+    courseId : new FormControl()
   })
   loading: boolean = false;
   deleteCourse(courseData:any){
@@ -143,15 +169,24 @@ export class CourseComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.courseData.courseId=this.courseNameFormGroup.value.courseId;
+       /*  this.courseData.courseId=this.courseNameFormGroup.value.courseId;
         this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
         this.courseData.durationTypeId=this.courseNameFormGroup.value.durationTypeId;
         this.courseData.fullName=this.courseNameFormGroup.value.fullName;
         this.courseData.courseCode=this.courseNameFormGroup.value.courseCode;
         this.courseData.shortName=this.courseNameFormGroup.value.shortName;
         this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
-        this.courseData.description=this.courseNameFormGroup.value.description;
-
+        this.courseData.description=this.courseNameFormGroup.value.description; */
+        this.courseData= {
+          courseId:this.courseNameFormGroup.value.courseId,
+          feesModeTypeId:this.courseNameFormGroup.value.feesModeTypeId,
+          durationTypeId: this.courseNameFormGroup.value.durationTypeId,
+          fullName: this.courseNameFormGroup.value.fullName,
+          courseCode: this.courseNameFormGroup.value.courseCode,
+          shortName: this.courseNameFormGroup.value.shortName,
+          courseDuration: this.courseNameFormGroup.value.courseDuration,
+          description: this.courseNameFormGroup.value.description
+        }
         this.courseService.updateCourse(this.courseData).subscribe(response => {
 
           if (response.status === true){
@@ -185,19 +220,31 @@ export class CourseComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
+       /*  this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
         this.courseData.durationTypeId=this.courseNameFormGroup.value.durationTypeId;
         this.courseData.fullName=this.courseNameFormGroup.value.fullName;
         this.courseData.courseCode=this.courseNameFormGroup.value.courseCode;
         this.courseData.shortName=this.courseNameFormGroup.value.shortName;
         this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
-        this.courseData.description=this.courseNameFormGroup.value.description;
-
+        this.courseData.description=this.courseNameFormGroup.value.description; */
+        this.courseData= {
+          courseId:this.courseNameFormGroup.value.courseId,
+          feesModeTypeId:this.courseNameFormGroup.value.feesModeTypeId,
+          durationTypeId: this.courseNameFormGroup.value.durationTypeId,
+          fullName: this.courseNameFormGroup.value.fullName,
+          courseCode: this.courseNameFormGroup.value.courseCode,
+          shortName: this.courseNameFormGroup.value.shortName,
+          courseDuration: this.courseNameFormGroup.value.courseDuration,
+          description: this.courseNameFormGroup.value.description
+        }
         this.courseService.saveCourse(this.courseData).subscribe(response => {
           
           if (response.success === 1){
             this.showSuccess("Record added successfully");
             this.clearCourse();
+            this.getTotalCourse();
+            this.getMonthlyTotalCourse();
+            this.getFullTotalCourse();
             console.log("success:",response.success);
           }
 
@@ -223,15 +270,15 @@ export class CourseComponent implements OnInit {
   clearCourse(){
     this.isShown = false;
     //this.courseNameFormGroup.reset();
-    this.courseNameFormGroup = new UntypedFormGroup({
-      feesModeTypeId : new UntypedFormControl(1, [Validators.required]),
-      durationTypeId : new UntypedFormControl(2, [Validators.required]),
-      fullName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
-      courseCode : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
-      shortName : new UntypedFormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
-      courseDuration : new UntypedFormControl(),
-      description : new UntypedFormControl(),
-      courseId : new UntypedFormControl()
+    this.courseNameFormGroup = new FormGroup({
+      feesModeTypeId : new FormControl(1, [Validators.required]),
+      durationTypeId : new FormControl(2, [Validators.required]),
+      fullName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(5)]),
+      courseCode : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(2)]),
+      shortName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
+      courseDuration : new FormControl(),
+      description : new FormControl(),
+      courseId : new FormControl()
     });
   }
   editCourse(courseData:any){

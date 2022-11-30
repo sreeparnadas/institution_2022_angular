@@ -34,6 +34,9 @@ export class StudentCourseRegistrationComponent implements OnInit {
   courses: Course[] = [];
   durationTypes: any[] = [];
   feeModeTypeArray:any[]=[];
+  totalNoActiveStudent:number=0;
+  totalNoMonthlyActiveStudent:number=0;
+  totalNoFullCourseActiveStudent:number=0;
   feeModeTypeId:number=0;
   globelLedgerId:number=8;
   studentTocourses: StudentToCourse[] = [];
@@ -117,8 +120,28 @@ export class StudentCourseRegistrationComponent implements OnInit {
       { value: 1, name: 'CCIT' },
       { value: 2, name: 'DCA' }
     ];
+    this.getTotalActiveStudent();
+    this.getMonthlyActiveStudent();
+    this.getFullCourseActiveStudent();
   }
-
+  getTotalActiveStudent(){
+    this.studentToCourseService.fetchAllTotalActiveStudent().subscribe(response => {
+      this.totalNoActiveStudent = response.data[0].totalActiveStudent;
+      console.log("Monthly totalNoCourse:",this.totalNoActiveStudent);
+    })
+  }
+  getMonthlyActiveStudent(){
+    this.studentToCourseService.fetchMonthlyActiveStudent().subscribe(response => {
+      this.totalNoMonthlyActiveStudent = response.data[0].totalMonthlyStudent;
+      console.log("Monthly totalMonthlyCourse:",this.totalNoMonthlyActiveStudent);
+    })
+  }
+  getFullCourseActiveStudent(){
+    this.studentToCourseService.fetchFullCourseActiveStudent().subscribe(response => {
+      this.totalNoFullCourseActiveStudent = response.data[0].totalFullCourseStudent;
+      console.log("Monthly totalFullCourse:",this.totalNoFullCourseActiveStudent);
+    })
+  }
   active = 0;
   selectedIndex=0;
   onTabChanged(event: any) {
@@ -319,7 +342,10 @@ export class StudentCourseRegistrationComponent implements OnInit {
          this.studentTocourseData.actual_course_duration=this.studentToCourseFormGroup.value.actual_course_duration;
          this.studentTocourseData.duration_type_id=this.studentToCourseFormGroup.value.duration_type_id;
          this.studentTocourseData.is_started=1; */
-        
+         this.effective_Date=this.studentToCourseFormGroup.value.effective_date;
+        var DateObj = new Date(this.effective_Date);
+        console.log("Month No:",DateObj.getMonth()+1);
+        console.log("Year No:",DateObj.getFullYear());
 
         this.tempItemValueObj = {
           studentToCourseID: this.studentToCourseFormGroup.value.studentToCourseID,
@@ -334,8 +360,8 @@ export class StudentCourseRegistrationComponent implements OnInit {
           duration_type_id: this.studentToCourseFormGroup.value.duration_type_id,
           isStarted: 1,
           userId: 1,
-          feesYear: new Date().getFullYear(),
-          feesMonth: new Date().getMonth().toString(),
+          feesYear: DateObj.getFullYear(),
+          feesMonth: DateObj.getMonth()+1,
           transactionDetails: [
             {
               transactionTypeId: 2,

@@ -93,4 +93,26 @@ export class StudentToCourseService {
     })));
   }
 
+  fetchAllTotalActiveStudent(){
+    return this.http.get<any>(this.commonService.getAPI() + '/totalActiveStudent')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any}) => {
+      this.courseList=response.data;
+      this.durationTypeSubject.next([...this.courseList]);
+    })));
+  }
+  fetchMonthlyActiveStudent(){
+    return this.http.get<any>(this.commonService.getAPI() + '/totalMonthlyActiveStudent')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any}) => {
+      this.courseList=response.data;
+      this.durationTypeSubject.next([...this.courseList]);
+    })));
+  }
+  fetchFullCourseActiveStudent(){
+    return this.http.get<any>(this.commonService.getAPI() + '/totalFullCourseActiveStudent')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any}) => {
+      this.courseList=response.data;
+      this.durationTypeSubject.next([...this.courseList]);
+    })));
+  }
+
 }

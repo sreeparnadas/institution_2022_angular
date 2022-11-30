@@ -22,7 +22,16 @@
     }
   }
 }
-
+mat-form-field{
+  margin-bottom: -1em
+}
+.p-input-icon-left,
+.p-input-icon-right{
+  float: right;
+}
+span .p-input-icon-left input[type="text"]{
+  padding:0px 25px;
+}
 ::ng-deep .mat-form-field {
   .mat-input-element {
       color: rgb(8, 8, 8);
@@ -108,5 +117,6 @@ mat-form-field{
   .btn-space {
     margin-right: 5px;
 }
+
 
 

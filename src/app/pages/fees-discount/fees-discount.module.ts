@@ -27,7 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { FeesDiscountRoutingModule } from './fees-discount-routing.module';
 import { FeesDiscountComponent } from './fees-discount.component';
-
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import { FeesDiscountComponent } from './fees-discount.component';
     MatNativeDateModule,
     MatDialogModule,
     MatCheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputTextModule
   ]
 })
 export class FeesDiscountModule { }

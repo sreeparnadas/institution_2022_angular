@@ -7,6 +7,7 @@ import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "prim
 import { CommonService } from 'src/app/services/common.service';
 import { TransactionServicesService } from 'src/app/services/transaction-services.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Table } from 'primeng/table/table';
 
 @Component({
   selector: 'app-fees-charge',
@@ -21,6 +22,8 @@ export class FeesChargeComponent implements OnInit {
   tr_date : Date = new Date();
   studentId:any;
   transactionDate:any;
+  transactionMonth:any;
+  transactionYear:any;
   totalFees:number=0;
   studentName:any;
   courseName:any;
@@ -152,8 +155,62 @@ export class FeesChargeComponent implements OnInit {
       console.log("Monthly Student:",this.monthlyStudentArray);
     })
   }
+  clear(table: Table) {
+    table.clear();
+  } 
+  getEventValue($event:any) :string {
+    return $event.target.value;
+  }
   getEachMonthly(data:any){
     console.log("data:",data);
+   
+    this.confirmationService.confirm({
+      message: 'Do you want to Save this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.tempItemObj={
+          transactionMaster: {
+            userId: 1,
+            studentCourseRegistrationId: data.student_course_registration_id,
+            transactionDate: data.transaction_date,
+            comment: "Auto Monthly Fees"
+           
+          },
+          transactionDetails: [
+            {
+              ledgerId: 9,
+              transactionTypeId: 2,
+               amount: data.amount
+            },
+            {
+              ledgerId: data.student_id,
+              transactionTypeId: 1,
+              amount: data.amount
+            }
+          ]
+        }
+        this.transactionServicesService.monthlyFeesCharge(this.tempItemObj).subscribe(response => {
+          if (response.success === 1){
+            this.getAllMonthlyStudent();
+            
+          }
+ 
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+ 
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+ 
+        })
+ 
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
   }
   onAddFees(){
     //const now = new Date();
@@ -221,6 +278,12 @@ export class FeesChargeComponent implements OnInit {
   changeCourseId(){
     this.studentId = this.FeesChargeFormGroup.get('studentId')?.value;
    this.transactionDate = this.FeesChargeFormGroup.get('transactionDate')?.value;
+   //this.effective_Date=this.studentToCourseFormGroup.value.effective_date;
+   var DateObj = new Date(this.transactionDate);
+   this.transactionMonth=DateObj.getMonth()+1;
+   this.transactionYear=DateObj.getFullYear();
+   console.log("Month No:",DateObj.getMonth()+1);
+   console.log("Year No:",DateObj.getFullYear());
   let comment = this.FeesChargeFormGroup.get('comment')?.value;
   console.log("studentId:",this.studentId);
   console.log("transactionDate:",this.transactionDate);
@@ -286,8 +349,11 @@ export class FeesChargeComponent implements OnInit {
        //let tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
        //let transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
        //let comment=this.FeesChargeFormGroup.get('comment')?.value;
-       let feesYear=new Date().getFullYear();
-       let feesMonth=new Date().getMonth().toString();
+       this.transactionDate=this.FeesChargeFormGroup.value.transactionDate;
+      var DateObj = new Date(this.transactionDate);
+      this.transactionMonth=DateObj.getMonth()+1;
+      this.transactionYear=DateObj.getFullYear();
+     
        this.tempChargeObj={
          ledgerId:this.studentId,
          transactionTypeId:1,
@@ -301,8 +367,8 @@ export class FeesChargeComponent implements OnInit {
            studentCourseRegistrationId:this.studentToCourseId,
            transactionDate:this.transactionDate,
            comment:this.comment,
-           feesYear:feesYear,
-           feesMonth:feesMonth
+           feesYear:this.transactionYear,
+           feesMonth:this.transactionMonth
          },
          transactionDetails: Object.values(this.tempFeesArray)
        }
@@ -501,7 +567,7 @@ this.transactionServicesService.fetchCourseId(this.studentToCourseId).subscribe(
      header: 'Delete Confirmation',
      icon: 'pi pi-info-circle',
      accept: () => {
-        
+      
       let feesYear=new Date().getFullYear();
       let feesMonth=new Date().getMonth().toString();
        this.tempChargeObj={
@@ -515,8 +581,8 @@ this.transactionServicesService.fetchCourseId(this.studentToCourseId).subscribe(
          userId:1,
          studentCourseRegistrationId:this.studentToCourseId,
          transactionDate:this.transactionDate,
-         feesYear:feesYear,
-         feesMonth:feesMonth
+         feesYear:this.transactionYear,
+         feesMonth:this.transactionMonth
        },
          transactionDetails: Object.values(this.tempFeesArray)
        }

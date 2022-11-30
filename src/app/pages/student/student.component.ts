@@ -96,7 +96,6 @@ export class StudentComponent implements OnInit, OnChanges{
     whatsappNumber?: string;
     email?: string;
     qualification?: string;
-
   }={};
   stateList: any[] = [];
   visibleSidebar2: boolean = false;

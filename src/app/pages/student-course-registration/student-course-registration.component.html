@@ -6,7 +6,8 @@
     <p-toast position="top-center" key="tc"></p-toast>
     <p-toast position="bottom-center" key="bc"></p-toast>
     <!-- Tab -------------------------------------- -->
-    <div style="background-color:  rgb(90, 90, 94);">
+    <div class="card-deck row">
+    <div style="background-color:  rgb(90, 90, 94); float: left; width:70% ;">
       <mat-tab-group (selectedTabChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
         animationDuration="200ms">
         <mat-tab>
@@ -218,7 +219,38 @@
     </div>
     <!-- end tab---------------------------------------------- -->
     <!-- start working -->
-    <div class="d-flex">
+    
+      <div class="col-xs-4 col-sm-4 col-md-4" style="width:30% ; float: right;">
+        <div class="card" style="background-color:aqua ;">
+          <div class="card-body">
+            <h1 class="card-title">Dash Board</h1>
+            <hr/>
+            <div class="container">
+              <table class="table">
+                <thead>
+                  <tr class="table-secondary">
+                    <th scope="col">Total Active Student</th>
+                    <th scope="col">:</th>
+                    <th scope="col" class="text-right">{{totalNoActiveStudent}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="col">Monthly Active Student</th>
+                    <th scope="col">:</th>
+                    <th scope="col" class="text-right">{{totalNoMonthlyActiveStudent}}</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Full Active Student</th>
+                    <th scope="col">:</th>
+                    <th scope="col" class="text-right">{{totalNoFullCourseActiveStudent}}</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Start working with Left div (panel) -->
 
       <!-- End working with Left div (panel) -->
@@ -226,7 +258,8 @@
       <!-- start working with Right div (panel) -->
 
       <!-- End working with Right div (panel) -->
-    </div>
+    
+  </div>
     <!-- End working -->
   </div>
 </div>

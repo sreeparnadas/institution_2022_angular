@@ -24,6 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {} from 'primeng/inputtext';
 @NgModule({
   declarations: [
     FeesChargeComponent
@@ -53,7 +55,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatDialogModule,
     MatCheckboxModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    InputTextModule
   ]
 })
 export class FeesChargeModule { }

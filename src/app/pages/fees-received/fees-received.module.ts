@@ -26,6 +26,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {NgxPrintModule} from 'ngx-print';
 import {MatButtonModule} from '@angular/material/button';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
@@ -57,7 +58,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatCheckboxModule,
     NgxPrintModule,
-    MatButtonModule
+    MatButtonModule,
+    InputTextModule
   ]
 })
 export class FeesReceivedModule { }

@@ -27,15 +27,15 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-3">
-                    <ng-select [items]="studentNameList" fxFlex="100" bindLabel="studentName" 
+                    <ng-select [items]="studentNameList" fxFlex="100" bindLabel="studentName"
                       (change)="changeCourseId()" class="custom" bindValue="studentId" appendTo="body"
                       formControlName="studentId" placeholder="Student Name">
                     </ng-select>
                   </div>
                   <div class="col-sm-3">
-                    <ng-select [items]="courseNameList" fxFlex="100" bindLabel="full_name" class="custom" bindValue="id" *ngIf="courseNameBoolean"
-                      appendTo="body" (change)="getTranMasterId()" formControlName="studentToCourseId"
-                      placeholder="Course Name">
+                    <ng-select [items]="courseNameList" fxFlex="100" bindLabel="full_name" class="custom" bindValue="id"
+                      *ngIf="courseNameBoolean" appendTo="body" (change)="getTranMasterId()"
+                      formControlName="studentToCourseId" placeholder="Course Name">
                     </ng-select>
                   </div>
                   <div class="col-sm-3">
@@ -52,9 +52,9 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-3">
-                    <ng-select [items]="feesDueListArray" bindLabel="ledger_name" class="custom" bindValue="ledger_id" *ngIf="feeNameBoolean"
-                      appendTo="body" formControlName="ledgerId" (change)="getCourseFeeById($event)"
-                      placeholder="Fees Name">
+                    <ng-select [items]="feesDueListArray" bindLabel="ledger_name" class="custom" bindValue="ledger_id"
+                      *ngIf="feeNameBoolean" appendTo="body" formControlName="ledgerId"
+                      (change)="getCourseFeeById($event)" placeholder="Fees Name">
                     </ng-select>
                   </div>
                   <!--  <a mat-mini-fab (click)="getCourseFeeById(id)"> Go</a> -->
@@ -71,14 +71,15 @@
                     </mat-form-field>
                   </div>
                   <div class="col-sm-2">
-                    <button pButton (click)="onSave();" *ngIf="(netDueAmount > receivedAmount && receivedAmount>0)||(receivedAmount>0 && netDueAmount===receivedAmount)"
+                    <button pButton (click)="onSave();"
+                      *ngIf="(netDueAmount > receivedAmount && receivedAmount>0)||(receivedAmount>0 && netDueAmount===receivedAmount)"
                       class="p-button-rounded p-button-info p-button-outlined">
                       <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                       <!--  [disabled]="(receivedAmount>netDueAmount)||(receivedAmount>totalFees)"  *ngIf="requiredForm.controls['name'].invalid && requiredForm.controls['name'].touched" class="alert alert-danger">
              <div *ngIf="requiredForm.controls['name'].errors.required"-->
                     </button>
                   </div>
-                 <!--  <span>netDueAmount:{{netDueAmount}} receivedAmount:{{receivedAmount}}</span> -->
+                  <!--  <span>netDueAmount:{{netDueAmount}} receivedAmount:{{receivedAmount}}</span> -->
                 </div>
 
                 <!-- <div class="container mt-3" style="background-color:white; margin-left: 0px; font-size: medium;">
@@ -187,7 +188,7 @@
                   <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                 </button>&nbsp;&nbsp;&nbsp;
 
-                
+
               </p>
 
               <!--  <fieldset class="border p-2"> -->
@@ -361,10 +362,32 @@
               <!--End print DIV-->
               <div class="container" *ngIf="showBox" style="font-size:medium; background-color: white;">
                 <h1>Fees Received List</h1>
-                <p-table [value]="feesReceivedArray" dataKey="full_name" responsiveLayout="scroll">
+                <!-- <p-table [value]="feesReceivedArray" dataKey="full_name" responsiveLayout="scroll">
+                    
+                  -------------------------------------- -->
+                <p-table #feesReceived [value]="feesReceivedArray" dataKey="student_course_registration_id"
+                  [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                  [rowsPerPageOptions]="[5,10,25,50]" styleClass="p-datatable-striped"
+                  [globalFilterFields]="['ledger_name','full_name','total_received']">
+                  <!-- ----------------------------------- -->
+                  <ng-template pTemplate="caption">
+                    <div class="flex">
+                      <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                        (click)="clear(feesReceived)"></button>
+                      <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text"
+                          (input)="feesReceived.filterGlobal(getEventValue($event), 'contains')"
+                          placeholder="Search keyword" />
+                      </span>
+
+                    </div>
+                  </ng-template>
+                  <!--  --------------------------------------------- -->
                   <ng-template pTemplate="header">
                     <tr>
-                      <th style="width: 3rem"></th>
+                      <th style="width: 2rem"></th>
                       <th>SL</th>
                       <th pSortableColumn="ledger_name">Name <p-sortIcon field="ledger_name"></p-sortIcon>
                       </th>

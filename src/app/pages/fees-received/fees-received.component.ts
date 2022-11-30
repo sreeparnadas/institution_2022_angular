@@ -8,6 +8,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { TransactionServicesService } from 'src/app/services/transaction-services.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToWords } from 'to-words';
+import { Table } from 'primeng/table/table';
 
 const toWords = new ToWords({
   localeCode: 'en-IN',
@@ -39,9 +40,9 @@ const toWords = new ToWords({
 export class FeesReceivedComponent implements OnInit {
   checked = false;
   indeterminate = false;
-  courseNameBoolean:boolean=false;
-  transactionNoBoolean:boolean=false;
-  feeNameBoolean:boolean=false;
+  courseNameBoolean: boolean = false;
+  transactionNoBoolean: boolean = false;
+  feeNameBoolean: boolean = false;
   labelPosition: 'before' | 'after' = 'after';
   disabled = false;
   transactionMasterId: number = 0;
@@ -58,7 +59,7 @@ export class FeesReceivedComponent implements OnInit {
   isCashReceived: boolean = false;
   referenceTransactionMasterId: number = 0;
   students: any[] = [];
-  
+
   studentToCourseId: any;
   pay_amount: number = 0;
 
@@ -147,10 +148,10 @@ export class FeesReceivedComponent implements OnInit {
 
 
     this.getAllReceivedFees();
- 
+
   }
   receivedAmount: number = 0;
-  receivedComment:string='Fees Received';
+  receivedComment: string = 'Fees Received';
   active = 0;
   onTabChanged(event: any) {
     this.event = event;
@@ -198,13 +199,18 @@ export class FeesReceivedComponent implements OnInit {
       this.feesReceivedArray = response.data;
     })
   }
-  
+
   getAllStudent() {
     this.transactionServicesService.fetchAllStudentName().subscribe(response => {
       this.studentNameList = response.data;
     })
   }
-
+  clear(table: Table) {
+    table.clear();
+  }
+  getEventValue($event: any): string {
+    return $event.target.value;
+  }
   onAddFees() {
     this.ledgerId = this.FeesReceivedFormGroup.get('ledgerId')?.value;
     this.amount = this.FeesReceivedFormGroup.get('amount')?.value;
@@ -229,14 +235,14 @@ export class FeesReceivedComponent implements OnInit {
 
   }
   clearFeesReceived() {
-    this.hiddenPopup=false;
-    this.studentNameList=[];
-    this.courseNameList=[];
-    this.tranMasterIdArray=[];
-    this.feesDueListArray=[];
-    this.courseNameBoolean=false;
-    this.transactionNoBoolean=false;
-    this.feeNameBoolean=false;
+    this.hiddenPopup = false;
+    this.studentNameList = [];
+    this.courseNameList = [];
+    this.tranMasterIdArray = [];
+    this.feesDueListArray = [];
+    this.courseNameBoolean = false;
+    this.transactionNoBoolean = false;
+    this.feeNameBoolean = false;
     this.isShown = false;
     const now = new Date();
     let val = formatDate(now, 'yyyy-MM-dd', 'en');
@@ -258,8 +264,8 @@ export class FeesReceivedComponent implements OnInit {
     this.totalAmount = 0;
   }
   changeCourseId() {
-    this.courseNameBoolean=true;
-    
+    this.courseNameBoolean = true;
+
     let studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
     this.courseNameList = [];
     this.transactionServicesService.fetchAllStudentToCourses(studentId).subscribe(response => {
@@ -494,51 +500,51 @@ export class FeesReceivedComponent implements OnInit {
     this.tempReceicedObj = {};
     this.tempFeesReceivedArray = [];
     this.transactionMasterId = this.FeesReceivedFormGroup.get('transactionMasterId')?.value;
-    
 
-     this.confirmationService.confirm({
+
+    this.confirmationService.confirm({
       message: 'Do you want to Save this record?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
         this.amount = this.FeesReceivedFormGroup.get('amount')?.value;
-    this.ledgerId = this.FeesReceivedFormGroup.get('ledgerId')?.value;
-    console.log("TrId.", this.transactionMasterId);
-    console.log("amount.", this.amount);
-    console.log("ledgerId.", this.ledgerId);
-    this.studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
-    
-    let tr_date=this.FeesReceivedFormGroup.get('transactionDate')?.value;
-    this.transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
-    this.comment=this.FeesReceivedFormGroup.get('comment')?.value;
-    let feesYear=new Date().getFullYear();
-    let feesMonth=new Date().getMonth().toString();
-    this.tempChargeObj={
-      ledgerId:this.studentId,
-      transactionTypeId:2,
-      amount:this.amount
-    }
-    this.tempReceicedObj={
-       ledgerId: this.ledgerId,
-       transactionTypeId: 1,
-       amount: this.amount
-    }
-   
-      this.tempFeesReceivedArray.push(this.tempReceicedObj);
-  
-  
-    this.tempFeesReceivedArray.push(this.tempChargeObj);
-    this.tempObj={
-        transactionMaster:{
-        userId:1,
-        referenceTransactionMasterId:this.studentToCourseId,
-        transactionDate:this.transactionDate,
-        comment:this.comment,
-        feesYear:feesYear,
-        feesMonth:feesMonth
-      },
-      transactionDetails: Object.values(this.tempFeesReceivedArray)
-     } 
+        this.ledgerId = this.FeesReceivedFormGroup.get('ledgerId')?.value;
+        console.log("TrId.", this.transactionMasterId);
+        console.log("amount.", this.amount);
+        console.log("ledgerId.", this.ledgerId);
+        this.studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
+
+        let tr_date = this.FeesReceivedFormGroup.get('transactionDate')?.value;
+        this.transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
+        this.comment = this.FeesReceivedFormGroup.get('comment')?.value;
+        let feesYear = new Date().getFullYear();
+        let feesMonth = new Date().getMonth().toString();
+        this.tempChargeObj = {
+          ledgerId: this.studentId,
+          transactionTypeId: 2,
+          amount: this.amount
+        }
+        this.tempReceicedObj = {
+          ledgerId: this.ledgerId,
+          transactionTypeId: 1,
+          amount: this.amount
+        }
+
+        this.tempFeesReceivedArray.push(this.tempReceicedObj);
+
+
+        this.tempFeesReceivedArray.push(this.tempChargeObj);
+        this.tempObj = {
+          transactionMaster: {
+            userId: 1,
+            referenceTransactionMasterId: this.studentToCourseId,
+            transactionDate: this.transactionDate,
+            comment: this.comment,
+            feesYear: feesYear,
+            feesMonth: feesMonth
+          },
+          transactionDetails: Object.values(this.tempFeesReceivedArray)
+        }
         this.transactionServicesService.saveFeesReceive(this.tempObj).subscribe(response => {
           if (response.success === 1) {
             this.FeesReceivedFormGroup.reset();
@@ -546,9 +552,9 @@ export class FeesReceivedComponent implements OnInit {
             this.clearFeesReceived();
             this.getAllReceivedFees();
             this.feesDueListArray = [];
-           
-            this.totalAmount=0;
-           this.getAllStudent();
+
+            this.totalAmount = 0;
+            this.getAllStudent();
             this.showSuccess("Record Updated successfully");
           }
 
@@ -566,7 +572,7 @@ export class FeesReceivedComponent implements OnInit {
       reject: () => {
         this.msgs = [{ severity: 'info', summary: 'Rejected', detail: 'You have rejected' }];
       }
-    }); 
+    });
 
 
   }
@@ -574,7 +580,7 @@ export class FeesReceivedComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
   getTranMasterId() {
-    this.transactionNoBoolean=true;
+    this.transactionNoBoolean = true;
     let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
     console.log("studentToCourseId:", studentToCourseId);
     this.tranMasterIdArray = [];
@@ -589,10 +595,10 @@ export class FeesReceivedComponent implements OnInit {
     this.totalFees = 0;
     this.totalDuefeesByLedgerId = id.total_billed - id.total_received;
     this.receivedAmount = this.totalDuefeesByLedgerId;
-    this.totalFees=this.totalDuefeesByLedgerId;
-    this.comment=this.receivedComment;
+    this.totalFees = this.totalDuefeesByLedgerId;
+    this.comment = this.receivedComment;
   }
-  getActiveCourse(id:any) {
+  getActiveCourse(id: any) {
 
     /*  let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
      //console.log("studentToCourseId:",studentToCourseId);
@@ -606,9 +612,9 @@ export class FeesReceivedComponent implements OnInit {
         
        } 
      }) */
-    this.feeNameBoolean=true;
-    this.studentToCourseId=id.id;
-    console.log("total_received:",id);
+    this.feeNameBoolean = true;
+    this.studentToCourseId = id.id;
+    console.log("total_received:", id);
     this.hiddenPopup = true;
     this.totalFees = 0;
     this.totalBilledAmount = 0;
@@ -616,8 +622,8 @@ export class FeesReceivedComponent implements OnInit {
     this.totalDuedAmount = 0;
     this.totalDiscount = 0;
     this.netDueAmount = 0;
-    this.netDueAmountValidation=0;
-    this.feesDueListArray=[];
+    this.netDueAmountValidation = 0;
+    this.feesDueListArray = [];
     //let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
     let transactionMasterId = id.id;
     console.log("transactionMasterId:", transactionMasterId);
@@ -635,12 +641,12 @@ export class FeesReceivedComponent implements OnInit {
         this.discountTranIDArray = response.data;
         this.totalDiscount = this.discountTranIDArray[0].temp_total_discount;
         this.netDueAmount = this.totalDuedAmount - this.totalDiscount;
-        this.netDueAmountValidation=this.netDueAmount-1;
+        this.netDueAmountValidation = this.netDueAmount - 1;
         console.log("discountTranIDArray:", this.discountTranIDArray);
       })
       this.totalDuedAmount = this.totalBilledAmount - this.totalReceivedAmount;
-      this.netDueAmount =this.totalDuedAmount;
-      this.netDueAmountValidation=this.netDueAmount-1;
+      this.netDueAmount = this.totalDuedAmount;
+      this.netDueAmountValidation = this.netDueAmount - 1;
     })
   }
   getActiveCourseUpdate() {
@@ -657,8 +663,8 @@ export class FeesReceivedComponent implements OnInit {
         
        } 
      }) */
-    this.transactionMasterId=this.FeesReceivedFormGroup.get('transactionMasterId')?.value;
-    console.log("transactionMasterId:",this.studentToCourseId);
+    this.transactionMasterId = this.FeesReceivedFormGroup.get('transactionMasterId')?.value;
+    console.log("transactionMasterId:", this.studentToCourseId);
     this.hiddenPopup = true;
     this.totalFees = 0;
     this.totalBilledAmount = 0;
@@ -686,7 +692,7 @@ export class FeesReceivedComponent implements OnInit {
         console.log("discountTranIDArray:", this.discountTranIDArray);
       })
       this.totalDuedAmount = this.totalBilledAmount - this.totalReceivedAmount;
-      this.netDueAmount =this.totalDuedAmount;
+      this.netDueAmount = this.totalDuedAmount;
     })
   }
 }
