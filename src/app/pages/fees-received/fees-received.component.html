@@ -3,621 +3,588 @@
   <div class="page__content shadow p-3 position-relative" style="background-color: #a3a0a0; margin-left: 10px;">
     <div class="container-fluid">
       <!-- Tab -------------------------------------- -->
-      <div style="background-color:  rgb(85,85,85);">
-        <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
-          animationDuration="200ms">
-          <mat-tab>
-            <ng-template mat-tab-label>
-              <mat-icon class="example-tab-icon">trending_up</mat-icon>
-              Entry
-            </ng-template>
-            <!-- start working with Left div (panel) -->
-            <div class="p-3 flex-fill" style="background-color: white">
-              <form [formGroup]="FeesReceivedFormGroup">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <mat-form-field>
-                      <mat-label>Received Date</mat-label>
-                      <input class="col-9" matInput #ref [matDatepicker]="transactionDate"
-                        formControlName="transactionDate">
-                      <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
-                      <mat-datepicker #transactionDate></mat-datepicker>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <ng-select [items]="studentNameList" fxFlex="100" bindLabel="studentName"
-                      (change)="changeCourseId()" class="custom" bindValue="studentId" appendTo="body"
-                      formControlName="studentId" placeholder="Student Name">
-                    </ng-select>
-                  </div>
-                  <div class="col-sm-3">
-                    <ng-select [items]="courseNameList" fxFlex="100" bindLabel="full_name" class="custom" bindValue="id"
-                      *ngIf="courseNameBoolean" appendTo="body" (change)="getTranMasterId()"
-                      formControlName="studentToCourseId" placeholder="Course Name">
-                    </ng-select>
-                  </div>
-                  <div class="col-sm-3">
-                    <ng-select [items]="tranMasterIdArray" bindLabel="transaction_number" *ngIf="transactionNoBoolean"
-                      (change)="getActiveCourse($event)" class="custom" bindValue="id" appendTo="body"
-                      formControlName="transactionMasterId" placeholder="Transaction No">
-                    </ng-select>
-                  </div>
+      <div class="p-2 container-fluid rounded d-flex flex-xl-row justify-content-xl-between"
+        [ngClass]="isDeviceXS? 'flex-column': ' flex-row'">
+        <div [ngClass]="isDeviceXS? 'col-12': 'col-7'" 
+          class="container-fluid rounded d-flex flex-xl-row justify-content-xl-between flex-row">
+          <div style="background-color:  rgb(90, 90, 94); margin-top: -15px; margin-left: -15px; width:100% ;">
+            <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
+              animationDuration="200ms" style="width:100% !important;">
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">trending_up</mat-icon>
+                  Entry
+                </ng-template>
+                <!-- start working with Left div (panel) -->
+                <div class="p-3 flex-fill" style="background-color: white">
+                  <form [formGroup]="FeesReceivedFormGroup">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <mat-form-field>
+                          <mat-label>Received Date</mat-label>
+                          <input class="col-9" matInput #ref [matDatepicker]="transactionDate"
+                            formControlName="transactionDate">
+                          <mat-datepicker-toggle matSuffix [for]="transactionDate"></mat-datepicker-toggle>
+                          <mat-datepicker #transactionDate></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <ng-select [items]="studentNameList" fxFlex="100" bindLabel="studentName"
+                          (change)="changeCourseId()" class="custom" bindValue="studentId" appendTo="body"
+                          formControlName="studentId" placeholder="Student Name">
+                        </ng-select>
+                      </div>
+                      <div class="col-sm-4">
+                        <ng-select [items]="courseNameList" fxFlex="100" bindLabel="full_name" class="custom"
+                          bindValue="id" *ngIf="courseNameBoolean" appendTo="body" (change)="getTranMasterId()"
+                          formControlName="studentToCourseId" placeholder="Course Name">
+                        </ng-select>
+                      </div>
+                      <div class="col-sm-4">
+                        <ng-select [items]="tranMasterIdArray" bindLabel="transaction_number"
+                          *ngIf="transactionNoBoolean" (change)="getActiveCourse($event)" class="custom" bindValue="id"
+                          appendTo="body" formControlName="transactionMasterId" placeholder="Transaction No">
+                        </ng-select>
+                      </div>
 
-                  <!-- <div class="col-1">
+                      <!-- <div class="col-1">
                     <a mat-mini-fab (click)="getActiveCourse()"> Go</a>
                    
                   </div> -->
-                </div>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <ng-select [items]="feesDueListArray" bindLabel="ledger_name" class="custom" bindValue="ledger_id"
-                      *ngIf="feeNameBoolean" appendTo="body" formControlName="ledgerId"
-                      (change)="getCourseFeeById($event)" placeholder="Fees Name">
-                    </ng-select>
-                  </div>
-                  <!--  <a mat-mini-fab (click)="getCourseFeeById(id)"> Go</a> -->
-                  <div class="col-sm-3">
-                    <mat-form-field style="width:100%" *ngIf="feeNameBoolean">
-                      <mat-label>Enter Amount</mat-label>
-                      <input matInput formControlName="amount" [(ngModel)]="receivedAmount">
-                    </mat-form-field>
-                  </div>
-                  <div class="col-sm-3">
-                    <mat-form-field style="width:100%" *ngIf="feeNameBoolean">
-                      <mat-label>Enter Comments</mat-label>
-                      <input matInput formControlName="comment">
-                    </mat-form-field>
-                  </div>
-                  <div class="col-sm-2">
-                    <button pButton (click)="onSave();"
-                      *ngIf="(netDueAmount > receivedAmount && receivedAmount>0)||(receivedAmount>0 && netDueAmount===receivedAmount)"
-                      class="p-button-rounded p-button-info p-button-outlined">
-                      <i class="bi bi-save" style="font-size: 1rem"> Save </i>
-                      <!--  [disabled]="(receivedAmount>netDueAmount)||(receivedAmount>totalFees)"  *ngIf="requiredForm.controls['name'].invalid && requiredForm.controls['name'].touched" class="alert alert-danger">
-             <div *ngIf="requiredForm.controls['name'].errors.required"-->
-                    </button>
-                  </div>
-                  <!--  <span>netDueAmount:{{netDueAmount}} receivedAmount:{{receivedAmount}}</span> -->
-                </div>
-
-                <!-- <div class="container mt-3" style="background-color:white; margin-left: 0px; font-size: medium;">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col" style="display: none;">index</th>
-                        <th scope="col" style="display: none;">Tr id</th>
-                        <th scope="col" style="display: none;">Ledger id</th>
-                        <th scope="col">Fees Name</th>
-                        <th scope="col">Total Billed</th>
-                        <th scope="col">Total Received</th>
-                        <th scope="col">Net Due</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Comments</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of feesDueListArray; index as i">
-                        <th scope="row" style="display: none;">{{i}}</th>
-                        <th scope="row" style="display: none;">{{item.id}}</th>
-                        <th scope="row" style="display: none;">{{item.ledger_id}}</th>
-                        <td>{{item.ledger_name}}</td>
-                        <td>{{item.total_billed | currency:'INR'}}</td>
-                        <td>{{item.total_received | currency:'INR'}}</td>
-                        <td align="right">{{item.total_billed-item.total_received | currency:'INR'}}</td>
-                        <td>
-                          <mat-form-field>
-                            <mat-label>Enter Amount</mat-label>
-                            <input matInput formControlName="pay_amount" [(ngModel)]="item.pay_amount">
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field>
-                            <mat-label>Enter Comments</mat-label>
-                            <input matInput formControlName="comment" [(ngModel)]="item.comment">
-                          </mat-form-field>
-                        </td>
-                        <td><button type="button" [disabled]="(item.total_billed-item.total_received==0)|| (item.pay_amount>item.total_billed-item.total_received)"
-                          class="bg-primary rounded-pill" style="width: 75px; height: 30px;" (click)="onSave(i);">Submit</button></td>
-                      </tr>
-                      <tr class="table-gray">
-                        <th colspan="6">Grand Total</th>
-
-                        <td align="right">{{totalAmount | currency:'INR'}}</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div> -->
-                <div class="container mt-3" *ngIf="hiddenPopup;"
-                  style="background-color:white; margin-left: 0px; font-size: medium;">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col" style="display: none;">index</th>
-                        <th scope="col" style="display: none;">Tr id</th>
-                        <th scope="col" style="display: none;">Ledger id</th>
-                        <th scope="col">Fees Name</th>
-                        <th scope="col" class="text-right">Total Billed</th>
-                        <th scope="col" class="text-right">Total Received</th>
-                        <th scope="col" class="text-right">Net Due</th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of feesDueListArray; index as i">
-                        <th scope="row" style="display: none;">{{i}}</th>
-                        <th scope="row" style="display: none;">{{item.id}}</th>
-                        <th scope="row" style="display: none;">{{item.ledger_id}}</th>
-                        <td>{{item.ledger_name}}</td>
-                        <td class="text-right">{{item.total_billed | currency:'INR'}}</td>
-                        <td class="text-right">{{item.total_received | currency:'INR'}}</td>
-                        <td class="text-right">{{item.total_billed-item.total_received | currency:'INR'}}</td>
-
-                      </tr>
-                      <tr style="background-color:gray ; color: blanchedalmond;">
-                        <th colspan="1" style="color: blanchedalmond;">Total Due</th>
-                        <th class="text-right" style="color: blanchedalmond;">{{totalBilledAmount | currency:'INR'}}
-                        </th>
-                        <th class="text-right" style="color: blanchedalmond;">{{totalReceivedAmount | currency:'INR'}}
-                        </th>
-                        <th class="text-right" style="color: blanchedalmond;">{{totalDuedAmount | currency:'INR'}}
-                        </th>
-                      </tr>
-                      <tr style="background-color:rgb(165, 159, 159) ; color: rgb(43, 42, 42);">
-                        <th colspan="3" style="color: blanchedalmond;">Total Discount</th>
-
-                        <th class="text-right" style="color: blanchedalmond;">- &nbsp; {{totalDiscount |
-                          currency:'INR'}}
-                        </th>
-                      </tr>
-                      <tr style="background-color:rgb(156, 160, 238) ; color: rgb(43, 42, 42);">
-                        <th colspan="3" style="color: blanchedalmond;">Net Due:{{receivedAmount>=netDueAmount}}</th>
-
-                        <th class="text-right" style="color: blanchedalmond;">{{netDueAmount | currency:'INR'}}
-                        </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </form>
-              <p class="text-right">
-                <button pButton (click)="clearFeesReceived();" class="p-button-rounded p-button-info p-button-outlined">
-                  <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
-                </button>&nbsp;&nbsp;&nbsp;
-
-
-              </p>
-
-              <!--  <fieldset class="border p-2"> -->
-              <fieldset class="border p-2" *ngIf="isCashReceived">
-                <legend>Bank Details</legend>
-                <form [formGroup]="BankReceivedFormGroup">
-                  <div class="d-flex flex-row bd-highlight mb-3" style="width:1000px; height:100px;">
+                    </div>
                     <div class="row">
-                      <div class="col-sm-3">
-                        <mat-form-field style="width:100%">
-                          <mat-label>Account No</mat-label>
-                          <input matInput formControlName="accountNo" placeholder="Account Nummber" required>
+                      <div class="col-sm-4">
+                        <ng-select [items]="feesDueListArray" bindLabel="ledger_name" class="custom"
+                          bindValue="ledger_id" *ngIf="feeNameBoolean" appendTo="body" formControlName="ledgerId"
+                          (change)="getCourseFeeById($event)" placeholder="Fees Name">
+                        </ng-select>
+                      </div>
+                      <!--  <a mat-mini-fab (click)="getCourseFeeById(id)"> Go</a> -->
+                      <div class="col-sm-2">
+                        <mat-form-field style="width:100%" *ngIf="feeNameBoolean">
+                          <mat-label>Enter Amount</mat-label>
+                          <input matInput formControlName="amount" [(ngModel)]="receivedAmount">
                         </mat-form-field>
                       </div>
-                      <div class="col-sm-3">
-                        <mat-form-field style="width:100%">
-                          <mat-label>IFSC No</mat-label>
-                          <input matInput formControlName="ifscNo" placeholder="IFSC No" required>
+                      <div class="col-sm-4">
+                        <mat-form-field style="width:100%" *ngIf="feeNameBoolean">
+                          <mat-label>Enter Comments</mat-label>
+                          <input matInput formControlName="comment">
                         </mat-form-field>
                       </div>
-                      <div class="col-sm-3">
-                        <mat-form-field style="width:100%">
-                          <mat-label>Branch Name</mat-label>
-                          <input matInput formControlName="branch" placeholder="Branch Name" required>
-                        </mat-form-field>
+                      <div class="col-sm-2">
+                        <button pButton (click)="onSave();"
+                          *ngIf="(netDueAmount > receivedAmount && receivedAmount>0)||(receivedAmount>0 && netDueAmount===receivedAmount)"
+                          class="p-button-rounded p-button-info p-button-outlined">
+                          <i class="bi bi-save" style="font-size: 1rem"> Save </i>
+                          <!--  [disabled]="(receivedAmount>netDueAmount)||(receivedAmount>totalFees)"  *ngIf="requiredForm.controls['name'].invalid && requiredForm.controls['name'].touched" class="alert alert-danger">
+             <div *ngIf="requiredForm.controls['name'].errors.required"-->
+                        </button>
                       </div>
-                      <div class="col-sm-3">
-                        <div class="p-2 col-2 bd-highlight">
-                          <button type="button" class="btn btn-outline-danger"
-                            [disabled]="!BankReceivedFormGroup.valid || BankReceivedFormGroup.value.id"
-                            (click)="onBankReceived();">Received Bank</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </fieldset>
-              <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle"
-                [transitionOptions]="'0.8ms'">
-                <ng-template pTemplate="header">
-                  <h3>Header Content</h3>
-                </ng-template>
-                <ng-template pTemplate="footer">
-                  <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
-                  <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
-                </ng-template>
-              </p-confirmDialog>
-            </div>
-            <!-- End working with Left div (panel) -->
-
-          </mat-tab>
-
-          <mat-tab>
-            <ng-template mat-tab-label>
-              <mat-icon class="example-tab-icon">list</mat-icon>
-              View List
-            </ng-template>
-            <!-- start working with Right div (panel) -->
-            <div class="p-3 flex-fill" style="width:100% ;">
-              <!-------------------------------start show single Receipt bill voucher------------------------------------- -->
-              <div class="container" *ngIf="!showBox" style="font-size:medium; background-color: white;">
-                <div style="border: 2px dotted rgb(1, 1, 19);">
-                  <div class="row">
-                    <div class="col-2 ">
-                      <img src="assets/img/baitLogo.png" width="100px" alt="AdminLTE Logo" style="opacity: .8">
-                    </div>
-                    <div class="col-10" align="center">
-
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: large; font-family: 'Cooper Black';">
-                        Barrackpore Academy Of Information Technology</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">Stalin Nagar, Barrackpore,
-                        Chiramore, Pin:700120</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">
-                        E-mail;barrackporeacademyofit2014@gmail.com | Contact: 7605887990</p>
-
-                      <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                      <!--  <span>netDueAmount:{{netDueAmount}} receivedAmount:{{receivedAmount}}</span> -->
                     </div>
 
-                  </div>
-
-                </div>
-                <div class="row">
-                  <div class="col-7 " style="font-size:medium;">
-                    <table>
-                      <tr>
-                        <td>Student Name</td>
-                        <td>:</td>
-                        <th>{{singleBillReceiptArray[0].student_name}}</th>
-                      </tr>
-                      <tr>
-                        <td>Contact No</td>
-                        <td>:</td>
-                        <th>{{singleBillReceiptArray[0].whatsapp_number}}</th>
-                      </tr>
-                      <tr>
-                        <td>Course Name</td>
-                        <td>:</td>
-                        <th>{{singleBillReceiptArray[0].full_name}}</th>
-                      </tr>
-                    </table>
-                  </div>
-                  <div class="col-5 " style="font-size:medium;">
-                    <table>
-                      <tr>
-                        <td>Bill No</td>
-                        <td>:</td>
-                        <th>{{singleBillReceiptArray[0].transaction_number}}</th>
-                      </tr>
-                      <tr>
-                        <td>Bill Date</td>
-                        <td>:</td>
-                        <th>{{singleBillReceiptArray[0].transaction_date | date: 'dd/MM/yyyy'}}</th>
-                      </tr>
-
-                    </table>
-                  </div>
-                  <div class="row">
-                    <div class="col-md text-center">
-                      <table style="border-collapse: collapse; width: 100%; margin:0 auto; font-size:medium;">
+               
+                    <div class="container mt-3" *ngIf="hiddenPopup;"
+                      style="background-color:white; margin-left: 0px; font-size: medium;">
+                      <table class="table table-striped">
                         <thead>
-                          <tr
-                            style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
+                          <tr>
+                            <th scope="col" style="display: none;">index</th>
+                            <th scope="col" style="display: none;">Tr id</th>
+                            <th scope="col" style="display: none;">Ledger id</th>
+                            <th scope="col">Fees Name</th>
+                            <th scope="col" class="text-right">Total Billed</th>
+                            <th scope="col" class="text-right">Total Received</th>
+                            <th scope="col" class="text-right">Net Due</th>
 
-                            <th>Fees Name</th>
-                            <th class="text-right">Amount</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr style="border-bottom: 3px dotted rgb(116, 114, 114);">
+                          <tr *ngFor="let item of feesDueListArray; index as i">
+                            <th scope="row" style="display: none;">{{i}}</th>
+                            <th scope="row" style="display: none;">{{item.id}}</th>
+                            <th scope="row" style="display: none;">{{item.ledger_id}}</th>
+                            <td>{{item.ledger_name}}</td>
+                            <td class="text-right">{{item.total_billed | currency:'INR'}}</td>
+                            <td class="text-right">{{item.total_received | currency:'INR'}}</td>
+                            <td class="text-right">{{item.total_billed-item.total_received | currency:'INR'}}</td>
 
-                            <td>{{singleBillReceiptArray[0].ledger_name}}</td>
-                            <td class="text-right">{{singleBillReceiptArray[0].temp_total_received | currency:'INR'}}
-                            </td>
                           </tr>
+                          <tr style="background-color:gray ; color: blanchedalmond;">
+                            <th colspan="1" style="color: blanchedalmond;">Total Due</th>
+                            <th class="text-right" style="color: blanchedalmond;">{{totalBilledAmount | currency:'INR'}}
+                            </th>
+                            <th class="text-right" style="color: blanchedalmond;">{{totalReceivedAmount |
+                              currency:'INR'}}
+                            </th>
+                            <th class="text-right" style="color: blanchedalmond;">{{totalDuedAmount | currency:'INR'}}
+                            </th>
+                          </tr>
+                          <tr style="background-color:rgb(165, 159, 159) ; color: rgb(43, 42, 42);">
+                            <th colspan="3" style="color: blanchedalmond;">Total Discount</th>
 
+                            <th class="text-right" style="color: blanchedalmond;">- &nbsp; {{totalDiscount |
+                              currency:'INR'}}
+                            </th>
+                          </tr>
+                          <tr style="background-color:rgb(156, 160, 238) ; color: rgb(43, 42, 42);">
+                            <th colspan="3" style="color: blanchedalmond;">Net Due:{{receivedAmount>=netDueAmount}}</th>
+
+                            <th class="text-right" style="color: blanchedalmond;">{{netDueAmount | currency:'INR'}}
+                            </th>
+                          </tr>
                         </tbody>
-                        <tfoot>
-
-                          <tr>
-                            <th>In Words:&nbsp; {{rupeeInWords}}</th>
-
-                          </tr>
-
-                        </tfoot>
                       </table>
                     </div>
-                  </div>
-                  <div class="row" style="font-size: small;">
-                    <div class="col-7">
-                      Notice:<p style="margin-bottom: 0 ;margin-top: 0 ; font-style: oblique; font-size: small;">1) It
-                        is Computer Generated Bill</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ;font-style: oblique;">2) Advanced Fees Cannot be
-                        Refund.</p>
+                  </form>
+                  <p class="text-right">
+                    <button pButton (click)="clearFeesReceived();"
+                      class="p-button-rounded p-button-info p-button-outlined">
+                      <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
+                    </button>&nbsp;&nbsp;&nbsp;
+
+
+                  </p>
+
+                  <!--  <fieldset class="border p-2"> -->
+                 
+                  <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle"
+                    [transitionOptions]="'0.8ms'">
+                    <ng-template pTemplate="header">
+                      <h3>Header Content</h3>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                      <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+                      <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+                    </ng-template>
+                  </p-confirmDialog>
+                </div>
+                <!-- End working with Left div (panel) -->
+
+              </mat-tab>
+
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">list</mat-icon>
+                  View List
+                </ng-template>
+                <!-- start working with Right div (panel) -->
+                <div class="p-3 flex-fill" style="width:100% ;">
+                  <!-------------------------------start show single Receipt bill voucher------------------------------------- -->
+                  <div class="container" *ngIf="!showBox" style="font-size:medium; background-color: white;">
+                    <div style="border: 2px dotted rgb(1, 1, 19);">
+                      <div class="row">
+                        <div class="col-2 ">
+                          <img src="assets/img/baitLogo.png" width="100px" alt="AdminLTE Logo" style="opacity: .8">
+                        </div>
+                        <div class="col-10" align="center">
+
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: large; font-family: 'Cooper Black';">
+                            Barrackpore Academy Of Information Technology</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">Stalin Nagar, Barrackpore,
+                            Chiramore, Pin:700120</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">
+                            E-mail;barrackporeacademyofit2014@gmail.com | Contact: 7605887990</p>
+
+                          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        </div>
+
+                      </div>
 
                     </div>
-                    <div class="col-3 ">
-                      <p class="text-right">Signature</p>
-                      <p class="text-right">-----------------</p>
+                    <div class="row">
+                      <div class="col-7 " style="font-size:medium;">
+                        <table>
+                          <tr>
+                            <td>Student Name</td>
+                            <td>:</td>
+                            <th>{{singleBillReceiptArray[0].student_name}}</th>
+                          </tr>
+                          <tr>
+                            <td>Contact No</td>
+                            <td>:</td>
+                            <th>{{singleBillReceiptArray[0].whatsapp_number}}</th>
+                          </tr>
+                          <tr>
+                            <td>Course Name</td>
+                            <td>:</td>
+                            <th>{{singleBillReceiptArray[0].full_name}}</th>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="col-5 " style="font-size:medium;">
+                        <table>
+                          <tr>
+                            <td>Bill No</td>
+                            <td>:</td>
+                            <th>{{singleBillReceiptArray[0].transaction_number}}</th>
+                          </tr>
+                          <tr>
+                            <td>Bill Date</td>
+                            <td>:</td>
+                            <th>{{singleBillReceiptArray[0].transaction_date | date: 'dd/MM/yyyy'}}</th>
+                          </tr>
+
+                        </table>
+                      </div>
+                      <div class="row">
+                        <div class="col-md text-center">
+                          <table style="border-collapse: collapse; width: 100%; margin:0 auto; font-size:medium;">
+                            <thead>
+                              <tr
+                                style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
+
+                                <th>Fees Name</th>
+                                <th class="text-right">Amount</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr style="border-bottom: 3px dotted rgb(116, 114, 114);">
+
+                                <td>{{singleBillReceiptArray[0].ledger_name}}</td>
+                                <td class="text-right">{{singleBillReceiptArray[0].temp_total_received |
+                                  currency:'INR'}}
+                                </td>
+                              </tr>
+
+                            </tbody>
+                            <tfoot>
+
+                              <tr>
+                                <th>In Words:&nbsp; {{rupeeInWords}}</th>
+
+                              </tr>
+
+                            </tfoot>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row" style="font-size: small;">
+                        <div class="col-7">
+                          Notice:<p style="margin-bottom: 0 ;margin-top: 0 ; font-style: oblique; font-size: small;">1)
+                            It
+                            is Computer Generated Bill</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ;font-style: oblique;">2) Advanced Fees Cannot be
+                            Refund.</p>
+
+                        </div>
+                        <div class="col-3 ">
+                          <p class="text-right">Signature</p>
+                          <p class="text-right">-----------------</p>
+                        </div>
+                      </div>
+                      <div mat-dialog-actions>
+                        <button class="btn btn-danger" (click)="onClickedSingleReceipt($event)">Close</button>
+                        <button class="btn btn-success" printSectionId="pdfTable" printTitle="Develop By Ronit"
+                          ngxPrint>Print</button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-------------------------------end show single Receipt bill voucher------------------------------------- -->
+
+                  <!--End print DIV-->
+                  <div class="container" *ngIf="showBox" style="font-size:medium; background-color: white;">
+                    <h1>Fees Received List</h1>
+                    <!-- <p-table [value]="feesReceivedArray" dataKey="full_name" responsiveLayout="scroll">
+                    
+                  -------------------------------------- -->
+                    <p-table #feesReceived [value]="feesReceivedArray" dataKey="student_course_registration_id"
+                      [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                      [rowsPerPageOptions]="[5,10,25,50]" styleClass="p-datatable-striped"
+                      [globalFilterFields]="['ledger_name','full_name','total_received']">
+                      <!-- ----------------------------------- -->
+                      <ng-template pTemplate="caption">
+                        <div class="flex">
+                          <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                            (click)="clear(feesReceived)"></button>
+                          <span class="p-input-icon-left ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"
+                              (input)="feesReceived.filterGlobal(getEventValue($event), 'contains')"
+                              placeholder="Search keyword" />
+                          </span>
+
+                        </div>
+                      </ng-template>
+                      <!--  --------------------------------------------- -->
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th style="width: 2rem"></th>
+                          <th>SL</th>
+                          <th pSortableColumn="ledger_name">Name <p-sortIcon field="ledger_name"></p-sortIcon>
+                          </th>
+                          <th>Course</th>
+                          <th pSortableColumn="total_received">Total Received <p-sortIcon field="total_received">
+                            </p-sortIcon>
+                          </th>
+                          <th>Print</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-fees let-expanded="expanded" let-rowIndex="rowIndex">
+                        <tr>
+                          <td>
+                            <button type="button" pButton pRipple [pRowToggler]="fees"
+                              class="p-button-text p-button-rounded p-button-plain"
+                              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                          </td>
+                          <td>{{rowIndex+1}}</td>
+                          <td>{{fees.ledger_name}}</td>
+                          <td>{{fees.full_name}}</td>
+                          <td>{{fees.total_received | currency: 'INR'}}</td>
+                          <td>
+                            <button type="button" class="btn btn-outline-info"
+                              (click)="onClickedReceiptVoucher(fees)"><i class="bi bi-printer"></i></button>
+                          </td>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="rowexpansion" let-fee class="col-12">
+                        <tr>
+                          <td colspan="7">
+                            <div class="p-3">
+                              <!--Inner table-->
+                              <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Transaction Number</th>
+                                    <th scope="col">Particulars</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Comments</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let feeDetail of fee.fees_received_details ">
+                                    <td>{{feeDetail.transaction_date | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{feeDetail.transaction_number}}</td>
+                                    <td>{{feeDetail.ledger_name}}</td>
+                                    <td class="text-right">{{feeDetail.temp_total_received | currency: 'INR'}}</td>
+                                    <td>{{feeDetail.comment}}</td>
+                                    <td><button type="button" class="btn btn-success"
+                                        (click)="editFeesReceived(feeDetail)"><i class="bi bi-pen"></i></button> &nbsp;
+                                      <button type="button" class="btn btn-outline-danger"
+                                        (click)="onClickedSingleReceipt(feeDetail)"><i
+                                          class="bi bi-printer"></i></button>
+                                    </td>
+                                </tbody>
+                              </table>
+                              <!--inner table end-->
+                            </div>
+                          </td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+
+
+                  </div>
+
+                  <!-- End working with Right div (panel) -->
+
+
+                </div>
+              </mat-tab>
+
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                  Receipt Voucher Print
+                </ng-template>
+
+                <!-------------------------------start show Receipt bill voucher------------------------------------- -->
+                <div class="container" *ngIf="showReceipt" style="font-size:medium; background-color: white;">
+                  <div id="print-AllReceiptBill">
+                    <div style="border: 2px dotted rgb(1, 1, 19);">
+                      <div class="row">
+                        <div class="col-2 ">
+                          <img src="assets/img/baitLogo.png" width="100px" alt="AdminLTE Logo" style="opacity: .8">
+                        </div>
+                        <div class="col-10" align="center">
+
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: large; font-family: 'Cooper Black';">
+                            Barrackpore Academy Of Information Technology</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">Stalin Nagar, Barrackpore,
+                            Chiramore, Pin:700120</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">
+                            E-mail;barrackporeacademyofit2014@gmail.com | Contact: 7605887990</p>
+
+                          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-7 " style="font-size:medium;">
+                        <table>
+                          <tr>
+                            <td>Student Name</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].student_name}}</th>
+                          </tr>
+                          <tr>
+                            <td>Contact No</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].whatsapp_number}}</th>
+                          </tr>
+                          <tr>
+                            <td>Course Name</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].full_name}}</th>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="col-5 " style="font-size:medium;">
+                        <table>
+                          <tr>
+                            <td>Total Course Fees</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].total_course_fees | currency: 'INR'}}</th>
+                          </tr>
+
+                        </table>
+                      </div>
+                      <div class="row">
+                        <div class="col-md text-center">
+                          <table style="border-collapse: collapse; width: 100%; margin:0 auto; font-size:medium;">
+                            <thead>
+                              <tr
+                                style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
+                                <th>Sl No</th>
+                                <th>Date</th>
+                                <th>Receipt No</th>
+                                <th>Fees Name</th>
+                                <th class="text-right">Amount</th>
+                                <th>Comments</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let receipt of allBillReceiptArray; let i = index">
+
+                                <td>{{i+1}}</td>
+                                <td>{{receipt.transaction_date | date:'dd/MM/yyyy'}}</td>
+                                <td>{{receipt.transaction_number }}</td>
+                                <td>{{receipt.ledger_name}}</td>
+                                <td class="text-right">{{receipt.temp_total_received | currency: 'INR'}}</td>
+                                <td>{{receipt.comment}}</td>
+                              </tr>
+
+                            </tbody>
+                            <tfoot>
+
+                              <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
+                                <th colspan="3">&nbsp;</th>
+                                <td class="text-right">Grand Total:</td>
+                                <th class="text-right">{{totalRecepitAmount | currency: 'INR'}}</th>
+                                <th>&nbsp;</th>
+                              </tr>
+                              <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
+                                <th colspan="3">&nbsp;</th>
+                                <td class="text-right">Total Discount:</td>
+                                <th class="text-right">- &nbsp;{{allBillReceiptArray[0].total_discount | currency:
+                                  'INR'}}
+                                </th>
+                                <th>&nbsp;</th>
+                              </tr>
+                              <tr>
+                                <th>In Words:</th>
+                                <td>:</td>
+                                <th class="text-left">{{rupeeInWords}}</th>
+                              </tr>
+                              <tr style="background-color: lightgrey; border: 1px solid rgb(1, 1, 19);">
+                                <th colspan="3">&nbsp;</th>
+                                <td class="text-right">Current Due</td>
+                                <th class="text-right">{{(allBillReceiptArray[0].total_course_fees -
+                                  totalRecepitAmount)-
+                                  allBillReceiptArray[0].total_discount |
+                                  currency: 'INR'}}</th>
+                                <th>&nbsp;</th>
+
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row" style="font-size: small;">
+                        <div class="col-7">
+                          Notice:<p style="margin-bottom: 0 ;margin-top: 0 ; font-style: oblique; font-size: small;">1)
+                            It
+                            is Computer Generated Bill</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ;font-style: oblique;">2) Advanced Fees Cannot be
+                            Refund.</p>
+
+                        </div>
+                        <div class="col-3 ">
+                          <p class="text-right">Signature</p>
+                          <p class="text-right">-----------------</p>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                   <div mat-dialog-actions>
-                    <button class="btn btn-danger" (click)="onClickedSingleReceipt($event)">Close</button>
-                    <button class="btn btn-success" printSectionId="pdfTable" printTitle="Develop By Ronit"
+                    <button class="btn btn-danger" (click)="onClickedClosed()">Close</button>
+                    <button class="btn btn-success" printSectionId="print-AllReceiptBill" printTitle="Develop By Ronit"
                       ngxPrint>Print</button>
 
                   </div>
                 </div>
-              </div>
-              <!-------------------------------end show single Receipt bill voucher------------------------------------- -->
-
-              <!--End print DIV-->
-              <div class="container" *ngIf="showBox" style="font-size:medium; background-color: white;">
-                <h1>Fees Received List</h1>
-                <!-- <p-table [value]="feesReceivedArray" dataKey="full_name" responsiveLayout="scroll">
-                    
-                  -------------------------------------- -->
-                <p-table #feesReceived [value]="feesReceivedArray" dataKey="student_course_registration_id"
-                  [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
-                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                  [rowsPerPageOptions]="[5,10,25,50]" styleClass="p-datatable-striped"
-                  [globalFilterFields]="['ledger_name','full_name','total_received']">
-                  <!-- ----------------------------------- -->
-                  <ng-template pTemplate="caption">
-                    <div class="flex">
-                      <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
-                        (click)="clear(feesReceived)"></button>
-                      <span class="p-input-icon-left ml-auto">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text"
-                          (input)="feesReceived.filterGlobal(getEventValue($event), 'contains')"
-                          placeholder="Search keyword" />
-                      </span>
-
-                    </div>
-                  </ng-template>
-                  <!--  --------------------------------------------- -->
-                  <ng-template pTemplate="header">
-                    <tr>
-                      <th style="width: 2rem"></th>
-                      <th>SL</th>
-                      <th pSortableColumn="ledger_name">Name <p-sortIcon field="ledger_name"></p-sortIcon>
-                      </th>
-                      <th>Course</th>
-                      <th pSortableColumn="total_received">Total Received <p-sortIcon field="total_received">
-                        </p-sortIcon>
-                      </th>
-                      <th>Print</th>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-fees let-expanded="expanded" let-rowIndex="rowIndex">
-                    <tr>
-                      <td>
-                        <button type="button" pButton pRipple [pRowToggler]="fees"
-                          class="p-button-text p-button-rounded p-button-plain"
-                          [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                      </td>
-                      <td>{{rowIndex+1}}</td>
-                      <td>{{fees.ledger_name}}</td>
-                      <td>{{fees.full_name}}</td>
-                      <td>{{fees.total_received | currency: 'INR'}}</td>
-                      <td>
-                        <button type="button" class="btn btn-outline-info" (click)="onClickedReceiptVoucher(fees)"><i
-                            class="bi bi-printer"></i></button>
-                      </td>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="rowexpansion" let-fee class="col-12">
-                    <tr>
-                      <td colspan="7">
-                        <div class="p-3">
-                          <!--Inner table-->
-                          <table class="table table-striped">
-                            <thead>
-                              <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Transaction Number</th>
-                                <th scope="col">Particulars</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Comments</th>
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let feeDetail of fee.fees_received_details ">
-                                <td>{{feeDetail.transaction_date | date:'dd/MM/yyyy'}}</td>
-                                <td>{{feeDetail.transaction_number}}</td>
-                                <td>{{feeDetail.ledger_name}}</td>
-                                <td class="text-right">{{feeDetail.temp_total_received | currency: 'INR'}}</td>
-                                <td>{{feeDetail.comment}}</td>
-                                <td><button type="button" class="btn btn-success"
-                                    (click)="editFeesReceived(feeDetail)"><i class="bi bi-pen"></i></button> &nbsp;
-                                  <button type="button" class="btn btn-outline-danger"
-                                    (click)="onClickedSingleReceipt(feeDetail)"><i class="bi bi-printer"></i></button>
-                                </td>
-                            </tbody>
-                          </table>
-                          <!--inner table end-->
-                        </div>
-                      </td>
-                    </tr>
-                  </ng-template>
-                </p-table>
-
-
-              </div>
-
-              <!-- End working with Right div (panel) -->
-
-
-            </div>
-          </mat-tab>
-
-          <mat-tab>
-            <ng-template mat-tab-label>
-              <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-              Receipt Voucher Print
-            </ng-template>
-
-            <!-------------------------------start show Receipt bill voucher------------------------------------- -->
-            <div class="container" *ngIf="showReceipt" style="font-size:medium; background-color: white;">
-              <div id="print-AllReceiptBill">
-                <div style="border: 2px dotted rgb(1, 1, 19);">
-                  <div class="row">
-                    <div class="col-2 ">
-                      <img src="assets/img/baitLogo.png" width="100px" alt="AdminLTE Logo" style="opacity: .8">
-                    </div>
-                    <div class="col-10" align="center">
-
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: large; font-family: 'Cooper Black';">
-                        Barrackpore Academy Of Information Technology</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">Stalin Nagar, Barrackpore,
-                        Chiramore, Pin:700120</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">
-                        E-mail;barrackporeacademyofit2014@gmail.com | Contact: 7605887990</p>
-
-                      <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-                    </div>
-
-                  </div>
-
-                </div>
-                <div class="row">
-                  <div class="col-7 " style="font-size:medium;">
-                    <table>
-                      <tr>
-                        <td>Student Name</td>
-                        <td>:</td>
-                        <th>{{allBillReceiptArray[0].student_name}}</th>
-                      </tr>
-                      <tr>
-                        <td>Contact No</td>
-                        <td>:</td>
-                        <th>{{allBillReceiptArray[0].whatsapp_number}}</th>
-                      </tr>
-                      <tr>
-                        <td>Course Name</td>
-                        <td>:</td>
-                        <th>{{allBillReceiptArray[0].full_name}}</th>
-                      </tr>
-                    </table>
-                  </div>
-                  <div class="col-5 " style="font-size:medium;">
-                    <table>
-                      <tr>
-                        <td>Total Course Fees</td>
-                        <td>:</td>
-                        <th>{{allBillReceiptArray[0].total_course_fees | currency: 'INR'}}</th>
-                      </tr>
-
-                    </table>
-                  </div>
-                  <div class="row">
-                    <div class="col-md text-center">
-                      <table style="border-collapse: collapse; width: 100%; margin:0 auto; font-size:medium;">
-                        <thead>
-                          <tr
-                            style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
-                            <th>Sl No</th>
-                            <th>Date</th>
-                            <th>Receipt No</th>
-                            <th>Fees Name</th>
-                            <th class="text-right">Amount</th>
-                            <th>Comments</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let receipt of allBillReceiptArray; let i = index">
-
-                            <td>{{i+1}}</td>
-                            <td>{{receipt.transaction_date | date:'dd/MM/yyyy'}}</td>
-                            <td>{{receipt.transaction_number }}</td>
-                            <td>{{receipt.ledger_name}}</td>
-                            <td class="text-right">{{receipt.temp_total_received | currency: 'INR'}}</td>
-                            <td>{{receipt.comment}}</td>
-                          </tr>
-
-                        </tbody>
-                        <tfoot>
-
-                          <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
-                            <th colspan="3">&nbsp;</th>
-                            <td class="text-right">Grand Total:</td>
-                            <th class="text-right">{{totalRecepitAmount | currency: 'INR'}}</th>
-                            <th>&nbsp;</th>
-                          </tr>
-                          <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
-                            <th colspan="3">&nbsp;</th>
-                            <td class="text-right">Total Discount:</td>
-                            <th class="text-right">- &nbsp;{{allBillReceiptArray[0].total_discount | currency: 'INR'}}
-                            </th>
-                            <th>&nbsp;</th>
-                          </tr>
-                          <tr>
-                            <th>In Words:</th>
-                            <td>:</td>
-                            <th class="text-left">{{rupeeInWords}}</th>
-                          </tr>
-                          <tr style="background-color: lightgrey; border: 1px solid rgb(1, 1, 19);">
-                            <th colspan="3">&nbsp;</th>
-                            <td class="text-right">Current Due</td>
-                            <th class="text-right">{{(allBillReceiptArray[0].total_course_fees - totalRecepitAmount)-
-                              allBillReceiptArray[0].total_discount |
-                              currency: 'INR'}}</th>
-                            <th>&nbsp;</th>
-
-                          </tr>
-                        </tfoot>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="row" style="font-size: small;">
-                    <div class="col-7">
-                      Notice:<p style="margin-bottom: 0 ;margin-top: 0 ; font-style: oblique; font-size: small;">1) It
-                        is Computer Generated Bill</p>
-                      <p style="margin-bottom: 0 ;margin-top: 0 ;font-style: oblique;">2) Advanced Fees Cannot be
-                        Refund.</p>
-
-                    </div>
-                    <div class="col-3 ">
-                      <p class="text-right">Signature</p>
-                      <p class="text-right">-----------------</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              <div mat-dialog-actions>
-                <button class="btn btn-danger" (click)="onClickedClosed()">Close</button>
-                <button class="btn btn-success" printSectionId="print-AllReceiptBill" printTitle="Develop By Ronit"
-                  ngxPrint>Print</button>
-
-              </div>
-            </div>
-            <!-------------------------------end show Receipt bill voucher------------------------------------- -->
-          </mat-tab>
-          <mat-tab>
-            <ng-template mat-tab-label>
-              <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-              Receipt Voucher Print
-            </ng-template>
-            <pre>
+                <!-------------------------------end show Receipt bill voucher------------------------------------- -->
+              </mat-tab>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+                  Receipt Voucher Print
+                </ng-template>
+                <pre>
               save code = {{tempObj | json}}
             </pre>
-          </mat-tab>
+              </mat-tab>
 
-        </mat-tab-group>
+            </mat-tab-group>
+          </div>
+        </div>
+        <!-- end tab---------------------------------------------- -->
+        <div class="col-md-5" *ngIf="hiddenPopup" style="background-color:white ;">
+          <div style="background-color:white ; font-size: small;padding:10px; margin-top: -7px; ">
+            <h1 style="background-color: rgb(90, 90, 94); color: white;">Transaction Details</h1>
+            <table class="table table-striped">
+              
+              <thead>
+                <tr>
+                  <th colspan="5" class="table-secondary"><h1>Total Course Fees:&nbsp; &nbsp;<b>{{feesReceivedDetailsArray[0].totalDue | currency:'INR'}}</b></h1></th>
+                 
+                </tr>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Transaction No</th>
+                  <th scope="col">Particulars</th>
+                  <th scope="col">Comments</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of feesReceivedDetailsArray; let indexOfelement=index;">
+                  <th scope="row">{{item.transaction_date}}</th>
+                  <th scope="row">{{item.transaction_number}}</th>
+                  <td>{{item.ledger_name}}</td>
+                  <td>{{item.comment}}</td>
+                  <td align="right">{{item.temp_total_received | currency:'INR'}}</td>
+                  
+                </tr>
+                <tr>
+                  <th colspan="4">Grand Total:</th>
+                  <th align="right">{{totalReceivedAmount | currency:'INR'}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <!-- end tab---------------------------------------------- -->
-
+      </div>
     </div>
   </div>
-</div>

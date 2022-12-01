@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BijoyaRegistration } from 'src/app/models/bijoya-regitration.model';
 import { BijoyaRegistrationService } from 'src/app/services/bijoya-registration.service';
 import { CommonService } from 'src/app/services/common.service';
-
+import { LitElement, html} from 'lit-element';
+import 'fa-icons';
 @Component({
   selector: 'app-owner',
   templateUrl: './owner.component.html',

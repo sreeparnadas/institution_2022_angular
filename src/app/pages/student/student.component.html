@@ -350,7 +350,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div>
-                        <button mat-stroked-button color="warn" (click)="saveStudent()">Warn</button>
+                       <!--  <button mat-stroked-button color="warn" (click)="saveStudent()">Warn</button> -->
                         <button pButton [disabled]="!isValidForm()" (click)="saveStudent()" *ngIf="!isShown" class="p-button-rounded p-button-info">
                           <i class="bi bi-save" style="font-size: 1rem"> Save </i>
                         </button>&nbsp;
@@ -419,21 +419,22 @@
               </div> <!--End Container div -------------------------------------- -->
             
           </div>
+          <p-confirmDialog #stu [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle"
+          [transitionOptions]="'0.8ms'">
+          <ng-template pTemplate="header">
+            <h3>Header Content</h3>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <button type="button" pButton icon="pi pi-times" label="No" (click)="stu.reject()"></button>
+            <button type="button" pButton icon="pi pi-check" label="Yes" (click)="stu.accept()"></button>
+          </ng-template>
+        </p-confirmDialog>
         </mat-tab>
          
          
 
 
-          <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle"
-            [transitionOptions]="'0.8ms'">
-            <ng-template pTemplate="header">
-              <h3>Header Content</h3>
-            </ng-template>
-            <ng-template pTemplate="footer">
-              <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
-              <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
-            </ng-template>
-          </p-confirmDialog>
+         
 
           <!--        <button (click)="confirm()" pButton icon="pi pi-check" label="Confirm"></button>-->
 

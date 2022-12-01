@@ -134,9 +134,9 @@ export class StudentComponent implements OnInit, OnChanges{
     }, (error) => {});
 
 
-    this.studentService.fetchEducations().then(educations => {
+   /*  this.studentService.fetchEducations().then(educations => {
       this.qualifications = educations;
-    });
+    }); */
 
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
@@ -292,10 +292,10 @@ export class StudentComponent implements OnInit, OnChanges{
 
 
     // @ts-ignore
-    this.filteredQualifications = this.studentBasicFormGroup.valueChanges.pipe(
+    /* this.filteredQualifications = this.studentBasicFormGroup.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value)),
-    );
+    ); */
 
     this.students = this.studentService.getStudents();
     this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
@@ -441,7 +441,7 @@ export class StudentComponent implements OnInit, OnChanges{
     }
 
   saveStudent() {
-
+    //console.log("jhjkhj");
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',
@@ -560,11 +560,11 @@ export class StudentComponent implements OnInit, OnChanges{
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
   }
 
-  private _filter(value: string): string[] {
+  /* private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.qualifications.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  } */
 
   ngOnChanges(): void {
     this.studentNameFormGroup.valueChanges.subscribe(val => {

@@ -15,6 +15,7 @@ export class TransactionServicesService {
   feesNameList:any[]=[];
   studentNameList:any[]=[];
   feesReceivedList:any[]=[];
+  feesReceivedDetailsList:any[]=[];
   transactionList:any[]=[];
   //feesReceivedList:any[]=[];
   studentToCourseSubject = new Subject<StudentToCourse[]>();
@@ -26,7 +27,13 @@ export class TransactionServicesService {
 
 
   }
-
+  fetchFeeReceivedDetailsList($id:any){
+    return this.http.get<any>(this.commonService.getAPI() + '/transactions/getFeesReceived/'+$id)
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.feesReceivedDetailsList=response.data;
+      this.feesReceivedSubject.next([...this.feesReceivedDetailsList]);
+    })));
+  }
   fetchAllReceipt($id: any){
     return this.http.get<any>(this.commonService.getAPI() + '/transactions/getAllReceiptId/'+$id)
     .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
@@ -228,4 +235,5 @@ export class TransactionServicesService {
       }
     }))
   }
+ 
 }

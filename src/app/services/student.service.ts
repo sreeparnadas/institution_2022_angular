@@ -43,12 +43,12 @@ export class StudentService {
   stateSubject = new Subject<Student[]>();
   constructor(private commonService: CommonService, private errorService: ErrorService, private http: HttpClient) { }
 
-  fetchEducations() {
+  /* fetchEducations() {
     return this.http.get<any>('assets/educations.json')
       .toPromise()
       .then(res => <any[]>res.data)
       .then(data => { return data; });
-  }
+  } */
 
 
 

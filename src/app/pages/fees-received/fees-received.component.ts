@@ -39,7 +39,9 @@ const toWords = new ToWords({
 
 export class FeesReceivedComponent implements OnInit {
   checked = false;
+  isDeviceXS = false;
   indeterminate = false;
+  totalCourseDue:number=0;
   courseNameBoolean: boolean = false;
   transactionNoBoolean: boolean = false;
   feeNameBoolean: boolean = false;
@@ -51,6 +53,7 @@ export class FeesReceivedComponent implements OnInit {
   totalRecepitAmount: number = 0;
   totalFees: number = 0;
   feesDueListArray: any[] = [];
+  feesReceivedDetailsArray:any[]=[];
   hiddenInput: boolean = false;
   showBox: boolean = true;
   showReceipt: boolean = false;
@@ -122,6 +125,7 @@ export class FeesReceivedComponent implements OnInit {
       this.studentNameList = response.feesReceivedResolver.students.data;
       this.feesNameList = response.feesReceivedResolver.feesNames.data;
     });
+    this.isDeviceXS=commonService.getDeviceXs();
 
   }
 
@@ -581,12 +585,23 @@ export class FeesReceivedComponent implements OnInit {
   }
   getTranMasterId() {
     this.transactionNoBoolean = true;
+    this.hiddenPopup=true;
+    this.totalReceivedAmount=0;
+    this.totalCourseDue=0;
     let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
     console.log("studentToCourseId:", studentToCourseId);
     this.tranMasterIdArray = [];
     this.transactionServicesService.fetchAllTranMasterId(studentToCourseId).subscribe(response => {
       this.tranMasterIdArray = response.data;
       console.log(this.tranMasterIdArray);
+    }) 
+    
+    this.transactionServicesService.fetchFeeReceivedDetailsList(studentToCourseId).subscribe(response => {
+      this.feesReceivedDetailsArray = response.data;
+      console.log("feesReceivedDetailsArray:",this.feesReceivedDetailsArray);
+      for (let val of this.feesReceivedDetailsArray) {
+          this.totalReceivedAmount = this.totalReceivedAmount + val.temp_total_received;
+      }
     })
 
   }

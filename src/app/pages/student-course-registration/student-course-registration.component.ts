@@ -235,6 +235,9 @@ export class StudentCourseRegistrationComponent implements OnInit {
           console.log("Save data:", this.studentTocourseData);
           if (response.success === 1) {
             this.clearStudentToCourse();
+            this.getTotalActiveStudent();
+            this.getMonthlyActiveStudent();
+            this.getFullCourseActiveStudent();
             this.showSuccess("Record added successfully");
           }
 
