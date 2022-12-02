@@ -52,6 +52,7 @@ export class FeesReceivedComponent implements OnInit {
   selectedIndex: number = 0;
   totalRecepitAmount: number = 0;
   totalFees: number = 0;
+  totalDue:number=0;
   feesDueListArray: any[] = [];
   feesReceivedDetailsArray:any[]=[];
   hiddenInput: boolean = false;
@@ -588,6 +589,7 @@ export class FeesReceivedComponent implements OnInit {
     this.hiddenPopup=true;
     this.totalReceivedAmount=0;
     this.totalCourseDue=0;
+    this.feesReceivedDetailsArray = [];
     let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
     console.log("studentToCourseId:", studentToCourseId);
     this.tranMasterIdArray = [];
@@ -599,9 +601,11 @@ export class FeesReceivedComponent implements OnInit {
     this.transactionServicesService.fetchFeeReceivedDetailsList(studentToCourseId).subscribe(response => {
       this.feesReceivedDetailsArray = response.data;
       console.log("feesReceivedDetailsArray:",this.feesReceivedDetailsArray);
+      this.totalCourseDue=this.feesReceivedDetailsArray[0].totalDue;
       for (let val of this.feesReceivedDetailsArray) {
           this.totalReceivedAmount = this.totalReceivedAmount + val.temp_total_received;
       }
+      
     })
 
   }

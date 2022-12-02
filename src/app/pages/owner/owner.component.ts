@@ -4,6 +4,7 @@ import { BijoyaRegistrationService } from 'src/app/services/bijoya-registration.
 import { CommonService } from 'src/app/services/common.service';
 import { LitElement, html} from 'lit-element';
 import 'fa-icons';
+
 @Component({
   selector: 'app-owner',
   templateUrl: './owner.component.html',
@@ -27,5 +28,8 @@ export class OwnerComponent implements OnInit {
   ngOnInit(): void {
    
   }
-
+  active=0;
+  onTabChanged(event:any){
+    console.log(event)
+  }
 }
