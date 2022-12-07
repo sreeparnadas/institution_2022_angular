@@ -293,6 +293,7 @@
                       <th scope="col">Course Name</th>
                       <th scope="col">Transaction Date</th>
                       <th scope="col">Amount</th>
+                      <th scope="col">Month No</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -304,6 +305,7 @@
                       <td>{{item.full_name}}</td>
                       <td>{{item.transaction_date | date: 'dd/MM/yyyy' }}</td>
                       <td>{{item.amount}}</td>
+                      <td>{{item.fees_month}}</td>
                       <td><button type="button" class="btn btn-info" (click)="getEachMonthly(item)">Submit</button></td>
                     </tr>
                     
@@ -335,6 +337,7 @@
                 <th scope="col" style="display: none;">TransactionId</th>
                 <th scope="col">Transaction No</th>
                 <th scope="col">Charge Name</th>
+                <th scope="col">Month No.</th>
                 <th scope="col">Fees</th>
                 <th scope="col">Action</th>
               </tr>
@@ -345,13 +348,14 @@
                 <th scope="row" style="display: none;">{{item.id}}</th>
                 <td>{{item.transaction_number}}</td>
                 <td>{{item.ledger_name}}</td>
+                <td>{{item.fees_month}}</td>
                 <td align="right">{{item.amount | currency:'INR'}}</td>
                 <td><button type="button" class="btn btn-success" (click)="editFeesReceived(item)"><i
                       class="bi bi-pen"></i></button> &nbsp;
                 </td>
               </tr>
               <tr style="background-color:rgb(168, 160, 160) ;">
-                <th align="right" colspan="3">Grand Total</th>
+                <th align="right" colspan="4">Grand Total</th>
 
                 <th style="text-align: right;">{{totalFees | currency:'INR'}}</th>
                 <th>&nbsp;</th>
