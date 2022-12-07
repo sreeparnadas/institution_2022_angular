@@ -22,7 +22,9 @@
     }
   }
 }
-
+.ng-select .ng-select-container:hover{
+  background-color: rgb(42, 17, 141);
+}
 ::ng-deep .mat-form-field {
   .mat-input-element {
       color: rgb(8, 8, 8);

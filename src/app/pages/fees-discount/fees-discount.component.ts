@@ -419,12 +419,12 @@ export class FeesDiscountComponent implements OnInit {
     this.transactionServicesService.fetchFeesDueListId(transactionMasterId).subscribe(response => {
       this.feesDueListArray = response.data;
       console.log("fees Due list:", this.feesDueListArray);
+      this.totalReceivedAmount = this.feesDueListArray[0].total_received;
+      this.netDueAmount= this.feesDueListArray[0].total_due;
       for (let val of this.feesDueListArray) {
         this.totalBilledAmount = this.totalBilledAmount + val.total_billed;
-        this.totalReceivedAmount = this.totalReceivedAmount + val.total_received;
-        console.log("total_billed:", val.total_billed);
-        console.log("total_received:", val.total_received);
-        
+         console.log("total_billed:", val.total_billed);
+              
       }
       this.transactionServicesService.fetchDiscountByTranId(transactionMasterId).subscribe(response => {
         this.discountTranIDArray = response.data;

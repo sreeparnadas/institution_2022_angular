@@ -278,6 +278,8 @@ export class FeesChargeComponent implements OnInit {
   changeCourseId(){
     this.studentId = this.FeesChargeFormGroup.get('studentId')?.value;
    this.transactionDate = this.FeesChargeFormGroup.get('transactionDate')?.value;
+   //let tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
+       this.transactionDate = formatDate(this.transactionDate, 'yyyy-MM-dd', 'en');
    //this.effective_Date=this.studentToCourseFormGroup.value.effective_date;
    var DateObj = new Date(this.transactionDate);
    this.transactionMonth=DateObj.getMonth()+1;
