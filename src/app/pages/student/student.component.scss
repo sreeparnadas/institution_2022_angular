@@ -23,6 +23,17 @@
     }
   }
 }
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color:rgb(7, 7, 7);
+  background-color: rgb(246, 249, 246);
+  font-weight: bolder;
+  }
+  
+  ::ng-deep .mat-tab-list .mat-tab-labels {
+  color:whitesmoke;
+  background-image: linear-gradient(to bottom right, rgb(8, 2, 68), rgb(10, 39, 168));
+  font-weight: bolder;
+  }
 ::ng-deep .mat-form-field {
   .mat-input-element {
       color: rgb(8, 8, 8);

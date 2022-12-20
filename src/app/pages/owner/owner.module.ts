@@ -12,7 +12,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCardModule} from "@angular/material/card";
-
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     OwnerComponent
@@ -29,6 +29,7 @@ import {MatCardModule} from "@angular/material/card";
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
+    NgChartsModule
     
   ]
 })

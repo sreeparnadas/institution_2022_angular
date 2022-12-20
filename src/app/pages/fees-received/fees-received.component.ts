@@ -43,6 +43,7 @@ export class FeesReceivedComponent implements OnInit {
   isDeviceXS = false;
   indeterminate = false;
   totalCourseDue:number=0;
+  totalCurrentDue:number=0;
   courseNameBoolean: boolean = false;
   transactionNoBoolean: boolean = false;
   hiddenTransactionInfo:boolean=false;
@@ -271,7 +272,7 @@ export class FeesReceivedComponent implements OnInit {
   clearFeesReceived() {
     this.hiddenPopup = false;
     this.hiddenTransactionInfo=false;
-    this.studentNameList = [];
+    //this.studentNameList = [];
     this.courseNameList = [];
     this.tranMasterIdArray = [];
     this.feesDueListArray = [];
@@ -301,9 +302,9 @@ export class FeesReceivedComponent implements OnInit {
   }
   changeCourseId() {
     this.courseNameBoolean = true;
-
-    let studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
     this.courseNameList = [];
+    let studentId = this.FeesReceivedFormGroup.get('studentId')?.value;
+    //this.courseNameList = [];
     this.transactionServicesService.fetchAllStudentToCourses(studentId).subscribe(response => {
       this.courseNameList = response.data;
     })
@@ -620,6 +621,7 @@ export class FeesReceivedComponent implements OnInit {
     this.hiddenPopup=true;
     this.receivedGrandTotal=0;
     this.totalCourseDue=0;
+    this.totalCurrentDue=0;
     this.feesReceivedDetailsArray = [];
     this.tranMasterIdArray = [];
     let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
@@ -637,27 +639,14 @@ export class FeesReceivedComponent implements OnInit {
       for (let val of this.feesReceivedDetailsArray) {
           this.receivedGrandTotal = this.receivedGrandTotal + val.temp_total_received;
       }
+      this.totalCurrentDue=this.totalCourseDue-this.receivedGrandTotal;
       
     })
-
-    
-
   }
   
   getActiveCourse(id: any) {
 
-    /*  let studentToCourseId = this.FeesReceivedFormGroup.get('studentToCourseId')?.value;
-     //console.log("studentToCourseId:",studentToCourseId);
-     this.transactionServicesService.fetchFeesDueListId(studentToCourseId).subscribe(response => {
-       this.feesDueListArray = response.data;
-        console.log("fees Due list:",this.feesDueListArray);
-        for (let val of this.feesDueListArray) {
-         console.log("total_billed:",val.total_billed);
-         console.log("total_received:",val.total_received);
-        
-        
-       } 
-     }) */
+    
     this.feeNameBoolean = true;
     this.studentToCourseId = id.id;
     console.log("total_received:", id);

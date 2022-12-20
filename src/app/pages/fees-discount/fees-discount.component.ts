@@ -19,6 +19,7 @@ export class FeesDiscountComponent implements OnInit {
   isDeviceXS = false;
   checked = false;
   isSave = false;
+
   courseNameBoolean:boolean=false;
   transactionNoBoolean:boolean=false;
   feeAmountBoolean:boolean=false;
@@ -27,8 +28,10 @@ export class FeesDiscountComponent implements OnInit {
   discountAmount:any;
   transactionDate: any;
   totalFees: number = 0;
+  totalCourseDue:number=0;
   totalBilledAmount: number = 0;
   totalReceivedAmount: number = 0;
+  receivedGrandTotal:number=0;
   totalDiscount:number=0;
   netDueAmount:number=0;
   totalDuedAmount: number = 0;
@@ -43,9 +46,11 @@ export class FeesDiscountComponent implements OnInit {
   showBox: boolean = true;
   isShown: boolean = false; // hidden by default
   isPopupButton: boolean = false;
+  hiddenPopupDiscount:boolean=false;
   isCashReceived: boolean = false;
   referenceTransactionMasterId: number = 0;
   studentsCharge: any[] = [];
+  feesReceivedDetailsArray:any[]=[];
   feesDueListArray: any[] = [];
   studentToCourseId: any;
   studentNameList: any[] = [];
@@ -170,6 +175,11 @@ export class FeesDiscountComponent implements OnInit {
     })
   }
   getTranMasterId() {
+    this.hiddenPopup=true;
+    this.receivedGrandTotal=0;
+    this.totalCourseDue=0;
+    this.feesReceivedDetailsArray = [];
+    this.tranMasterIdArray = [];
     this.transactionNoBoolean=true;
     let studentToCourseId = this.FeesDiscountFormGroup.get('studentToCourseId')?.value;
     console.log("studentToCourseId:", studentToCourseId);
@@ -177,6 +187,16 @@ export class FeesDiscountComponent implements OnInit {
     this.transactionServicesService.fetchAllTranMasterId(studentToCourseId).subscribe(response => {
       this.tranMasterIdArray = response.data;
       console.log(this.tranMasterIdArray);
+    })
+
+    this.transactionServicesService.fetchFeeReceivedDetailsList(studentToCourseId).subscribe(response => {
+      this.feesReceivedDetailsArray = response.data;
+      console.log("feesReceivedDetailsArray:",this.feesReceivedDetailsArray);
+      this.totalCourseDue=this.feesReceivedDetailsArray[0].totalDue;
+      for (let val of this.feesReceivedDetailsArray) {
+          this.receivedGrandTotal = this.receivedGrandTotal + val.temp_total_received;
+      }
+      
     })
     
   }
@@ -236,6 +256,8 @@ export class FeesDiscountComponent implements OnInit {
     this.feeAmountBoolean=false;
     this.isShown = false;
     this.hiddenPopup = false;
+    this.hiddenPopupDiscount=false;
+    this.FeesDiscountFormGroup.reset();
     const now = new Date();
     let val = formatDate(now, 'yyyy-MM-dd', 'en');
     this.studentsCharge = [];
@@ -250,15 +272,10 @@ export class FeesDiscountComponent implements OnInit {
       studentToCourseId: new FormControl(1, [Validators.required]),
       ledgerId: new FormControl(22, [Validators.required]),
     })
-    this.BankReceivedFormGroup = new FormGroup({
-      accountNo: new FormControl(null, [Validators.required]),
-      ifscNo: new FormControl(null, [Validators.required]),
-      branch: new FormControl(null, [Validators.required])
-    })
-    this.isCashReceived = false;
-    this.tempFeesArray = [];
+    
+   
     this.totalAmount = 0;
-    this.FeesDiscountFormGroup.reset();
+    
 
   }
   changeCourseId() {
@@ -378,34 +395,9 @@ export class FeesDiscountComponent implements OnInit {
   }
 
   getActiveCourse() {
-    /* this.hiddenPopup=true;
-    this.totalFees=0;
-    let studentId = this.FeesDiscountFormGroup.get('studentId')?.value;
-    let studentToCourseId = this.FeesDiscountFormGroup.get('studentToCourseId')?.value;
-  
-    this.transactionServicesService.fetchFeesChargeDetailsById(studentToCourseId).subscribe(response=>{
-      this.feesChargeDetailsArray=response.data;
-      for (let val of this.feesChargeDetailsArray) {
-        this.totalFees+=val.amount;
-      }
-    })
-  this.transactionServicesService.fetchCourseId(studentToCourseId).subscribe(response=>{
-    this.getCourseIdArray=response.data;
-    this.CourseId=response.data[0].course_id;
-      //end code
-      this.tempGetActiveCourseObj={
-        ledger_id: studentId,
-        course_id: this.CourseId
-    };
-    this.transactionServicesService.fetchAllActiveCourse(this.tempGetActiveCourseObj).subscribe(response=>{
-      this.popUpRestultArray=response.data;
-        //end code
-  
-        })
-  
-      }) */
+   
     this.feeAmountBoolean=true;
-    this.hiddenPopup = true;
+    this.hiddenPopupDiscount = true;
     this.totalFees = 0;
     this.totalBilledAmount = 0;
     this.totalReceivedAmount = 0;
@@ -420,7 +412,9 @@ export class FeesDiscountComponent implements OnInit {
       this.feesDueListArray = response.data;
       console.log("fees Due list:", this.feesDueListArray);
       this.totalReceivedAmount = this.feesDueListArray[0].total_received;
+      console.log("totalReceivedAmount:", this.totalReceivedAmount);
       this.netDueAmount= this.feesDueListArray[0].total_due;
+      console.log("netDueAmount:", this.netDueAmount);
       for (let val of this.feesDueListArray) {
         this.totalBilledAmount = this.totalBilledAmount + val.total_billed;
          console.log("total_billed:", val.total_billed);
@@ -429,137 +423,25 @@ export class FeesDiscountComponent implements OnInit {
       this.transactionServicesService.fetchDiscountByTranId(transactionMasterId).subscribe(response => {
         this.discountTranIDArray = response.data;
         this.totalDiscount=this.discountTranIDArray[0].temp_total_discount;
-        this.netDueAmount=this.totalDuedAmount-this.totalDiscount;
+        console.log("totalDiscount:",this.totalDiscount);
         this.discountAmountNgModel=this.netDueAmount;
+        this.totalReceivedAmount = this.totalReceivedAmount -this.totalDiscount;
+        console.log("totalReceivedAmount part 1:", this.totalReceivedAmount);
+       /*  this.totalReceivedAmount=this.totalReceivedAmount+this.totalDiscount;
+        console.log("totalReceivedAmount part 2:", this.totalReceivedAmount); */
         console.log("discountTranIDArray:",this.discountTranIDArray);
       })
+      //this.totalReceivedAmount= this.totalReceivedAmount-this.totalDiscount;
       this.totalDuedAmount = this.totalBilledAmount - this.totalReceivedAmount;
       this.netDueAmount =this.totalDuedAmount;
       this.discountAmountNgModel=this.netDueAmount;
     })
-    
+    this.totalReceivedAmount = this.totalReceivedAmount -this.totalDiscount;
    
 
   }
-  onBankReceived() {
-    this.hiddenPopup = false;
-    this.confirmationService.confirm({
-      message: 'Do you want to Save this record?',
-      header: 'Save Confirmation',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        let studentId = this.FeesDiscountFormGroup.get('studentId')?.value;
-        let transactionDate = this.FeesDiscountFormGroup.get('transactionDate')?.value;
-        let comment = this.FeesDiscountFormGroup.get('comment')?.value;
-        this.tempChargeObj = [{
-          ledgerId: 2,
-          transactionTypeId: 1,
-          amount: this.tempTotalAmount
-        },
-        {
-          ledgerId: studentId,
-          transactionTypeId: 2,
-          amount: this.tempTotalAmount
-        }];
-        // this.tempFeesArray.push(this.tempChargeObj);
-
-        this.tempObj = {
-          transactionMaster: {
-            userId: 1,
-            referenceTransactionMasterId: this.referenceTransactionMasterId,
-            transactionDate: transactionDate,
-            comment: comment
-          },
-          transactionDetails: Object.values(this.tempChargeObj)
-        }
-        this.transactionServicesService.saveFeesReceive(this.tempObj).subscribe(response => {
-          this.referenceTransactionMasterId = response.data.transactionMasterId;
-          this.isCashReceived = false;
-          if (response.success === 1) {
-            //this.getAllDiscountFees();
-            this.tempFeesArray = [];
-            this.tempTotalAmount = 0;
-            this.clearFeesDiscount();
-            this.showSuccess("Record added successfully");
-          }
-
-        }, error => {
-          this.showErrorMessage = true;
-          this.errorMessage = error.message;
-
-          setTimeout(() => {
-            this.showErrorMessage = false;
-          }, 20000);
-
-        })
-
-      },
-      reject: () => {
-        this.msgs = [{ severity: 'info', summary: 'Rejected', detail: 'You have rejected' }];
-      }
-    });
-
-
-  }
-  onCashReceived() {
-    this.confirmationService.confirm({
-      message: 'Do you want to Save this record?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        /*  let studentId = this.FeesDiscountFormGroup.get('studentId')?.value;
-         let transactionDate=this.FeesDiscountFormGroup.get('transactionDate')?.value; */
-        let comment = this.FeesDiscountFormGroup.get('comment')?.value;
-        this.tempChargeObj = [{
-          ledgerId: 1,
-          transactionTypeId: 1,
-          amount: this.tempTotalAmount
-        },
-        {
-          ledgerId: this.studentId,
-          transactionTypeId: 2,
-          amount: this.tempTotalAmount
-        }];
-        // this.tempFeesArray.push(this.tempChargeObj);
-
-        this.tempObj = {
-          transactionMaster: {
-            userId: 1,
-            referenceTransactionMasterId: this.referenceTransactionMasterId,
-            transactionDate: this.transactionDate,
-            comment: this.comment
-          },
-          transactionDetails: Object.values(this.tempChargeObj)
-        }
-        this.transactionServicesService.saveFeesReceive(this.tempObj).subscribe(response => {
-          this.referenceTransactionMasterId = response.data.transactionMasterId;
-          this.isCashReceived = false;
-          if (response.success === 1) {
-            //this.getAllDiscountFees();
-            this.tempFeesArray = [];
-            this.tempTotalAmount = 0;
-            this.clearFeesDiscount();
-            this.showSuccess("Record added successfully");
-          }
-
-        }, error => {
-          this.showErrorMessage = true;
-          this.errorMessage = error.message;
-
-          setTimeout(() => {
-            this.showErrorMessage = false;
-          }, 20000);
-
-        })
-
-      },
-      reject: () => {
-        this.msgs = [{ severity: 'info', summary: 'Rejected', detail: 'You have rejected' }];
-      }
-    });
-
-
-  }
+ 
+ 
 
   onSave() {
    /*  this.tempReceicedObj = {};

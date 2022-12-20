@@ -66,7 +66,7 @@
                   </div>
                   <!--Div display all Fees Transaction-->
 
-                  <div class="container mt-3" *ngIf="hiddenPopup;"
+                  <div class="container mt-3" *ngIf="hiddenPopupDiscount;"
                   style="background-color:white; margin-left: 0px; font-size: medium;">
                   <table class="table table-striped">
                     <thead>
@@ -98,7 +98,7 @@
                       </tr>
                       <tr style="background-color:gray ; color: blanchedalmond;">
                         <th colspan="1" style="color: blanchedalmond;">Total Received</th>
-                        <th class="text-right" style="color: blanchedalmond;">{{totalReceivedAmount | currency:'INR'}}
+                        <th class="text-right" style="color: blanchedalmond;">{{totalReceivedAmount| currency:'INR'}}
                         </th>
                        
                       </tr>
@@ -145,8 +145,7 @@
                 <button type="button" class="btn btn-outline-success btn-space"
                   [disabled]="!FeesDiscountFormGroup.valid || FeesDiscountFormGroup.value.id" *ngIf="!isShown"
                   (click)="onSave();"><i class="fas fa-save"></i>&nbsp; Save</button>-->
-                    <button type="button" class="btn btn-outline-danger" *ngIf="isCashReceived"
-                      (click)="onCashReceived();">Received Cash</button>
+                   
 
                   </p>
                 </form>
@@ -279,8 +278,43 @@
           </mat-tab-group>
         </div>
       </div>
-
-
+      <!--Start Hidden table  -------------------------------------- -->
+      <div class="col-md-5" *ngIf="hiddenPopup" style="background-color:white ;">
+        <div style="background-color:white ; font-size: small;padding:10px; margin-top: -7px; ">
+          <h1 style="background-color: rgb(90, 90, 94); color: white;">Transaction Details</h1>
+          <table class="table table-striped">
+            
+            <thead>
+              <tr>
+                <th colspan="5" class="table-secondary"><h1>Total Course Fees:&nbsp; &nbsp;<b>{{totalCourseDue | currency:'INR'}}</b></h1></th>
+               
+              </tr>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Transaction No</th>
+                <th scope="col">Particulars</th>
+                <th scope="col">Comments</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of feesReceivedDetailsArray; let indexOfelement=index;">
+                <th scope="row">{{item.transaction_date}}</th>
+                <th scope="row">{{item.transaction_number}}</th>
+                <td>{{item.ledger_name}}</td>
+                <td>{{item.comment}}</td>
+                <td align="right">{{item.temp_total_received | currency:'INR'}}</td>
+                
+              </tr>
+              <tr>
+                <th colspan="4">Grand Total:</th>
+                <th align="right">{{receivedGrandTotal | currency:'INR'}}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+       <!-- End Hidden table -------------------------------------- -->
     </div>
   </div>
 </div>

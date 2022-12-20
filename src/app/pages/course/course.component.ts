@@ -169,14 +169,7 @@ export class CourseComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-       /*  this.courseData.courseId=this.courseNameFormGroup.value.courseId;
-        this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
-        this.courseData.durationTypeId=this.courseNameFormGroup.value.durationTypeId;
-        this.courseData.fullName=this.courseNameFormGroup.value.fullName;
-        this.courseData.courseCode=this.courseNameFormGroup.value.courseCode;
-        this.courseData.shortName=this.courseNameFormGroup.value.shortName;
-        this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
-        this.courseData.description=this.courseNameFormGroup.value.description; */
+      
         this.courseData= {
           courseId:this.courseNameFormGroup.value.courseId,
           feesModeTypeId:this.courseNameFormGroup.value.feesModeTypeId,
@@ -220,13 +213,7 @@ export class CourseComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-       /*  this.courseData.feesModeTypeId=this.courseNameFormGroup.value.feesModeTypeId;
-        this.courseData.durationTypeId=this.courseNameFormGroup.value.durationTypeId;
-        this.courseData.fullName=this.courseNameFormGroup.value.fullName;
-        this.courseData.courseCode=this.courseNameFormGroup.value.courseCode;
-        this.courseData.shortName=this.courseNameFormGroup.value.shortName;
-        this.courseData.courseDuration=this.courseNameFormGroup.value.courseDuration;
-        this.courseData.description=this.courseNameFormGroup.value.description; */
+     
         this.courseData= {
           courseId:this.courseNameFormGroup.value.courseId,
           feesModeTypeId:this.courseNameFormGroup.value.feesModeTypeId,
