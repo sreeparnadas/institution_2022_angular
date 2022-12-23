@@ -130,6 +130,12 @@ export class StudentCourseRegistrationComponent implements OnInit {
       console.log("Monthly totalNoCourse:",this.totalNoActiveStudent);
     })
   }
+  getStudentToCourseRegistrationList(){
+    this.studentToCourseService.fetchAllStudentToCourses().subscribe(response => {
+      this.studentTocourses = response.data;
+      console.log("StudentToCourseRegistrationList:",this.studentTocourses);
+    })
+  }
   getMonthlyActiveStudent(){
     this.studentToCourseService.fetchMonthlyActiveStudent().subscribe(response => {
       this.totalNoMonthlyActiveStudent = response.data[0].totalMonthlyStudent;
@@ -238,6 +244,7 @@ export class StudentCourseRegistrationComponent implements OnInit {
             this.getTotalActiveStudent();
             this.getMonthlyActiveStudent();
             this.getFullCourseActiveStudent();
+            this.getStudentToCourseRegistrationList();
             this.showSuccess("Record added successfully");
           }
 

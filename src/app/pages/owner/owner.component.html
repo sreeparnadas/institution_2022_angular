@@ -1,35 +1,41 @@
-<div class="container-fluid page" style="background-color: rgb(190, 192, 195); width:100%">
-  <div class="container" style="margin-top: 70px; margin-left: -10px; background-color: rgb(190, 192, 195); width:100%">
+<div class="container-fluid page">
+  <div class="page__box p-3  mt-0">
+    <h1 style="color: darkblue; font-size: 30px; margin-top: -10px;"> <i class="bi-speedometer2"
+        style="font-size: 40px; color: darkblue;"></i>&nbsp; Dashboard</h1>
+  </div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-relative">
+      <div class="container" style="margin-top: 735px; margin-left: 0px;">
+        <!-- //------ start Dashboard codeing------ 
+        <div class="container py-5" style="margin-top: 120px; background-color: rgb(190, 192, 195); width:100%">-->
+        <div class="row" style="margin-top:-70px;">
+          <div class="col">
 
-    <!-- //----------------------- -->
-    <div class="container py-5" style="margin-top: -120px; background-color: rgb(190, 192, 195); width:100%">
-      <div class="row">
-        <div class="col-lg-12 p-5">
+            <!--  <h1 style="color: darkblue; font-size: 30px;"> <i class="bi-speedometer2"
+                  style="font-size: 40px; color: darkblue;"></i>&nbsp; Dashboard</h1> -->
+            <div
+              style="border:3px dotted red ;padding: 10px;border-radius: 22px; margin-bottom: 0px; background-color: rgb(244, 201, 75); font-size: 20px; text-shadow: 2rem; float: left;"
+              *ngIf="showMessage">
+              <marquee>
+                {{workingDescription}} &nbsp; ** &nbsp; ** &nbsp; {{workingDescription}}&nbsp; ** &nbsp; ** &nbsp;
+                {{workingDescription}}
+              </marquee>
+            </div>
+            <div
+              style="border:3px dotted red ;padding: 10px;border-radius: 22px; margin-bottom: 0px; background-color: rgb(249, 248, 246); font-size: 20px; text-shadow: 2rem; text-align: center;"
+              *ngIf="showMessage">
+              <b>{{dateDifference}}</b> Days Left
+            </div>
 
-          <h1 style="color: darkblue; font-size: 30px;"> <i class="bi-speedometer2"
-              style="font-size: 40px; color: darkblue;"></i>&nbsp; Dashboard</h1>
-          <div style="border:3px dotted red ;padding: 10px;border-radius: 22px; margin-bottom: 20px; background-color: rgb(244, 201, 75); font-size: 20px; text-shadow: 2rem; float: left;" *ngIf="showMessage">
-            <marquee>
-              {{workingDescription}} &nbsp; ** &nbsp; ** &nbsp;  {{workingDescription}}
-
-            </marquee>
-           
-         
-          
           </div>
-          <div style="border:3px dotted red ;padding: 10px;border-radius: 22px; margin-bottom: 20px; background-color: rgb(249, 248, 246); font-size: 20px; text-shadow: 2rem; text-align: center;" *ngIf="showMessage">
-            <b>{{dateDifference}}</b> Days Left
-          </div>
-        
+
         </div>
 
-      </div>
-
-      <div style="background-color: rgb(250, 251, 252); padding: 50px; margin-top: -48px; border-radius: 20px;">
+        <!-- <div style="background-color: rgb(250, 251, 252); padding: 50px; margin-top: 0px; border-radius: 20px;"> -->
         <!--------------------------->
 
         <!-------------------------------------------->
-        <div class="row" style="margin-top: -40px; width:100%">
+        <div class="row">
           <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2">
 
             <div class="card p-3 shadow text-center border-0"
@@ -89,7 +95,7 @@
                 style="background-image: linear-gradient(to bottom right, rgb(8, 2, 68), rgb(7, 32, 146)); color: aliceblue; border-radius: 5px; font-size: large;">
                 <i class="bi bi-bell-fill"></i> Upcoming Birthday
               </div>
-              <div class="list-group list-group-flush small">
+              <div class="list-group list-group-flush" style="font-size:small ;">
                 <table class="table">
                   <thead class="thead-dark">
                     <tr>
@@ -110,41 +116,12 @@
                     </tr>
                   </tbody>
                 </table>
-
-
-                <!-- <marquee class="marquee1" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
-                  <div class="marquee__item">
-                    <a class="list-group-item list-group-item-action" href="#">
-                      <div class="media">
-                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                        <div class="media-body">
-                          <strong>David Miller</strong>posted a new article to
-                          <strong>David Miller Website</strong>.
-                          <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="list-group-item list-group-item-action" href="#">
-                      <div class="media">
-                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                        <div class="media-body">
-                          <strong>Samantha King</strong>sent you a new message!
-                          <div class="text-muted smaller">Today at 4:37 PM - 1hr ago</div>
-                        </div>
-                      </div>
-                    </a>
-
-
-                    <a class="list-group-item list-group-item-action" href="#">View all activity...</a>
-                  </div>
-                </marquee> -->
-
               </div>
             </div>
           </div>
 
         </div>
-        <div class="row" style="width:100%;">
+        <div class="row">
           <div class="col-lg-8 shadow" style="color:rgb(251, 250, 250); ">
             <!-- Example Bar Chart Card-->
             <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [selectedIndex]="active"
@@ -156,8 +133,8 @@
                 </ng-template>
                 <div class="card mb-3">
                   <!-- <div class="card-header" style="color:black ;">
-                      <i class="bi bi-bar-chart-fill"></i> Bar Chart Example
-                    </div> -->
+                          <i class="bi bi-bar-chart-fill"></i> Bar Chart Example
+                        </div> -->
                   <div class="card-body">
 
                     <div style="display: block;">
@@ -223,56 +200,76 @@
                 style="background-image: linear-gradient(to bottom right, rgb(8, 2, 68), rgb(7, 32, 146)); color: aliceblue; border-radius: 5px; font-size: large;">
                 <i class="bi bi-bell-fill"></i> Upcoming Due List
               </div>
-              <div class="list-group list-group-flush small">
-                <a class="list-group-item list-group-item-action" href="#">
-                  <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                    <div class="media-body">
-                      <strong>David Miller</strong>posted a new article to
-                      <strong>David Miller Website</strong>.
-                      <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
-                    </div>
-                  </div>
-                </a>
-                <a class="list-group-item list-group-item-action" href="#">
-                  <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                    <div class="media-body">
-                      <strong>Samantha King</strong>sent you a new message!
-                      <div class="text-muted smaller">Today at 4:37 PM - 1hr ago</div>
-                    </div>
-                  </div>
-                </a>
-                <a class="list-group-item list-group-item-action" href="#">
-                  <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                    <div class="media-body">
-                      <strong>Jeffery Wellings</strong>added a new photo to the album
-                      <strong>Beach</strong>.
-                      <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
-                    </div>
-                  </div>
-                </a>
-                <a class="list-group-item list-group-item-action" href="#">
-                  <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
-                    <div class="media-body">
-                      <i class="fa fa-code-fork"></i>
-                      <strong>Monica Dennis</strong>forked the
-                      <strong>startbootstrap-sb-admin</strong>repository on
-                      <strong>GitHub</strong>.
-                      <div class="text-muted smaller">Today at 3:54 PM - 2hrs ago</div>
-                    </div>
-                  </div>
-                </a>
-                <a class="list-group-item list-group-item-action" href="#">View all activity...</a>
+              <div class="list-group list-group-flush" style="font-size:small ;">
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">What's No</th>
+                      <th scope="col">Tran Date</th>
+                      <th scope="col">Days</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of upcomingDueListArray; let indexOfelement=index;">
+                      <th scope="row">{{indexOfelement+1}}</th>
+                      <td>{{item.student_name}}</td>
+                      <td>{{item.whatsapp_number}}</td>
+                      <td>{{item.transaction_date | date: 'dd/MM/yyyy'}}</td>
+                      <td>{{item.date_Diff}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--  <a class="list-group-item list-group-item-action" href="#">
+                      <div class="media">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                        <div class="media-body">
+                          <strong>David Miller</strong>posted a new article to
+                          <strong>David Miller Website</strong>.
+                          <div class="text-muted smaller">Today at 5:43 PM - 5m ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="#">
+                      <div class="media">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                        <div class="media-body">
+                          <strong>Samantha King</strong>sent you a new message!
+                          <div class="text-muted smaller">Today at 4:37 PM - 1hr ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="#">
+                      <div class="media">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                        <div class="media-body">
+                          <strong>Jeffery Wellings</strong>added a new photo to the album
+                          <strong>Beach</strong>.
+                          <div class="text-muted smaller">Today at 4:31 PM - 1hr ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="#">
+                      <div class="media">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                        <div class="media-body">
+                          <i class="fa fa-code-fork"></i>
+                          <strong>Monica Dennis</strong>forked the
+                          <strong>startbootstrap-sb-admin</strong>repository on
+                          <strong>GitHub</strong>.
+                          <div class="text-muted smaller">Today at 3:54 PM - 2hrs ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="#">View all activity...</a> -->
               </div>
               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
           </div>
         </div>
         <!----------------------->
-        <div class="card-footer shadow" style="margin-top: 10px ;width:100%">
+        <div class="card-footer shadow" style="margin-top: 10px ;width:100%; background-color: rgb(90, 222, 236); margin-left: -10px;">
           <div class="row">
             <div class="col-sm-3 col-3">
               <div class="description-block" style="border-right: 2px solid rgb(119, 116, 116);">
@@ -314,8 +311,70 @@
           </div>
           <!-- /.row -->
         </div>
-       
-        <!-------------------------->
+
+        <!------------Student To Registration History-------------->
+        <div class="p-3 flex-fill shadow" style="width:100% ;background-color: rgb(172, 176, 175);margin-left: -10px; ">
+
+          <div class="p-2 bd-highlight mt-2">
+            <i class="bi bi-person-circle mr-1" style="font-size: 30px"></i><span style="font-size:30px ;"> Student History Details</span>
+            <p-table #studentRegistrationHistory [value]="studentRegistrationHistoryArray" dataKey="id" [paginator]="true" [rows]="5"
+              [showCurrentPageReport]="true" responsiveLayout="scroll"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              [rowsPerPageOptions]="[5,10,25,50]" styleClass="p-datatable-striped"
+              [globalFilterFields]="['ledger_name','full_name','effective_date']">
+
+              <ng-template pTemplate="caption">
+                <div class="flex">
+                  <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                    (click)="clear(studentRegistrationHistory)"></button>
+                    <span class="p-input-icon-left ml-auto">
+                      <i class="pi pi-search"></i>
+                      <input pInputText type="text" (input)="studentRegistrationHistory.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
+                  </span>
+                 
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>ID</th>
+                  <th pSortableColumn="ledger_id">Student Name <p-sortIcon field="ledger_name"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="course_id">Course Name <p-sortIcon field="full_name"></p-sortIcon>
+                  </th>
+                  <th>Contact No</th>
+                  <th pSortableColumn="effective_date">Admission Date <p-sortIcon field="effective_date"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="is_completed">Is Complete <p-sortIcon field="is_completed"></p-sortIcon>
+                  </th>
+                  <th>Total Course Fees</th>
+                  <th>Total Received</th>
+                  <th>Total Due</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-course>
+
+                <tr>
+                  <td>{{course.id}}</td>
+                  <td>{{course.ledger_name}}</td>
+                  <td>{{course.full_name}}</td>
+                  <td>{{course.whatsapp_number}}</td>
+                  <td>{{course.effective_date | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{course.is_completed}}</td>
+                  <td>{{course.total_course_fees}}</td>
+                  <td>{{course.total_received}}</td>
+                  <td>{{course.total_due}}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="paginatorleft">
+                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+              </ng-template>
+            </p-table>
+          </div>
+
+        </div>
+        <!-- </div>
+        </div>
+        End Coding-->
       </div>
     </div>
   </div>

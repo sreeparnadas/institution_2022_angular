@@ -8,6 +8,7 @@ import { ReportService } from 'src/app/services/report.service';
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 import { CourseService } from 'src/app/services/course.service';
 import { StudentToCourseService } from 'src/app/services/student-to-course.service';
+import { Table } from 'primeng/table/table';
 
 @Component({
   selector: 'app-owner',
@@ -17,6 +18,8 @@ import { StudentToCourseService } from 'src/app/services/student-to-course.servi
 export class OwnerComponent implements OnInit {
   allIncomeArray: any = [];
   birthdayArray:any=[];
+  upcomingDueListArray:any=[];
+  studentRegistrationHistoryArray:any=[];
   workingEndDate:any;
   workingDescription:string='';
   dateDifference:number=0;
@@ -62,20 +65,29 @@ export class OwnerComponent implements OnInit {
               , private studentToCourseService: StudentToCourseService
 
     ) {
-   
+      this.getAllIncome();
+      this.getTotalCourse();
+      this.getTotalActiveStudent();
+      this.getWorkingDays();
+      this.getStudentBirthDay();
+      this.getStudentUpcomingDueList();
+      this.getStudentToCourseRegistrationList();
     this.isDeviceXS=commonService.getDeviceXs();
+   
    }
 
   ngOnInit(): void {
-   this.getAllIncome();
-   this.getTotalCourse();
-   this.getTotalActiveStudent();
-   this.getWorkingDays();
-   this.getStudentBirthDay();
+   
   }
   active=0;
   onTabChanged(event:any){
     console.log(event)
+  }
+  clear(table: Table) {
+    table.clear();
+  } 
+  getEventValue($event:any) :string {
+    return $event.target.value;
   }
    getAllIncome(){
     this.reportService.fetchAllReceiptIncomeReport().subscribe(response=>{
@@ -104,7 +116,12 @@ export class OwnerComponent implements OnInit {
       console.log("birthdayArray:",this.birthdayArray);
     })
   }
-
+  getStudentUpcomingDueList(){
+    this.reportService.fetchStudentUpcomingDueListReport().subscribe(response => {
+      this.upcomingDueListArray=response.data;
+      console.log("UpcomingDueList:",this.upcomingDueListArray);
+    })
+  }
   getWorkingDays(){
     this.reportService.fetchWorkingDaysReport().subscribe(response => {
       this.workingEndDate = response.data[0].end_date;
@@ -116,6 +133,12 @@ export class OwnerComponent implements OnInit {
         this.showMessage=false;
       }
       console.log("dateDifference Days:",this.dateDifference);
+    })
+  }
+  getStudentToCourseRegistrationList(){
+    this.reportService.fetchStudentToCourseRegistrationReport().subscribe(response => {
+      this.studentRegistrationHistoryArray=response.data;
+      console.log("StudentToCourseRegistration:",this.studentRegistrationHistoryArray);
     })
   }
 }

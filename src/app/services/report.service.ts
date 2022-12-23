@@ -42,4 +42,20 @@ export class ReportService {
       //console.log("Birthday List:",this.incomeReportList);
     })));
   }
+  fetchStudentUpcomingDueListReport(){
+    return this.http.get<any>(this.commonService.getAPI() + '/reportUpcomingDueList')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.incomeReportList=response.data;
+      //this.incomeReportSubject.next([...this.incomeReportList]);
+      //console.log("Birthday List:",this.incomeReportList);
+    })));
+  }
+  fetchStudentToCourseRegistrationReport(){
+    return this.http.get<any>(this.commonService.getAPI() + '/reportStudentToCourseRegistrationList')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.incomeReportList=response.data;
+      this.incomeReportSubject.next([...this.incomeReportList]);
+      //console.log("Birthday List:",this.incomeReportList);
+    })));
+  }
 }

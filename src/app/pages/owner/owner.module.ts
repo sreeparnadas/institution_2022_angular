@@ -13,6 +13,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCardModule} from "@angular/material/card";
 import { NgChartsModule } from 'ng2-charts';
+import {InputTextModule} from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 @NgModule({
   declarations: [
     OwnerComponent
@@ -29,8 +31,9 @@ import { NgChartsModule } from 'ng2-charts';
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
-    NgChartsModule
-    
+    NgChartsModule,
+    InputTextModule,
+    ButtonModule
   ]
 })
 export class OwnerModule { }
