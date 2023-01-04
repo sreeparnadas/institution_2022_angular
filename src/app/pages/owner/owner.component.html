@@ -5,7 +5,7 @@
   </div>
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-relative">
-      <div class="container" style="margin-top: 735px; margin-left: 0px;">
+      <div class="container" style="margin-top: 780px; margin-left: 0px;">
         <!-- //------ start Dashboard codeing------ 
         <div class="container py-5" style="margin-top: 120px; background-color: rgb(190, 192, 195); width:100%">-->
         <div class="row" style="margin-top:-70px;">
@@ -68,9 +68,9 @@
               style="background-image: linear-gradient(to right, rgb(9, 88, 4) , rgb(50, 233, 111)); ;color: aliceblue;">
               <div class="card-body">
                 <i class="bi-wallet2" style="font-size: 30px"> </i>
-                <div style="font-size: 15px; font-weight: bold;">&nbsp; Cash Received</div>
+                <div style="font-size: 15px; font-weight: bold;">&nbsp; Cash Received (Yr)</div>
                 <hr />
-                <p class="card-title lead"><b>{{totalMonthlyCash | currency:'INR'}}</b></p>
+                <p class="card-title lead"><b>{{totalYearlyCash | currency:'INR'}}</b></p>
               </div>
             </div>
 
@@ -81,16 +81,16 @@
               style="background-image: linear-gradient(to right, rgb(65, 4, 75) , rgb(215, 73, 210)); ;color: aliceblue;">
               <div class="card-body">
                 <i class="bi-bank2" style="font-size: 30px"></i>
-                <div style="font-size: 15px; font-weight: bold;">&nbsp; Bank Received</div>
+                <div style="font-size: 15px; font-weight: bold;">&nbsp; Bank Received (Yr)</div>
                 <hr />
-                <p class="card-title lead"><b>{{totalMonthlyBank | currency:'INR'}}</b></p>
+                <p class="card-title lead"><b>{{totalYearlyBank | currency:'INR'}}</b></p>
               </div>
             </div>
 
           </div>
           <div class="col-lg-4 ">
             <!-- Example Notifications Card-->
-            <div class="card mb-3 shadow">
+            <div class="card mb-3 shadow" style="height:25vh ;">
               <div class="card-header"
                 style="background-image: linear-gradient(to bottom right, rgb(8, 2, 68), rgb(7, 32, 146)); color: aliceblue; border-radius: 5px; font-size: large;">
                 <i class="bi bi-bell-fill"></i> Upcoming Birthday
@@ -124,7 +124,7 @@
         <div class="row">
           <div class="col-lg-8 shadow" style="color:rgb(251, 250, 250); ">
             <!-- Example Bar Chart Card-->
-            <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [selectedIndex]="active"
+            <mat-tab-group (selectedIndexChange)="onTabChanged($event)" [(selectedIndex)]="selectedIndex"
               animationDuration="200ms">
               <mat-tab>
                 <ng-template mat-tab-label>
@@ -184,7 +184,145 @@
                   Upcoming Birthday
                 </ng-template>
 
-                Content 3
+                 <!-------------------------------start show Receipt bill voucher------------------------------------- -->
+                 <div class="container" *ngIf="showReceipt" style="font-size:medium; background-color: white; color: black;">
+                  <div id="print-AllReceiptBill">
+                    <div style="border: 2px dotted rgb(1, 1, 19);">
+                      <div class="row">
+                        <div class="col-2 ">
+                          <img src="assets/img/baitLogo.png" width="100px" alt="AdminLTE Logo" style="opacity: .8">
+                        </div>
+                        <div class="col-10" align="center">
+
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: large; font-family: 'Cooper Black';">
+                            Barrackpore Academy Of Information Technology</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">Stalin Nagar, Barrackpore,
+                            Chiramore, Pin:700120</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ; font-size: medium;">
+                            E-mail;barrackporeacademyofit2014@gmail.com | Contact: 7605887990</p>
+
+                          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-7 " style="font-size:medium;">
+                        <table>
+                          <tr>
+                            <td>Student Name</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].student_name}}</th>
+                          </tr>
+                          <tr>
+                            <td>Contact No</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].whatsapp_number}}</th>
+                          </tr>
+                          <tr>
+                            <td>Course Name</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].full_name}}</th>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="col-5 " style="font-size:medium;">
+                        <table>
+                          <tr>
+                            <td>Total Course Fees</td>
+                            <td>:</td>
+                            <th>{{allBillReceiptArray[0].total_course_fees | currency: 'INR'}}</th>
+                          </tr>
+
+                        </table>
+                      </div>
+                      <div class="row">
+                        <div class="col-md text-center">
+                          <table style="border-collapse: collapse; width: 100%; margin:0 auto; font-size:medium;">
+                            <thead>
+                              <tr
+                                style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
+                                <th>Sl No</th>
+                                <th>Date</th>
+                                <th>Receipt No</th>
+                                <th>Fees Name</th>
+                                <th class="text-right">Amount</th>
+                                <th>Comments</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let receipt of allBillReceiptArray; let i = index">
+
+                                <td>{{i+1}}</td>
+                                <td>{{receipt.transaction_date | date:'dd/MM/yyyy'}}</td>
+                                <td>{{receipt.transaction_number }}</td>
+                                <td>{{receipt.ledger_name}}</td>
+                                <td class="text-right">{{receipt.temp_total_received | currency: 'INR'}}</td>
+                                <td>{{receipt.comment}}</td>
+                              </tr>
+
+                            </tbody>
+                            <tfoot>
+
+                              <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
+                                <th colspan="3">&nbsp;</th>
+                                <td class="text-right">Grand Total:</td>
+                                <th class="text-right">{{totalRecepitAmount | currency: 'INR'}}</th>
+                                <th>&nbsp;</th>
+                              </tr>
+                              <tr style="background-color: lightgrey; border-top: 1px solid rgb(1, 1, 19);">
+                                <th colspan="3">&nbsp;</th>
+                                <td class="text-right">Total Discount:</td>
+                                <th class="text-right">- &nbsp;{{allBillReceiptArray[0].total_discount | currency:
+                                  'INR'}}
+                                </th>
+                                <th>&nbsp;</th>
+                              </tr>
+                              <tr>
+                                <th>In Words:</th>
+                                <td>:</td>
+                                <th class="text-left">{{rupeeInWords}}</th>
+                              </tr>
+                              <tr style="background-color: lightgrey; border: 1px solid rgb(1, 1, 19);">
+                                <th colspan="3">&nbsp;</th>
+                                <td class="text-right">Current Due</td>
+                                <th class="text-right">{{(allBillReceiptArray[0].total_course_fees -
+                                  totalRecepitAmount)-
+                                  allBillReceiptArray[0].total_discount |
+                                  currency: 'INR'}}</th>
+                                <th>&nbsp;</th>
+
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row" style="font-size: small;">
+                        <div class="col-7">
+                          Notice:<p style="margin-bottom: 0 ;margin-top: 0 ; font-style: oblique; font-size: small;">1)
+                            It
+                            is Computer Generated Bill</p>
+                          <p style="margin-bottom: 0 ;margin-top: 0 ;font-style: oblique;">2) Advanced Fees Cannot be
+                            Refund.</p>
+
+                        </div>
+                        <div class="col-3 ">
+                          <p class="text-right">Signature</p>
+                          <p class="text-right">-----------------</p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div mat-dialog-actions>
+                    <button class="btn btn-danger" (click)="onClickedClosed()">Close</button>
+                    <button class="btn btn-success" printSectionId="print-AllReceiptBill" printTitle="Develop By Ronit"
+                      ngxPrint>Print</button>
+
+                  </div>
+                </div>
+                <!-------------------------------end show Receipt bill voucher------------------------------------- -->
               </mat-tab>
             </mat-tab-group>
 
@@ -195,7 +333,7 @@
           </div>
           <div class="col-lg-4">
             <!-- Example Notifications Card-->
-            <div class="card mb-3 shadow">
+            <div class="card mb-3 shadow" style="height: 50vh;">
               <div class="card-header"
                 style="background-image: linear-gradient(to bottom right, rgb(8, 2, 68), rgb(7, 32, 146)); color: aliceblue; border-radius: 5px; font-size: large;">
                 <i class="bi bi-bell-fill"></i> Upcoming Due List
@@ -264,18 +402,18 @@
                     </a>
                     <a class="list-group-item list-group-item-action" href="#">View all activity...</a> -->
               </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+              
             </div>
           </div>
         </div>
         <!----------------------->
-        <div class="card-footer shadow" style="margin-top: 10px ;width:100%; background-color: rgb(90, 222, 236); margin-left: -10px;">
+        <div class="card-footer shadow" style="margin-top: 10px ; margin-bottom: 10px ; width:100%; background-color: rgb(246, 250, 250); margin-left: -10px;">
           <div class="row">
             <div class="col-sm-3 col-3">
               <div class="description-block" style="border-right: 2px solid rgb(119, 116, 116);">
                 <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span> -->
-                <h5 class="description-header">78578</h5>
-                <span class="description-text">TOTAL INCOME</span>
+                <h5 class="description-header"><b>TOTAL MONTHLY INCOME</b></h5>
+                <span class="description-text">{{totalMonthlyIncome | currency:'INR'}}</span>
               </div>
               <!-- /.description-block -->
             </div>
@@ -283,8 +421,8 @@
             <div class="col-sm-3 col-3">
               <div class="description-block " style="border-right: 2px solid rgb(119, 116, 116);">
                 <!-- <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span> -->
-                <h5 class="description-header">245</h5>
-                <span class="description-text">TOTAL CASH</span>
+                <h5 class="description-header"><b>TOTAL MONTHLY CASH</b></h5>
+                <span class="description-text">{{totalMonthlyCash | currency:'INR'}}</span>
               </div>
               <!-- /.description-block -->
             </div>
@@ -294,8 +432,8 @@
               <div class="description-block" style="border-right: 2px solid rgb(119, 116, 116);">
                 <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span> -->
 
-                <h5 class="description-header">855</h5>
-                <i class="bi-bank2" style="font-size: 30px">TOTAL BANK</i>
+                <h5 class="description-header"><b>TOTAL MONTHLY BANK </b></h5>
+                <span class="description-text">{{totalMonthlyBank | currency:'INR'}}</span>
               </div>
               <!-- /.description-block -->
             </div>
@@ -303,8 +441,8 @@
             <div class="col-sm-3 col-3">
               <div class="description-block">
                 <!--  <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span> -->
-                <h5 class="description-header">787</h5>
-                <span class="description-text">TOTAL DISCOUNT</span>
+                <h5 class="description-header"><b>TOTAL YEARLY INCOME</b></h5>
+                <span class="description-text">{{totalYearlyIncome | currency:'INR'}}</span>
               </div>
               <!-- /.description-block -->
             </div>
@@ -354,7 +492,9 @@
               <ng-template pTemplate="body" let-course>
 
                 <tr>
-                  <td>{{course.id}}</td>
+                  <td><button pButton class="p-button-rounded p-button-info p-button-outlined" (click)="onClickedReceiptVoucher(course.id)">
+                    <i class="bi bi-printer">  </i>
+                  </button></td>
                   <td>{{course.ledger_name}}</td>
                   <td>{{course.full_name}}</td>
                   <td>{{course.whatsapp_number}}</td>

@@ -150,6 +150,10 @@
                       class="p-button-rounded p-button-info p-button-outlined">
                       <i class="bi bi-clear" style="font-size: 1rem"> Clear </i>
                     </button>&nbsp;&nbsp;&nbsp;
+                    <button pButton (click)="onSingleReceiptVoucher();" *ngIf="isPrintBoolean"
+                      class="p-button-rounded p-button-info p-button-outlined">
+                      <i class="bi bi-printer"> Print </i>
+                    </button>
 
 
                   </p>
@@ -232,7 +236,11 @@
                             <td>:</td>
                             <th>{{singleBillReceiptArray[0].transaction_date | date: 'dd/MM/yyyy'}}</th>
                           </tr>
-
+                          <tr>
+                            <td>Total Course Fees</td>
+                            <td>:</td>
+                            <th>{{singleBillReceiptArray[0].total_course_fees | currency:'INR'}}</th>
+                          </tr>
                         </table>
                       </div>
                       <div class="row">
@@ -242,8 +250,9 @@
                               <tr
                                 style="border-top: 3px dotted rgb(1, 1, 19);border-bottom: 3px dotted rgb(116, 114, 114);background-color:rgb(196, 190, 190);padding: 0.5;">
 
-                                <th>Fees Name</th>
+                                <th>Particulars</th>
                                 <th class="text-right">Amount</th>
+                                <th>Purpose</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -253,6 +262,7 @@
                                 <td class="text-right">{{singleBillReceiptArray[0].temp_total_received |
                                   currency:'INR'}}
                                 </td>
+                                <td>{{singleBillReceiptArray[0].comment}}</td>
                               </tr>
 
                             </tbody>

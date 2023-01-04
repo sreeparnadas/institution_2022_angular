@@ -19,7 +19,7 @@ export class FeesDiscountComponent implements OnInit {
   isDeviceXS = false;
   checked = false;
   isSave = false;
-
+  totalCurrentDue:number=0;
   courseNameBoolean:boolean=false;
   transactionNoBoolean:boolean=false;
   feeAmountBoolean:boolean=false;
@@ -178,6 +178,7 @@ export class FeesDiscountComponent implements OnInit {
     this.hiddenPopup=true;
     this.receivedGrandTotal=0;
     this.totalCourseDue=0;
+    this.totalCurrentDue=0;
     this.feesReceivedDetailsArray = [];
     this.tranMasterIdArray = [];
     this.transactionNoBoolean=true;
@@ -196,6 +197,7 @@ export class FeesDiscountComponent implements OnInit {
       for (let val of this.feesReceivedDetailsArray) {
           this.receivedGrandTotal = this.receivedGrandTotal + val.temp_total_received;
       }
+      this.totalCurrentDue=this.totalCourseDue-this.receivedGrandTotal;
       
     })
     

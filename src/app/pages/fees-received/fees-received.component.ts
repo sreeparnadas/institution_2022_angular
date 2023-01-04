@@ -40,10 +40,12 @@ const toWords = new ToWords({
 
 export class FeesReceivedComponent implements OnInit {
   checked = false;
+  isPrintBoolean:boolean=false;
   isDeviceXS = false;
   indeterminate = false;
   totalCourseDue:number=0;
   totalCurrentDue:number=0;
+  transactionId:number=0;
   courseNameBoolean: boolean = false;
   transactionNoBoolean: boolean = false;
   hiddenTransactionInfo:boolean=false;
@@ -210,8 +212,20 @@ export class FeesReceivedComponent implements OnInit {
     })
 
   }
-  onClickedClosed() {
+
+  onSingleReceiptVoucher() {
     this.selectedIndex = 1;
+    this.showBox = false;
+      //console.log("id:", feeDetails.id);
+      this.transactionServicesService.fetchSingleReceipt(this.transactionId).subscribe(response => {
+        this.singleBillReceiptArray = response.data;
+        console.log("Array:", this.singleBillReceiptArray);
+        this.rupeeInWords = toWords.convert(this.singleBillReceiptArray[0].temp_total_received);
+      })
+
+  }
+  onClickedClosed() {
+    this.selectedIndex = 0;
   }
   onClickedSingleReceipt(feeDetails: any) {
     if (this.showBox === false) {
@@ -272,6 +286,7 @@ export class FeesReceivedComponent implements OnInit {
   clearFeesReceived() {
     this.hiddenPopup = false;
     this.hiddenTransactionInfo=false;
+    //this.isPrintBoolean=false;
     //this.studentNameList = [];
     this.courseNameList = [];
     this.tranMasterIdArray = [];
@@ -584,6 +599,9 @@ export class FeesReceivedComponent implements OnInit {
         }
         this.transactionServicesService.saveFeesReceive(this.tempObj).subscribe(response => {
           if (response.success === 1) {
+            //console.log("Save Result Id:",response.data.transactionMasterId);
+            this.transactionId=response.data.transactionMasterId;
+            this.isPrintBoolean=true;
             this.FeesReceivedFormGroup.reset();
             //this.getActiveCourseUpdate();
             this.clearFeesReceived();

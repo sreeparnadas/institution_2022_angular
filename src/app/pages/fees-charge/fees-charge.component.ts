@@ -218,10 +218,10 @@ export class FeesChargeComponent implements OnInit {
     //this.tr_date= new Date();
     //this.studentId = this.FeesChargeFormGroup.get('studentId')?.value;
     //this.transactionDate =this.FeesChargeFormGroup.get('transactionDate')?.value;
-   /*  this.tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
+    this.tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
     this.transactionDate = formatDate(this.tr_date, 'yyyy-MM-dd', 'en');
     this.studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
-    this.comment=this.FeesChargeFormGroup.get('comment')?.value; */
+    this.comment=this.FeesChargeFormGroup.get('comment')?.value; 
       
        //console.log("transactionDate:",this.transactionDate);
     this.ledgerId=this.FeesChargeFormGroup.get('ledgerId')?.value;
@@ -297,6 +297,7 @@ export class FeesChargeComponent implements OnInit {
   }
 
   editFeesReceived(feeDetails:any){
+  
     this.selectedIndex=0;
     this.hiddenPopup=false;
     this.event=0;
@@ -309,18 +310,26 @@ export class FeesChargeComponent implements OnInit {
       this.transactionServicesService.fetchAllStudentToCourses(response.data[0].student_id).subscribe(response=>{
         this.courseNameList=response.data;
       })
-      this.FeesChargeFormGroup.patchValue({transactionId: response.data[0].id});
-      this.FeesChargeFormGroup.patchValue({studentId: response.data[0].student_id});
-      this.FeesChargeFormGroup.patchValue({studentToCourseId: response.data[0].student_course_registration_id});
-      this.FeesChargeFormGroup.patchValue({comment: response.data[0].comment});
-      this.FeesChargeFormGroup.patchValue({transactionDate: response.data[0].transaction_date});
+      //this.FeesChargeFormGroup.patchValue({transactionId: response.data[0].id});
+      //this.FeesChargeFormGroup.patchValue({studentId: response.data[0].student_id});
+      //this.FeesChargeFormGroup.patchValue({studentToCourseId: response.data[0].student_course_registration_id});
+      //this.FeesChargeFormGroup.patchValue({comment: response.data[0].comment});
+      //this.FeesChargeFormGroup.patchValue({transactionDate: response.data[0].transaction_date});
       this.studentId=response.data[0].student_id;
       this.studentToCourseId=response.data[0].student_course_registration_id;
       this.transactionId=response.data[0].id;
       let tr_date=response.data[0].transaction_date;
        this.transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
       this.comment=response.data[0].comment;
-
+      this.FeesChargeFormGroup = new FormGroup({
+        transactionId : new FormControl(response.data[0].id),
+        studentId : new FormControl(response.data[0].student_id),
+        comment : new FormControl(response.data[0].comment),
+        amount : new FormControl(0),
+        studentToCourseId:new FormControl(response.data[0].student_course_registration_id),
+        ledgerId : new FormControl(7, [Validators.required]),
+        transactionDate : new FormControl(this.transactionDate)
+      })
       for(let val of this.transactionList){
         this.tempItemObj={
           ledgerId:val.ledger_id,
@@ -335,27 +344,27 @@ export class FeesChargeComponent implements OnInit {
 
     })
   }
-
+ /*  changeTranDate(data:any){
+    console.log("transaction Date:");
+    this.tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
+    this.transactionDate = formatDate(this.tr_date, 'yyyy-MM-dd', 'en');
+    console.log("transaction Date:",data)
+  } */
   onUpdate(){
+      var DateObj = new Date(this.transactionDate);
+      this.transactionMonth=DateObj.getMonth()+1;
+      this.transactionYear=DateObj.getFullYear();
+      /* console.log("Month No:",DateObj.getMonth()+1);
+      console.log("Year No:",DateObj.getFullYear());  */
     this.hiddenPopup=false;
-    this.confirmationService.confirm({
+    //console.log("tr date:",this.transactionDate);
+   this.confirmationService.confirm({
      message: 'Do you want to Save this record?',
      header: 'Delete Confirmation',
      icon: 'pi pi-info-circle',
      accept: () => {
 
-
-       //let transactionId=this.FeesChargeFormGroup.get('transactionId')?.value;
-       //let studentId = this.FeesChargeFormGroup.get('studentId')?.value;
-       //let studentToCourseId = this.FeesChargeFormGroup.get('studentToCourseId')?.value;
-       //let tr_date=this.FeesChargeFormGroup.get('transactionDate')?.value;
-       //let transactionDate = formatDate(tr_date, 'yyyy-MM-dd', 'en');
-       //let comment=this.FeesChargeFormGroup.get('comment')?.value;
-       this.transactionDate=this.FeesChargeFormGroup.value.transactionDate;
-      var DateObj = new Date(this.transactionDate);
-      this.transactionMonth=DateObj.getMonth()+1;
-      this.transactionYear=DateObj.getFullYear();
-     
+    
        this.tempChargeObj={
          ledgerId:this.studentId,
          transactionTypeId:1,
@@ -398,7 +407,7 @@ export class FeesChargeComponent implements OnInit {
      reject: () => {
        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
      }
-   });
+   }); 
 
  }
 

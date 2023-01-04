@@ -9,7 +9,28 @@ import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 import { CourseService } from 'src/app/services/course.service';
 import { StudentToCourseService } from 'src/app/services/student-to-course.service';
 import { Table } from 'primeng/table/table';
+import { TransactionServicesService } from 'src/app/services/transaction-services.service';
+import { ToWords } from 'to-words';
 
+const toWords = new ToWords({
+  localeCode: 'en-IN',
+  converterOptions: {
+    currency: true,
+    ignoreDecimal: false,
+    ignoreZeroCurrency: false,
+    doNotAddOnly: false,
+    currencyOptions: { // can be used to override defaults for the selected locale
+      name: 'Rupee',
+      plural: 'Rupees',
+      symbol: '₹',
+      fractionalUnit: {
+        name: 'Paisa',
+        plural: 'Paise',
+        symbol: '',
+      },
+    }
+  }
+});
 @Component({
   selector: 'app-owner',
   templateUrl: './owner.component.html',
@@ -17,6 +38,11 @@ import { Table } from 'primeng/table/table';
 })
 export class OwnerComponent implements OnInit {
   allIncomeArray: any = [];
+  allBillReceiptArray: any = [];
+  showReceipt:boolean=false;
+  selectedIndex: number = 0;
+  rupeeInWords:string='';
+  totalRecepitAmount:number=0;
   birthdayArray:any=[];
   upcomingDueListArray:any=[];
   studentRegistrationHistoryArray:any=[];
@@ -27,6 +53,10 @@ export class OwnerComponent implements OnInit {
   totalNoActiveStudent:number=0;
   totalMonthlyCash:number=0;
   totalMonthlyBank:number=0;
+  totalYearlyBank:number=0;
+  totalYearlyCash:number=0;
+  totalMonthlyIncome:number=0;
+  totalYearlyIncome:number=0;
   registratedData: BijoyaRegistration[]=[];
   showMessage:boolean=false;
   isDeviceXS = false;
@@ -63,6 +93,7 @@ export class OwnerComponent implements OnInit {
               , private commonService: CommonService
               , private courseService: CourseService
               , private studentToCourseService: StudentToCourseService
+              , private transactionServicesService: TransactionServicesService
 
     ) {
       this.getAllIncome();
@@ -79,6 +110,25 @@ export class OwnerComponent implements OnInit {
   ngOnInit(): void {
    
   }
+  onClickedReceiptVoucher(id: any) {
+    this.totalRecepitAmount = 0;
+    this.rupeeInWords = '';
+    this.showReceipt = true;
+    this.selectedIndex = 2;
+    console.log("id:", id);
+    this.transactionServicesService.fetchAllReceipt(id).subscribe(response => {
+      this.allBillReceiptArray = response.data;
+      console.log("Array:", this.allBillReceiptArray);
+      for (let val of this.allBillReceiptArray) {
+        this.totalRecepitAmount = Number(this.totalRecepitAmount) + Number(val.temp_total_received);
+      }
+      this.rupeeInWords = toWords.convert(this.totalRecepitAmount);
+    })
+
+  }
+  onClickedClosed() {
+    this.selectedIndex = 0;
+  }
   active=0;
   onTabChanged(event:any){
     console.log(event)
@@ -94,6 +144,10 @@ export class OwnerComponent implements OnInit {
       this.allIncomeArray=response.data;
       this.totalMonthlyCash=this.allIncomeArray[0].total_monthly_cash;
       this.totalMonthlyBank=this.allIncomeArray[0].total_monthly_bank;
+      this.totalYearlyBank=this.allIncomeArray[0].total_yearly_bank;
+      this.totalYearlyCash=this.allIncomeArray[0].total_yearly_cash;
+      this.totalMonthlyIncome=this.allIncomeArray[0].total_monthly_income;
+      this.totalYearlyIncome=this.allIncomeArray[0].total_yearly_income;
       console.log("all Income TS:",this.allIncomeArray);
     })
   }
