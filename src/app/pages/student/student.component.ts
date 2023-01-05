@@ -51,8 +51,9 @@ export class StudentComponent implements OnInit, OnChanges{
   items: MenuItem[]=[];
 
   activeIndex: number = 0;
-
-
+  userData: any;
+  userObject!: Object;
+  UserID:any;
   studentNameFormGroup: FormGroup;
   studentGuardianFormGroup: FormGroup;
   studentBasicFormGroup: FormGroup;
@@ -96,6 +97,7 @@ export class StudentComponent implements OnInit, OnChanges{
     whatsappNumber?: string;
     email?: string;
     qualification?: string;
+    userID?:number;
   }={};
   stateList: any[] = [];
   visibleSidebar2: boolean = false;
@@ -289,8 +291,16 @@ export class StudentComponent implements OnInit, OnChanges{
   }
   ngOnInit(): void {
 
-
-
+    const user = localStorage.getItem('user');
+    if (user){
+      this.UserID = JSON.parse(<string>user).uniqueId;
+      console.log("user localUserID:",(this.UserID));
+    }
+    /* this.userData=localStorage.getItem('user');
+    console.log("user data:",(this.userData));
+    this.userObject=JSON.parse(this.userData);
+   
+    console.log("user login data:",((Object.values(this.userObject)))); */
     // @ts-ignore
     /* this.filteredQualifications = this.studentBasicFormGroup.valueChanges.pipe(
       startWith(''),
@@ -470,7 +480,7 @@ export class StudentComponent implements OnInit, OnChanges{
 
         this.studentData.whatsappNumber=this.studentContactFormGroup.value.whatsappNumber;
         this.studentData.email=this.studentContactFormGroup.value.email;
-
+        this.studentData.userID=this.UserID;
 
 
         this.studentService.saveStudent(this.studentData).subscribe(response => {
