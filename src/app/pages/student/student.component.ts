@@ -480,8 +480,7 @@ export class StudentComponent implements OnInit, OnChanges{
 
         this.studentData.whatsappNumber=this.studentContactFormGroup.value.whatsappNumber;
         this.studentData.email=this.studentContactFormGroup.value.email;
-        this.studentData.userID=this.UserID;
-
+        
 
         this.studentService.saveStudent(this.studentData).subscribe(response => {
 
